@@ -1,0 +1,709 @@
+package com.kh.admin.model.service;
+
+import java.sql.Connection;
+import java.util.ArrayList;
+
+import com.kh.PowerLink.model.vo.PowerLink;
+import com.kh.admin.model.dao.AdminPageDao;
+import com.kh.admin.model.vo.PageInfo;
+import com.kh.cafe.model.vo.Cafe;
+import com.kh.common.JDBCTemplate;
+import com.kh.declare.model.vo.Declare;
+import com.kh.member.model.vo.Member;
+import com.kh.question.model.vo.QnAList;
+
+
+public class AdminPageService {
+
+	public ArrayList<Cafe> selectCafeList(PageInfo pi) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		ArrayList<Cafe> list = new AdminPageDao().selectCafeList(conn, pi);
+		
+		if(list != null) {
+			
+			JDBCTemplate.commit(conn);
+	
+		}else {
+			
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		System.out.println(list);
+		return list;
+	}
+
+	public int getListCount() {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int listCount = new AdminPageDao().getListCount(conn);
+		
+		if(listCount > 0) {
+			
+			JDBCTemplate.commit(conn);
+			
+		}else {
+			
+			JDBCTemplate.rollback(conn);
+			
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		return listCount;
+	}
+
+	public int updateIsupload(String arr) {
+
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = new AdminPageDao().updateIsupload(conn,arr);
+		
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
+		
+	}
+
+	public ArrayList<Cafe> selectCafeNameSearch(String search) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		ArrayList<Cafe> list = new AdminPageDao().selectCafeNameSearch(conn, search);
+		
+		if(list != null) {
+			
+			JDBCTemplate.commit(conn);
+	
+		}else {
+			
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		
+		return list;
+		
+	
+	}
+
+	public ArrayList<Cafe> selectApplicantNameSearch(String search) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		ArrayList<Cafe> list = new AdminPageDao().selectApplicantNameSearch(conn, search);
+		
+		if(list != null) {
+			
+			JDBCTemplate.commit(conn);
+	
+		}else {
+			
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		
+		return list;
+		
+	
+	}
+
+	public int updateIsdelete(String arr) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = new AdminPageDao().updateIsdelete(conn,arr);
+		
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
+	public ArrayList<Member> selectMemberList(PageInfo pi) {
+
+		Connection conn = JDBCTemplate.getConnection();
+		
+		ArrayList<Member> list = new AdminPageDao().selectMemberList(conn, pi);
+		
+		if(list != null) {
+			
+			JDBCTemplate.commit(conn);
+	
+		}else {
+			
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		System.out.println(list);
+		
+		return list;
+	}
+
+	public ArrayList<Member> selectMemberNickNameSearch(String search) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		ArrayList<Member> list = new AdminPageDao().selectMemberNickNameSearch(conn, search);
+		
+		if(list != null) {
+			
+			JDBCTemplate.commit(conn);
+	
+		}else {
+			
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		
+		return list;
+		
+	}
+
+	public ArrayList<Member> selectMemberEmailSearch(String search) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		ArrayList<Member> list = new AdminPageDao().selectMemberEmailSearch(conn, search);
+		
+		if(list != null) {
+			
+			JDBCTemplate.commit(conn);
+	
+		}else {
+			
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		
+		return list;
+		
+	}
+
+	public int getMemberListCount() {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int listCount = new AdminPageDao().getMemberListCount(conn);
+		
+		if(listCount > 0) {
+			
+			JDBCTemplate.commit(conn);
+			
+		}else {
+			
+			JDBCTemplate.rollback(conn);
+			
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		return listCount;
+	}
+
+	public int updateMemberDelete(String arr) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = new AdminPageDao().updateMemberDelete(conn,arr);
+		
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
+	public ArrayList<Member> WriteCount() {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		ArrayList<Member> list = new AdminPageDao().WriteCount(conn);
+		
+		if(list != null) {
+			
+			JDBCTemplate.commit(conn);
+	
+		}else {
+			
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		
+		return list;
+	
+	}
+
+	public ArrayList<Cafe> CafeImgWriteCount(PageInfo pi) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		ArrayList<Cafe> list = new AdminPageDao().CafeImgWriteCount(conn);
+		
+		if(list != null) {
+			
+			JDBCTemplate.commit(conn);
+	
+		}else {
+			
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		
+		return list;
+	
+	}
+
+	public ArrayList<Declare> selectDeclareList(PageInfo pi) {
+
+		Connection conn = JDBCTemplate.getConnection();
+		
+		ArrayList<Declare> list = new AdminPageDao().selectDeclareList(conn, pi);
+		
+		if(list != null) {
+			
+			JDBCTemplate.commit(conn);
+	
+		}else {
+			
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		System.out.println(list);
+		
+		return list;
+	}
+
+	public int getDeclareList() {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int listCount = new AdminPageDao().getDeclareList(conn);
+		
+		if(listCount > 0) {
+			
+			JDBCTemplate.commit(conn);
+			
+		}else {
+			
+			JDBCTemplate.rollback(conn);
+			
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		return listCount;
+	}
+
+	public ArrayList<Declare> selectDeclareNameSearch(String search) {
+
+		Connection conn = JDBCTemplate.getConnection();
+		
+		ArrayList<Declare> list = new AdminPageDao().selectDeclareNameSearch(conn, search);
+		
+		if(list != null) {
+			
+			JDBCTemplate.commit(conn);
+	
+		}else {
+			
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		
+		return list;
+		
+
+
+	}
+
+	public ArrayList<Declare> selectDeclareContentSearch(String search) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		ArrayList<Declare> list = new AdminPageDao().selectDeclareContentSearch(conn, search);
+		
+		if(list != null) {
+			
+			JDBCTemplate.commit(conn);
+	
+		}else {
+			
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		
+		return list;
+		
+	}
+
+	public int getPowerLinkCount() {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int listCount = new AdminPageDao().getPowerLinkCount(conn);
+		
+		if(listCount > 0) {
+			
+			JDBCTemplate.commit(conn);
+			
+		}else {
+			
+			JDBCTemplate.rollback(conn);
+			
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		return listCount;
+	
+	}
+
+	public ArrayList<PowerLink> selectPowerLinkList(PageInfo pi) {
+		// TODO Auto-generated method stub
+		Connection conn = JDBCTemplate.getConnection();
+		
+		ArrayList<PowerLink> list = new AdminPageDao().selectPowerLinkList(conn, pi);
+		
+		if(list != null) {
+			
+			JDBCTemplate.commit(conn);
+	
+		}else {
+			
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		System.out.println(list);
+		return list;
+	}
+
+	public ArrayList<PowerLink> selectPowrLinkApplicantNameSearch(String search) {
+		// TODO Auto-generated method stub
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		ArrayList<PowerLink> list = new AdminPageDao().selectPowrLinkApplicantNameSearch(conn, search);
+		
+		if(list != null) {
+			
+			JDBCTemplate.commit(conn);
+	
+		}else {
+			
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		
+		return list;
+		
+	}
+
+	public ArrayList<PowerLink> selectPowerLinkCafeNameSearch(String search) {
+		// TODO Auto-generated method stub
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		ArrayList<PowerLink> list = new AdminPageDao().selectPowerLinkCafeNameSearch(conn, search);
+		
+		if(list != null) {
+			
+			JDBCTemplate.commit(conn);
+	
+		}else {
+			
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		
+		return list;
+		
+	}
+
+	public int powerRegistration(String arr) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = new AdminPageDao().getPowerCount(conn);
+		
+		if(result >= 3 ) {
+			
+			JDBCTemplate.rollback(conn);
+			
+			result = 0;
+			
+			
+		}else {
+			System.out.println("==================3333==============");
+			result = new AdminPageDao().updatePowerLink(conn, arr);
+			
+			JDBCTemplate.commit(conn);
+			
+		}
+		
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public int powerCancel(String arr) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = new AdminPageDao().powerCancel(conn, arr);
+		
+		if(result > 0) {
+		
+			JDBCTemplate.commit(conn);	
+			
+		}else {
+		
+			JDBCTemplate.rollback(conn);
+	
+		}
+		
+		JDBCTemplate.close(conn);
+	
+		return result;
+	
+		
+	}
+
+	public int PowerLinkCount() {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = new AdminPageDao().PowerLinkCount(conn);
+		
+		if(result > 0) {
+			
+			JDBCTemplate.commit(conn);
+			
+		}else {
+			
+			JDBCTemplate.rollback(conn);
+		}
+
+		JDBCTemplate.close(conn);
+		
+		return result;
+	
+	}
+
+	public ArrayList<Cafe> selectCafeApplyList(PageInfo pi) {
+
+		Connection conn = JDBCTemplate.getConnection();
+		
+		ArrayList<Cafe> list = new AdminPageDao().selectCafeApplyList(conn, pi);
+		
+		if(list != null) {
+			
+			JDBCTemplate.commit(conn);
+	
+		}else {
+			
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		System.out.println(list);
+		
+		return list;
+	}
+
+	public ArrayList<Cafe> selectCafeApplyApplicantNameSearch(String search) {
+
+		Connection conn = JDBCTemplate.getConnection();
+		
+		ArrayList<Cafe> list = new AdminPageDao().selectCafeApplyApplicantNameSearch(conn, search);
+		
+		if(list != null) {
+	
+			JDBCTemplate.commit(conn);
+		
+		}else {
+		
+			JDBCTemplate.rollback(conn);
+		
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		return list;
+	}
+
+	public ArrayList<Cafe> selectCafeApplyCafeNameSearch(String search) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		ArrayList<Cafe> list = new AdminPageDao().selectCafeApplyCafeNameSearch(conn, search);
+		
+		if(list != null) {
+			
+			JDBCTemplate.commit(conn);
+			
+		}else {
+			
+			JDBCTemplate.rollback(conn);
+	
+		}
+		
+		JDBCTemplate.close(conn);
+	
+		return list;
+	}
+
+	public int getCafeApplyCount() {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = new AdminPageDao().getCafeApplyCount(conn);
+		
+		if(result > 0) {
+			
+			JDBCTemplate.commit(conn);
+			
+		}else {
+			
+			JDBCTemplate.rollback(conn);
+		}
+
+		JDBCTemplate.close(conn);
+		
+		return result;
+	
+	
+	}
+
+	public int cafeRegistraion(String arr) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = new AdminPageDao().cafeRegistraion(conn, arr);
+		
+		if(result > 0) {
+		
+			JDBCTemplate.commit(conn);	
+			
+		}else {
+		
+			JDBCTemplate.rollback(conn);
+	
+		}
+		
+		JDBCTemplate.close(conn);
+	
+		return result;
+	
+		
+	}
+
+	public ArrayList<QnAList> selectQnAList(PageInfo pi) {
+
+		Connection conn = JDBCTemplate.getConnection();
+		
+		ArrayList<QnAList> list = new AdminPageDao().selectQnAList(conn, pi);
+		
+		if(list != null) {
+			
+			JDBCTemplate.commit(conn);
+	
+		}else {
+			
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		System.out.println(list);
+		
+		return list;
+	
+
+	}
+
+	public ArrayList<QnAList> selectQnaApplicantNameSearch(String search) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		ArrayList<QnAList> list = new AdminPageDao().selectQnaApplicantNameSearch(conn, search);
+		
+		if(list != null) {
+			
+			JDBCTemplate.commit(conn);
+			
+		}else {
+			
+			JDBCTemplate.rollback(conn);
+	
+		}
+		
+		JDBCTemplate.close(conn);
+	
+		return list;
+	}
+
+	public ArrayList<QnAList> selectQnaTitleSearch(String search) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		ArrayList<QnAList> list = new AdminPageDao().selectQnaTitleSearch(conn, search);
+		
+		if(list != null) {
+			
+			JDBCTemplate.commit(conn);
+			
+		}else {
+			
+			JDBCTemplate.rollback(conn);
+	
+		}
+		
+		JDBCTemplate.close(conn);
+	
+		return list;
+	}
+}
