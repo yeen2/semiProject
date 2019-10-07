@@ -78,7 +78,7 @@ public class ReviewDao {
 	}
 	
 	
-	public ArrayList<Review> selectReview(Connection con, int c_no) {
+	public ArrayList<Review> selectReview(Connection con, int c_no, int m_no) {
 		ArrayList<Review> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -86,7 +86,10 @@ public class ReviewDao {
 		
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, c_no);
+			pstmt.setInt(1, m_no);
+			pstmt.setInt(2, m_no);
+			pstmt.setInt(3, c_no);
+			
 			rs = pstmt.executeQuery();
 
 			while(rs.next()) {
@@ -105,7 +108,9 @@ public class ReviewDao {
 									rs.getString("rr_content"), 
 									rs.getDate("rr_date"),
 									rs.getString("profile"),
-									rs.getString("nickname")));
+									rs.getString("nickname"),
+									rs.getInt("rlike"),
+									rs.getInt("rdeclare")));
 			}
 			
 		} catch (SQLException e) {
@@ -119,6 +124,7 @@ public class ReviewDao {
 	
 	
 	public ArrayList<ReviewImg> selectReviewImg(Connection con, int r_no){
+		
 		ArrayList<ReviewImg> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -146,6 +152,44 @@ public class ReviewDao {
 		return list;
 	}
 	
+	
+	public int insertLike(Connection con, int r_no, int m_no) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertLike");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, r_no);
+			pstmt.setInt(2, m_no);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	
+	public int increaseLike(Connection con, int r_no) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("increaseLike");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, r_no);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
 	
 	
 	

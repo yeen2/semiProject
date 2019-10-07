@@ -20,7 +20,6 @@ import com.kh.review.model.service.ReviewService;
 import com.kh.review.model.vo.Review;
 import com.kh.review.model.vo.ReviewImg;
 import com.oreilly.servlet.MultipartRequest;
-import com.sun.xml.internal.ws.api.message.Attachment;
 
 @WebServlet("/write.re")
 public class WriteServlet extends HttpServlet {

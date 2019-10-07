@@ -7,6 +7,8 @@
 	ArrayList<Review> r = (ArrayList<Review>)request.getAttribute("r");
 	String add = c.getAddress()+ c.getAddress_detail();
 
+	System.out.println(r.get(0));
+	
 	// 즐겨찾기 확인
 	int checkFavorite = 0;
 	if(session.getAttribute("loginUser") != null){
@@ -319,8 +321,10 @@
 								</div>
 								<% } %> <!-- 리뷰이미지 for문 -->
 								
+								
 								<!-- 신고 버튼 -->
 								<!--  href="#reportModal" href="javascript:checkSession();" -->
+								<% if(r.get(i).getDeclare() == 0){ %>
 								<a class="btn btn-outline-danger pull-right" data-toggle="modal" id="declare_btn" 
 									style="margin: auto;">
 									<input type="hidden" value="<%= r.get(i).getR_no()%>">
@@ -329,15 +333,35 @@
 									&nbsp;
 									<%=r.get(i).getR_declare() %>
 								</a>
-
-								<!-- 좋아요 버튼 -->
-								<a class="btn btn-outline-primary pull-right" data-toggle="modal" id="like_btn"> 
-									<i id="sss2-1" class="fa fa-thumbs-up" aria-hidden="true" style="size: smaill"></i> 
+								<%} else {%>
+								<a class="btn btn-danger pull-right" data-toggle="modal" id="declare_btn" 
+									style="margin: auto;">
 									<input type="hidden" value="<%= r.get(i).getR_no()%>">
 									
+									<i class="fa fa-thumbs-down" ></i>
+									&nbsp;
+									<%=r.get(i).getR_declare() %>
+								</a>
+								<% } %>
+								
+
+
+								<!-- 좋아요 버튼 -->
+								<% if(r.get(i).getLike() == 0){ %>
+								<a class="btn btn-outline-primary pull-right" data-toggle="modal" id="like_btn"> 
+									<input type="hidden" value="<%= r.get(i).getR_no()%>">
+									<i id="sss2-1" class="fa fa-thumbs-up" aria-hidden="true" style="size: smaill"></i> 
 									&nbsp;
 									<%=r.get(i).getR_like() %>
 								</a>
+								<%} else {%>
+								<a class="btn btn-primary pull-right" data-toggle="modal" id="like_btn"> 
+									<input type="hidden" value="<%= r.get(i).getR_no()%>">
+									<i id="sss2-1" class="fa fa-thumbs-up" aria-hidden="true" style="size: smaill"></i> 
+									&nbsp;
+									<%=r.get(i).getR_like() %>
+								</a>
+								<% } %>
 								
 								</div> <!-- 아래공간 div로 묶기 -->
 								
@@ -356,14 +380,56 @@
 							// 좋아요 버튼
 							$(document).on("click", "#like_btn", function(){
 								console.log("클릭");
-								console.log($(this).children().eq(0).val());
-								
+								console.log( $(this).children().eq(0).val());
 								var r_no = $(this).children().eq(0).val();
+								console.log('r_no'+r_no);
+								
 								var login = "<%=session.getAttribute("loginUser")%>";
 								
 								if(login == "null"){
 									alert("로그인 후 이용가능합니다.");
 								}else{
+									
+									if($(this).attr("class") == 'btn btn-outline-primary pull-right'){ //색깔 없으면
+										
+										console.log($(this).attr("class"));
+										console.log("색없음");
+										//ajax
+										$.ajax({
+											url:"insertLike.re",
+											data:{r_no:r_no},
+											type:"get",
+											success:function(str){
+												if(str == '성공'){
+													console.log("좋아요 추가 성공");
+													$(this).attr('class','btn btn-primary pull-right');
+												}else{
+													console.log("좋아요 추가 실패");
+												}
+											},error:function(){
+												console.log("ajax 서버 실패");
+											}
+										});
+
+									}else{ // 색깔 있으면
+										console.log($(this).attr("class"));
+										console.log("색있음");
+										$.ajax({
+											url:"deleteLike.re",
+											data:{r_no:r_no},
+											type:"get",
+											success:function(str){
+												if(str == '성공'){
+													console.log("좋아요 제거 성공");
+													$(this).attr('class','btn btn-outline-primary pull-right');
+												}else{
+													console.log("좋아요 제거 실패");
+												}
+											},error:function(){
+												console.log("ajax 서버 실패");
+											}
+										});
+									}
 									
 								}
 							});

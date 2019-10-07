@@ -36,8 +36,7 @@ public class CafeInfoServlet extends HttpServlet {
 		
 		// 카페의 리뷰리스트들
 		ArrayList<Review> r = new ArrayList<>();
-		r = new ReviewService().selectOneCafeReview(c_no);
-		
+
 		// 세션확인
 		HttpSession session = request.getSession();
 		Member m = (Member)session.getAttribute("loginUser");
@@ -48,10 +47,10 @@ public class CafeInfoServlet extends HttpServlet {
 			request.setAttribute("sessionFavorite", sessionFavorite);
 			
 			// 세션 있을때, 해당 m_no, c_no, r_no로 좋아요+신고 확인
+			r = new ReviewService().selectOneCafeReview(c_no, m.getM_no());	
 			
-			
-			
-			
+		}else {
+			r = new ReviewService().selectOneCafeReview(c_no, 1000000);
 		}
 		
 		request.setAttribute("c", c);

@@ -32,6 +32,11 @@ public class Review {
 	private String profile;
 	private String nickname;
 	
+	// 좋아요, declare ==> 0이면 안한거, 1이면 한거
+	private int like;
+	private int declare;
+		
+	
 	public Review() {
 		super();
 	}
@@ -39,7 +44,7 @@ public class Review {
 	// cafeInfo 에서 댓글불러오는 생성자
 	public Review(int r_no, int m_no, int c_no, int flavor, int price, int service, double sum_avg, String r_content,
 			Date r_date, String isDelete, int r_like, int r_declare, String rr_content, Date rr_date,
-			ArrayList<ReviewImg> imgList, String profile, String nickname) {
+			ArrayList<ReviewImg> imgList, String profile, String nickname, int like, int declare) {
 		super();
 		this.r_no = r_no;
 		this.m_no = m_no;
@@ -58,12 +63,15 @@ public class Review {
 		this.imgList = imgList;
 		this.profile = profile;
 		this.nickname = nickname;
+		this.like = like;
+		this.declare = declare;
+		
 	}
 	
 	// cafeInfo 에서 댓글불러오는 생성자
 		public Review(int r_no, int m_no, int c_no, int flavor, int price, int service, double sum_avg, String r_content,
 				Date r_date, String isDelete, int r_like, int r_declare, String rr_content, 
-				Date rr_date, String profile, String nickname) {
+				Date rr_date, String profile, String nickname, int like, int declare) {
 			super();
 			this.r_no = r_no;
 			this.m_no = m_no;
@@ -81,6 +89,8 @@ public class Review {
 			this.rr_date = rr_date;
 			this.profile = profile;
 			this.nickname = nickname;
+			this.like = like;
+			this.declare = declare;
 		}
 
 
@@ -292,6 +302,24 @@ public class Review {
 
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
+	}
+	
+	
+	
+	public int getLike() {
+		return like;
+	}
+
+	public void setLike(int like) {
+		this.like = like;
+	}
+
+	public int getDeclare() {
+		return declare;
+	}
+
+	public void setDeclare(int declare) {
+		this.declare = declare;
 	}
 
 	@Override
