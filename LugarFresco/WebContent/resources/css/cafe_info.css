@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+.outer{
+	width: 100%;
+}
+.cafe_header{
+	margin-top:70px;
+}
+.cafe_top{
+	margin : 10px;
+	width: 100%;
+	height: 340px;
+}
+.image_box{
+	width: 300px;
+	display: inline;
+	height: 340px;
+}
+.cafe_img{
+	
+}
+
+
