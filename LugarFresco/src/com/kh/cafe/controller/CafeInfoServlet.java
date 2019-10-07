@@ -30,18 +30,28 @@ public class CafeInfoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int c_no = Integer.parseInt(request.getParameter("c_no"));
-
+		
+		// 카페정보 
 		Cafe c = new CafeService().selectOneCafe(c_no);
+		
+		// 카페의 리뷰리스트들
 		ArrayList<Review> r = new ArrayList<>();
 		r = new ReviewService().selectOneCafeReview(c_no);
 		
+		// 세션확인
 		HttpSession session = request.getSession();
 		Member m = (Member)session.getAttribute("loginUser");
 		if(m != null) {
+			
 			// 세션 있을때, 해당 m_no와 c_no로 즐겨찾기 확인
 			int sessionFavorite = new CafeService().checkFavorite(m.getM_no(), c_no); // 즐겨찾기했다 = 1, 안함 = 0
 			request.setAttribute("sessionFavorite", sessionFavorite);
+			
 			// 세션 있을때, 해당 m_no, c_no, r_no로 좋아요+신고 확인
+			
+			
+			
+			
 		}
 		
 		request.setAttribute("c", c);

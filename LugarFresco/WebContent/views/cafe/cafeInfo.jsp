@@ -16,12 +16,10 @@
 		}
 	}
 	
-	// 리뷰 for문의 i변수 (js서 공유위함)
-	int i;
-	
 	// 카카오 공유하기
 	int favorite = c.getFavorite();
 
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -264,7 +262,7 @@
 					
 					<div class="single-post row" style="margin-bottom: 20px; ">
 						
-						<% for(i=0; i<r.size(); i++){ %> <!-- 리뷰 for문 -->
+						<% for(int i=0; i<r.size(); i++){ %> <!-- 리뷰 for문 -->
 						
 						<div class="single-testimonial item d-flex flex-row reviewCotent" 
 								style="width: 100%; height: 100%;">
@@ -360,12 +358,13 @@
 								console.log("클릭");
 								console.log($(this).children().eq(0).val());
 								
+								var r_no = $(this).children().eq(0).val();
 								var login = "<%=session.getAttribute("loginUser")%>";
 								
 								if(login == "null"){
 									alert("로그인 후 이용가능합니다.");
 								}else{
-										
+									
 								}
 							});
 							
@@ -375,7 +374,7 @@
 								console.log("클릭");
 								console.log($(this).children().eq(0).val());
 								
-								var r_no = $(this).children().eq(0);
+								var r_no = $(this).children().eq(0).val();
 								var login = "<%=session.getAttribute("loginUser") %>";
 								
 								if(login == "null"){
