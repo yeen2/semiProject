@@ -37,10 +37,13 @@ public class OwnerPagePowerServlet extends HttpServlet {
 			int mno = loginUser.getM_no();
 			int cno = Integer.parseInt(request.getParameter("cno"));
 			int price = Integer.parseInt(request.getParameter("price"));
+			System.out.println(cno);
+			System.out.println(price);
 			
 			int result = new MyPageService().insertPowerPay(mno, cno, price);
 			
 			if(result > 0) {
+				request.getSession().setAttribute("msg", "결제 완료! 파워등록 신청이 완료되었습니다.");
 				response.sendRedirect("myPowerList.op");
 			}else {
 				request.setAttribute("msg", "파워등록 신청에 실패하였습니다.");

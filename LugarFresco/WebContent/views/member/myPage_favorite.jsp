@@ -85,7 +85,7 @@
 								<div id="textArea">
 									<div style="font-size:27px; margin-top:-20px; width:100%;color:#ffc107;">4.3</div>
 									<p style="margin-top:-10px; font-size:19px;"><%=f.getCafe_name() %></p>
-									<span style="margin-right:15px;"><i class="icon fa fa-user fa-3x" style="font-size:13px;"></i> <%=f.getCount() %></span>
+									<span style="margin-right:15px;"><i class="icon fa fa-eye fa-3x" style="font-size:13px;"></i> <%=f.getCount() %></span>
 									<span style="margin-right:15px;"><i class="icon fa fa-pencil fa-3x" style="font-size:13px;"></i> <%=f.getReview_count() %></span>
 									<span><i class="icon fa fa-star fa-3x" style="font-size:13px;"></i> <%=f.getFavorite() %></span>
 								</div>

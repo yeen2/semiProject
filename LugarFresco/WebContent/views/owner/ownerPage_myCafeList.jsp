@@ -75,9 +75,9 @@
                   <p><%=oc.getContent() %></p>
                 </div>
                 <ul class="post-utility">
-                  <li class="shares"><i style="color:#dc3545;" class="fa fa-fw fa-lg fa-heart"></i>조회 <%=oc.getCount() %></li>
-                  <li class="shares"><i style="color:gray;" class="fa fa-fw fa-lg fa-thumbs-down"></i>리뷰 <%=oc.getReview_count() %></li>
-                  <li class="shares"><i style="color:gray;" class="fa fa-fw fa-lg fa-thumbs-down"></i>즐겨찾기 <%=oc.getFavorite() %></li>
+                  <li class="shares"><i style="color:gray;" class="fa fa-fw fa-lg fa-eye"></i>조회 <%=oc.getCount() %></li>
+                  <li class="shares"><i style="color:gray;" class="fa fa-fw fa-lg fa-pencil"></i>리뷰 <%=oc.getReview_count() %></li>
+                  <li class="shares"><i style="color:gray;" class="fa fa-fw fa-lg fa-star"></i>즐겨찾기 <%=oc.getFavorite() %></li>
                 </ul>
               </div>
               

@@ -103,7 +103,7 @@ public class Review {
 	 * @param img_name
 	 */
 	public Review(int r_no, int c_no, int flavor, int price, int service, double sum_avg, String r_content,
-			Date r_date, int r_like, int r_declare, String rr_content, Date rr_date, String cafe_name,
+			Date r_date, int r_like, int r_declare, String rr_content, Date rr_date, String cafe_name, String img_name,
 			ArrayList<ReviewImg> imgList, String profile, String nickname) {
 		super();
 		this.r_no = r_no;
@@ -119,6 +119,7 @@ public class Review {
 		this.rr_content = rr_content;
 		this.rr_date = rr_date;
 		this.cafe_name = cafe_name;
+		this.img_name = img_name;
 		this.imgList = imgList;
 		this.profile = profile;
 		this.nickname = nickname;
@@ -126,7 +127,7 @@ public class Review {
 	
 	
 	public Review(int r_no, int c_no, int flavor, int price, int service, double sum_avg, String r_content,
-			Date r_date, int r_like, int r_declare, String rr_content, Date rr_date, String cafe_name,
+			Date r_date, int r_like, int r_declare, String rr_content, Date rr_date, String cafe_name, String img_name,
 			String profile, String nickname) {
 		super();
 		this.r_no = r_no;
@@ -142,6 +143,7 @@ public class Review {
 		this.rr_content = rr_content;
 		this.rr_date = rr_date;
 		this.cafe_name = cafe_name;
+		this.img_name = img_name;
 		this.profile = profile;
 		this.nickname = nickname;
 	}

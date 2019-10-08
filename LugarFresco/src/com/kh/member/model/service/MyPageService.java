@@ -94,6 +94,7 @@ public class MyPageService {
 								r.get(i).getRr_content(), 
 								r.get(i).getRr_date(),
 								r.get(i).getCafe_name(),
+								r.get(i).getImg_name(),
 								imgList,
 								r.get(i).getProfile(),
 								r.get(i).getNickname()));
@@ -104,10 +105,41 @@ public class MyPageService {
 		return list;
 	}
 
-	public ArrayList<Cafe> selectLikeList(int mno) {
+	public ArrayList<Review> selectLikeList(int mno) {
 		Connection conn = getConnection();
 		
-		ArrayList<Cafe> list = new MyPageDao().selectLikeList(conn, mno);
+		ArrayList<Review> r = new ArrayList<>();
+		ArrayList<ReviewImg> imgList = new ArrayList<>();
+		//반환변수
+		ArrayList<Review> list = new ArrayList<>();
+		
+		//1.이미지뺀, review리스트만 총 불러오기
+		r = new MyPageDao().selectLikeList(conn, mno);
+
+		//2. 해당 r_no에 해당하는 img갖고와서 저장하기
+		for(int i=0; i<r.size(); i++) {
+			
+			int rno = r.get(i).getR_no();
+			imgList = new MyPageDao().selectMyReviewImg(conn, rno);
+ 
+			list.add(new Review(r.get(i).getR_no(),
+								r.get(i).getC_no(), 
+								r.get(i).getFlavor(), 
+								r.get(i).getPrice(), 
+								r.get(i).getService(), 
+								r.get(i).getSum_avg(), 
+								r.get(i).getR_content(),
+								r.get(i).getR_date(),
+								r.get(i).getR_like(), 
+								r.get(i).getR_declare(), 
+								r.get(i).getRr_content(), 
+								r.get(i).getRr_date(),
+								r.get(i).getCafe_name(),
+								r.get(i).getImg_name(),
+								imgList,
+								r.get(i).getProfile(),
+								r.get(i).getNickname()));
+		}
 		
 		close(conn);
 		

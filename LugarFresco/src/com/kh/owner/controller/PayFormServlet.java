@@ -26,6 +26,9 @@ public class PayFormServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int cno = Integer.parseInt(request.getParameter("cno"));
+		
+		request.setAttribute("cno", cno);
 		request.getRequestDispatcher("views/owner/pay.jsp").forward(request, response);
 		
 	}

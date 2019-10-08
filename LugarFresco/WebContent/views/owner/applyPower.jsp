@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	int cno = (int)request.getAttribute("cno");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,7 +63,10 @@
 				</h5>
 			
 		    </div>
-		    <a class="btn btn-primary" type="submit" href="<%=conPath%>/payForm.op">신청</a>
+		    <form action="<%=conPath%>/payForm.op" method="post">
+		    	<input type="hidden" name="cno" value="<%= cno %>">
+		    	<button class="btn btn-primary" type="submit">신청</button>
+		    </form>
 		  </div>
 		</div>
 		

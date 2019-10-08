@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.kh.cafe.model.vo.Cafe;
 import com.kh.member.model.service.MyPageService;
 import com.kh.member.model.vo.Member;
+import com.kh.review.model.vo.Review;
 
 /**
  * Servlet implementation class MyPage_likeServlet
@@ -41,7 +41,7 @@ public class MyPage_likeServlet extends HttpServlet {
 		
 		int mno = loginUser.getM_no();
 		
-		ArrayList<Cafe> list = new MyPageService().selectLikeList(mno);
+		ArrayList<Review> list = new MyPageService().selectLikeList(mno);
 		
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/member/myPage_like.jsp").forward(request, response);

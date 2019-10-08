@@ -19,7 +19,9 @@ public class PowerApplyFormServlet extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int cno = Integer.parseInt(request.getParameter("cno"));
 		
+		request.setAttribute("cno", cno);
 		request.getRequestDispatcher("views/owner/applyPower.jsp").forward(request, response);
 	}
 

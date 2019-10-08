@@ -218,6 +218,7 @@ public class MyPageDao {
 									rset.getString("rr_content"), 
 									rset.getDate("rr_date"),
 									rset.getString("cafe_name"),
+									rset.getString("img_name"),
 									rset.getString("profile"),
 									rset.getString("nickname")));
 			}
@@ -272,8 +273,8 @@ public class MyPageDao {
 	 * @param mno
 	 * @return
 	 */
-	public ArrayList<Cafe> selectLikeList(Connection conn, int mno) {
-		ArrayList<Cafe> list = new ArrayList<>();
+	public ArrayList<Review> selectLikeList(Connection conn, int mno) {
+		ArrayList<Review> list = new ArrayList<>();
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -288,20 +289,22 @@ public class MyPageDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				list.add(new Cafe(rset.getInt("c_no"),
-								  rset.getString("cafe_name"),
-								  rset.getDouble("sum_avg"),
-								  rset.getString("img1"),
-								  rset.getString("img2"),
-								  rset.getInt("l_no"),
-								  rset.getInt("r_no"),
-								  rset.getString("nickname"),
-								  rset.getString("r_content"),
-								  rset.getDate("r_date"),
-								  rset.getInt("r_like"),
-								  rset.getInt("r_declare"),
-								  rset.getString("img3"),
-								  rset.getString("img4")));
+				list.add(new Review(rset.getInt("r_no"),
+						rset.getInt("c_no"), 
+						rset.getInt("flavor"), 
+						rset.getInt("price"), 
+						rset.getInt("service"), 
+						rset.getDouble("sum_avg"), 
+						rset.getString("r_content"),
+						rset.getDate("r_date"),
+						rset.getInt("r_like"), 
+						rset.getInt("r_declare"), 
+						rset.getString("rr_content"), 
+						rset.getDate("rr_date"),
+						rset.getString("cafe_name"),
+						rset.getString("img_name"),
+						rset.getString("profile"),
+						rset.getString("nickname")));
 			}
 			
 		} catch (SQLException e) {

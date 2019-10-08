@@ -11,6 +11,8 @@
 	#div123{padding:15px; font-weight:bold; color:#666;}
 	#cafeClick:hover{cursor:pointer; background:#dee2e6;}
 	#noData{width:100%; height:100px; text-align:center; font-size:1.250em; font-weight:bold; margin-top:100px;}
+	#profileImg{width:100px; height:100px;}
+	#reviewImg{width:80px; height:80px;}
 </style>
 </head>
 <body>
@@ -78,18 +80,18 @@
 					</form>
 				</div>
               <div id="cafeClick" class="timeline-post" onclick="location.href='<%=conPath%>/cafeInfo.ca?c_no=<%=r.getC_no()%>';">
-                <div class="post-media"><img src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" style="width:9%; height:9%;">
-                  <div class="content">
+                <div class="post-media"><img id="profileImg" src="<%=conPath%>/resources/fileupload/review/<%=r.getImg_name() %>">
+                  <div class="content" style="margin-top:8px;">
                   	<h4><%=r.getCafe_name() %>&nbsp;&nbsp;<label style="color:#ffc107;"><%=r.getSum_avg() %></label>&nbsp;&nbsp;</h4>
-                   <%--  <h5><%=r.getNickName() %></h5> --%>
+                    <h5><%=r.getNickname() %></h5>
                     <p class="text-muted"><small><%=r.getR_date() %></small></p>
                   </div>
                 </div>
                 <div class="post-content">
-                  <p><%=r.getR_content() %></p>
+                  <p><%= r.getR_content() %></p>
                   <% if(!r.getImgList().isEmpty()){ %>
                   	<% for(int i=0; i<r.getImgList().size(); i++){ %>
-                  	  <span id="contentImgArea"><img id="contentImg" src=""></span>
+                  	  <span id="contentImgArea"><img id="reviewImg" src="<%=conPath%>/resources/fileupload/review/<%=r.getImgList().get(i).getImg_name()%>"></span>
 	                <% } %>
 	              <% } %>
                 </div>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.cafe.model.vo.Cafe, java.util.ArrayList"%>
+    pageEncoding="UTF-8" import="com.kh.review.model.vo.Review, java.util.ArrayList"%>
 <%
-	ArrayList<Cafe> list = (ArrayList<Cafe>)request.getAttribute("list");
+	ArrayList<Review> list = (ArrayList<Review>)request.getAttribute("list");
 %>
 <!DOCTYPE html>
 <html>
@@ -72,21 +72,26 @@
 						</div>
 					</div>
             <% }else{ %>
-              <% for(Cafe l : list){ %>
-              <div id="cafeClick" class="timeline-post" onclick="location.href='<%=conPath%>/cafeInfo.ca?c_no=<%=l.getC_no()%>';">
-                <div class="post-media"><img src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" style="width:9%; height:9%;">
+              <% for(Review rl : list){ %>
+              <div id="cafeClick" class="timeline-post" onclick="location.href='<%=conPath%>/cafeInfo.ca?c_no=<%=rl.getC_no()%>';">
+                <div class="post-media"><img id="profileImg" src="<%=conPath%>/resources/fileupload/review/<%=r.getImg_name() %>">
                   <div class="content">
-                  	<h4><%=l.getCafe_name() %>&nbsp;&nbsp;<label style="color:#ffc107;"><%=l.getSum_avg() %></label>&nbsp;&nbsp;</h4>
-                    <h5><%=l.getNickName() %></h5>
-                    <p class="text-muted"><small><%=l.getR_date() %></small></p>
+                  	<h4><%=rl.getCafe_name() %>&nbsp;&nbsp;<label style="color:#ffc107;"><%=rl.getSum_avg() %></label>&nbsp;&nbsp;</h4>
+                    <h5><%=rl.getNickname() %></h5>
+                    <p class="text-muted"><small><%=rl.getR_date() %></small></p>
                   </div>
                 </div>
                 <div class="post-content">
-                  <p><%=l.getR_content() %></p>
+                  <p><%=rl.getR_content() %></p>
+                  <% if(!rl.getImgList().isEmpty()){ %>
+                  	<% for(int i=0; i<rl.getImgList().size(); i++){ %>
+                  	  <span id="contentImgArea"><img id="reviewImg" src="<%=conPath%>/resources/fileupload/review/<%=rl.getImgList().get(i).getImg_name()%>"></span>
+	                <% } %>
+	              <% } %>
                 </div>
                 <ul class="post-utility">
-                  <li class="likes"><i style="color:#dc3545;" class="fa fa-fw fa-lg fa-heart"></i>좋아요 <%=l.getR_like() %></li>
-                  <li class="shares"><i style="color:gray;" class="fa fa-fw fa-lg fa-thumbs-down"></i>신고 <%=l.getR_declare() %></li>
+                  <li class="likes"><i style="color:#dc3545;" class="fa fa-fw fa-lg fa-heart"></i>좋아요 <%=rl.getR_like() %></li>
+                  <li class="shares"><i style="color:gray;" class="fa fa-fw fa-lg fa-thumbs-down"></i>신고 <%=rl.getR_declare() %></li>
                 </ul>
               </div>
               <% } %>

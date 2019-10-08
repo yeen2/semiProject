@@ -41,10 +41,10 @@ public class MyPageDeleteMemberServlet extends HttpServlet {
 		int result = new MyPageService().deleteMember(id);
 		
 		if(result > 0) {
-			session.invalidate();
-			
-			request.setAttribute("msg", "회원탈퇴에 성공하였습니다.");
+			session.setAttribute("msg", "회원탈퇴에 성공하였습니다.");
 			response.sendRedirect(request.getContextPath());
+			
+			session.invalidate();
 		}else {
 			request.setAttribute("msg", "회원탈퇴에 실패하였습니다.");
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);

@@ -48,7 +48,7 @@ public class MyPage_myUpdatePwdServlet extends HttpServlet {
 		Member updateMem = new MyPageService().updatePwd(m, newPwd);
 		
 		if(updateMem != null) {
-			request.setAttribute("msg", "성공적으로 비밀번호가 변경되었습니다.");
+			session.setAttribute("msg", "성공적으로 비밀번호가 변경되었습니다.");
 			
 			session.setAttribute("loginUser", updateMem);
 			

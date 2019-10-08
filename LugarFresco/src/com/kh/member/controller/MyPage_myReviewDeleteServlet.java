@@ -36,6 +36,7 @@ public class MyPage_myReviewDeleteServlet extends HttpServlet {
 		int result = new MyPageService().deleteReview(rno);
 		
 		if(result > 0) {
+			request.getSession().setAttribute("msg", "리뷰 삭제에 성공하였습니다.");
 			response.sendRedirect("myReview.mp");
 			
 		}else {
