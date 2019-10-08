@@ -52,6 +52,7 @@
         <!-- ----------------------------------코드시작 <main> 안에서 작성해야합니다~ --------------------------------------- -->
     
    	<main class="app-content">
+   		
    		<div id="div123" class="app-title" style="text-align:center;">
 	   		<h1 style="text-align:center;"><i class="app-menu__icon fa fa-heart-o"></i> 내 좋아요</h1>
 	   	</div>
@@ -95,6 +96,36 @@
           </div>
         </div>
       </div>
+      
+     <!-- <script>
+      	$(function(){
+      		$.ajax({
+				url:"myLikeA.mp",
+				dataType:"json",
+				success:function(list){ // list에는 객체배열의 형태로 담겨있을 것!!
+					console.log("성공");
+					console.log(list);
+					if(list.length == 0){
+						$("#111a").append("<h4>데이터가 없습니다</h4>");
+					}
+					$.each(list, function(index, value){
+						$("#111a").append("<div><h3>dskflsdkflsdklf</h3><h4>데이터가 없습니다</h4><h3>dskflsdkflsdklf</h3><h4>데이터가 없습니다</h4></div>");
+					});
+				},
+				error:function(){
+					console.log("서버와의 통신 실패!!");
+				}
+			});
+      	});
+      </script>
+      
+      <script>
+      	$(window).scroll(function(){
+      		if($(window).scrollTop() >= $(document).height() - $(window).height()){
+      			alert("111");
+      		}
+      	});
+      </script> -->
    	</main>
    	
 </body>

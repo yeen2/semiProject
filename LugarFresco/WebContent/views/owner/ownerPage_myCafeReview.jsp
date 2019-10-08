@@ -43,6 +43,20 @@
    		
 		<h1 style="text-align:center;">My Cafe Review List</h1><br>
     	
+    		<div class="form-group">
+              <div class="input-group">
+	              <form action="<%=conPath %>/myCafeReview.op" method="get">
+	                <select class="form form-control" name="category" style="width:100px;">
+	                	<option>---</option>
+	                	<option value="cafeName">카페명</option>
+	                	<option value="content">내용</option>
+	                </select>
+	                <input class="form-control" id="exampleInputAmount" type="text" name="search">
+	                <button class="btn btn-secondary" type="submit">검색</button>
+	               </form>
+              </div>
+            </div>
+            <br>
 			<table class="table table-hover" id="listArea" style="text-align:center; table-layout:fixed">
 			  <thead>
 			    <tr>

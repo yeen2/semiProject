@@ -46,7 +46,7 @@
   
 		  <div class="card-body">
 		    <h1 class="card-title">&lt;파워 등록 신청&gt;</h1>
-		    <p class="card-text">
+		    <div class="card-text">
 		    	<h5>
 				Lugar fresco 메인 페이지 상단에 <br>
 				카페정보가 게시되는 파워등록 광고입니다. <br>
@@ -59,8 +59,8 @@
 				신청을 누르시면 바로 결제페이지로 이동됩니다. <br>
 				</h5>
 			
-		    </p>
-		    <a href="#" class="btn btn-primary">신청</a>
+		    </div>
+		    <a class="btn btn-primary" type="submit" href="<%=conPath%>/payForm.op">신청</a>
 		  </div>
 		</div>
 		

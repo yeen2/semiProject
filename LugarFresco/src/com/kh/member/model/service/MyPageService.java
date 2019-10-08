@@ -215,4 +215,43 @@ public class MyPageService {
 		
 		return file;
 	}
+	
+	public ArrayList<Review> ownerReviewSelectCn(PageInfo pi, int mno, String search) {
+		Connection conn = getConnection();
+		
+		ArrayList<Review> list = new MyPageDao().ownerReviewSelectCn(conn, pi, mno, search);
+		
+		close(conn);
+		
+		return list;
+	}
+
+	public ArrayList<Review> ownerReviewSelectCt(PageInfo pi, int mno, String search) {
+		Connection conn = getConnection();
+		
+		ArrayList<Review> list = new MyPageDao().ownerReviewSelectCt(conn, pi, mno, search);
+		
+		close(conn);
+		
+		return list;
+	}
+
+	public int insertPowerPay(int mno, int cno, int price) {
+		Connection conn = getConnection();
+		int result = 0;
+		
+		int result1 = new MyPageDao().insertPower(conn, mno, cno);
+		int result2 = new MyPageDao().insertPay(conn, mno, price);
+		
+		if(result1 > 0 && result2 > 0) {
+			commit(conn);
+			result = 1;
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
 }

@@ -83,7 +83,7 @@
               <form action="<%= conPath %>/updateMember.mp" method="post" enctype="multipart/form-data" onsubmit="return nickNameCheck();">
 	               <div id="uploadFile" class="form-group">
 	                 <label class="control-label" for="profileImg">프로필 이미지<br> * 수정 시 아래 상자를 클릭해주세요 *</label>
-	                 <div id="titleImgArea"><img id="profileImg" width="80" height="80" src="<%= conPath %>/resources/profileImg/<%=img%>"></div>
+	                 <div id="titleImgArea"><img id="profileImg" style="width:100%; height:100%;" src="<%= conPath %>/resources/profileImg/<%=img%>"></div>
 	                 
 	               </div>
 	               

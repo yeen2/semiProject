@@ -722,6 +722,153 @@ public class MyPageDao {
 		
 	}
 	
+	public ArrayList<Review> ownerReviewSelectCn(Connection conn, PageInfo pi, int mno, String search) {
+		ArrayList<Review> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("ownerReviewSelectCn");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+			
+			pstmt.setInt(1, mno);
+			pstmt.setString(2, "%" + search + "%");
+			pstmt.setInt(3, startRow);
+			pstmt.setInt(4, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Review(rset.getInt("r_no"),
+						   rset.getInt("m_no"),
+						   rset.getInt("c_no"),
+						   rset.getInt("flavor"),
+						   rset.getInt("price"),
+						   rset.getInt("service"),
+						   rset.getInt("sum_avg"),
+						   rset.getString("r_content"),
+						   rset.getDate("r_date"),
+						   rset.getString("isdelete"),
+						   rset.getInt("r_like"),
+						   rset.getInt("r_declare"),
+						   rset.getString("rr_content"),
+						   rset.getDate("rr_date"),
+						   rset.getString("cafe_name"),
+						   rset.getString("img_name"),
+						   rset.getString("img_path")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
+	}
+
+	public ArrayList<Review> ownerReviewSelectCt(Connection conn, PageInfo pi, int mno, String search) {
+		ArrayList<Review> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("ownerReviewSelectCt");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+			
+			pstmt.setInt(1, mno);
+			pstmt.setString(2, "%" + search + "%");
+			pstmt.setInt(3, startRow);
+			pstmt.setInt(4, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Review(rset.getInt("r_no"),
+						   rset.getInt("m_no"),
+						   rset.getInt("c_no"),
+						   rset.getInt("flavor"),
+						   rset.getInt("price"),
+						   rset.getInt("service"),
+						   rset.getInt("sum_avg"),
+						   rset.getString("r_content"),
+						   rset.getDate("r_date"),
+						   rset.getString("isdelete"),
+						   rset.getInt("r_like"),
+						   rset.getInt("r_declare"),
+						   rset.getString("rr_content"),
+						   rset.getDate("rr_date"),
+						   rset.getString("cafe_name"),
+						   rset.getString("img_name"),
+						   rset.getString("img_path")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
+	}
+
+	public int insertPower(Connection conn, int mno, int cno) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertPower");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, mno);
+			pstmt.setInt(2, cno);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
+	}
+
+	public int insertPay(Connection conn, int mno, int price) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertPay");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, mno);
+			pstmt.setInt(2, price);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
+	}
+	
 }//class end
 
 

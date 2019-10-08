@@ -86,8 +86,11 @@ public class MyPage_myUpdateMemberServlet extends HttpServlet {
 			m.setNickName(nickName);
 			
 			for(int i=originFiles.size(); i>=0; i--) {
-				
-				profile = changeFiles.get(0);
+				try {
+					profile = changeFiles.get(0);
+				} catch(IndexOutOfBoundsException e){
+					
+				}
 			
 			}
 			

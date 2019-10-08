@@ -23,6 +23,7 @@
 	}
 	#uploadFile{width:100%;}
 	#uploadFile img{width:100%; height:100%;}
+	#uploadFile span{margin-right:10px;}
 	#titleImgArea{display:block; width:30%; height:150px; margin-bottom:20px;}
 	#contentImgArea1, #contentImgArea2, #contentImgArea3, #contentImgArea4, #contentImgArea5
 	{width:22%; height:110px; display:inline-block;}
@@ -88,11 +89,11 @@
 	               
 	               <div id="uploadFile" class="form-group">
 	                 <label class="control-label" for="cafeImg">카페 이미지</label>
-	                 <div id="titleImgArea"><img id="titleImg" src=""></div>
-	                 <div id="contentImgArea1"><img id="contentImg1" src=""></div>
-	                 <div id="contentImgArea2"><img id="contentImg2" src=""></div>
-	                 <div id="contentImgArea3"><img id="contentImg3" src=""></div>
-	                 <div id="contentImgArea4"><img id="contentImg4" src=""></div>
+	                 <span id="titleImgArea"><img id="titleImg" src=""></span>
+	                 <span id="contentImgArea1"><img id="contentImg1" src=""></span>
+	                 <span id="contentImgArea2"><img id="contentImg2" src=""></span>
+	                 <span id="contentImgArea3"><img id="contentImg3" src=""></span>
+	                 <span id="contentImgArea4"><img id="contentImg4" src=""></span>
 	                 
 	               </div>
 	               
@@ -113,7 +114,7 @@
 	               
 	               <div class="form-group">
 	                 <label class="control-label" for="cafeReg">사업자등록증</label>
-	                 <div id="contentImgArea5"><img id="cafeReg" width="80" height="80" src=""></div>
+	                 <span id="contentImgArea5"><img id="cafeReg" width="100%" height="100%" src=""></span>
 	               </div>
 	               
 	                <div class="form-group">
