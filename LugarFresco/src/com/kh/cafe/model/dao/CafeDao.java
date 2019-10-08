@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.cafe.model.vo.Cafe;
+import com.kh.cafe.model.vo.CafeImg;
 import com.kh.cafe.model.vo.PageInfo;
 
 public class CafeDao {
@@ -32,7 +33,7 @@ public class CafeDao {
 		}
 	}
 	
-	
+	/*
 	public ArrayList<Cafe> selectCafeList(Connection con){
 		
 		ArrayList<Cafe> list = new ArrayList<>();
@@ -55,7 +56,9 @@ public class CafeDao {
 								  rs.getString("isupload"), 
 								  rs.getString("ispower"), 
 								  rs.getInt("favorite"),
-								  rs.getInt("sum_avg")));
+								  rs.getInt("sum_avg"),
+								  rs.getString("titleimg"),
+								  rs.getInt("")));
 			}
 			
 		} catch (SQLException e) {
@@ -66,9 +69,9 @@ public class CafeDao {
 		}
 		return list;
 	}//end
+	*/
 	
-	
-	
+	/*
 	public Cafe selectOneCafe(Connection con, int c_no) {
 		Cafe c = new Cafe();
 		PreparedStatement pstmt = null;
@@ -105,6 +108,56 @@ public class CafeDao {
 		}
 		return c;
 	}//end
+	*/
+	public Cafe selectOneCafe(Connection con, int c_no) {
+		Cafe c = new Cafe();
+		ArrayList<CafeImg> imgList = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("selectOneCafe");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, c_no);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				imgList.add(new CafeImg(rs.getInt("c_no"),
+										rs.getInt("ci_no"),
+										rs.getString("img_name"),
+										rs.getString("img_path"),
+										rs.getInt("img_level")
+							));
+				
+				c = new Cafe(rs.getInt("c_no"),
+							 rs.getInt("m_no"),
+							 rs.getString("cafe_name"), 
+							 rs.getString("address"), 
+							 rs.getString("address_detail"), 
+							 rs.getString("phone"), 
+							 rs.getString("content"), 
+							 rs.getString("isupload"), 
+							 rs.getString("ispower"), 
+							 rs.getInt("favorite"),
+							 rs.getInt("count"),
+							 rs.getInt("review_count"),
+							 rs.getInt("sum_avg"),
+							 imgList
+							);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return c;
+	}//end
+	
+	
 	
 	
 	
@@ -260,7 +313,13 @@ public class CafeDao {
 	}
 	
 	
-	public ArrayList<Cafe> selectList(Connection con, PageInfo pi){
+	/**
+	 * 페이징 처리 한 카페리스트 불러오기
+	 * @param con
+	 * @param pi
+	 * @return
+	 */
+	public ArrayList<Cafe> selectList(Connection con, PageInfo pi, int m_no){
 
 		ArrayList<Cafe> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
@@ -273,8 +332,9 @@ public class CafeDao {
 			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
 			int endRow = startRow + pi.getBoardLimit() - 1;
 
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
+			pstmt.setInt(1, m_no);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 			
 			rs = pstmt.executeQuery();
 			
@@ -289,7 +349,9 @@ public class CafeDao {
 								  rs.getString("isupload"), 
 								  rs.getString("ispower"), 
 								  rs.getInt("favorite"),
-								  rs.getInt("sum_avg")));
+								  rs.getInt("sum_avg"),
+								  rs.getString("titleimg"),
+								  rs.getInt("myfavorite")));
 			}
 			
 		} catch (SQLException e) {

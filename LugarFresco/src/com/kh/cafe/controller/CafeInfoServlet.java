@@ -50,6 +50,7 @@ public class CafeInfoServlet extends HttpServlet {
 			r = new ReviewService().selectOneCafeReview(c_no, m.getM_no());	
 			
 		}else {
+			// 로그인 안되있으면, 무조건 m_no검색안되게 1000000으로 값보냄 
 			r = new ReviewService().selectOneCafeReview(c_no, 1000000);
 		}
 		

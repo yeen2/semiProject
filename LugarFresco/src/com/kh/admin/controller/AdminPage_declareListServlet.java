@@ -11,8 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.admin.model.service.AdminPageService;
 import com.kh.admin.model.vo.PageInfo;
-import com.kh.member.model.vo.Member;
-import com.kh.declare.model.vo.Declare;
+import com.kh.review.model.vo.Declare;
 
 @WebServlet("/declareList.ap")
 public class AdminPage_declareListServlet extends HttpServlet {

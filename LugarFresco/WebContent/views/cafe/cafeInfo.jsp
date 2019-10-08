@@ -21,6 +21,18 @@
 	// 카카오 공유하기
 	int favorite = c.getFavorite();
 
+	// 카페이미지
+	String titleImg ="";
+	String img="";
+
+	for(int i=0; i<c.getImgList().size(); i++){
+		if(c.getImgList().get(i).getImg_level() == 1){
+			titleImg = c.getImgList().get(i).getImg_name();
+		}else{
+			img += c.getImgList().get(i).getImg_name() + ",";
+		}
+	}
+	String [] imges = img.split(",");
 	
 %>
 <!DOCTYPE html>
@@ -54,7 +66,7 @@
 								<div class="thumb">
 									<img style="width: 100%; height: 100%;"
 										class="content-image img-fluid d-block mx-auto"
-										src="<%=conPath %>/resources/img/blog/cat-widget1.jpg" alt="">
+										src="<%=conPath %>/resources/fileupload/cafe/<%=imges[0]%>" alt="">
 								</div>
 							</a>
 						</div>
@@ -67,7 +79,7 @@
 								<div class="thumb">
 									<img style="width: 100%; height: 100%;"
 										class="content-image img-fluid d-block mx-auto"
-										src="<%=conPath %>/resources/img/blog/cat-widget2.jpg" alt="">
+										src="<%=conPath %>/resources/fileupload/cafe/<%=imges[1]%>" alt="">
 								</div>
 							</a>
 						</div>
@@ -80,7 +92,7 @@
 								<div class="thumb">
 									<img style="width: 100%; height: 100%;"
 										class="content-image img-fluid d-block mx-auto"
-										src="<%=conPath %>/resources/img/blog/cat-widget3.jpg" alt="">
+										src="<%=conPath %>/resources/fileupload/cafe/<%=imges[2]%>" alt="">
 								</div>
 							</a>
 						</div>
@@ -500,7 +512,7 @@
 							<div>
 								<img style="width: 100%; height: 100%;"
 									class="img-fluid" 
-									src="<%=conPath%>/resources/img/blog/ads-banner.jpg" alt="">
+									src="<%=conPath%>/resources/fileupload/cafe/<%=titleImg%>" alt="">
 							</div>
 						</div>
 						

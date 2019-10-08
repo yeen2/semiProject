@@ -18,6 +18,7 @@ public class CafeService {
 	 * 실제로 메인에 보여질 카페리스트 
 	 * @return
 	 */
+	/*
 	public ArrayList<Cafe> selectCafeList(){
 		
 		Connection con = getConnection();
@@ -27,7 +28,7 @@ public class CafeService {
 		
 		return list;
 	}
-	
+	*/
 	
 	
 	/**
@@ -38,11 +39,13 @@ public class CafeService {
 	public Cafe selectOneCafe(int c_no) {
 		Cafe c = new Cafe();
 		Connection con = getConnection();
+		// 조회수 증가
 		int result = new CafeDao().increaseCount(con, c_no);
 		
 		if(result>0) {
 			commit(con);
 			c = new CafeDao().selectOneCafe(con, c_no);
+			
 		}else {
 			rollback(con);
 		}
@@ -148,10 +151,10 @@ public class CafeService {
 	 * @param pi
 	 * @return
 	 */
-	public ArrayList<Cafe> selectList(PageInfo pi){
+	public ArrayList<Cafe> selectList(PageInfo pi, int m_no){
 
 		Connection con = getConnection();
-		ArrayList<Cafe> list = new CafeDao().selectList(con, pi);
+		ArrayList<Cafe> list = new CafeDao().selectList(con, pi, m_no);
 		
 		return list;
 	}
