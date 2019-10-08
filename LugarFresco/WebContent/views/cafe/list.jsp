@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.cafe.model.vo.*"%>
 <%
-	ArrayList<Cafe> list = (ArrayList<Cafe>)request.getAttribute("list");
+	//ArrayList<Cafe> list = (ArrayList<Cafe>)request.getAttribute("list");
 	
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	ArrayList<Cafe> c = (ArrayList<Cafe>)request.getAttribute("paginglist");
@@ -12,6 +12,8 @@
 	int endPage = pi.getEndPage();
 	
 	int p; //페이징
+	
+	System.out.println(c.get(0));
 %>
 <!DOCTYPE html>
 <html>

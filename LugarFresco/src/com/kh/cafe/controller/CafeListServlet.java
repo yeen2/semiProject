@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.kh.cafe.model.service.CafeService;
 import com.kh.cafe.model.vo.Cafe;
 import com.kh.cafe.model.vo.PageInfo;
+import com.kh.member.model.vo.Member;
 
 
 @WebServlet("/cafeList.ca")
@@ -47,14 +48,26 @@ public class CafeListServlet extends HttpServlet {
 		
 		PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, maxPage, startPage, endPage, boardLimit);
 		
-		ArrayList<Cafe> paginglist = new CafeService().selectList(pi);
+		ArrayList<Cafe> paginglist = new ArrayList<>();
+		
+		// 세션확인
+		HttpSession session = request.getSession();
+		Member m = (Member)session.getAttribute("loginUser");
+		if(m != null) {
+			paginglist = new CafeService().selectList(pi, m.getM_no());
+		}else {
+			paginglist = new CafeService().selectList(pi, 1000000);
+		}
+					
+					
+		//ArrayList<Cafe> paginglist = new CafeService().selectList(pi);
 		
 		// 카페 전체 리스트 불러오기
-		ArrayList<Cafe> cafeList = new CafeService().selectCafeList();
+		//ArrayList<Cafe> cafeList = new CafeService().selectCafeList();
 		
 		request.setAttribute("pi", pi);
 		request.setAttribute("paginglist", paginglist);
-		request.setAttribute("list", cafeList);
+		//request.setAttribute("list", cafeList);
 		
 		request.getRequestDispatcher("views/cafe/list.jsp").forward(request, response);
 	}
