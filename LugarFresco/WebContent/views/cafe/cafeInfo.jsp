@@ -398,6 +398,7 @@
 							
 							// 좋아요 버튼
 							$(document).on("click", "#like_btn", function(){
+								
 								console.log("클릭");
 								console.log( $(this).children().eq(0).val());
 								var r_no = $(this).children().eq(0).val();

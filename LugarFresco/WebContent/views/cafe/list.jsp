@@ -55,16 +55,32 @@
 					<div class="row">
 						
 						<% for(int i=0; i<c.size(); i++){ %> <!-- list for문 -->
-						<div class="col-lg-4" onclick="location.href='<%=conPath%>/cafeInfo.ca?c_no=<%=c.get(i).getC_no()%>'" style="cursor:pointer;">
+						<div class="col-lg-4"  style="cursor:pointer;">
 							<div class="single-destinations">
-								<div class="thumb">
-									<img src="<%=conPath%>/resources/fileupload/cafe/b1.jpg" alt="">
+								<div class="thumb" onclick="location.href='<%=conPath%>/cafeInfo.ca?c_no=<%=c.get(i).getC_no()%>'">
+									<img src="<%=conPath%>/resources/fileupload/cafe/<%=c.get(i).getTitleImg() %>" alt="">
 								
 								</div>
 								<div class="details">
 									<h4 style="display: inline;"><%= c.get(i).getCafe_name() %></h4>
 									<!-- 평점  -->
 									<strong id="point"><%= c.get(i).getSum_avg()%></strong>
+									
+									<!-- 즐겨찾기 -->
+									<div style="display: inline;">
+									<% if(c.get(i).getMyFavorite() == 1){  %>
+										<i style="color: orange; font-size: 30px; margin-left: 170px;" 
+											class="fa fa-star favorite" aria-hidden="true">
+										<input type="hidden" value="<%=c.get(i).getC_no()%>">
+										</i>
+										
+									<% }else{ %>
+										<i style="color: orange; font-size: 30px; margin-left: 170px;" 
+											class="fa fa-star-o favorite" aria-hidden="true">
+										<input type="hidden" value="<%=c.get(i).getC_no()%>">
+										</i>				
+									<% } %>
+									</div>
 									<p>
 										<%= c.get(i).getAddress() %>
 									</p>
@@ -72,8 +88,63 @@
 								</div>
 							</div>
 						</div>
-						
 						<% }  %> <!-- list for문 -->
+												
+						<script type="text/javascript">
+						//즐겨찾기 
+						$(document).on("click", ".favorite", function(){
+							// this가 ajax으로 가면 변하므로 변수로 선언
+							var this_favorite=this;
+							var login = "<%=session.getAttribute("loginUser") %>";
+							var c_no = $(this).children().eq(0).val();
+							
+							if(login == "null"){
+								alert("로그인 후 이용가능합니다.");
+
+							}else{	// 로그인 했으면
+
+								if($(this).hasClass("fa-star-o")){ //색깔 없으면
+									console.log("색없음");
+									//ajax
+									$.ajax({
+										url:"insertFavorite.ca",
+										data:{c_no:c_no},
+										type:"get",
+										success:function(str){
+											if(str == '성공'){
+												console.log("즐겨찾기 추가 성공");
+												$(this_favorite).removeClass("fa-star-o").addClass("fa-star");
+											}else{
+												console.log("즐겨찾기 추가 실패");
+											}
+										},error:function(){
+											console.log("ajax 서버 실패");
+										}
+									});
+
+								}else{ // 색깔 있으면
+									console.log("색있음");
+									$.ajax({
+										url:"deleteFavorite.ca",
+										data:{c_no:c_no},
+										type:"get",
+										success:function(str){
+											if(str == '성공'){
+												console.log("즐겨찾기 제거 성공");
+												$(this_favorite).removeClass("fa-star").addClass("fa-star-o");
+											}else{
+												console.log("즐겨찾기 제거 실패");
+											}
+										},error:function(){
+											console.log("ajax 서버 실패");
+										}
+									});
+								}
+							} //login if
+						});
+						</script>
+
+						
 						
 <%-- 					<div class="col-lg-4">
 							<div class="single-destinations">
@@ -216,7 +287,7 @@
 		
 
 	</script>
-	
+	<script src ="<%=conPath%>/resources/js/jquery.min.js"></script>
 	
 	<%@include file="../includes/main/footer.jsp"%>
 </body>
