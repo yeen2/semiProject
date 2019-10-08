@@ -399,10 +399,7 @@
 							// 좋아요 버튼
 							$(document).on("click", "#like_btn", function(){
 								
-								console.log("클릭");
-								console.log( $(this).children().eq(0).val());
 								var r_no = $(this).children().eq(0).val();
-								console.log('r_no'+r_no);
 								
 								var login = "<%=session.getAttribute("loginUser")%>";
 								
@@ -411,8 +408,7 @@
 								}else{
 									
 									if($(this).attr("class") == 'btn btn-outline-primary pull-right'){ //색깔 없으면
-										
-										console.log($(this).attr("class"));
+
 										console.log("색없음");
 										//ajax
 										$.ajax({
@@ -432,7 +428,7 @@
 										});
 
 									}else{ // 색깔 있으면
-										console.log($(this).attr("class"));
+
 										console.log("색있음");
 										$.ajax({
 											url:"deleteLike.re",

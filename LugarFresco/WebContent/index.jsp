@@ -25,7 +25,7 @@
 			</section>
 			<!-- End banner Area -->
 
-			<!-- Start popular-destination Area -->
+			<!-- 1. 조회수높은 3개 목록-->
 			<section class="popular-destination-area section-gap">
 				<div class="container">
 		            <div class="row d-flex justify-content-center">
@@ -35,8 +35,10 @@
 		                        <p>요즘 SNS 뜨는 HOT 카페</p>
 		                    </div>
 		                </div>
-		            </div>						
+		            </div>		
+		            				
 					<div class="row">
+						<% for(int i=0; i<3; i++){ %>
 						<div class="col-lg-4">
 							<div class="single-destination relative">
 								<div class="thumb relative">
@@ -50,37 +52,16 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-4">
-							<div class="single-destination relative">
-								<div class="thumb relative">
-									<div class="overlay overlay-bg"></div>
-									<img class="resources/img-fluid" src="resources/img/d2.jpg" alt="">
-								</div>
-								<div class="desc">	
-									<a href="#" class="price-btn">$250</a>			
-									<h4>Dream City</h4>
-									<p>Paris</p>			
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="single-destination relative">
-								<div class="thumb relative">
-									<div class="overlay overlay-bg"></div>
-									<img class="resources/img-fluid" src="resources/img/d3.jpg" alt="">
-								</div>
-								<div class="desc">	
-									<a href="#" class="price-btn">$350</a>			
-									<h4>Cloud Mountain</h4>
-									<p>Sri Lanka</p>			
-								</div>
-							</div>
-						</div>												
+						<% } %>
+						
+
 					</div>
 				</div>	
 			</section>
 		
-			<!-- Start other-issue Area -->
+		
+		
+			<!-- 2. 평점 좋은 8개 리스트 -->
 			<section class="other-issue-area section-gap">
 				<div class="container">
 		            <div class="row d-flex justify-content-center">
@@ -93,6 +74,8 @@
 		            </div>	
 		            				
 					<div class="row">
+						<!-- 평점좋은 8개 순위로 반복문 -->
+						<% for(int i=0; i<8; i++){ %>
 						<div class="col-lg-3 col-md-6">
 							<div class="single-other-issue">
 								<div class="thumb">
@@ -106,122 +89,31 @@
 								</p>
 							</div>
 						</div>
-						<div class="col-lg-3 col-md-6">
-							<div class="single-other-issue">
-								<div class="thumb">
-									<img class="img-fluid" src="resources/img/o2.jpg" alt="">					
-								</div>
-								<a href="#">
-									<h4>Cruise Booking</h4>
-								</a>
-								<p>
-									I was always somebody who felt quite sorry for myself, what I had not got compared.
-								</p>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6">
-							<div class="single-other-issue">
-								<div class="thumb">
-									<img class="img-fluid" src="resources/img/o3.jpg" alt="">					
-								</div>
-								<a href="#">
-									<h4>To Do List</h4>
-								</a>
-								<p>
-									The following article covers a topic that has recently moved to center stage–at least it seems.
-								</p>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6">
-							<div class="single-other-issue">
-								<div class="thumb">
-									<img class="img-fluid" src="resources/img/o4.jpg" alt="">					
-								</div>
-								<a href="#">
-									<h4>Food Features</h4>
-								</a>
-								<p>
-									There are many kinds of narratives and organizing principles. Science is driven by evidence.
-								</p>
-							</div>
-						</div>																		
-					</div>
-					
-										<div class="row">
-						<div class="col-lg-3 col-md-6">
-							<div class="single-other-issue">
-								<div class="thumb">
-									<img class="img-fluid" src="resources/img/o1.jpg" alt="">					
-								</div>
-								<a href="#">
-									<h4>Rent a Car</h4>
-								</a>
-								<p>
-									The preservation of human life is the ultimate value, a pillar of ethics and the foundation.
-								</p>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6">
-							<div class="single-other-issue">
-								<div class="thumb">
-									<img class="img-fluid" src="resources/img/o2.jpg" alt="">					
-								</div>
-								<a href="#">
-									<h4>Cruise Booking</h4>
-								</a>
-								<p>
-									I was always somebody who felt quite sorry for myself, what I had not got compared.
-								</p>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6">
-							<div class="single-other-issue">
-								<div class="thumb">
-									<img class="img-fluid" src="resources/img/o3.jpg" alt="">					
-								</div>
-								<a href="#">
-									<h4>To Do List</h4>
-								</a>
-								<p>
-									The following article covers a topic that has recently moved to center stage–at least it seems.
-								</p>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6">
-							<div class="single-other-issue">
-								<div class="thumb">
-									<img class="img-fluid" src="resources/img/o4.jpg" alt="">					
-								</div>
-								<a href="#">
-									<h4>Food Features</h4>
-								</a>
-								<p>
-									There are many kinds of narratives and organizing principles. Science is driven by evidence.
-								</p>
-							</div>
-						</div>																		
-					</div>
-					
-					
-					
+						<% } %>
+						
 					
 				</div>	
 			</section>
 			<!-- End other-issue Area -->
+			
+			
 		
-			<!-- Start blog Area -->
+			<!-- 3. 파워링크 6개  -->
 			<section class="recent-blog-area section-gap">
 				<div class="container">
 					<div class="row d-flex justify-content-center">
 						<div class="menu-content pb-60 col-lg-9">
 							<div class="title text-center">
-								<h1 class="mb-10">Latest from Our Blog</h1>
-								<p>With the exception of Nietzsche, no other madman has contributed so much to human sanity as has.</p>
+								<h1 class="mb-10">recommend cafe</h1>
+								<p><span style="color: orange;">Lugar Fresco</span> 의 이 달의 추천 카페</p>
 							</div>
 						</div>
 					</div>							
 					<div class="row">
 						<div class="active-recent-blog-carusel">
+						
+							<!-- 파워링크 반복부분 -->
+							<% for(int i=0; i<6; i++){ %>
 							<div class="single-recent-blog-post item">
 								<div class="thumb">
 									<img class="img-fluid" src="resources/img/b1.jpg" alt="">
@@ -244,123 +136,20 @@
 									<h6 class="date">31st January,2018</h6>
 								</div>	
 							</div>
-							<div class="single-recent-blog-post item">
-								<div class="thumb">
-									<img class="img-fluid" src="resources/img/b2.jpg" alt="">
-								</div>
-								<div class="details">
-									<div class="tags">
-										<ul>
-											<li>
-												<a href="#">Travel</a>
-											</li>
-											<li>
-												<a href="#">Life Style</a>
-											</li>											
-										</ul>
-									</div>
-									<a href="#"><h4 class="title">Creative Outdoor Ads</h4></a>
-									<p>
-										Acres of Diamonds… you’ve read the famous story, or at least had it related to you. A farmer.
-									</p>
-									<h6 class="date">31st January,2018</h6>
-								</div>	
-							</div>
-							<div class="single-recent-blog-post item">
-								<div class="thumb">
-									<img class="img-fluid" src="resources/img/b3.jpg" alt="">
-								</div>
-								<div class="details">
-									<div class="tags">
-										<ul>
-											<li>
-												<a href="#">Travel</a>
-											</li>
-											<li>
-												<a href="#">Life Style</a>
-											</li>											
-										</ul>
-									</div>
-									<a href="#"><h4 class="title">It's Classified How To Utilize Free</h4></a>
-									<p>
-										Acres of Diamonds… you’ve read the famous story, or at least had it related to you. A farmer.
-									</p>
-									<h6 class="date">31st January,2018</h6>
-								</div>	
-							</div>	
-							<div class="single-recent-blog-post item">
-								<div class="thumb">
-									<img class="img-fluid" src="resources/img/b1.jpg" alt="">
-								</div>
-								<div class="details">
-									<div class="tags">
-										<ul>
-											<li>
-												<a href="#">Travel</a>
-											</li>
-											<li>
-												<a href="#">Life Style</a>
-											</li>											
-										</ul>
-									</div>
-									<a href="#"><h4 class="title">Low Cost Advertising</h4></a>
-									<p>
-										Acres of Diamonds… you’ve read the famous story, or at least had it related to you. A farmer.
-									</p>
-									<h6 class="date">31st January,2018</h6>
-								</div>	
-							</div>
-							<div class="single-recent-blog-post item">
-								<div class="thumb">
-									<img class="resources/img-fluid" src="resources/img/b2.jpg" alt="">
-								</div>
-								<div class="details">
-									<div class="tags">
-										<ul>
-											<li>
-												<a href="#">Travel</a>
-											</li>
-											<li>
-												<a href="#">Life Style</a>
-											</li>											
-										</ul>
-									</div>
-									<a href="#"><h4 class="title">Creative Outdoor Ads</h4></a>
-									<p>
-										Acres of Diamonds… you’ve read the famous story, or at least had it related to you. A farmer.
-									</p>
-									<h6 class="date">31st January,2018</h6>
-								</div>	
-							</div>
-							<div class="single-recent-blog-post item">
-								<div class="thumb">
-									<img class="resources/img-fluid" src="resources/img/b3.jpg" alt="">
-								</div>
-								<div class="details">
-									<div class="tags">
-										<ul>
-											<li>
-												<a href="#">Travel</a>
-											</li>
-											<li>
-												<a href="#">Life Style</a>
-											</li>											
-										</ul>
-									</div>
-									<a href="#"><h4 class="title">It's Classified How To Utilize Free</h4></a>
-									<p>
-										Acres of Diamonds… you’ve read the famous story, or at least had it related to you. A farmer.
-									</p>
-									<h6 class="date">31st January,2018</h6>
-								</div>	
-							</div>														
+							<% } %>
+																					
 
 						</div>
 					</div>
 				</div>	
 			</section>
 			<!-- End recent-blog Area -->			
-
+	
+<!-- 	<script type="text/javascript">
+		$(function () {
+			location.href="index.ca";
+		});
+	</script> -->
 	
 	
 	
