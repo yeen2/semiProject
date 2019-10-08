@@ -1,6 +1,7 @@
 package com.kh.cafe.model.vo;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 // 추가할것 - 조회수, 평점, 즐겨찾기
 
@@ -49,9 +50,34 @@ public class Cafe {
 	//성환
 	private String profile_path;
 	
+	//카페이미지 리스트
+	ArrayList<CafeImg> imgList;
+	
 	public Cafe() {
 		// TODO Auto-generated constructor stub
 	}
+
+	// cafeInfo 보여줄때 생성자
+	public Cafe(int c_no, int m_no, String cafe_name, String address, String address_detail, String phone,
+			String content, String isUpload, String isPower, int favorite, int count, int review_count, 
+			double sum_avg, ArrayList<CafeImg> imgList) {
+		super();
+		this.c_no = c_no;
+		this.m_no = m_no;
+		this.cafe_name = cafe_name;
+		this.address = address;
+		this.address_detail = address_detail;
+		this.phone = phone;
+		this.content = content;
+		this.isUpload = isUpload;
+		this.isPower = isPower;
+		this.favorite = favorite;
+		this.count = count;
+		this.review_count = review_count;
+		this.sum_avg = sum_avg;
+		this.imgList = imgList;
+	}
+	
 
 	// cafeInfo 보여줄때 생성자
 	public Cafe(int c_no, int m_no, String cafe_name, String address, String address_detail, String phone,
@@ -72,6 +98,7 @@ public class Cafe {
 		this.review_count = review_count;
 		this.sum_avg = sum_avg;
 	}
+	
 	
 	// cafeList용
 	public Cafe(int c_no, int m_no, String cafe_name, String address, String address_detail, String phone,
@@ -551,6 +578,14 @@ public class Cafe {
 	//성환
 	public void setProfile_path(String profile_path) {
 		this.profile_path = profile_path;
+	}
+	
+	public ArrayList<CafeImg> getImgList() {
+		return imgList;
+	}
+
+	public void setImgList(ArrayList<CafeImg> imgList) {
+		this.imgList = imgList;
 	}
 
 	@Override

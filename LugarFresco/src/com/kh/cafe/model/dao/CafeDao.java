@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.cafe.model.vo.Cafe;
+import com.kh.cafe.model.vo.CafeImg;
 import com.kh.cafe.model.vo.PageInfo;
 
 public class CafeDao {
@@ -68,7 +69,7 @@ public class CafeDao {
 	}//end
 	
 	
-	
+	/*
 	public Cafe selectOneCafe(Connection con, int c_no) {
 		Cafe c = new Cafe();
 		PreparedStatement pstmt = null;
@@ -105,6 +106,56 @@ public class CafeDao {
 		}
 		return c;
 	}//end
+	*/
+	public Cafe selectOneCafe(Connection con, int c_no) {
+		Cafe c = new Cafe();
+		ArrayList<CafeImg> imgList = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("selectOneCafe");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, c_no);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				imgList.add(new CafeImg(rs.getInt("c_no"),
+										rs.getInt("ci_no"),
+										rs.getString("img_name"),
+										rs.getString("img_path"),
+										rs.getInt("img_level")
+							));
+				
+				c = new Cafe(rs.getInt("c_no"),
+							 rs.getInt("m_no"),
+							 rs.getString("cafe_name"), 
+							 rs.getString("address"), 
+							 rs.getString("address_detail"), 
+							 rs.getString("phone"), 
+							 rs.getString("content"), 
+							 rs.getString("isupload"), 
+							 rs.getString("ispower"), 
+							 rs.getInt("favorite"),
+							 rs.getInt("count"),
+							 rs.getInt("review_count"),
+							 rs.getInt("sum_avg"),
+							 imgList
+							);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return c;
+	}//end
+	
+	
 	
 	
 	

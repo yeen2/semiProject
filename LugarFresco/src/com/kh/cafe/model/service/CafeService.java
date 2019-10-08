@@ -38,11 +38,13 @@ public class CafeService {
 	public Cafe selectOneCafe(int c_no) {
 		Cafe c = new Cafe();
 		Connection con = getConnection();
+		// 조회수 증가
 		int result = new CafeDao().increaseCount(con, c_no);
 		
 		if(result>0) {
 			commit(con);
 			c = new CafeDao().selectOneCafe(con, c_no);
+			
 		}else {
 			rollback(con);
 		}

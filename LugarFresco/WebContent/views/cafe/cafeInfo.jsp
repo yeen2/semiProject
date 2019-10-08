@@ -21,7 +21,13 @@
 	// 카카오 공유하기
 	int favorite = c.getFavorite();
 
-	
+	// 카페이미지
+	String titleImg ="";
+	for(int i=0; i<c.getImgList().size(); i++){
+		if(c.getImgList().get(i).getImg_level() == 1){
+			titleImg = c.getImgList().get(i).getImg_name();
+		}
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -500,7 +506,7 @@
 							<div>
 								<img style="width: 100%; height: 100%;"
 									class="img-fluid" 
-									src="<%=conPath%>/resources/img/blog/ads-banner.jpg" alt="">
+									src="<%=conPath%>/resources/fileupload/cafe/<%=titleImg%>" alt="">
 							</div>
 						</div>
 						
