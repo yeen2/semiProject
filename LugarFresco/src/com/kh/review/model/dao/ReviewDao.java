@@ -191,7 +191,42 @@ public class ReviewDao {
 		return result;
 	}
 	
+	public int deleteLike(Connection con, int r_no, int m_no) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteLike");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, r_no);
+			pstmt.setInt(2, m_no);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
 	
+	public int decreaseLike(Connection con, int r_no) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("decreaseLike");
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, r_no);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 	
 }//class end

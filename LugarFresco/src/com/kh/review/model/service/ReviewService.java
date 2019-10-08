@@ -113,6 +113,29 @@ public class ReviewService {
 	}
 	
 	
+	/**
+	 * 리뷰 좋아요 취소 서비스
+	 * @param r_no
+	 * @param m_no
+	 * @return
+	 */
+	public int deleteLike(int r_no, int m_no) {
+		Connection con = getConnection();
+		int result = 0;
+		
+		int result1 = new ReviewDao().deleteLike(con, r_no, m_no);
+		int result2 = new ReviewDao().decreaseLike(con, r_no);
+		
+		if(result1>0 && result2>0) {
+			commit(con);
+			result = 1;
+		}else {
+			rollback(con);
+		}
+		close(con);
+		
+		return result;
+	}
 	
 	
 	

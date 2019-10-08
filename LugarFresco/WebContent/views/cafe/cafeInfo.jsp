@@ -157,6 +157,8 @@
 					<script>
 						//즐겨찾기 
 						$("#favorite").click(function(){
+							console.log("즐겨찾기 클릭");
+							
 							var login = "<%=session.getAttribute("loginUser") %>";
 							var c_no = <%= c.getC_no()%>;
 							
@@ -204,6 +206,8 @@
 						
 						//리뷰
 						$("#review_btn").click(function() {
+							
+							
 							var login = "<%=session.getAttribute("loginUser") %>"
 				
 							if(login == "null"){
@@ -445,6 +449,7 @@
 								
 								if(login == "null"){
 									alert("로그인 후 이용가능합니다.");
+									
 								}else{
 									$('#declareModal').modal("show"); //열기
 								}

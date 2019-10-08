@@ -13,23 +13,23 @@ import com.kh.member.model.vo.Member;
 import com.kh.review.model.service.ReviewService;
 
 
-@WebServlet("/insertLike.re")
-public class insertLikeServlet extends HttpServlet {
+@WebServlet("/deleteLike.re")
+public class DeleteLikeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
 
-    public insertLikeServlet() {
+    public DeleteLikeServlet() {
         super();
     }
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		
 		int r_no = Integer.parseInt(request.getParameter("r_no"));
 		int m_no = ((Member) request.getSession().getAttribute("loginUser")).getM_no();
 		String str = "실패";
 		
-		int result = new ReviewService().insertLike(r_no, m_no);
+		int result = new ReviewService().deleteLike(r_no, m_no);
 		
 		if(result > 0) {
 			str = "성공";
@@ -39,7 +39,6 @@ public class insertLikeServlet extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		out.print(str);
-		
 	}
 
 
