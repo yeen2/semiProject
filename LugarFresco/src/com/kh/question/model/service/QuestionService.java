@@ -109,9 +109,20 @@ public class QuestionService {
 		
 		return result;
 	}
-	public int deleteQuestion(int q_no) {
+	public int deleteQuestion(String q_no) {
 		Connection conn = getConnection();
-		int result = new QuestionDao().deleteQuestion(conn, q_no);
+		int Q_no = Integer.parseInt(q_no);
+		int result = new QuestionDao().deleteQuestion(conn, Q_no);
+		if (result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		return result;
+	}
+	public int updateQuestion(String q_content, int q_no, String info) {
+		Connection conn = getConnection();
+		int result = new QuestionDao().updateQuestion(conn, q_content, q_no);
 		if (result > 0) {
 			commit(conn);
 		} else {

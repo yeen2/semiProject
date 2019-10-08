@@ -24,6 +24,11 @@ public class QuestionListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
+		String q_no = request.getParameter("q_no");
+		if(q_no!=null) {
+		int result = new QuestionService().deleteQuestion(q_no);
+		}
+		
 		String word = request.getParameter("word");
 		String search = request.getParameter("search");
 		

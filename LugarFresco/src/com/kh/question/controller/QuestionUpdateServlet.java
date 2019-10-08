@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.question.model.service.QuestionService;
 import com.kh.question.model.vo.Question;
@@ -32,23 +33,37 @@ public class QuestionUpdateServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");// 글이 써져서 jsp로 보내는 놈들은 이걸 써줘야된다.
 		
-		int q_no = Integer.parseInt(request.getParameter("q_no"));
-		String q_content = request.getParameter("q_content");
-		int reaction = new QuestionService().updateQuestion(q_content, q_no);
-		Question result = new QuestionService().selectDetailQuestion(q_no);
-		
-		request.setAttribute("result",result);
 		//----------------------------------서블릿을 적게 만들기 위한 jsp처리 코드----------------------
 		//원리는 jsp에서 보낼 페이지의 info값을 미리 보내주어 서블릿에서 if문 처리하면 끝~!!
-		String info = request.getParameter("info");
-		
-		if(reaction >0) {
-			if(info.equals("info")) {
+		// 먼저 reply와 update중에 어디서 온건지 판단한뒤에 update를 실행하고 q_list를 받아서 jsp로 보내준다!!
+			String info = request.getParameter("info");
+			System.out.println("3jsf");
+			System.out.println(request.getParameter("q_no"));
+			int reaction = 0;
+			Question result = null;
+			if("info".equals(info)) {
+				int q_no = Integer.parseInt(request.getParameter("q_no"));
+				String q_content = request.getParameter("q_content");
+				reaction = new QuestionService().updateQuestion(q_content, q_no, info);
+				result = new QuestionService().selectDetailQuestion(q_no);
+				
+				request.setAttribute("result",result);
+				if(reaction >0) {
 				request.getRequestDispatcher("views/question/q_info.jsp").forward(request, response);
-			}else if(info.equals("reply")){
+				}
+			}else if("reply".equals(info)){
+				System.out.println("32");
+				int q_no = Integer.parseInt(request.getParameter("q_no"));
+				String q_content = request.getParameter("q_content");
+				System.out.println(q_content);
+				reaction = new QuestionService().updateQuestion(q_content, q_no);
+				System.out.println("reaction:" + reaction);
+				result = new QuestionService().selectDetailQuestion(q_no);
+				
+				request.setAttribute("result",result);
+				if(reaction >0) {
 				request.getRequestDispatcher("views/question/q_info.jsp").forward(request, response);
-			}
-			}else {
+				}
 			}
 		}
 	
