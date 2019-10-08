@@ -225,6 +225,9 @@
 					    Kakao.init('78d21eb8c5c03e01cb0cf78534c01fca');
 					    // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
 					    function sendLink() {
+					    	
+					    	var favorite = <%=c.getFavorite()%>
+					    	var count = <%=c.getCount()%>
 					      Kakao.Link.sendDefault({
 					        objectType: 'feed',
 					        content: {
@@ -237,8 +240,8 @@
 					          }
 					        },
 					        social: {
-					          likeCount: 1,
-					          commentCount: 45,
+					          likeCount: favorite,
+					          commentCount: count,
 					          sharedCount: 845
 					        },
 					        buttons: [

@@ -301,7 +301,23 @@ public class CafeDao {
 		return list;
 	}
 	
-	
+	public int increaseCount(Connection con, int c_no) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("increaseCount");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, c_no);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
 	
 	
 	

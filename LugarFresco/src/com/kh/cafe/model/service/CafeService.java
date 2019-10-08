@@ -36,9 +36,16 @@ public class CafeService {
 	 * @return c_no의 카페정보
 	 */
 	public Cafe selectOneCafe(int c_no) {
-		
+		Cafe c = new Cafe();
 		Connection con = getConnection();
-		Cafe c = new CafeDao().selectOneCafe(con, c_no);
+		int result = new CafeDao().increaseCount(con, c_no);
+		
+		if(result>0) {
+			commit(con);
+			c = new CafeDao().selectOneCafe(con, c_no);
+		}else {
+			rollback(con);
+		}
 		
 		close(con);
 		
