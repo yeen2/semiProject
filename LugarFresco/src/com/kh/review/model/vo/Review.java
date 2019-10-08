@@ -102,15 +102,50 @@ public class Review {
 	 * @param img_src
 	 * @param img_name
 	 */
-	public Review(int r_no, int c_no, String r_content, String cafe_name, String img_path, String img_name) {
+	public Review(int r_no, int c_no, int flavor, int price, int service, double sum_avg, String r_content,
+			Date r_date, int r_like, int r_declare, String rr_content, Date rr_date, String cafe_name,
+			ArrayList<ReviewImg> imgList, String profile, String nickname) {
 		super();
 		this.r_no = r_no;
 		this.c_no = c_no;
+		this.flavor = flavor;
+		this.price = price;
+		this.service = service;
+		this.sum_avg = sum_avg;
 		this.r_content = r_content;
+		this.r_date = r_date;
+		this.r_like = r_like;
+		this.r_declare = r_declare;
+		this.rr_content = rr_content;
+		this.rr_date = rr_date;
 		this.cafe_name = cafe_name;
-		this.img_path = img_path;
-		this.img_name = img_name;
+		this.imgList = imgList;
+		this.profile = profile;
+		this.nickname = nickname;
 	}
+	
+	
+	public Review(int r_no, int c_no, int flavor, int price, int service, double sum_avg, String r_content,
+			Date r_date, int r_like, int r_declare, String rr_content, Date rr_date, String cafe_name,
+			String profile, String nickname) {
+		super();
+		this.r_no = r_no;
+		this.c_no = c_no;
+		this.flavor = flavor;
+		this.price = price;
+		this.service = service;
+		this.sum_avg = sum_avg;
+		this.r_content = r_content;
+		this.r_date = r_date;
+		this.r_like = r_like;
+		this.r_declare = r_declare;
+		this.rr_content = rr_content;
+		this.rr_date = rr_date;
+		this.cafe_name = cafe_name;
+		this.profile = profile;
+		this.nickname = nickname;
+	}
+	
 
 	public Review(int r_no, int m_no, int c_no, int flavor, int price, int service, double sum_avg, String r_content,
 			Date r_date, String isDelete, int r_like, int r_declare, String rr_content, Date rr_date, String cafe_name,
@@ -134,6 +169,8 @@ public class Review {
 		this.img_path = img_path;
 		this.img_name = img_name;
 	}
+
+	
 
 	public Review(int r_no2, int m_no2, int c_no2, int flavor2, int price2, int service2, double sum_avg2,
 			String r_content2, Date r_date2, String isDelete2, int r_like2, int r_declare2, String rr_content2,

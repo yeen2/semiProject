@@ -73,7 +73,7 @@
 					</div>
             <% }else{ %>
               <% for(Cafe l : list){ %>
-              <div id="cafeClick" class="timeline-post" onclick="location.href='<%=conPath%>/cafeInfoMapping?cno=<%=l.getC_no()%>';">
+              <div id="cafeClick" class="timeline-post" onclick="location.href='<%=conPath%>/cafeInfo.ca?c_no=<%=l.getC_no()%>';">
                 <div class="post-media"><img src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" style="width:9%; height:9%;">
                   <div class="content">
                   	<h4><%=l.getCafe_name() %>&nbsp;&nbsp;<label style="color:#ffc107;"><%=l.getSum_avg() %></label>&nbsp;&nbsp;</h4>
