@@ -14,7 +14,9 @@ import com.kh.cafe.model.vo.CafeImg;
 import com.kh.member.model.dao.MyPageDao;
 import com.kh.member.model.vo.Member;
 import com.kh.owner.model.vo.PowerLink;
+import com.kh.review.model.dao.ReviewDao;
 import com.kh.review.model.vo.Review;
+import com.kh.review.model.vo.ReviewImg;
 
 public class MyPageService {
 
@@ -62,16 +64,46 @@ public class MyPageService {
 		return list;
 	}
 	
-	/*public ArrayList<Review> selectMyReviewList(int mno) {
+	public ArrayList<Review> selectMyReviewList(int mno) {
 		Connection conn = getConnection();
 		
-		ArrayList<Review> list = new MyPageDao().selectMyReviewList(conn, mno);
+		ArrayList<Review> r = new ArrayList<>();
+		ArrayList<ReviewImg> imgList = new ArrayList<>();
+		//반환변수
+		ArrayList<Review> list = new ArrayList<>();
+		
+		//1.이미지뺀, review리스트만 총 불러오기
+		r = new MyPageDao().selectMyReviewList(conn, mno);
+
+		//2. 해당 r_no에 해당하는 img갖고와서 저장하기
+		for(int i=0; i<r.size(); i++) {
+			
+			int rno = r.get(i).getR_no();
+			imgList = new MyPageDao().selectMyReviewImg(conn, rno);
+ 
+			list.add(new Review(r.get(i).getR_no(),
+								r.get(i).getC_no(), 
+								r.get(i).getFlavor(), 
+								r.get(i).getPrice(), 
+								r.get(i).getService(), 
+								r.get(i).getSum_avg(), 
+								r.get(i).getR_content(),
+								r.get(i).getR_date(),
+								r.get(i).getR_like(), 
+								r.get(i).getR_declare(), 
+								r.get(i).getRr_content(), 
+								r.get(i).getRr_date(),
+								r.get(i).getCafe_name(),
+								imgList,
+								r.get(i).getProfile(),
+								r.get(i).getNickname()));
+		}
 		
 		close(conn);
 		
 		return list;
 	}
-*/
+
 	public ArrayList<Cafe> selectLikeList(int mno) {
 		Connection conn = getConnection();
 		
@@ -105,6 +137,25 @@ public class MyPageService {
 		Connection conn = getConnection();
 		
 		int result = new MyPageDao().updateMember(conn, m);
+		
+		Member updateMem = null;
+		
+		if(result > 0) {
+			commit(conn);
+			updateMem = new MyPageDao().selectMember(conn, m);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return updateMem;
+	}
+	
+	public Member updateMemberNick(Member m) {
+		Connection conn = getConnection();
+		
+		int result = new MyPageDao().updateMemberNick(conn, m);
 		
 		Member updateMem = null;
 		
@@ -254,4 +305,6 @@ public class MyPageService {
 		
 		return result;
 	}
+
+	
 }

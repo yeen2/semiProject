@@ -77,7 +77,7 @@
 				
 					<%  for(Cafe f : list){ %>
 						<li>
-							<div id="cafeArea" onclick="location.href='<%=conPath%>/cafeinfoMapping?cno=<%=f.getC_no()%>';">
+							<div id="cafeArea" onclick="location.href='<%=conPath%>/cafeInfo.ca?c_no=<%=f.getC_no()%>';">
 								<span id="imgArea">
 									<img src="<%=conPath %>/resources/sample/<%=f.getImg_name()%>">
 								</span>

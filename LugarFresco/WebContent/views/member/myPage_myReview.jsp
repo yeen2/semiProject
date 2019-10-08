@@ -77,7 +77,7 @@
 						<button type="submit" id="deleteBtn" class="btn btn-secondary">삭제</button>
 					</form>
 				</div>
-              <div id="cafeClick" class="timeline-post" onclick="location.href='<%=conPath%>/cafeInfoMapping?cno=<%=r.getC_no()%>';">
+              <div id="cafeClick" class="timeline-post" onclick="location.href='<%=conPath%>/cafeInfo.ca?c_no=<%=r.getC_no()%>';">
                 <div class="post-media"><img src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" style="width:9%; height:9%;">
                   <div class="content">
                   	<h4><%=r.getCafe_name() %>&nbsp;&nbsp;<label style="color:#ffc107;"><%=r.getSum_avg() %></label>&nbsp;&nbsp;</h4>
@@ -87,6 +87,11 @@
                 </div>
                 <div class="post-content">
                   <p><%=r.getR_content() %></p>
+                  <% if(!r.getImgList().isEmpty()){ %>
+                  	<% for(int i=0; i<r.getImgList().size(); i++){ %>
+                  	  <span id="contentImgArea"><img id="contentImg" src=""></span>
+	                <% } %>
+	              <% } %>
                 </div>
                 <ul class="post-utility">
                   <li class="likes"><i style="color:#dc3545;" class="fa fa-fw fa-lg fa-heart"></i>좋아요 <%=r.getR_like() %></li>

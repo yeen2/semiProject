@@ -46,7 +46,7 @@ public class MyPage_myUpdateMemberServlet extends HttpServlet {
 			
 			String root = request.getSession().getServletContext().getRealPath("/resources");
 			
-			String savePath = root + "/fileupload/";
+			String savePath = root + "/fileupload/profile/";
 			
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 			
@@ -93,21 +93,23 @@ public class MyPage_myUpdateMemberServlet extends HttpServlet {
 				}
 			
 			}
-			
 			m.setProfile(profile);
+			m.setProfile_path(savePath);
 			
+			Member updateMem = null;
 			System.out.println(m);
-			System.out.println(savePath);
-			System.out.println(originFiles);
-			System.out.println(changeFiles);
+			if(profile.length() != 0) {
+				updateMem = new MyPageService().updateMember(m);
+			}else {
+				updateMem = new MyPageService().updateMemberNick(m);
+			}
 			
-			Member updateMem = new MyPageService().updateMember(m);
 			
 			if(updateMem != null) {
 				session.setAttribute("loginUser", updateMem);
 				session.setAttribute("msg", "성공적으로 회원정보가 수정되었습니다.");
 				
-				response.sendRedirect(request.getContextPath());
+				response.sendRedirect("myUpdateForm.mp");
 				
 			}else {
 				for(int i=0; i<changeFiles.size(); i++) {

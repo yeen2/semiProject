@@ -39,9 +39,9 @@ public class MyPage_myReviewServlet extends HttpServlet {
 		
 		int mno = loginUser.getM_no();
 		
-//		ArrayList<Review> list = new MyPageService().selectMyReviewList(mno);
+		ArrayList<Review> list = new MyPageService().selectMyReviewList(mno);
 		
-//		request.setAttribute("list", list);
+		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/member/myPage_myReview.jsp").forward(request, response);
 		
 	}

@@ -63,7 +63,7 @@
 					</form>
 			  </div>
 			  
-              <div id="cafeClick" class="timeline-post" onclick="location.href='<%=conPath%>/cafeInfoMapping?cno=<%=oc.getC_no()%>';">
+              <div id="cafeClick" class="timeline-post" onclick="location.href='<%=conPath%>/cafeInfo.ca?c_no=<%=oc.getC_no()%>';">
                 <div class="post-media"><img src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" style="width:15%; height:15%;">
                   <div class="content">
                   	<h4><%=oc.getCafe_name() %>&nbsp;&nbsp;<label style="color:#ffc107;"><%=oc.getSum_avg() %></label>&nbsp;&nbsp;</h4>

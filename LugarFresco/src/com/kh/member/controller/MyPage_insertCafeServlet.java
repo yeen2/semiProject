@@ -48,7 +48,7 @@ public class MyPage_insertCafeServlet extends HttpServlet {
 			
 			String root = request.getSession().getServletContext().getRealPath("/resources");
 			
-			String savePath = root + "/fileupload/";
+			String savePath = root + "/fileupload/cafe/";
 			
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 			

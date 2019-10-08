@@ -152,9 +152,9 @@
    		<script>
 			$(function(){
 				$("#listArea td").click(function(){
-					var rno = $(this).parent().children().eq(0).text();
+					var cno = $(this).parent().children().eq(0).text();
 					
-					location.href="<%=conPath%>/cafeInfoMapping?rno="+rno;
+					location.href="<%=conPath%>/cafeInfo.ca?c_no="+cno;
 				});
 			});
 		</script>

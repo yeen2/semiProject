@@ -17,6 +17,7 @@ import com.kh.cafe.model.vo.CafeImg;
 import com.kh.member.model.vo.Member;
 import com.kh.owner.model.vo.PowerLink;
 import com.kh.review.model.vo.Review;
+import com.kh.review.model.vo.ReviewImg;
 
 
 public class MyPageDao {
@@ -188,7 +189,7 @@ public class MyPageDao {
 	 * @param mno
 	 * @return
 	 */
-	/*public ArrayList<Review> selectMyReviewList(Connection conn, int mno) {
+	public ArrayList<Review> selectMyReviewList(Connection conn, int mno) {
 		ArrayList<Review> list = new ArrayList<>();
 		
 		PreparedStatement pstmt = null;
@@ -205,22 +206,20 @@ public class MyPageDao {
 			
 			while(rset.next()) {
 				list.add(new Review(rset.getInt("r_no"),
-									rset.getInt("c_no"),
-									rset.getInt("flavor"),
-									rset.getInt("price"),
-									rset.getInt("service"),
-									rset.getDouble("sum_avg"),
+									rset.getInt("c_no"), 
+									rset.getInt("flavor"), 
+									rset.getInt("price"), 
+									rset.getInt("service"), 
+									rset.getDouble("sum_avg"), 
 									rset.getString("r_content"),
 									rset.getDate("r_date"),
-									rset.getInt("r_like"),
-									rset.getInt("r_declare"),
+									rset.getInt("r_like"), 
+									rset.getInt("r_declare"), 
+									rset.getString("rr_content"), 
+									rset.getDate("rr_date"),
 									rset.getString("cafe_name"),
-									rset.getString("img1"),
-									rset.getString("img2"),
-									rset.getString("img3"),
-									rset.getString("img4"),
-									rset.getString("nickname")
-									));
+									rset.getString("profile"),
+									rset.getString("nickname")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -229,7 +228,43 @@ public class MyPageDao {
 			close(pstmt);
 		}
 		return list;
-	}*/
+	}
+	
+	/**
+	 * --- 나의 리뷰 이미지 ---
+	 * @param conn
+	 * @param rno
+	 * @return
+	 */
+	public ArrayList<ReviewImg> selectMyReviewImg(Connection conn, int rno) {
+		ArrayList<ReviewImg> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectMyReviewImg");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, rno);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				list.add(new ReviewImg(rset.getInt("ri_no"),
+									   rset.getInt("r_no"),
+									   rset.getString("img_name"),
+									   rset.getString("img_path"),
+									   rset.getInt("img_level")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
+	}
 
 	/**
 	 * --- 나의 좋아요 누른 리뷰 리스트 ---
@@ -369,7 +404,8 @@ public class MyPageDao {
 			
 			pstmt.setString(1, m.getNickName());
 			pstmt.setString(2, m.getProfile());
-			pstmt.setString(3, m.getEmail());
+			pstmt.setString(3, m.getProfile_path());
+			pstmt.setString(4, m.getEmail());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -381,6 +417,38 @@ public class MyPageDao {
 		return result;
 		
 	}
+	
+	
+	/**
+	 * --- 프로필 사진을 제외하고 닉네임만 수정 ---
+	 * @param conn
+	 * @param m
+	 * @return
+	 */
+	public int updateMemberNick(Connection conn, Member m) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updateMemberNick");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, m.getNickName());
+			pstmt.setString(2, m.getEmail());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+	
 
 	/**
 	 * --- 나의 리뷰 삭제 ---
@@ -868,6 +936,10 @@ public class MyPageDao {
 		return result;
 		
 	}
+
+	
+
+	
 	
 }//class end
 
