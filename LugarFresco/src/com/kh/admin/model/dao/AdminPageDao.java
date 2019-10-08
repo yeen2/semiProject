@@ -13,9 +13,9 @@ import com.kh.PowerLink.model.vo.PowerLink;
 import com.kh.admin.model.vo.PageInfo;
 import com.kh.cafe.model.vo.Cafe;
 import com.kh.common.JDBCTemplate;
-import com.kh.declare.model.vo.Declare;
 import com.kh.member.model.vo.Member;
 import com.kh.question.model.vo.QnAList;
+import com.kh.review.model.vo.Declare;
 
 
 public class AdminPageDao {
