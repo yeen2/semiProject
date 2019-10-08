@@ -95,7 +95,9 @@
 					<%for(Declare d : list){ %>
 				<tr>
 					<td><%=d.getD_no() %></td>
-					<td id ="tdhover"><a data-toggle ="modal" class="announce" value=<%=d.getD_no() %>><%=d.getReview_content()%></a></td>
+					<td id ="tdhover">
+						<a data-toggle ="modal" class="announce" value=<%=d.getD_no() %>><%=d.getReview_content()%></a>
+					</td>
 					<td><%=d.getContent() %></td>
 					<td><%=d.getNickname() %></td>
 					<td><%=d.getReg_date() %><%if(d.getDeclare_count() >= 5) {%><button style="margin-left: 30px;" class="btn btn-danger lg">삭제</button><%} %></td>

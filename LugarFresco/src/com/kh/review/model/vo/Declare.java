@@ -1,4 +1,4 @@
-package com.kh.declare.model.vo;
+package com.kh.review.model.vo;
 
 import java.sql.Date;
 

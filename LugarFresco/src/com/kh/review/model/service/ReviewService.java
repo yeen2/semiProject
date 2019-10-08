@@ -1,13 +1,15 @@
 package com.kh.review.model.service;
 
-import static com.kh.common.JDBCTemplate.*;
+import static com.kh.common.JDBCTemplate.close;
+import static com.kh.common.JDBCTemplate.commit;
+import static com.kh.common.JDBCTemplate.getConnection;
+import static com.kh.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import org.eclipse.jdt.internal.compiler.ast.ReturnStatement;
-
 import com.kh.review.model.dao.ReviewDao;
+import com.kh.review.model.vo.Declare;
 import com.kh.review.model.vo.Review;
 import com.kh.review.model.vo.ReviewImg;
 
@@ -137,7 +139,28 @@ public class ReviewService {
 		return result;
 	}
 	
-	
+	/**
+	 * 신고 등록하는 서비스
+	 * @param de
+	 * @return
+	 */
+	public int insertDeclare(Declare de) {
+		Connection con = getConnection();
+		int result = 0;
+		
+		int result1 = new ReviewDao().insertDeclare(con, de);
+		int result2 = new ReviewDao().increaseDeclare(con, de.getR_no());
+		
+		if(result1 > 0 && result2>0) {
+			commit(con);
+			result = 1;
+		}else {
+			rollback(con);
+		}
+		close(con);
+		
+		return result;
+	}
 	
 	
 	

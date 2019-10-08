@@ -1,4 +1,6 @@
 package com.kh.review.model.dao;
+import static com.kh.common.JDBCTemplate.close;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -8,7 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
-import static com.kh.common.JDBCTemplate.*;
+
+import com.kh.review.model.vo.Declare;
 import com.kh.review.model.vo.Review;
 import com.kh.review.model.vo.ReviewImg;
 public class ReviewDao {
@@ -227,6 +230,48 @@ public class ReviewDao {
 		
 		return result;
 	}
+	
+	
+	public int insertDeclare(Connection con, Declare de) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertDeclare");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, de.getR_no());
+			pstmt.setInt(2, de.getM_no());
+			pstmt.setString(3, de.getCategory());
+			pstmt.setString(4, de.getContent());
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	
+	public int increaseDeclare(Connection con, int r_no) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("increaseDeclare");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, r_no);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
 	
 	
 }//class end

@@ -444,8 +444,8 @@
 
 							// 신고 버튼
 							$(document).on("click", "#declare_btn", function(){
-								console.log("클릭");
-								console.log($(this).children().eq(0).val());
+								//console.log("클릭");
+								//console.log($(this).children().eq(0).val());
 								
 								var r_no = $(this).children().eq(0).val();
 								var login = "<%=session.getAttribute("loginUser") %>";
@@ -454,7 +454,10 @@
 									alert("로그인 후 이용가능합니다.");
 									
 								}else{
-									$('#declareModal').modal("show"); //열기
+									// 모달 hidden에 val값으로 넣어주기
+									$("#declare_r_no").val(r_no);
+									//열기
+									$('#declareModal').modal("show"); 
 								}
 							});
 							
@@ -629,7 +632,16 @@
 							</div>
 							<div class="form-group">
 								<label for="content">신고내용</label>
-								<textarea name="content" style="height: 180px" class="form-control" ></textarea>
+								<textarea name="content" style="height: 180px" class="form-control" id="declare_content"></textarea>
+							</div>
+							
+							<input type="hidden" name="r_no" id="declare_r_no">
+							<input type="hidden" name="cate" id="cate">
+							<input type="hidden" name="c_no" value="<%=c.getC_no()%>">
+							
+							<div>
+								<input type="checkbox" name="declare_check" id="declare_check">
+								<label for="declare_check">한번 신고하시면 취소할 수 없습니다. 동의하시면 체크해주세요.</label>
 							</div>
 							<div class="modal-footer">
 								<button class="btn btn-secondary" type="button" id="declare_reset">취소</button>
@@ -638,20 +650,34 @@
 							
 							
 							<script type="text/javascript">
-							
+								//신고모달창 닫기
 								$("#declare_reset, .close").click(function() {
 									$('#declareModal').modal("hide");
 								});
-								
+								// 신고동의 체크
+								$("#declare_submit").attr("disabled", true);
+								$("#declare_check").on('click', function() {
+									$("#declare_submit").removeAttr("disabled");
+								});
+								// 신고버튼	
 								$("#declare_submit").click(function() {
-									var cate = $("#category").val();
+									var category = $("#category").val();
+									var content = $("#declare_content").val();
+									var cate = $("#category option:selected").text();
 									
-									if(cate == 0){
+									// cate hidden에 값넣어주기
+									$("#cate").val(cate);
+									
+									if(category == 0){
 										alert("신고유형을 선택해 주세요");
 										$('#declareModal').modal();
 										return false;
 									}
-							
+									if(content.length == 0){
+										alert("신고내용을 입력해주세요");
+										$('#declareModal').modal();
+										return false;
+									}
 								});
 								
 								
