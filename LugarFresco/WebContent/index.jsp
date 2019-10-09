@@ -185,7 +185,7 @@
 											class="fa fa-star-o favorite" aria-hidden="true">
 										<input type="hidden" value="<%=c3.get(i).getC_no()%>">
 										</i>				
-									<% } %> 
+									<% } %>  
 									
 									<p>
 										<%=c3.get(i).getAddress()%>&nbsp;<%=c3.get(i).getAddress_detail()%>

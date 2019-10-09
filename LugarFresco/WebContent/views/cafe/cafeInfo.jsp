@@ -344,7 +344,7 @@
 								<!-- 신고 버튼 -->
 								<!--  href="#reportModal" href="javascript:checkSession();" -->
 								<% if(r.get(i).getDeclare() == 0){ %>
-								<a class="btn btn-outline-danger pull-right" data-toggle="modal" id="declare_btn" 
+								<a class="btn-outline-danger btn pull-right declare_btn" data-toggle="modal" 
 									style="margin: auto;">
 									<input type="hidden" value="<%= r.get(i).getR_no()%>">
 									
@@ -353,7 +353,7 @@
 									<%=r.get(i).getR_declare() %>
 								</a>
 								<%} else {%>
-								<a class="btn btn-danger pull-right" data-toggle="modal" id="declare_btn" 
+								<a class="btn-danger btn pull-right declare_btn" data-toggle="modal" 
 									style="margin: auto;">
 									<input type="hidden" value="<%= r.get(i).getR_no()%>">
 									
@@ -367,14 +367,14 @@
 
 								<!-- 좋아요 버튼 -->
 								<% if(r.get(i).getLike() == 0){ %>
-								<a class="btn btn-outline-primary pull-right" data-toggle="modal" id="like_btn"> 
+								<a class="btn-outline-primary btn pull-right like_btn" data-toggle="modal"> 
 									<input type="hidden" value="<%= r.get(i).getR_no()%>">
 									<i id="sss2-1" class="fa fa-thumbs-up" aria-hidden="true" style="size: smaill"></i> 
 									&nbsp;
 									<%=r.get(i).getR_like() %>
 								</a>
 								<%} else {%>
-								<a class="btn btn-primary pull-right" data-toggle="modal" id="like_btn"> 
+								<a class="btn-primary btn pull-right like_btn" data-toggle="modal" > 
 									<input type="hidden" value="<%= r.get(i).getR_no()%>">
 									<i id="sss2-1" class="fa fa-thumbs-up" aria-hidden="true" style="size: smaill"></i> 
 									&nbsp;
@@ -397,17 +397,17 @@
 							
 							
 							// 좋아요 버튼
-							$(document).on("click", "#like_btn", function(){
+							$(document).on("click", ".like_btn", function(){
 								
+								var this_like = this;
 								var r_no = $(this).children().eq(0).val();
-								
 								var login = "<%=session.getAttribute("loginUser")%>";
 								
 								if(login == "null"){
 									alert("로그인 후 이용가능합니다.");
 								}else{
 									
-									if($(this).attr("class") == 'btn btn-outline-primary pull-right'){ //색깔 없으면
+									if($(this).hasClass("btn-outline-primary")){ //색깔 없으면
 
 										console.log("색없음");
 										//ajax
@@ -418,7 +418,7 @@
 											success:function(str){
 												if(str == '성공'){
 													console.log("좋아요 추가 성공");
-													$(this).attr('class','btn btn-primary pull-right');
+													$(this_like).removeClass("btn-outline-primary").addClass("btn-primary");
 												}else{
 													console.log("좋아요 추가 실패");
 												}
@@ -437,7 +437,7 @@
 											success:function(str){
 												if(str == '성공'){
 													console.log("좋아요 제거 성공");
-													$(this).attr('class','btn btn-outline-primary pull-right');
+													$(this_like).removeClass("btn-primary").addClass("btn-outline-primary");
 												}else{
 													console.log("좋아요 제거 실패");
 												}
@@ -452,10 +452,9 @@
 							
 
 							// 신고 버튼
-							$(document).on("click", "#declare_btn", function(){
-								//console.log("클릭");
-								//console.log($(this).children().eq(0).val());
+							$(document).on("click", ".declare_btn", function(){
 								
+								var this_declare = this;
 								var r_no = $(this).children().eq(0).val();
 								var login = "<%=session.getAttribute("loginUser") %>";
 								
@@ -463,10 +462,18 @@
 									alert("로그인 후 이용가능합니다.");
 									
 								}else{
-									// 모달 hidden에 val값으로 넣어주기
-									$("#declare_r_no").val(r_no);
-									//열기
-									$('#declareModal').modal("show"); 
+									
+									if($(this).hasClass("btn-outline-danger")){ //색없으면
+										// 모달 hidden에 val값으로 넣어주기
+										$("#declare_r_no").val(r_no);
+										//열기
+										$('#declareModal').modal("show");
+										
+									}else{
+										alert("이미 신고하신 리뷰입니다!");
+									}
+									
+									 
 								}
 							});
 							
