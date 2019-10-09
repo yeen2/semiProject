@@ -384,43 +384,6 @@ public class CafeDao {
 	}
 	
 	
-	public ArrayList<Cafe> selectOrderByCount(Connection con, int m_no){
-		ArrayList<Cafe> list = new ArrayList<>();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = prop.getProperty("selectOrderByCount");
-		
-		try {
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, m_no);
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				list.add(new Cafe(rs.getInt("c_no"), 
-								  rs.getInt("m_no"), 
-								  rs.getString("cafe_name"), 
-								  rs.getString("address"), 
-								  rs.getString("address_detail"), 
-								  rs.getString("phone"), 
-								  rs.getString("content"), 
-								  rs.getString("isUpload"), 
-								  rs.getString("isPower"), 
-								  rs.getInt("favorite"), 
-								  rs.getInt("count"), 
-								  rs.getDouble("sum_avg"), 
-								  rs.getString("titleImg"), 
-								  rs.getInt("myFavorite"), 
-								  rs.getInt("review_count")));
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rs);
-			close(pstmt);
-		}
-		return list;
-	}
 	
 	
 	/**
@@ -442,6 +405,8 @@ public class CafeDao {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
+				double avg= Math.round((rs.getDouble("sum_avg")*100)/100);
+				
 				list.add(new Cafe(rs.getInt("c_no"), 
 								  rs.getInt("m_no"), 
 								  rs.getString("cafe_name"), 
@@ -453,7 +418,7 @@ public class CafeDao {
 								  rs.getString("isPower"), 
 								  rs.getInt("favorite"), 
 								  rs.getInt("count"), 
-								  rs.getDouble("sum_avg"), 
+								  avg, 
 								  rs.getString("titleImg"), 
 								  rs.getInt("myFavorite"), 
 								  rs.getInt("review_count")));

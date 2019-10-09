@@ -174,20 +174,5 @@ public class CafeService {
 	}
 	
 	
-	/**
-	 * 조회수 순으로 리스트 불러오기 (메인)
-	 * @param m_no
-	 * @return
-	 */
-	public ArrayList<Cafe> selectOrderByCount(int m_no){
-		Connection con = getConnection();
-		ArrayList list = new CafeDao().selectOrderByCount(con, m_no);
-		
-		close(con);
-		return list;
-	}
-
-	
-	
 	
 }//class end

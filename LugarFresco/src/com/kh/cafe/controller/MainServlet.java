@@ -36,14 +36,14 @@ public class MainServlet extends HttpServlet {
 		Member m = (Member)session.getAttribute("loginUser");
 			if(m != null) {
 				c1 = new CafeService().mainCafeList(m.getM_no(), "selectOrderByCount");
-//				c1 = new CafeService().selectOrderByCount(m.getM_no());
-//				c2 = new CafeService().selectOrderByAvg(m.getM_no());
-//				c3 = new CafeService().selectOrderPower(m.getM_no());
+				c2 = new CafeService().mainCafeList(m.getM_no(), "selectOrderByAvg");
+				c3 = new CafeService().mainCafeList(m.getM_no(), "selectOrderPower");
+				
 			}else {
 				c1 = new CafeService().mainCafeList(10000000, "selectOrderByCount");
-//				c1 = new CafeService().selectOrderByCount();
-//				c2 = new CafeService().selectOrderByAvg();
-//				c3 = new CafeService().selectOrderPower();
+				c2 = new CafeService().mainCafeList(10000000, "selectOrderByAvg");
+				c3 = new CafeService().mainCafeList(10000000, "selectOrderPower");
+
 			}
 			
 		request.setAttribute("c1", c1);

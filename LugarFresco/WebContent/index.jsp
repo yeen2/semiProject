@@ -2,6 +2,9 @@
     pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.cafe.model.vo.Cafe"%>
 <%
 	ArrayList<Cafe> c1 = (ArrayList<Cafe>)request.getAttribute("c1");
+	ArrayList<Cafe> c2 = (ArrayList<Cafe>)request.getAttribute("c2");
+	ArrayList<Cafe> c3 = (ArrayList<Cafe>)request.getAttribute("c3");
+	System.out.println(c3.size());
 	
 %>
 <!DOCTYPE html>
@@ -48,13 +51,17 @@
 							
 								<div class="thumb relative">
 									<div class="overlay overlay-bg"></div>
-									<img class="resources/img-fluid" src="resources/img/d1.jpg" alt="">
+									<img class="resources/img-fluid" 
+										src="<%=conPath%>/resources/fileupload/cafe/<%=c1.get(i).getTitleImg() %>" alt="">
 								</div>
 								
 								<div class="desc">	
-									<a href="#" class="price-btn"><%=c1.get(i).getSum_avg() %></a>			
-									<h4>Mountain River</h4>
-									<p>Paraguay</p>			
+									<a href="<%=conPath%>/cafeInfo.ca?c_no=<%=c1.get(i).getC_no()%>" class="price-btn">
+										<i class="fa fa-star" aria-hidden="true" style="color: blue;"></i>
+										<%=c1.get(i).getSum_avg() %>
+									</a>			
+									<h4><%=c1.get(i).getCafe_name() %></h4>
+									<p><%=c1.get(i).getAddress() %></p>			
 								</div>
 								
 							</div>
@@ -82,25 +89,50 @@
 		            				
 					<div class="row">
 						<!-- 평점좋은 8개 순위로 반복문 -->
-						<% for(int i=0; i<8; i++){ %>
+						<% for(int i=0; i<c2.size(); i++){ %>
 						<div class="col-lg-3 col-md-6">
 							<div class="single-other-issue">
-								<a href="#">
+								<a href="<%=conPath%>/cafeInfo.ca?c_no=<%=c2.get(i).getC_no()%>">
 								<div class="thumb">
-									<img class="img-fluid" src="resources/img/o1.jpg" alt="">					
+									<img class="img-fluid" 
+										src="<%=conPath%>/resources/fileupload/cafe/<%=c2.get(i).getTitleImg() %>" alt="">					
 								</div>
-									<h4>Rent a Car</h4>
+								<div style="margin-top: 20px;">
+									<h4 style="margin-bottom: 5px; margin-top: 20px; display: inline;">
+										<%=c2.get(i).getCafe_name() %>
+									</h4>
+									&nbsp;&nbsp;
+									<!-- 평점  -->
+									<strong id="point" style="color:orange; font-size:20px;">
+										<%= c2.get(i).getSum_avg()%>
+									</strong>
 								</a>
+								
+								    <!-- 즐겨찾기 -->
+									<% if(c2.get(i).getMyFavorite() == 1){  %>
+										<i style="color: orange; font-size: 20px; margin-left: 120px;" 
+											class="fa fa-star favorite" aria-hidden="true">
+										<input type="hidden" value="<%=c2.get(i).getC_no()%>">
+										</i>
+										
+									<% }else{ %>
+										<i style="color: orange; font-size: 20px; margin-left: 120px;" 
+											class="fa fa-star-o favorite" aria-hidden="true">
+										<input type="hidden" value="<%=c2.get(i).getC_no()%>">
+										</i>				
+									<% } %> 
+									
+								
+								</div>
 								<p>
-									The preservation of human life is the ultimate value, a pillar of ethics and the foundation.
+									<%=c2.get(i).getAddress() %>
 								</p>
 							</div>
 						</div>
 						<% } %>
-						
-					
 				</div>	
 			</section>
+			
 			<!-- End other-issue Area -->
 			
 			
@@ -120,27 +152,44 @@
 						<div class="active-recent-blog-carusel">
 						
 							<!-- 파워링크 반복부분 -->
-							<% for(int i=0; i<6; i++){ %>
+							<% for(int i=0; i<c3.size(); i++){ %>
 							<div class="single-recent-blog-post item">
+							
+								<a href="<%=conPath%>/cafeInfo.ca?c_no=<%=c3.get(i).getC_no()%>">
 								<div class="thumb">
-									<img class="img-fluid" src="resources/img/b1.jpg" alt="">
+									<img class="img-fluid" 
+										src="<%=conPath%>/resources/fileupload/cafe/<%=c3.get(i).getTitleImg() %>" alt="">
 								</div>
-								<div class="details">
-									<div class="tags">
-										<ul>
-											<li>
-												<a href="#">Travel</a>
-											</li>
-											<li>
-												<a href="#">Life Style</a>
-											</li>											
-										</ul>
-									</div>
-									<a href="#"><h4 class="title">Low Cost Advertising</h4></a>
+								
+								
+								<div style="margin-top: 20px;">
+									<h4 class="title" style="margin-bottom: 10px; margin-top: 20px; display: inline;">
+										<%=c3.get(i).getCafe_name() %>
+									</h4>
+									&nbsp;&nbsp;
+									<!-- 평점  -->
+									<strong id="point" style="color:orange; font-size:20px;">
+										<%= c3.get(i).getSum_avg()%>
+									</strong>
+								</a>
+								
+									 <!-- 즐겨찾기 -->
+									<% if(c3.get(i).getMyFavorite() == 1){  %>
+										<i style="color: orange; font-size: 30px; margin-left: 200px;" 
+											class="fa fa-star favorite" aria-hidden="true">
+										<input type="hidden" value="<%=c3.get(i).getC_no()%>">
+										</i>
+										
+									<% }else{ %>
+										<i style="color: orange; font-size: 30px; margin-left: 200px;" 
+											class="fa fa-star-o favorite" aria-hidden="true">
+										<input type="hidden" value="<%=c3.get(i).getC_no()%>">
+										</i>				
+									<% } %> 
+									
 									<p>
-										Acres of Diamonds… you’ve read the famous story, or at least had it related to you. A farmer.
+										<%=c3.get(i).getAddress()%>&nbsp;<%=c3.get(i).getAddress_detail()%>
 									</p>
-									<h6 class="date">31st January,2018</h6>
 								</div>	
 							</div>
 							<% } %>
@@ -152,11 +201,60 @@
 			</section>
 			<!-- End recent-blog Area -->			
 	
-<!-- 	<script type="text/javascript">
-		$(function () {
-			location.href="index.ca";
-		});
-	</script> -->
+				<script type="text/javascript">
+						//즐겨찾기 
+						$(document).on("click", ".favorite", function(){
+							// this가 ajax으로 가면 변하므로 변수로 선언
+							var this_favorite=this;
+							var login = "<%=session.getAttribute("loginUser") %>";
+							var c_no = $(this).children().eq(0).val();
+							
+							if(login == "null"){
+								alert("로그인 후 이용가능합니다.");
+
+							}else{	// 로그인 했으면
+
+								if($(this).hasClass("fa-star-o")){ //색깔 없으면
+									console.log("색없음");
+									//ajax
+									$.ajax({
+										url:"insertFavorite.ca",
+										data:{c_no:c_no},
+										type:"get",
+										success:function(str){
+											if(str == '성공'){
+												console.log("즐겨찾기 추가 성공");
+												$(this_favorite).removeClass("fa-star-o").addClass("fa-star");
+											}else{
+												console.log("즐겨찾기 추가 실패");
+											}
+										},error:function(){
+											console.log("ajax 서버 실패");
+										}
+									});
+
+								}else{ // 색깔 있으면
+									console.log("색있음");
+									$.ajax({
+										url:"deleteFavorite.ca",
+										data:{c_no:c_no},
+										type:"get",
+										success:function(str){
+											if(str == '성공'){
+												console.log("즐겨찾기 제거 성공");
+												$(this_favorite).removeClass("fa-star").addClass("fa-star-o");
+											}else{
+												console.log("즐겨찾기 제거 실패");
+											}
+										},error:function(){
+											console.log("ajax 서버 실패");
+										}
+									});
+								}
+							} //login if
+						});
+						</script>
+							
 	
 	
 	
