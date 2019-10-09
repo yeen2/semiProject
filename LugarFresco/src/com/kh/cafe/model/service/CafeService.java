@@ -61,9 +61,9 @@ public class CafeService {
 	 * @param keyword
 	 * @return 검색된 카페 리스트
 	 */
-	public ArrayList<Cafe> selectNavSearch(String keyword){
+	public ArrayList<Cafe> selectNavSearch(int m_no, String keyword){
 		Connection con = getConnection();
-		ArrayList<Cafe> list = new CafeDao().selectNavSearch(con, keyword);
+		ArrayList<Cafe> list = new CafeDao().selectNavSearch(con, m_no, keyword);
 		
 		close(con);
 		

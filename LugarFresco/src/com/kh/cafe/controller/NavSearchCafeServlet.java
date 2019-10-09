@@ -8,9 +8,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.cafe.model.service.CafeService;
 import com.kh.cafe.model.vo.Cafe;
+import com.kh.member.model.vo.Member;
+import com.kh.review.model.service.ReviewService;
 
 
 @WebServlet("/nav_search.ca")
@@ -25,12 +28,22 @@ public class NavSearchCafeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("utf-8");
-		String keyword = request.getParameter("nav_search");
 		
-		ArrayList<Cafe> list = new CafeService().selectNavSearch(keyword);
+		ArrayList<Cafe> list = new ArrayList<>();
+		String keyword = request.getParameter("nav_search");
+		HttpSession session = request.getSession();
+		Member m = (Member)session.getAttribute("loginUser");
+		
+		if(m != null) {
+			
+			list = new CafeService().selectNavSearch(m.getM_no(), keyword);
+
+		}else {
+			list = new CafeService().selectNavSearch(1000000, keyword);
+		}
+		
 		
 		request.setAttribute("list", list);
-		
 		request.setAttribute("keyword",keyword);
 		request.getRequestDispatcher("views/cafe/searchCafe.jsp").forward(request, response);
 		

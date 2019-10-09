@@ -122,7 +122,7 @@ public class CafeDao {
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, c_no);
-			
+
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -160,22 +160,46 @@ public class CafeDao {
 	}//end
 	
 	
-	
-	
-	
-	public ArrayList<Cafe> selectNavSearch(Connection con, String keyword){
+	public ArrayList<Cafe> selectNavSearch(Connection con, int m_no, String keyword){
 		
 		ArrayList<Cafe> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = prop.getProperty("selectNavSearch");
-		
+
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, keyword);
-			pstmt.setString(2, keyword);
+			pstmt.setInt(1, m_no);
+			pstmt.setString(2, '%' + keyword + '%');
+			pstmt.setString(3, '%' + keyword + '%');
+			pstmt.setString(4, '%' + keyword + '%');
 			
-			// 구현해야 함
+			System.out.println("sql " + sql);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				// 소수점 반올림 처리하기
+				double avg = Math.round((rs.getDouble("sum_avg")*100)/100);
+				
+				list.add(new Cafe(rs.getInt("c_no"), 
+							      rs.getInt("m_no"), 
+							      rs.getString("cafe_name"), 
+							      rs.getString("address"), 
+							      rs.getString("address_detail"), 
+							      rs.getString("phone"), 
+							      rs.getString("content"), 
+							      rs.getString("isUpload"), 
+							      rs.getString("isPower"), 
+							      rs.getInt("favorite"), 
+							      rs.getInt("count"), 
+							      avg, 
+							      rs.getString("titleImg"), 
+							      rs.getInt("myFavorite"), 
+							      rs.getInt("review_count")));
+			}
+			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -384,8 +408,6 @@ public class CafeDao {
 	}
 	
 	
-	
-	
 	/**
 	 * 메인에서 불러오는 카페리스트
 	 * @param con
@@ -405,6 +427,8 @@ public class CafeDao {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
+				
+				// 소수점 반올림 처리하기
 				double avg= Math.round((rs.getDouble("sum_avg")*100)/100);
 				
 				list.add(new Cafe(rs.getInt("c_no"), 
