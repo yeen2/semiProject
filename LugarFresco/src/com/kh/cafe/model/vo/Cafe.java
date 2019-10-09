@@ -59,6 +59,30 @@ public class Cafe {
 	public Cafe() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+	// cafeList용
+	public Cafe(int c_no, int m_no, String cafe_name, String address, String address_detail, String phone,
+			String content, String isUpload, String isPower, int favorite, int count, 
+			double sum_avg, String titleImg, int myFavorite, int review_count) {
+		super();
+		this.c_no = c_no;
+		this.m_no = m_no;
+		this.cafe_name = cafe_name;
+		this.address = address;
+		this.address_detail = address_detail;
+		this.phone = phone;
+		this.content = content;
+		this.isUpload = isUpload;
+		this.isPower = isPower;
+		this.favorite = favorite;
+		this.count = count;
+		this.sum_avg = sum_avg;
+		this.titleImg = titleImg;
+		this.myFavorite = myFavorite;
+		this.review_count = review_count;
+	}
+	
 
 	// cafeInfo 보여줄때 생성자
 	public Cafe(int c_no, int m_no, String cafe_name, String address, String address_detail, String phone,

@@ -160,7 +160,33 @@ public class CafeService {
 	}
 	
 	
+	/**
+	 * 메인에서 카페리스트 불러오는 서비스
+	 * @param m_no
+	 * @return
+	 */
+	public ArrayList<Cafe> mainCafeList(int m_no, String sql){
+		Connection con = getConnection();
+		ArrayList list = new CafeDao().mainCafeList(con, m_no, sql);
+		
+		close(con);
+		return list;
+	}
 	
+	
+	/**
+	 * 조회수 순으로 리스트 불러오기 (메인)
+	 * @param m_no
+	 * @return
+	 */
+	public ArrayList<Cafe> selectOrderByCount(int m_no){
+		Connection con = getConnection();
+		ArrayList list = new CafeDao().selectOrderByCount(con, m_no);
+		
+		close(con);
+		return list;
+	}
+
 	
 	
 	

@@ -74,7 +74,7 @@
 					
 					<!-- 로고부분 -->
 				      <div id="logo">
-				        <a href="<%=conPath%>/index.jsp"><img src="<%=conPath%>/resources/img/logo.png" alt="" title="" /></a>
+				        <a href="<%=conPath%>"><img src="<%=conPath%>/resources/img/logo.png" alt="" title="" /></a>
 				      </div>
 						
 					  <!-- 검색창 -->

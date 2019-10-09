@@ -12,6 +12,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import javax.naming.spi.DirStateFactory.Result;
+
 import com.kh.cafe.model.vo.Cafe;
 import com.kh.cafe.model.vo.CafeImg;
 import com.kh.cafe.model.vo.PageInfo;
@@ -382,10 +384,88 @@ public class CafeDao {
 	}
 	
 	
+	public ArrayList<Cafe> selectOrderByCount(Connection con, int m_no){
+		ArrayList<Cafe> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("selectOrderByCount");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, m_no);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				list.add(new Cafe(rs.getInt("c_no"), 
+								  rs.getInt("m_no"), 
+								  rs.getString("cafe_name"), 
+								  rs.getString("address"), 
+								  rs.getString("address_detail"), 
+								  rs.getString("phone"), 
+								  rs.getString("content"), 
+								  rs.getString("isUpload"), 
+								  rs.getString("isPower"), 
+								  rs.getInt("favorite"), 
+								  rs.getInt("count"), 
+								  rs.getDouble("sum_avg"), 
+								  rs.getString("titleImg"), 
+								  rs.getInt("myFavorite"), 
+								  rs.getInt("review_count")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
 	
 	
-	
-	
+	/**
+	 * 메인에서 불러오는 카페리스트
+	 * @param con
+	 * @param m_no
+	 * @param str
+	 * @return
+	 */
+	public ArrayList<Cafe> mainCafeList(Connection con, int m_no, String str){
+		ArrayList<Cafe> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty(str);
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, m_no);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				list.add(new Cafe(rs.getInt("c_no"), 
+								  rs.getInt("m_no"), 
+								  rs.getString("cafe_name"), 
+								  rs.getString("address"), 
+								  rs.getString("address_detail"), 
+								  rs.getString("phone"), 
+								  rs.getString("content"), 
+								  rs.getString("isUpload"), 
+								  rs.getString("isPower"), 
+								  rs.getInt("favorite"), 
+								  rs.getInt("count"), 
+								  rs.getDouble("sum_avg"), 
+								  rs.getString("titleImg"), 
+								  rs.getInt("myFavorite"), 
+								  rs.getInt("review_count")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;		
+	}
 	
 	
 	

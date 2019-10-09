@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.cafe.model.vo.Cafe"%>
+<%
+	ArrayList<Cafe> c1 = (ArrayList<Cafe>)request.getAttribute("c1");
+	
+%>
 <!DOCTYPE html>
 	
 	<body>
@@ -25,7 +29,7 @@
 			</section>
 			<!-- End banner Area -->
 
-			<!-- 1. 조회수높은 3개 목록-->
+			<!-- 1. 조회수높은 3개 목록 : selectOrderByCount -->
 			<section class="popular-destination-area section-gap">
 				<div class="container">
 		            <div class="row d-flex justify-content-center">
@@ -38,18 +42,21 @@
 		            </div>		
 		            				
 					<div class="row">
-						<% for(int i=0; i<3; i++){ %>
+						<% for(int i=0; i<c1.size(); i++){ %>
 						<div class="col-lg-4">
 							<div class="single-destination relative">
+							
 								<div class="thumb relative">
 									<div class="overlay overlay-bg"></div>
 									<img class="resources/img-fluid" src="resources/img/d1.jpg" alt="">
 								</div>
+								
 								<div class="desc">	
-									<a href="#" class="price-btn">$150</a>			
+									<a href="#" class="price-btn"><%=c1.get(i).getSum_avg() %></a>			
 									<h4>Mountain River</h4>
 									<p>Paraguay</p>			
 								</div>
+								
 							</div>
 						</div>
 						<% } %>
@@ -61,7 +68,7 @@
 		
 		
 		
-			<!-- 2. 평점 좋은 8개 리스트 -->
+			<!-- 2. 평점 좋고, 조회수 많은  8개 리스트 -->
 			<section class="other-issue-area section-gap">
 				<div class="container">
 		            <div class="row d-flex justify-content-center">
@@ -78,10 +85,10 @@
 						<% for(int i=0; i<8; i++){ %>
 						<div class="col-lg-3 col-md-6">
 							<div class="single-other-issue">
+								<a href="#">
 								<div class="thumb">
 									<img class="img-fluid" src="resources/img/o1.jpg" alt="">					
 								</div>
-								<a href="#">
 									<h4>Rent a Car</h4>
 								</a>
 								<p>
