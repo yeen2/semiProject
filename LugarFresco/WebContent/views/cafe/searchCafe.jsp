@@ -10,6 +10,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	.single-destinations:hover{
+		
+	}
+</style>
 </head>
 <body>
 
@@ -48,40 +53,76 @@
 						<%for(int i=1; i<listcount; i=i+2){ %> <!-- 짝수개만큼 늘어나므로 숫자 정렬 -->
 							<div class="row d-flex col-lg-12"> <!-- 행의 시작이 flex가 되도록 하는 div4 -->
 								<div class="col-lg-6"> <!-- 12만큼 채워진 div중에 6만큼쓰도록 하는 div5 -->
-									<div class="single-destinations">
+								
+									<!-- 1번 div -->
+									<div class="single-destinations" style="cursor:pointer">
 										<div class="thumb">
-											<img src="<%=conPath %>/resources/fileupload/cafe/<%= list.get(i-1).getTitleImg() %>">
+											<img src="<%=conPath %>/resources/fileupload/cafe/<%= list.get(i-1).getTitleImg() %>"
+												onclick="location.href='<%=conPath%>/cafeInfo.ca?c_no=<%=list.get(i-1).getC_no()%>'">
 										</div>
 										<div class="details">
-											<h4 class="d-flex justify-content-between">
+											<h4 class="d-flex justify-content-between"> 
 												<span>
 													<%= list.get(i-1).getCafe_name()%> 
-												</span>                              	
+												</span>        
+												<!-- 평점  -->
+												<strong style="color:orange; padding-right: 130px;">
+													<%= list.get(i-1).getSum_avg()%>
+												</strong>    
+												                  	
 												<div class="star">
 												
-													<span class="fa fa-star"></span>				
+													<% if(list.get(i-1).getMyFavorite() == 1){  %>
+														<i style="color:orange; font-size: 25px;" 
+															class="fa fa-star favorite" >
+															<input type="hidden" value="<%=list.get(i-1).getC_no()%>">
+														</i>
+										
+													<% }else{ %>
+														<i style=" font-size: 25px;" 
+															class="fa fa-star favorite" >
+															<input type="hidden" value="<%=list.get(i-1).getC_no()%>">
+														</i>				
+													<% } %>				
 												</div>	
 											</h4>
 												<p>
 													<%= list.get(i-1).getAddress()%>&nbsp;<%= list.get(i-1).getAddress_detail()%>
-												</p>
-													
+												</p>		
 										</div>
 									</div>
 								</div>
 								<div class="col-lg-6" > <!-- 남은 6만큼을 차지하도록 하는 div -->
-									<div class="single-destinations">
+									
+									<!-- 2번 div -->
+									<div class="single-destinations" style="cursor:pointer">
 										<div class="thumb">
-											<img src="<%=conPath %>/resources/fileupload/cafe/<%=list.get(i).getTitleImg() %>">
+											<img src="<%=conPath %>/resources/fileupload/cafe/<%=list.get(i).getTitleImg()%>"
+												onclick="location.href='<%=conPath%>/cafeInfo.ca?c_no=<%=list.get(i).getC_no()%>'">
 										</div>
 										<div class="details">
 											<h4 class="d-flex justify-content-between">
 											<span>
 												<%= list.get(i).getCafe_name()%> 
-											</span>                              	
+											</span>
+											<!-- 평점  -->
+											<strong style="color:orange; padding-right: 130px;">
+												<%= list.get(i).getSum_avg()%>
+											</strong>
+											                              	
 											<div class="star">
 											
-												<span class="fa fa-star"></span>				
+												<% if(list.get(i).getMyFavorite() == 1){  %>
+													<i style="color:orange; font-size: 25px;" 
+															class="fa fa-star favorite">
+														<input type="hidden" value="<%=list.get(i).getC_no()%>">
+													</i>
+												<% }else{ %>
+													<i style=" font-size: 25px;" 
+														class="fa fa-star favorite" >
+														<input type="hidden" value="<%=list.get(i).getC_no()%>">
+													</i>				
+												<% } %>				
 											</div>	
 											</h4>
 												<p>
@@ -89,30 +130,50 @@
 												</p>	
 										</div>
 									</div>
+									
 								</div>
 							</div>
 						<%} %><!-- 마지막 홀수개 리스트 처리!! -->
 						<div class="row d-flex col-lg-12"> <!-- 행의 시작이 flex가 되도록 하는 div4 -->
 							<div class="col-lg-6"> <!-- 12만큼 채워진 div중에 6만큼쓰도록 하는 div5 -->
-								<div class="single-destinations">
+							
+								<!-- 3번째 div -->
+								<div class="single-destinations" style="cursor:pointer">
 									<div class="thumb">
-										<img src="<%=conPath %>/resources/fileupload/cafe/<%=list.get(listcount-1).getTitleImg() %>">
+										<img src="<%=conPath %>/resources/fileupload/cafe/<%=list.get(listcount-1).getTitleImg()%>"
+											onclick="location.href='<%=conPath%>/cafeInfo.ca?c_no=<%=list.get(listcount-1).getC_no()%>'">
 									</div>
 									<div class="details">
 										<h4 class="d-flex justify-content-between">
 											<span>
 												<%= list.get(listcount-1).getCafe_name()%> 
-											</span>                              	
+											</span>      
+											<!-- 평점  -->
+											<strong style="color:orange; padding-right: 130px;">
+												<%= list.get(listcount-1).getSum_avg()%>
+											</strong>
+											                        	
 											<div class="star">
-												<span class="fa fa-star"></span>				
+											
+												<% if(list.get(listcount-1).getMyFavorite() == 1){  %>
+													<i style="color:orange; font-size: 25px;" 
+															class="fa fa-star favorite">
+														<input type="hidden" value="<%=list.get(listcount-1).getC_no()%>">
+													</i>
+												<% }else{ %>
+													<i style=" font-size: 25px;" 
+														class="fa fa-star favorite" >
+														<input type="hidden" value="<%=list.get(listcount-1).getC_no()%>">
+													</i>				
+												<% } %>				
 											</div>	
 										</h4>
 											<p>
-												
-											</p>
-												
+												<%= list.get(listcount-1).getAddress()%>&nbsp;<%= list.get(listcount-1).getAddress_detail()%> 
+											</p>	
 									</div>
 								</div>
+
 							</div>
 						</div>
 						<%}else{%><!-- 사실 for문안에 if문을 작성해도되는데 리스트가 많아지면 if문처리로 컴퓨터가 고생할까봐 -->
@@ -121,17 +182,36 @@
 						<%for(int i=1; i<=listcount; i=i+2){ %>
 							<div class="row d-flex col-lg-12"> <!-- 행의 시작이 flex가 되도록 하는 div4 -->
 								<div class="col-lg-6"> <!-- 12만큼 채워진 div중에 6만큼쓰도록 하는 div5 -->
-									<div class="single-destinations">
+								
+									<!-- 4번째 div -->
+									<div class="single-destinations" style="cursor:pointer">
 										<div class="thumb">
-											<img src="<%=conPath %>/resources/fileupload/cafe/<%=list.get(i-1).getTitleImg() %>">
+											<img src="<%=conPath %>/resources/fileupload/cafe/<%=list.get(i-1).getTitleImg()%>"
+												onclick="location.href='<%=conPath%>/cafeInfo.ca?c_no=<%=list.get(i-1).getC_no()%>'">
 										</div>
 										<div class="details">
 											<h4 class="d-flex justify-content-between">
 												<span>
 													<%= list.get(i-1).getCafe_name()%> 
-												</span>                              	
+												</span>     
+												<!-- 평점  -->
+												<strong style="color:orange; padding-right: 130px;">
+													<%= list.get(i-1).getSum_avg()%>
+												</strong>    
+												                     	
 												<div class="star">
-													<span class="fa fa-star"></span>				
+												
+													<% if(list.get(i-1).getMyFavorite() == 1){  %>
+														<i style="color:orange; font-size: 25px;" 
+																class="fa fa-star favorite">
+															<input type="hidden" value="<%=list.get(i-1).getC_no()%>">
+														</i>
+													<% }else{ %>
+														<i style=" font-size: 25px;" 
+															class="fa fa-star favorite" >
+															<input type="hidden" value="<%=list.get(i-1).getC_no()%>">
+														</i>					
+													<% } %>			
 												</div>	
 											</h4>
 												<p>
@@ -139,19 +219,40 @@
 												</p>		
 										</div>
 									</div>
+									
 								</div>
+								
 								<div class="col-lg-6 d-form-inline-flex" > <!-- 남은 6만큼을 차지하도록 하는 div -->
-									<div class="single-destinations">
+								
+									<!-- 5번째 div -->
+									<div class="single-destinations" style="cursor:pointer">
 										<div class="thumb">
-											<img src="<%=conPath %>/resources/fileupload/cafe/<%=list.get(i).getTitleImg() %>">
+											<img src="<%=conPath %>/resources/fileupload/cafe/<%=list.get(i).getTitleImg()%>"
+												onclick="location.href='<%=conPath%>/cafeInfo.ca?c_no=<%=list.get(i).getC_no()%>'">
 										</div>
 										<div class="details">
 											<h4 class="d-flex justify-content-between">
-											<span><%= list.get(i).getCafe_name()%> 
-		
-											</span>                              	
+											<span>
+												<%= list.get(i).getCafe_name()%> 
+											</span>  
+											<!-- 평점  -->
+											<strong style="color:orange; padding-right: 130px;">
+												<%= list.get(i).getSum_avg()%>
+											</strong>
+											                            	
 											<div class="star">
-												<span class="fa fa-star"></span>				
+											
+												<% if(list.get(i).getMyFavorite() == 1){  %>
+													<i style="color:orange; font-size: 25px;" 
+															class="fa fa-star favorite">
+														<input type="hidden" value="<%=list.get(i).getC_no()%>">
+													</i>
+												<% }else{ %>
+													<i style=" font-size: 25px;" 
+														class="fa fa-star favorite" >
+														<input type="hidden" value="<%=list.get(i).getC_no()%>">
+													</i>					
+												<% } %>				
 											</div>	
 											</h4>
 												<p>
@@ -159,12 +260,71 @@
 												</p>	
 										</div>
 									</div>
+									
 								</div>
 							</div>
 						<%} %>
 					<%} %>
 					</div>
 				</div>
+				<script type="text/javascript">
+						//즐겨찾기 
+						$(document).on("click", ".favorite", function(){
+							// this가 ajax으로 가면 변하므로 변수로 선언
+							var this_favorite=this;
+							var login = "<%=session.getAttribute("loginUser") %>";
+							var c_no = $(this).children().eq(0).val();
+							
+							//console.log(!$(this).is('[color]'));
+							
+							if(login == "null"){
+								alert("로그인 후 이용가능합니다.");
+
+							}else{	// 로그인 했으면
+
+								//if($(this).hasClass("fa-star-o")){ //색깔 없으면
+								if(!$(this).is('[color]')){ //색깔 없으면
+									console.log("색없음");
+									//ajax
+									$.ajax({
+										url:"insertFavorite.ca",
+										data:{c_no:c_no},
+										type:"get",
+										success:function(str){
+											if(str == '성공'){
+												console.log("즐겨찾기 추가 성공");
+												//$(this_favorite).removeClass("fa-star-o").addClass("fa-star");
+												$(this_favorite).css('color', 'orange');
+											}else{
+												console.log("즐겨찾기 추가 실패");
+											}
+										},error:function(){
+											console.log("ajax 서버 실패");
+										}
+									});
+
+								}else{ // 색깔 있으면
+									console.log("색있음");
+									$.ajax({
+										url:"deleteFavorite.ca",
+										data:{c_no:c_no},
+										type:"get",
+										success:function(str){
+											if(str == '성공'){
+												console.log("즐겨찾기 제거 성공");
+												//$(this_favorite).removeClass("fa-star").addClass("fa-star-o");
+												$(this_favorite).removeAttr('color');
+											}else{
+												console.log("즐겨찾기 제거 실패");
+											}
+										},error:function(){
+											console.log("ajax 서버 실패");
+										}
+									});
+								}
+							} //login if
+						});
+						</script>
 				<!-- ------------------카페리스트 div는 끝!! ---------------->
 				
 				

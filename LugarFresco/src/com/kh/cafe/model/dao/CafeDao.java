@@ -174,8 +174,6 @@ public class CafeDao {
 			pstmt.setString(3, '%' + keyword + '%');
 			pstmt.setString(4, '%' + keyword + '%');
 			
-			System.out.println("sql " + sql);
-			
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
