@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.member.model.vo.Member;
+
 /**
  * Servlet implementation class MyPage_outServlet
  */
@@ -26,7 +28,15 @@ public class MyPage_outServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("views/member/myPage_out.jsp").forward(request, response);
+		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
+		
+		if(loginUser != null) {
+			request.getRequestDispatcher("views/member/myPage_out.jsp").forward(request, response);
+			
+		}else {
+			request.getRequestDispatcher("views/common/loginForm.jsp").forward(request, response);
+			
+		}
 	}
 
 	/**

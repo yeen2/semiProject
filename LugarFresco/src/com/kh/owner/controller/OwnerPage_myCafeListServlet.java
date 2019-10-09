@@ -26,17 +26,22 @@ public class OwnerPage_myCafeListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
-		
-		int mno = loginUser.getM_no();
-		
-		ArrayList<Cafe> list = new MyPageService().ownerCafeList(mno);
-		
-		if(list != null) {
-			request.setAttribute("list", list);
-			request.getRequestDispatcher("views/owner/ownerPage_myCafeList.jsp").forward(request, response);
+		if(loginUser != null) {
+			int mno = loginUser.getM_no();
+			
+			ArrayList<Cafe> list = new MyPageService().ownerCafeList(mno);
+			
+			if(list != null) {
+				request.setAttribute("list", list);
+				request.getRequestDispatcher("views/owner/ownerPage_myCafeList.jsp").forward(request, response);
+			}else {
+				request.setAttribute("msg", "내 카페 리스트 조회에 실패하였습니다.");
+				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+				
+			}
+			
 		}else {
-			request.setAttribute("msg", "내 카페 리스트 조회에 실패하였습니다.");
-			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+			request.getRequestDispatcher("views/common/loginForm.jsp").forward(request, response);
 			
 		}
 		

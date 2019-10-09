@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.member.model.vo.Member;
+
 
 @WebServlet("/ownerPage.op")
 public class OwnerPageServlet extends HttpServlet {
@@ -19,7 +21,14 @@ public class OwnerPageServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		request.getRequestDispatcher("views/owner/ownerPage.jsp").forward(request, response);
+		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
+		
+		if(loginUser != null) {
+			request.getRequestDispatcher("views/owner/ownerPage.jsp").forward(request, response);
+			
+		}else {
+			request.getRequestDispatcher("views/common/loginForm.jsp").forward(request, response);
+		}
 	}
 
 

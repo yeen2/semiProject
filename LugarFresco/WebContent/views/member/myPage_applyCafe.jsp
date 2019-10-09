@@ -278,14 +278,15 @@
 				return false;
 			}
 			
-			if($("#thumbnailImg1,#thumbnailImg2,#thumbnailImg3,#thumbnailImg4,#thumbnailImg5").val().trim() == ""){
-				alert("카페 이미지를 올려주세요.");
+			if($("#thumbnailImg1").val().trim() == "" || $("#thumbnailImg2").val().trim() == "" || $("#thumbnailImg3").val().trim() == ""
+					|| $("#thumbnailImg4").val().trim() == "" || $("#thumbnailImg5").val().trim() == ""){
+				alert("카페 이미지를 모두 올려주세요.");
 				location.href="#nameL";
 				return false;
 			}
 			
 			if($("input[name=content1]").val().trim() == "" || $("input[name=content2]").val().trim() == ""){
-				alert("카페 주소를 입력해주세요.");
+				alert("주소 찾기를 이용하여 카페 주소를 입력해주세요.");
 				location.href="#contentImgArea4";
 				return false;
 			}

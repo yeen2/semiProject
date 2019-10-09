@@ -56,7 +56,7 @@
 			  <tbody>
 			  <% if(list.isEmpty()){ %>
 			  	<tr>
-			  		<td colspan="6">조회 가능한 리스트가 없습니다!</td>
+			  		<td colspan="5">조회 가능한 리스트가 없습니다!</td>
 			  	</tr>
 			  <% }else{ %>
 			  

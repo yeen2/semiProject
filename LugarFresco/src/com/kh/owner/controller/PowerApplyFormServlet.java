@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.member.model.vo.Member;
+
 
 @WebServlet("/powerApplyForm.op")
 public class PowerApplyFormServlet extends HttpServlet {
@@ -19,10 +21,17 @@ public class PowerApplyFormServlet extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int cno = Integer.parseInt(request.getParameter("cno"));
+		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
 		
-		request.setAttribute("cno", cno);
-		request.getRequestDispatcher("views/owner/applyPower.jsp").forward(request, response);
+		if(loginUser != null) {
+			int cno = Integer.parseInt(request.getParameter("cno"));
+			
+			request.setAttribute("cno", cno);
+			request.getRequestDispatcher("views/owner/applyPower.jsp").forward(request, response);
+			
+		}else {
+			request.getRequestDispatcher("views/common/loginForm.jsp").forward(request, response);
+		}
 	}
 
 

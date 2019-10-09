@@ -34,15 +34,20 @@ public class MyPage_myReviewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		HttpSession session = request.getSession();
-		Member loginUser = (Member)session.getAttribute("loginUser");
+		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
 		
-		int mno = loginUser.getM_no();
-		
-		ArrayList<Review> list = new MyPageService().selectMyReviewList(mno);
-		
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/member/myPage_myReview.jsp").forward(request, response);
+		if(loginUser != null) {
+			int mno = loginUser.getM_no();
+			
+			ArrayList<Review> list = new MyPageService().selectMyReviewList(mno);
+			
+			request.setAttribute("list", list);
+			request.getRequestDispatcher("views/member/myPage_myReview.jsp").forward(request, response);
+			
+		}else {
+			request.getRequestDispatcher("views/common/loginForm.jsp").forward(request, response);
+			
+		}
 		
 	}
 

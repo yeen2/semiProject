@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.member.model.service.MyPageService;
+import com.kh.member.model.vo.Member;
 import com.kh.review.model.vo.Review;
 
 /**
@@ -31,20 +32,27 @@ public class MyPage_myReviewDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int rno = Integer.parseInt(request.getParameter("rno"));
+		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
 		
-		int result = new MyPageService().deleteReview(rno);
-		
-		if(result > 0) {
-			request.getSession().setAttribute("msg", "리뷰 삭제에 성공하였습니다.");
-			response.sendRedirect("myReview.mp");
+		if(loginUser != null) {
+			String arr = request.getParameter("arr");
+			
+			int result = new MyPageService().deleteReview(arr);
+			
+			if(result > 0) {
+				request.getSession().setAttribute("msg", "리뷰 삭제에 성공하였습니다.");
+				response.sendRedirect("myReview.mp");
+				
+			}else {
+				request.setAttribute("msg", "리뷰 삭제에 실패하였습니다.");
+				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+				
+			}
 			
 		}else {
-			request.setAttribute("msg", "리뷰 삭제에 실패하였습니다.");
-			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+			request.getRequestDispatcher("views/common/loginForm.jsp").forward(request, response);
 			
 		}
-		
 	}
 
 	/**

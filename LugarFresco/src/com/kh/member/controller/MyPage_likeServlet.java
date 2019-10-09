@@ -36,15 +36,20 @@ public class MyPage_likeServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("utf-8");
 		
-		HttpSession session = request.getSession();
-		Member loginUser = (Member)session.getAttribute("loginUser");
+		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
 		
-		int mno = loginUser.getM_no();
-		
-		ArrayList<Review> list = new MyPageService().selectLikeList(mno);
-		
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/member/myPage_like.jsp").forward(request, response);
+		if(loginUser != null) {
+			int mno = loginUser.getM_no();
+			
+			ArrayList<Review> list = new MyPageService().selectLikeList(mno);
+			
+			request.setAttribute("list", list);
+			request.getRequestDispatcher("views/member/myPage_like.jsp").forward(request, response);
+			
+		}else {
+			request.getRequestDispatcher("views/common/loginForm.jsp").forward(request, response);
+			
+		}
 			
 			
 	}

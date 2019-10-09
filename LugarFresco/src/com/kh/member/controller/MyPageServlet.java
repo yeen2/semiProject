@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.member.model.vo.Member;
+
 @WebServlet("/myPage.mp")
 public class MyPageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -18,8 +20,15 @@ public class MyPageServlet extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
 		
-		request.getRequestDispatcher("views/member/myPage.jsp").forward(request, response);
+		if(loginUser != null) {
+			request.getRequestDispatcher("views/member/myPage.jsp").forward(request, response);
+			
+		}else {
+			request.getRequestDispatcher("views/common/loginForm.jsp").forward(request, response);
+			
+		}
 	}
 
 	

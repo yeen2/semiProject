@@ -26,15 +26,21 @@ public class MyPage_myUpdateServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
 		
-		String img = loginUser.getProfile();
-		String email = loginUser.getEmail();
-		String nickName = loginUser.getNickName();
-		
-		request.setAttribute("img", img);
-		request.setAttribute("email", email);
-		request.setAttribute("nickName", nickName);
-		
-		request.getRequestDispatcher("views/member/myPage_myUpdate.jsp").forward(request, response);
+		if(loginUser != null) {
+			String img = loginUser.getProfile();
+			String email = loginUser.getEmail();
+			String nickName = loginUser.getNickName();
+			
+			request.setAttribute("img", img);
+			request.setAttribute("email", email);
+			request.setAttribute("nickName", nickName);
+			
+			request.getRequestDispatcher("views/member/myPage_myUpdate.jsp").forward(request, response);
+			
+		}else {
+			request.getRequestDispatcher("views/common/loginForm.jsp").forward(request, response);
+			
+		}
 	}
 
 	/**

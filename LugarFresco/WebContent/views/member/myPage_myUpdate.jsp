@@ -95,7 +95,7 @@
 	               
 	               <div class="form-group">
 	                 <label class="control-label" for="nickName">닉네임</label>
-	                 <input type="text" class="form-control" id="nickName" name="nickName" placeholder="(한글 2~5자, 영문 3~12자로 작성해주세요)" maxlength="12" value="<%= nickName %>">
+	                 <input type="text" class="form-control" id="nickName" name="nickName" placeholder="(한글, 영문, 숫자를 사용하여 3~8자로 작성해주세요)" maxlength="8" value="<%= nickName %>">
 	                 
 	                 <!-- ajax 닉네임 중복확인 div -->
 	                 <div>
@@ -105,16 +105,12 @@
 	               </div>
 	             
 		            <div class="tile-footer">
-		              <button class="btn btn-primary" type="submit">
+		              <button class="btn btn-primary" type="submit" style="margin-right:10px;">
 		              	<i class="fa fa-fw fa-lg fa-check-circle"></i>
 		              		수정하기
 		              </button>&nbsp;&nbsp;&nbsp;
-		              <a class="btn btn-secondary" href="<%=conPath%>/myPage.me">
-		              	<i class="fa fa-fw fa-lg fa-times-circle"></i>
-		              		취소
-		              </a>
-		              <br>
-		              <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal111" style="margin-top:15px;">
+		              
+		              <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal111">
 		              	<i class="fa fa-fw fa-lg fa-check-circle"></i>
 		              		비밀번호 변경하기
 		              </button>
@@ -177,7 +173,7 @@
 		function nickNameCheck(){
 			var nickName = $("#nickName").val();
 			
-			var regExp = /^[가-힣a-zA-Z0-9]{2,8}$/;
+			var regExp = /^[가-힣a-zA-Z0-9]{3,8}$/;
 			
 			if(nickName.trim() == ""){
 				alert("닉네임을 입력해주세요.");
@@ -239,23 +235,30 @@
 			function pwdCheck(){
 				var userPwd = $("#userPwd").val();
 				var newPwd1 = $("#newPwd1").val();
+				var newPwd2 = $("#newPwd2").val();
 				
-				var regExp = /^[a-z0-9!@#$%^&*]{8,16}$/;
+				var regExp = /^[a-zA-Z0-9!@#$%^&*]{8,16}$/;
 				
-				if($("#userPwd").val() != <%=loginUser.getPass()%>){
+				if(userPwd != <%=loginUser.getPass()%>){
 					alert("현재 비밀번호를 잘못 입력하였습니다.");
 					$("#userPwd").val("").focus();
 					return false;
 				}
-				if($("#newPwd1").val() != $("#newPwd2").val()){
-					alert("새 비밀번호가 일치하지 않습니다.");
-					$("#newPwd2").val("").focus();
+				if(userPwd == newPwd1){
+					alert("변경하려는 비밀번호가 현재 비밀번호와 동일합니다.");
+					$("#newPwd1").val("").focus();
+					$("#newPwd2").val("");
 					return false;
 				}
 				if(!regExp.test(newPwd1)){
 					alert("비밀번호를 형식을 확인하고 다시 입력해주세요.");
 					$("#newPwd1").val("").focus();
 					$("#newPwd2").val("");
+					return false;
+				}
+				if(newPwd1 != newPwd2){
+					alert("새 비밀번호가 일치하지 않습니다.");
+					$("#newPwd2").val("").focus();
 					return false;
 				}
 			}

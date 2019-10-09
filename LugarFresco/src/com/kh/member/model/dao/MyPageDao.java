@@ -228,6 +228,7 @@ public class MyPageDao {
 			close(rset);
 			close(pstmt);
 		}
+		
 		return list;
 	}
 	
@@ -290,21 +291,21 @@ public class MyPageDao {
 			
 			while(rset.next()) {
 				list.add(new Review(rset.getInt("r_no"),
-						rset.getInt("c_no"), 
-						rset.getInt("flavor"), 
-						rset.getInt("price"), 
-						rset.getInt("service"), 
-						rset.getDouble("sum_avg"), 
-						rset.getString("r_content"),
-						rset.getDate("r_date"),
-						rset.getInt("r_like"), 
-						rset.getInt("r_declare"), 
-						rset.getString("rr_content"), 
-						rset.getDate("rr_date"),
-						rset.getString("cafe_name"),
-						rset.getString("img_name"),
-						rset.getString("profile"),
-						rset.getString("nickname")));
+									rset.getInt("c_no"), 
+									rset.getInt("flavor"), 
+									rset.getInt("price"), 
+									rset.getInt("service"), 
+									rset.getDouble("sum_avg"), 
+									rset.getString("r_content"),
+									rset.getDate("r_date"),
+									rset.getInt("r_like"), 
+									rset.getInt("r_declare"), 
+									rset.getString("rr_content"), 
+									rset.getDate("rr_date"),
+									rset.getString("cafe_name"),
+									rset.getString("img_name"),
+									rset.getString("profile"),
+									rset.getString("nickname")));
 			}
 			
 		} catch (SQLException e) {
@@ -314,6 +315,7 @@ public class MyPageDao {
 			close(pstmt);
 			
 		}
+		
 		return list;
 		
 	}
@@ -459,17 +461,17 @@ public class MyPageDao {
 	 * @param rno
 	 * @return
 	 */
-	public int deleteReview(Connection conn, int rno) {
+	public int deleteReview(Connection conn, String arr) {
 		int result = 0;
 		
 		PreparedStatement pstmt = null;
 		
-		String sql = prop.getProperty("deleteReview");
+		String sql = "update review set isdelete = 'Y' where r_no in ("+arr+")";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, rno);
+//			pstmt.setString(1, arr);
 			
 			result = pstmt.executeUpdate();
 			

@@ -203,10 +203,10 @@ public class MyPageService {
 		return updateMem;
 	}
 
-	public int deleteReview(int rno) {
+	public int deleteReview(String arr) {
 		Connection conn = getConnection();
 		
-		int result = new MyPageDao().deleteReview(conn, rno);
+		int result = new MyPageDao().deleteReview(conn, arr);
 		
 		if(result > 0) {
 			commit(conn);

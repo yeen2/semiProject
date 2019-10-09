@@ -79,7 +79,7 @@
 						<li>
 							<div id="cafeArea" onclick="location.href='<%=conPath%>/cafeInfo.ca?c_no=<%=f.getC_no()%>';">
 								<span id="imgArea">
-									<img src="<%=conPath %>/resources/sample/<%=f.getImg_name()%>">
+									<img src="<%=conPath %>/resources/fileupload/cafe/<%=f.getImg_name()%>">
 								</span>
 								
 								<div id="textArea">

@@ -52,6 +52,9 @@ public class OwnerPagePowerServlet extends HttpServlet {
 			}
 			
 			
+		}else {
+			request.getRequestDispatcher("views/common/loginForm.jsp").forward(request, response);
+			
 		}
 	}
 

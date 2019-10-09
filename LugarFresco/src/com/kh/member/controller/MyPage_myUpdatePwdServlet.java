@@ -38,25 +38,31 @@ public class MyPage_myUpdatePwdServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		Member loginUser = (Member)session.getAttribute("loginUser");
-		String email = loginUser.getEmail();
 		
-		Member m = new Member();
-		
-		m.setEmail(email);
-		m.setPass(userPwd);
-		
-		Member updateMem = new MyPageService().updatePwd(m, newPwd);
-		
-		if(updateMem != null) {
-			session.setAttribute("msg", "성공적으로 비밀번호가 변경되었습니다.");
+		if(loginUser != null) {
+			String email = loginUser.getEmail();
 			
-			session.setAttribute("loginUser", updateMem);
+			Member m = new Member();
 			
-			request.getRequestDispatcher("views/member/myPage_myUpdate.jsp").forward(request, response);
+			m.setEmail(email);
+			m.setPass(userPwd);
+			
+			Member updateMem = new MyPageService().updatePwd(m, newPwd);
+			
+			if(updateMem != null) {
+				session.setAttribute("msg", "성공적으로 비밀번호가 변경되었습니다.");
+				
+				session.setAttribute("loginUser", updateMem);
+				
+				response.sendRedirect("myUpdateForm.mp");
+			}else {
+				request.setAttribute("msg", "비밀번호 변경에 실패했습니다.");
+				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+				
+			}
+			
 		}else {
-			request.setAttribute("msg", "비밀번호 변경에 실패했습니다.");
-			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
-			
+			request.getRequestDispatcher("views/common/loginForm.jsp").forward(request, response);
 		}
 		
 	}

@@ -13,6 +13,7 @@
 	#noData{width:100%; height:100px; text-align:center; font-size:1.250em; font-weight:bold; margin-top:100px;}
 	#profileImg{width:100px; height:100px;}
 	#reviewImg{width:80px; height:80px;}
+	#dCheck{width:20px; height:20px;}
 </style>
 </head>
 <body>
@@ -59,6 +60,9 @@
 	   	
 	   	<div class="row user">
         <div class="col-md-9" style="margin-left:auto; margin-right:auto;">
+        <div align="right">
+	   		<button type="button" class="btn btn-secondary" onclick="deleteCheck();">삭제</button>
+	   	</div>
           <div class="tab-content">
             <div class="tab-pane active" id="my-review">
             <%-- 반복 --%>
@@ -73,12 +77,9 @@
 					</div>
             <% }else{ %>
               <% for(Review r : list){ %>
-              <div align="right">
-					<form action="<%=conPath %>/deleteReview.mp" method="post" onsubmit="return alertCheck();">
-						<input type="hidden" name="rno" value="<%=r.getR_no()%>">
-						<button type="submit" id="deleteBtn" class="btn btn-secondary">삭제</button>
-					</form>
-				</div>
+              <div>
+				 <input type="checkbox" id="dCheck" name="dCheck" value="<%=r.getR_no() %>">
+			  </div>
               <div id="cafeClick" class="timeline-post" onclick="location.href='<%=conPath%>/cafeInfo.ca?c_no=<%=r.getC_no()%>';">
                 <div class="post-media"><img id="profileImg" src="<%=conPath%>/resources/fileupload/review/<%=r.getImg_name() %>">
                   <div class="content" style="margin-top:8px;">
@@ -100,7 +101,7 @@
                   <li class="shares"><i style="color:gray;" class="fa fa-fw fa-lg fa-thumbs-down"></i>신고 <%=r.getR_declare() %></li>
                 </ul>
               </div>
-              
+              <br>
               <% } %>
             <% } %>
             
@@ -109,16 +110,30 @@
         </div>
       </div>
       
+      
       <script>
-        function alertCheck(){
-			var real = confirm("정말로 삭제하시겠습니까?");
-			
-			if(real){
-				return true;
-			}else{
-				return false;
-			}
-		}
+      	var arr = [];
+      	$(function(){
+      		$("input[name=dCheck]").change(function(){
+      			if($(this).prop("checked")){
+      				var dCheck = $(this).val();
+      				arr.push(dCheck);
+      				$(this).css({"width":"50px", "height":"50px"});
+      			}else{
+      				arr.pop(dCheck);
+      				$(this).css({"width":"20px", "height":"20px"});
+      			}
+      		});
+      	});
+      	
+      	function deleteCheck(){
+      		if($("input[name=dCheck]:checked").length == 0){
+      			alert("삭제할 리뷰를 체크해주세요.");
+      		}else{
+      			location.href="<%=conPath%>/deleteReview.mp?arr=" + arr.toString();
+      		}
+      	}
+      	
       </script>
    	</main>
    	
