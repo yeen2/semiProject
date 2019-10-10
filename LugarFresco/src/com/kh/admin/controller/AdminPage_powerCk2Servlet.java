@@ -32,10 +32,6 @@ public class AdminPage_powerCk2Servlet extends HttpServlet {
 		int no = Integer.parseInt(request.getParameter("Mno"));
 		
 		int result = new AdminPageService().powerLinkStatusChange(ck,no);
- 		
-		System.out.println("==================================================================");
-		System.out.println(result);
-		System.out.println("==================================================================");
 		
 		if(result > 0) {
 
