@@ -70,7 +70,7 @@
 												<strong style="color:orange; padding-right: 130px;">
 													<%= list.get(i-1).getSum_avg()%>
 												</strong>    
-												                  	
+												                  	<%=list.get(i-1).getMyFavorite() %>
 												<div class="star">
 												
 													<% if(list.get(i-1).getMyFavorite() == 1){  %>
@@ -119,7 +119,7 @@
 														<input type="hidden" value="<%=list.get(i).getC_no()%>">
 													</i>
 												<% }else{ %>
-													<i style=" font-size: 25px;" 
+													<i style="font-size: 25px;" 
 														class="fa fa-star favorite" >
 														<input type="hidden" value="<%=list.get(i).getC_no()%>">
 													</i>				
@@ -276,7 +276,9 @@
 							var login = "<%=session.getAttribute("loginUser") %>";
 							var c_no = $(this).children().eq(0).val();
 							
-							//console.log(!$(this).is('[color]'));
+							console.log($(this).children().eq(0).val());
+							console.log(!$(this).is('[color]'));
+							console.log($(this).css('color'));
 							
 							if(login == "null"){
 								alert("로그인 후 이용가능합니다.");
@@ -284,7 +286,8 @@
 							}else{	// 로그인 했으면
 
 								//if($(this).hasClass("fa-star-o")){ //색깔 없으면
-								if(!$(this_favorite).is('[color]')){ //색깔 없으면
+								//if(!$(this).is('[color]')){ //색깔 없으면
+								  if($(this).css('color') == 'rgb(34, 34, 34)'){
 									console.log("색없음");
 									//ajax
 									$.ajax({
@@ -314,7 +317,7 @@
 											if(str == '성공'){
 												console.log("즐겨찾기 제거 성공");
 												//$(this_favorite).removeClass("fa-star").addClass("fa-star-o");
-												$(this_favorite).removeAttr('color');
+												$(this_favorite).css('color','rgb(34, 34, 34)');
 											}else{
 												console.log("즐겨찾기 제거 실패");
 											}

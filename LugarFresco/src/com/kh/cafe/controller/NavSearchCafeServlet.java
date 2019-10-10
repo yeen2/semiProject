@@ -35,7 +35,7 @@ public class NavSearchCafeServlet extends HttpServlet {
 		Member m = (Member)session.getAttribute("loginUser");
 		
 		if(m != null) {
-			
+			System.out.println("m_no : " + m.getM_no() + "keyword : " + keyword);
 			list = new CafeService().selectNavSearch(m.getM_no(), keyword);
 
 		}else {

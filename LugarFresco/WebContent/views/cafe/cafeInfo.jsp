@@ -399,8 +399,11 @@
 							// 좋아요 버튼
 							$(document).on("click", ".like_btn", function(){
 								
+								console.log($(this).children().eq(2).text());
+								
 								var this_like = this;
 								var r_no = $(this).children().eq(0).val();
+								var like_count = $(this).children().eq(2).text();
 								var login = "<%=session.getAttribute("loginUser")%>";
 								
 								if(login == "null"){
@@ -419,6 +422,7 @@
 												if(str == '성공'){
 													console.log("좋아요 추가 성공");
 													$(this_like).removeClass("btn-outline-primary").addClass("btn-primary");
+													$(this_like).children().eq(2).text(Number(like_count)+1);
 												}else{
 													console.log("좋아요 추가 실패");
 												}
@@ -438,6 +442,7 @@
 												if(str == '성공'){
 													console.log("좋아요 제거 성공");
 													$(this_like).removeClass("btn-primary").addClass("btn-outline-primary");
+													$(this_like).children().eq(2).text(Number(like_count)-1);
 												}else{
 													console.log("좋아요 제거 실패");
 												}
