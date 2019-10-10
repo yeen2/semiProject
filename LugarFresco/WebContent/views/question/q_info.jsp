@@ -80,7 +80,7 @@
 			<button class="btn btn-primary"  onclick="location.href='<%=conPath %>/selectQuestion.qu?q_no=<%=q.getQ_no() %>&info=update';" ><i class="fa fa-comment-o" aria-hidden="true"></i>수정하기</button>
 			<button class="btn btn-primary" onclick="location.href='<%=conPath %>/q_list.qu?q_no=<%=q.getQ_no() %>';" style="margin-left:10px" ><i class="fa fa-scissors" aria-hidden="true"></i>삭제하기</button>
 			<button class="btn btn-secondary"  onclick="location.href='<%=conPath %>/q_list.qu';" style="margin-left:92px"><i class="fa fa-fw fa-lg fa-times-circle"></i>취소하기</button>
-		<%}else if(loginUser.getType().equals("admin")){ %>
+		<%}else if(loginUser.getNickName().equals("admin")){ %>
 			<button class="btn btn-primary" onclick="location.href='<%=conPath%>/selectQuestion.qu?q_no=<%=q.getQ_no() %>&m_no=<%=loginUser.getM_no() %>&info=reply';"><i class="fa fa-comment-o" aria-hidden="true"></i>답글달기</button>
 			<button class="btn btn-secondary"  onclick="location.href='<%=conPath %>/q_list.qu';" style = "margin-left:10px"><i class="fa fa-fw fa-lg fa-times-circle"></i>취소하기</button>
 		<%}else{ %>

@@ -14,24 +14,17 @@ import com.kh.cafe.model.vo.Cafe;
 import com.kh.member.model.service.MyPageService;
 import com.kh.member.model.vo.Member;
 
-/**
- * Servlet implementation class MyPage_likeAServlet
- */
+
 @WebServlet("/myLikeA.mp")
 public class MyPage_likeAServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+ 
     public MyPage_likeAServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 request.setCharacterEncoding("utf-8");
 		

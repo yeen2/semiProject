@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import ="com.kh.cafe.model.vo.*,com.kh.admin.model.vo.*,java.util.ArrayList"%>
+    pageEncoding="UTF-8" import ="com.kh.cafe.model.vo.*, com.kh.admin.model.vo.PageInfo,java.util.ArrayList"%>
     
 <%
 	ArrayList<Cafe> list = (ArrayList<Cafe>) request.getAttribute("list");
@@ -96,7 +96,7 @@
 						name="ckbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=c.getC_no() %></td>
 					<td><a class="announce" data-toggle="modal" value="<%=c.getCafe_name() %>"><%=c.getCafe_name() %></a></td>
 					<!-- cafeInfo에서 수정 삭제 처리. -->
-					<td><%=c.getNickname() %></td>
+					<td><%=c.getNickName() %></td>
 					<td><%=c.getReg_date() %></td>
 					<td><%=c.getUpload_date()%></td>
 					<td><%=c.getIsUpload() %></td>

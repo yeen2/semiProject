@@ -1,3 +1,4 @@
+<%@page import="java.io.PrintWriter"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.kh.PowerLink.model.vo.*,com.kh.admin.model.vo.*,java.util.ArrayList"%>
 <%
@@ -29,6 +30,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
@@ -95,33 +97,43 @@
 					<th style="background-color: #fafafa; text-align: center;">신청자</th>
 					<th style="background-color: #fafafa; text-align: center;">등록날짜</th>
 					<th style="background-color: #fafafa; text-align: center;">신청날짜</th>
+					<th style="background-color: #fafafa; text-align: center;">상태여부</th>
 					<th style="background-color: #fafafa; text-align: center;">파워링크 등록여부</th>
 				</tr>
 				<%if(msg == null){ %>
 				<%for(PowerLink p : list) { %>
+				
 				<tr>
-					<td><input type="checkbox" value="<%=p.getP_no()%>"
-						name="ckbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=p.getP_no()%></td>
-					<td><p style="margin: 0px;" id = "profile"><%=p.getCafe_name()%></p></td>
-					<td><a class="announce" data-toggle="modal" ><%=p.getNickname() %></a></td>
-					<td><%=p.getReg_date()%></td>
-					<td><%=p.getUpload_date()%></td>
-					<% if(p.getStatus() == 1){ 
-					 str = "등록전";
-					}
-					 else if(p.getStatus() == 2){
-						 str = "등록중";
-					 }else if(p.getStatus() == 3){
-						 str = "등록완료";
-					 }else if(p.getStatus() == 4){
-						 
-						 p.setStatus(3);
-					 }
-					 %>
-					<td><%=str %></td>
+					<td style="padding-top:15px;"><%=p.getP_no()%></td>
+					<td style="padding-top:15px;"><p style="margin: 0px;" id = "profile"><%=p.getCafe_name()%></p></td>
+					<td style="padding-top:15px;"><a class="announce" data-toggle="modal" ><%=p.getNickname() %></a></td>
+					<td style="padding-top:15px;"><%=p.getReg_date()%></td>
+					<td style="padding-top:15px;"><%=p.getUpload_date()%></td>
+<%-- 				 	<% if(p.getStatus()==1){
+														str = "등록전";
+													}else if(p.getStatus() == 2){
+															str = "등록중";
+														}else{
+															str = "등록완료";
+														}%> --%>
+														 
+					<td class="td3" style="padding-top:15px;"></td>
+												
+					<td width="300">
+					
+						<form action="<%=request.getContextPath()%>/powerCk2.ap" value="d">
+							<input type="hidden" value ="<%=p.getP_no() %>">
+							<input type="radio" name="registration" value="1">등록전 &nbsp;&nbsp;
+							<input type="radio" name="registration" value="2">등록중 &nbsp;&nbsp;
+							<input type="radio" name="registration" value="3">등록완료 &nbsp;&nbsp;
+							<input type="button"class="bbtn btn btn-primary btn-sm" value="등록" />
+						</form>
+			
+					</td>
+					
 				</tr>
-
-				<%}%>
+			
+				<%}	%>
 				<%} else {%>
 				<tr>
 					<td colspan="6"><%=msg%></td>
@@ -131,8 +143,48 @@
 
 		</table>
 	</div>
+		<script>
+		$(function(){
+			$(".bbtn").click(function(){
+				
+			var ck = $(this).siblings("input:ch`checked").val();
+			var no = $(this).siblings().eq(0).val();
+			console.log(ck)
+			console.log(no)
+			 	$.ajax({
+					
+					url:"powerCk2.ap", 
+					
+					data:{radio:ck, Mno:no}, 
+					type:"GET",
+					success:function(result){
+						$.each(result, function(index, value){
+							
+							if(value.p_no == no){
+								$(".td3").text(value.status);
+								console.log("================");
+							}
+					
+						});
+						console.log("ajax 통신 성공");	
+						console.log(result);					
+					},
+					error:function(){ 
+						console.log("ajax 통신 실패");
+					},
+					complete:function(){ 
+						console.log("무조건 출력 ! ! ");
+						
+					}
+
+ 				});
+			});
+		});
+
+	</script>
 	
-   <div style="margin-top: 30px; height: 50%">
+	
+<!--    <div style="margin-top: 30px; height: 50%">
    		<button class="btn btn-danger pull-right ml-3" onclick="powerCancel();">파워취소</button>
    		<button class="btn btn-primary pull-right" onclick="power();">파워등록</button>
    </div>
@@ -150,13 +202,17 @@
 			
 		})
 	})
-	
-	function powerCancel(){
+	 -->
+<%-- 	function powerCancel(){
 			if($("input:checkbox[name=ckbox]:checked").length == 0){
 				alert("파워취소 카페번호를 체크하세요.");
+			}else if($("input:checkbox[name=ckbox]:checked").length == 2) {
+				
+				alert("하나만 체크 하세요.");
+				
+		
 			}else{
 				location.href="<%=request.getContextPath() %>/powerCancel.ap?arr=" + arr.toString();
-		
 			}
 		}
 	
@@ -164,8 +220,10 @@
 	function power(){
 		if($("input:checkbox[name=ckbox]:checked").length == 0){
 			alert("파워등록 카페번호를 체크하세요.");
+		}else if($("input:checkbox[name=ckbox]:checked").length == 2){
+			
+			alert("하나만 체크 하세요.");
 		}else{
-
 			if(<%=result%> >= 3){
 				
 				alert("파워링크 개수 초과하셨습니다.");
@@ -176,10 +234,11 @@
 			
 					location.href="<%=request.getContextPath() %>/powerCk.ap?arr=" + arr.toString();
 				}
+			}
 
-		}
+		
 	}
-	</script>
+	</script> --%>
 	
 	<%if(hidden != null) {%>
 		

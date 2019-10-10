@@ -1,6 +1,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.declare.model.vo.*,com.kh.admin.model.vo.*"%>
+    pageEncoding="UTF-8" import="com.kh.review.model.vo.Declare,com.kh.admin.model.vo.*"%>
 <%
 	ArrayList<Declare> list = (ArrayList<Declare>) request.getAttribute("list");
 	
