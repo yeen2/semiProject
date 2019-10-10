@@ -105,7 +105,7 @@
 	               </div>
 	             
 		            <div class="tile-footer">
-		              <button class="btn btn-primary" type="submit" style="margin-right:10px;">
+		              <button class="btn btn-primary" type="submit" id="updateBtn" style="margin-right:10px;">
 		              	<i class="fa fa-fw fa-lg fa-check-circle"></i>
 		              		수정하기
 		              </button>&nbsp;&nbsp;&nbsp;
@@ -193,7 +193,7 @@
 			$("#nickName").on("input", function(){
 				var nickName = $("#nickName").val();
 				
-				var regExp = /^[가-힣a-zA-Z0-9]{2,8}$/;
+				var regExp = /^[가-힣a-zA-Z0-9]{3,8}$/;
 				
 				if(regExp.test(nickName)) {
 					
@@ -206,10 +206,14 @@
 								$("#nickNameCheck1").css("display", "block");
 								$("#nickNameCheck2").css("display", "none");
 								$("#nickNameCheck1").css({"color":"#1DDB16", "font-weight":"bold"});
+								
+								$("#updateBtn").removeAttr("disabled", true);
 							}else{
 								$("#nickNameCheck2").css("display", "block");
 								$("#nickNameCheck1").css("display", "none");
 								$("#nickNameCheck2").css({"color":"red", "font-weight":"bold"});
+								
+								$("#updateBtn").attr("disabled", true);
 							}
 							
 							if(nickName == ""){

@@ -26,9 +26,9 @@
 	#uploadFile{width:100%;}
 	#uploadFile img{width:100%; height:100%;}
 	#uploadFile span{margin-right:10px;}
-	#titleImgArea{display:block; width:30%; height:150px; margin-bottom:20px;}
+	#titleImgArea{display:block; width:17%; height:150px; margin-bottom:20px; margin-left:8px;}
 	#contentImgArea1, #contentImgArea2, #contentImgArea3, #contentImgArea4, #contentImgArea5
-	{width:22%; height:110px; display:inline-block;}
+	{width:12%; height:110px; display:inline-block;}
 	#contentImgArea5{display:block;}
 	#contentImgArea1:hover, #contentImgArea2:hover, #contentImgArea3:hover, #contentImgArea4:hover,
 	#contentImgArea5:hover, #titleImgArea:hover{cursor:pointer;}
@@ -80,11 +80,11 @@
    		<h1 style="text-align:center;"><i class="app-menu__icon fa fa-file-text-o"></i> 카페 등록 신청</h1>
    	</div>
    	
-   	<div class="col-md-6" style="margin-left:200px !important;" align="center">
-          <div class="tile">
+   	<div class="col-md-6" style="margin-left:100px !important;" align="center">
+          <div class="tile" style="width:1000px;">
             <div class="tile-body">
               <form action="<%= conPath %>/insertCafe.mp" method="post" enctype="multipart/form-data" onsubmit="return validate();">
-	               <div class="form-group">
+	               <div class="form-group" style="width:500px;">
 	                 <label class="control-label" for="cafeName" id="nameL">카페 이름</label>
 	                 <input class="form-control" type="text" placeholder="카페이름을 적어주세요" id="cafeName" name="cafeName">
 	               </div>
@@ -99,7 +99,7 @@
 	                 
 	               </div>
 	               
-	               <div class="form-group">
+	               <div class="form-group" style="width:500px;">
 	                  <label class="control-label" id="aaa">카페 주소</label>
 	                  <input type="button" class="btn btn-primary " style="display:block;"onclick="sample6_execDaumPostcode();" value="주소 찾기">
 	                  <input type="text" class="form-control" id="sample6_postcode" name="content1" placeholder="우편번호" readonly>
@@ -109,7 +109,7 @@
 	               </div>
 	          
 	               
-	               <div class="form-group">
+	               <div class="form-group" style="width:500px;">
 	                 <label class="control-label" for="cafeTel">전화번호</label>
 	                 <input type="tel" class="form-control" id="cafeTel" name="cafeTel">
 	               </div>

@@ -60,9 +60,11 @@
 	   	
 	   	<div class="row user">
         <div class="col-md-9" style="margin-left:auto; margin-right:auto;">
+        <% if(!list.isEmpty()){ %>
         <div align="right">
 	   		<button type="button" class="btn btn-secondary" onclick="deleteCheck();">삭제</button>
 	   	</div>
+	   	<% } %>
           <div class="tab-content">
             <div class="tab-pane active" id="my-review">
             <%-- 반복 --%>
@@ -118,10 +120,8 @@
       			if($(this).prop("checked")){
       				var dCheck = $(this).val();
       				arr.push(dCheck);
-      				$(this).css({"width":"50px", "height":"50px"});
       			}else{
       				arr.pop(dCheck);
-      				$(this).css({"width":"20px", "height":"20px"});
       			}
       		});
       	});
