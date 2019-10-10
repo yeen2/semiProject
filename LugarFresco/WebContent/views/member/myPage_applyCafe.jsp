@@ -5,6 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/ckeditor/ckeditor.js"></script>
+
 <style>
 	.app-content div{padding:15px; font-weight:bold; color:#666;}
 	.app-content label{padding-top:9px;}
@@ -155,6 +157,13 @@
         
    	</main>
     
+    <script type="text/javascript">
+ 		CKEDITOR.replace('cafeInfo'
+  					    , {height: 500                                                  
+               		  });
+	</script>
+
+
     <%-- 카페 주소 API --%>
 	<script>
 	    function sample6_execDaumPostcode() {
