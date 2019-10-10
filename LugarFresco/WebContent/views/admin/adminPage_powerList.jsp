@@ -109,16 +109,16 @@
 					<td style="padding-top:15px;"><a class="announce" data-toggle="modal" ><%=p.getNickname() %></a></td>
 					<td style="padding-top:15px;"><%=p.getReg_date()%></td>
 					<td style="padding-top:15px;"><%=p.getUpload_date()%></td>
-<%-- 				 	<% if(p.getStatus()==1){
+ 				 	<% if(p.getStatus()==1){
 														str = "등록전";
 													}else if(p.getStatus() == 2){
 															str = "등록중";
 														}else{
 															str = "등록완료";
-														}%> --%>
+														}%> 
 														 
-					<td class="td3" style="padding-top:15px;"></td>
 												
+					<td class="td3" style="padding-top:15px;" ><%=str%></td>
 					<td width="300">
 					
 						<form action="<%=request.getContextPath()%>/powerCk2.ap" value="d">
@@ -144,30 +144,48 @@
 		</table>
 	</div>
 		<script>
+		
 		$(function(){
-			$(".bbtn").click(function(){
-				
-			var ck = $(this).siblings("input:ch`checked").val();
+			$(".bbtn").click(function(){	
+			
+			var this_btn = this;
+			var ck = $(this).siblings("input:checked").val();
 			var no = $(this).siblings().eq(0).val();
 			console.log(ck)
 			console.log(no)
 			 	$.ajax({
-					
-					url:"powerCk2.ap", 
-					
+					url:"powerCk2.ap", 	
 					data:{radio:ck, Mno:no}, 
 					type:"GET",
 					success:function(result){
-						$.each(result, function(index, value){
+					
+						if(ck == 1){
+							
+						/* 	console.log($(this).parent().parent().prev().attr('class'));
+						 */	
+						 console.log($(this_btn).parent().parent().siblings().eq(0).attr('class'));
+							$(this_btn).parent().parent().prev().text("등록전");
+							
+						}else if(ck==2){
+							$(this_btn).parent().parent().prev().text("등록중");
+							
+						}else{
+							$(this_btn).parent().parent().prev().text("등록완료");
+							
+						}
+					
+				/* 		$.each(result, function(index, value){
 							
 							if(value.p_no == no){
 								$(".td3").text(value.status);
 								console.log("================");
-							}
+				 			}
 					
-						});
+						});*/
+						
 						console.log("ajax 통신 성공");	
-						console.log(result);					
+						console.log(result);
+						
 					},
 					error:function(){ 
 						console.log("ajax 통신 실패");

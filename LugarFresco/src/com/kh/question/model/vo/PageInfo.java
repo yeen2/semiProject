@@ -11,6 +11,7 @@ public class PageInfo {
 	private int startPage;
 	private int endPage;
 	private int boardLimit;
+	// 경수
 	private int startQuestion;
 	private int endQuestion;
 

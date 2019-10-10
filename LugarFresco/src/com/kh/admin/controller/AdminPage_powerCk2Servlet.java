@@ -33,17 +33,21 @@ public class AdminPage_powerCk2Servlet extends HttpServlet {
 		
 		int result = new AdminPageService().powerLinkStatusChange(ck,no);
  		
+		System.out.println("==================================================================");
+		System.out.println(result);
+		System.out.println("==================================================================");
 		
 		if(result > 0) {
 
-			ArrayList<PowerLink> list = new AdminPageService().selectPowerLinkStatus(no);
-				
-			response.setContentType("application/json; charset=UTF-8");
-
-			Gson gson = new Gson();
-
-			gson.toJson(list, response.getWriter());
-		
+			response.getWriter().print("success");
+//			ArrayList<PowerLink> list = new AdminPageService().selectPowerLinkStatus(no);
+//				
+//			response.setContentType("application/json; charset=UTF-8");
+//
+//			Gson gson = new Gson();
+//
+//			gson.toJson(list, response.getWriter());
+//		
 		}
 		
 		

@@ -15,6 +15,20 @@ public class QnAList {
 	private String isdelete;
 	private String nickname;
 	
+	
+	public QnAList(int q_no, String nickname, String q_title, String q_content, Date q_date, String isanswer, String a_content,
+			Date a_date, String isdelete) {
+		super();
+		this.q_no = q_no;
+		this.q_title = q_title;
+		this.q_content = q_content;
+		this.q_date = q_date;
+		this.isanswer = isanswer;
+		this.a_content = a_content;
+		this.a_date = a_date;
+		this.isdelete = isdelete;
+		this.nickname = nickname;
+	}
 	public QnAList(int q_no, String q_title, String q_content ,String nickname,Date q_date, Date a_date,String isanswer) {
 		super();
 		this.q_no = q_no;
@@ -24,6 +38,20 @@ public class QnAList {
 		this.q_date = q_date;
 		this.a_date = a_date;
 		this.isanswer = isanswer;
+	}
+	public QnAList(String nickname, String q_title) {
+		super();
+		this.nickname = nickname;
+		this.q_title = q_title;
+	}
+
+	public QnAList(int q_no, String nickname, String q_title, String q_content, Date q_date) {
+		super();
+		this.q_no = q_no;
+		this.nickname = nickname;
+		this.q_title = q_title;
+		this.q_content = q_content;
+		this.q_date = q_date;
 	}
 
 	public String getNickname() {
