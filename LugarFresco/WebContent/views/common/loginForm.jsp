@@ -71,7 +71,8 @@
           
           <!-- 카카오 로그인 버튼 -->         
           <div class="form-group btn-container">
-            <button class="btn btn-primary btn-block" style="padding-top: 0px;padding-left: 0px;padding-right: 0px;padding-bottom: 0px;
+            <button class="btn btn-primary btn-block" type="button" id="kakaoBtn"
+            		style="padding-top: 0px;padding-left: 0px;padding-right: 0px;padding-bottom: 0px;
 	    			border-top-width: 0px;border-right-width: 0px;border-bottom-width: 0px;border-left-width: 0px;width: 240px;
 	    			height: 44px;margin-left: 15px;">
 	    		<img src="<%=conPath%>/resources/images/login_kakao_btn.png" width="240" height="46">
@@ -129,6 +130,59 @@
       	return false;
       });
     </script>
+    
+    <%-- 카카오 로그인 api --%>
+    <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <script>
+		$(document).ready(function(){
+			Kakao.init("발급받은 키");
+			function getKakaotalkUserProfile(){
+				Kakao.API.request({
+					url: '/v1/user/me',
+					success: function(res) {
+						location.href="<%=conPath%>/joinForm.me";
+					},
+					fail: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			function createKakaotalkLogin(){
+				$("#kakao-logged-group .kakao-logout-btn,#kakao-logged-group .kakao-login-btn").remove();
+				var loginBtn = $("#kakaoBtn");
+				loginBtn.click(function(){
+					Kakao.Auth.login({
+						persistAccessToken: true,
+						persistRefreshToken: true,
+						success: function(authObj) {
+							getKakaotalkUserProfile();
+							createKakaotalkLogout();
+						},
+						fail: function(err) {
+							console.log(err);
+						}
+					});
+				});
+				$("#kakao-logged-group").prepend(loginBtn)
+			}
+			function createKakaotalkLogout(){
+				$("#kakao-logged-group .kakao-logout-btn,#kakao-logged-group .kakao-login-btn").remove();
+				var logoutBtn = $("<a/>",{"class":"kakao-logout-btn","text":"로그아웃"});
+				logoutBtn.click(function(){
+					Kakao.Auth.logout();
+					createKakaotalkLogin();
+					$("#kakao-profile").text("");
+				});
+				$("#kakao-logged-group").prepend(logoutBtn);
+			}
+			if(Kakao.Auth.getRefreshToken()!=undefined&&Kakao.Auth.getRefreshToken().replace(/ /gi,"")!=""){
+				createKakaotalkLogout();
+				getKakaotalkUserProfile();
+			}else{
+				createKakaotalkLogin();
+			}
+		});
+	</script>
   </body>
   
   

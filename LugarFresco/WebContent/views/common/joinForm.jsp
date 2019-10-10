@@ -294,10 +294,14 @@ table {
 								$("#emailCheck1").css("display", "block");
 								$("#emailCheck2").css("display", "none");
 								$("#emailCheck1").css({"color":"#1DDB16", "font-weight":"bold"});
+								
+								$(".box button").removeAttr("disabled", true);
 							}else{
 								$("#emailCheck2").css("display", "block");
 								$("#emailCheck1").css("display", "none");
 								$("#emailCheck2").css({"color":"red", "font-weight":"bold"});
+								
+								$(".box button").attr("disabled", true);
 							}
 							
 							if(email == ""){
@@ -333,10 +337,14 @@ table {
 								$("#nickNameCheck1").css("display", "block");
 								$("#nickNameCheck2").css("display", "none");
 								$("#nickNameCheck1").css({"color":"#1DDB16", "font-weight":"bold"});
+								
+								$(".box button").removeAttr("disabled", true);
 							}else{
 								$("#nickNameCheck2").css("display", "block");
 								$("#nickNameCheck1").css("display", "none");
 								$("#nickNameCheck2").css({"color":"red", "font-weight":"bold"});
+								
+								$(".box button").attr("disabled", true);
 							}
 							
 							if(nickName == ""){
