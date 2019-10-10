@@ -350,7 +350,7 @@
 									
 									<i class="fa fa-thumbs-down" ></i>
 									&nbsp;
-									<%=r.get(i).getR_declare() %>
+									<span><%=r.get(i).getR_declare() %></span>
 								</a>
 								<%} else {%>
 								<a class="btn-danger btn pull-right declare_btn" data-toggle="modal" 
@@ -359,7 +359,7 @@
 									
 									<i class="fa fa-thumbs-down" ></i>
 									&nbsp;
-									<%=r.get(i).getR_declare() %>
+									<span><%=r.get(i).getR_declare() %></span>
 								</a>
 								<% } %>
 								
@@ -371,14 +371,14 @@
 									<input type="hidden" value="<%= r.get(i).getR_no()%>">
 									<i id="sss2-1" class="fa fa-thumbs-up" aria-hidden="true" style="size: smaill"></i> 
 									&nbsp;
-									<%=r.get(i).getR_like() %>
+									<span><%=r.get(i).getR_like() %></span>
 								</a>
 								<%} else {%>
 								<a class="btn-primary btn pull-right like_btn" data-toggle="modal" > 
 									<input type="hidden" value="<%= r.get(i).getR_no()%>">
 									<i id="sss2-1" class="fa fa-thumbs-up" aria-hidden="true" style="size: smaill"></i> 
 									&nbsp;
-									<%=r.get(i).getR_like() %>
+									<span><%=r.get(i).getR_like() %></span>
 								</a>
 								<% } %>
 								

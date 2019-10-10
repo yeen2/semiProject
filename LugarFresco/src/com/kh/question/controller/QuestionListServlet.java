@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.question.model.service.QuestionService;
 import com.kh.question.model.vo.PageInfo;
-import com.kh.question.model.vo.Question;
+import com.kh.question.model.vo.QnAList;
 
 
 @WebServlet("/q_list.qu")
@@ -23,11 +23,6 @@ public class QuestionListServlet extends HttpServlet {
 		
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		
-		String q_no = request.getParameter("q_no");
-		if(q_no!=null) {
-		int result = new QuestionService().deleteQuestion(q_no);
-		}
 		
 		String word = request.getParameter("word");
 		String search = request.getParameter("search");
@@ -54,7 +49,7 @@ public class QuestionListServlet extends HttpServlet {
 		startQuestion = (currentPage-1)*boardLimit+1;
 		endQuestion = startQuestion+boardLimit-1;
 		PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, maxPage, startPage, endPage, boardLimit, startQuestion, endQuestion);
-		ArrayList<Question> q_list = new QuestionService().selectListQuestion(pi, search, word);
+		ArrayList<QnAList> q_list = new QuestionService().selectListQuestion(pi, search, word);
 		request.setAttribute("q_list", q_list);
 		request.setAttribute("pi", pi);
 		request.getRequestDispatcher("views/question/q_list.jsp").forward(request, response);

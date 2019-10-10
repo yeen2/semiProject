@@ -16,13 +16,12 @@
     .cover img{
 		position: absolute; top:0; left: 0;
 		width: 100%;
-		height: 50%;
-		}
+		height: 70%;
+	}
 	.login-box{
 		 width:350px;
-		 height:500px;
+		 height:520px;
 	}
-	
     </style>
     
   </head>
@@ -32,8 +31,9 @@
   
     <section class="material-half-bg" style="background:white;">
       <div class="cover">
-      	<img src="<%=conPath %>/resources/images/login_main.png">
+      	<img src="<%=conPath %>/resources/images/login_main.jpg">
       </div>
+      
     </section>
     <section class="login-content">
       <div class="logo">
@@ -69,27 +69,25 @@
           
           <br>
           
-          <!-- 카카오 로그인 버튼 -->
+          <!-- 카카오 로그인 버튼 -->         
           <div class="form-group btn-container">
-            <button class="btn btn-primary btn-block" style="padding-top: 0px; padding-left: 0px; padding-right: 0px; padding-bottom: 0px;
-	    			border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px;">
-	    		<img src="<%=conPath%>/resources/images/login_kakao_btn.png" width="270" height="38">
+            <button class="btn btn-primary btn-block" style="padding-top: 0px;padding-left: 0px;padding-right: 0px;padding-bottom: 0px;
+	    			border-top-width: 0px;border-right-width: 0px;border-bottom-width: 0px;border-left-width: 0px;width: 240px;
+	    			height: 44px;margin-left: 15px;">
+	    		<img src="<%=conPath%>/resources/images/login_kakao_btn.png" width="240" height="46">
 	    	</button>
           </div>
-
-          <br>
-          
-          <!-- 네이버 로그인 버튼 -->
-          <div class="form-group btn-container">
-            <button class="btn btn-primary btn-block" style="padding-top: 0px; padding-left: 0px; padding-right: 0px; padding-bottom: 0px;
-	    				border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px;">
-	    		<img src="<%=conPath%>/resources/images/login_naver_btn.png" width="270" height="38">
+ 
+          <!-- 네이버 로그인 버튼 -->   
+          <div class="form-group btn-container" style="margin-top: 15px;">
+            <button class="btn btn-primary btn-block" style="padding-top: 0px;padding-left: 0px;padding-right: 0px;padding-bottom: 0px;
+	    				border-top-width: 0px;border-right-width: 0px;border-bottom-width: 0px;border-left-width: 0px;width: 240px;
+	    				height: 44px;margin-left: 15px;">
+	    		<img src="<%=conPath%>/resources/images/login_naver_btn.png" width="240" height="45">
 	    	</button>
           </div>
-   
         </form>
-        
-        
+              
         <!-- 비밀번호 찾기  -->
         <form class="forget-form" action="searchPass.me" method="post">
           <h3 class="login-head"><i class="fa fa-lg fa-fw fa-lock"></i>Forgot Password ?</h3>
@@ -107,9 +105,7 @@
           <div class="form-group mt-3">
             <p class="semibold-text mb-0"><a href="#" data-toggle="flip"><i class="fa fa-angle-left fa-fw"></i> Back to Login</a></p>
           </div>
-        </form>
-        
-        
+        </form>   
       </div>
     </section>
     

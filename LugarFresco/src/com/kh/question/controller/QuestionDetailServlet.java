@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import com.kh.member.model.vo.Member;
 import com.kh.question.model.service.QuestionService;
-import com.kh.question.model.vo.Question;
+import com.kh.question.model.vo.QnAList;
 
 /**
  * Servlet implementation class QuestionDetailServlet
@@ -34,7 +34,7 @@ public class QuestionDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// ----------------------------------delete기능!!-------------------------------------
 		int q_no = Integer.parseInt(request.getParameter("q_no"));
-		Question result = new QuestionService().selectDetailQuestion(q_no);
+		QnAList result = new QuestionService().selectDetailQuestion(q_no);
 		request.setAttribute("result", result);
 		//---------------------------------로그인 안하면 jsp로 안가고 에러페이지 가게끔 -------------------
 		HttpSession session = request.getSession();

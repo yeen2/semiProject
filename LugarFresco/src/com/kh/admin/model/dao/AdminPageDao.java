@@ -36,7 +36,7 @@ public class AdminPageDao {
 		
 	}
 	
-	/**移댄럹�쟾泥� 寃뚯떆湲� 媛��닔
+	/**燁삳똾�읂占쎌읈筌ｏ옙 野껊슣�뻻疫뀐옙 揶쏉옙占쎈땾
 	 * @param conn
 	 * @return
 	 */
@@ -93,7 +93,7 @@ public class AdminPageDao {
 		
 	}
 
-	/** �럹�씠吏� 泥섎━瑜� �쐞�븳 cafeList 寃뚯떆湲� 媛��닔
+	/** 占쎈읂占쎌뵠筌욑옙 筌ｌ꼶�봺�몴占� 占쎌맄占쎈립 cafeList 野껊슣�뻻疫뀐옙 揶쏉옙占쎈땾
 	 * @param conn
 	 * @return
 	 */
@@ -311,7 +311,7 @@ public ArrayList<Member> selectMemberList(Connection conn, PageInfo pi) {
 		
 		String sql = prop.getProperty("selectMemberList");
 		
-		System.out.println("selectMember실행");
+		System.out.println("selectMember�떎�뻾");
 		
 		try {
 			
@@ -1345,6 +1345,37 @@ public ArrayList<Member> selectMemberList(Connection conn, PageInfo pi) {
 		return list;
 		
 	
+	}
+
+	public int powerLinkStatusChange(Connection conn, int ck, int no) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("powerLinkStatusChange");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, ck);
+			
+			pstmt.setInt(2, no);
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+
 	}
         
 }

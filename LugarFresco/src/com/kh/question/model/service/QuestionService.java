@@ -1,14 +1,16 @@
 package com.kh.question.model.service;
 
-import static com.kh.common.JDBCTemplate.*;
+import static com.kh.common.JDBCTemplate.close;
+import static com.kh.common.JDBCTemplate.commit;
 import static com.kh.common.JDBCTemplate.getConnection;
+import static com.kh.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.kh.question.model.dao.QuestionDao;
 import com.kh.question.model.vo.PageInfo;
-import com.kh.question.model.vo.Question;
+import com.kh.question.model.vo.QnAList;
 
 public class QuestionService {
 	// 검색시, 등록완료시, QnA로 들어올때 사용하는 메소드 list의 갯수를 파악할때 쓰이는 메소드들을 재사용을 위해 오버로딩과 if문을 사용해봤다.
@@ -44,9 +46,9 @@ public class QuestionService {
 	 * @return Question객체
 	 * 위와 마찬가지로 오버로딩과if문을이용해서 재사용할 수있도록 해봤다.
 	 */
-	public ArrayList<Question> selectListQuestion(PageInfo pi, String search, String word) {
+	public ArrayList<QnAList> selectListQuestion(PageInfo pi, String search, String word) {
 		Connection conn = getConnection();
-		ArrayList<Question> q_list = new ArrayList<Question>();
+		ArrayList<QnAList> q_list = new ArrayList<QnAList>();
 				
 		if ("q_title".equals(search)&& word!=null) {
 			q_list = new QuestionDao().selectListQuestion(conn, pi, word);
@@ -73,7 +75,7 @@ public class QuestionService {
 	 * @param q Question 객체
 	 * @return 성공? 실패? 숫자로 반환
 	 */
-	public int insertQuestion(Question q) {
+	public int insertQuestion(QnAList q) {
 		Connection conn = getConnection();
 		int result = new QuestionDao().insertQuestion(conn, q);
 
@@ -101,9 +103,9 @@ public class QuestionService {
 	 * @param q_no question 넘버
 	 * @return question 객체
 	 */
-	public Question selectDetailQuestion(int q_no) {
+	public QnAList selectDetailQuestion(int q_no) {
 		Connection conn = getConnection();
-		Question result = new QuestionDao().selectDetailQuestion(conn, q_no);
+		QnAList result = new QuestionDao().selectDetailQuestion(conn, q_no);
 		
 		close(conn);
 		

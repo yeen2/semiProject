@@ -7,10 +7,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.kh.question.model.service.QuestionService;
-import com.kh.question.model.vo.Question;
+import com.kh.question.model.vo.QnAList;
 
 /**
  * Servlet implementation class QuestionUpdateServlet
@@ -37,10 +36,8 @@ public class QuestionUpdateServlet extends HttpServlet {
 		//원리는 jsp에서 보낼 페이지의 info값을 미리 보내주어 서블릿에서 if문 처리하면 끝~!!
 		// 먼저 reply와 update중에 어디서 온건지 판단한뒤에 update를 실행하고 q_list를 받아서 jsp로 보내준다!!
 			String info = request.getParameter("info");
-			System.out.println("3jsf");
-			System.out.println(request.getParameter("q_no"));
 			int reaction = 0;
-			Question result = null;
+			QnAList result = null;
 			if("info".equals(info)) {
 				int q_no = Integer.parseInt(request.getParameter("q_no"));
 				String q_content = request.getParameter("q_content");
@@ -52,12 +49,9 @@ public class QuestionUpdateServlet extends HttpServlet {
 				request.getRequestDispatcher("views/question/q_info.jsp").forward(request, response);
 				}
 			}else if("reply".equals(info)){
-				System.out.println("32");
 				int q_no = Integer.parseInt(request.getParameter("q_no"));
 				String q_content = request.getParameter("q_content");
-				System.out.println(q_content);
 				reaction = new QuestionService().updateQuestion(q_content, q_no);
-				System.out.println("reaction:" + reaction);
 				result = new QuestionService().selectDetailQuestion(q_no);
 				
 				request.setAttribute("result",result);

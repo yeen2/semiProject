@@ -706,4 +706,27 @@ public class AdminPageService {
 	
 		return list;
 	}
+
+	public int powerLinkStatusChange(int ck, int no) {
+	
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = new AdminPageDao().powerLinkStatusChange(conn, ck, no);
+		
+		if(result > 0) {
+			
+			
+			JDBCTemplate.commit(conn);
+		
+		}else {
+			
+			JDBCTemplate.rollback(conn);
+		}
+			
+		JDBCTemplate.close(conn);
+		
+		return result;
+		
+	
+	}
 }

@@ -1,6 +1,6 @@
 package com.kh.question.model.dao;
 
-import static com.kh.common.JDBCTemplate.*;
+import static com.kh.common.JDBCTemplate.close;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -9,11 +9,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Properties;
 
 import com.kh.question.model.vo.PageInfo;
-import com.kh.question.model.vo.Question;
+import com.kh.question.model.vo.QnAList;
 
 public class QuestionDao {
 	private Properties prop = new Properties();
@@ -117,8 +116,8 @@ public class QuestionDao {
 	 * @param pi
 	 * @return
 	 */
-	public ArrayList<Question> selectListQuestion(Connection conn, PageInfo pi){
-		ArrayList<Question> q_list = new ArrayList<>();
+	public ArrayList<QnAList> selectListQuestion(Connection conn, PageInfo pi){
+		ArrayList<QnAList> q_list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("selectQ_list");
 		ResultSet rset = null;
@@ -132,7 +131,7 @@ public class QuestionDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				q_list.add(new Question(rset.getInt("q_no"),
+				q_list.add(new QnAList(rset.getInt("q_no"),
 									  rset.getString("nickname"),
 									  rset.getString("q_title"),
 									  rset.getString("q_content"),
@@ -161,8 +160,8 @@ public class QuestionDao {
 	 * @param Q_title
 	 * @return
 	 */
-	public ArrayList<Question> selectListQuestion(Connection conn, PageInfo pi, String Q_title){
-		ArrayList<Question> q_list = new ArrayList<>();
+	public ArrayList<QnAList> selectListQuestion(Connection conn, PageInfo pi, String Q_title){
+		ArrayList<QnAList> q_list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("selectQ_titleSearchQ_list");
 		ResultSet rset = null;
@@ -177,7 +176,7 @@ public class QuestionDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				q_list.add(new Question(rset.getInt("q_no"),
+				q_list.add(new QnAList(rset.getInt("q_no"),
 									  rset.getString("nickname"),
 									  rset.getString("q_title"),
 									  rset.getString("q_content"),
@@ -204,8 +203,8 @@ public class QuestionDao {
 	 * @param Thankyou
 	 * @return
 	 */
-	public ArrayList<Question> selectListQuestion(Connection conn, PageInfo pi, String nickName, int Thankyou){
-		ArrayList<Question> q_list = new ArrayList<>();
+	public ArrayList<QnAList> selectListQuestion(Connection conn, PageInfo pi, String nickName, int Thankyou){
+		ArrayList<QnAList> q_list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("selectQ_writerSearchQ_list");
 		ResultSet rset = null;
@@ -220,7 +219,7 @@ public class QuestionDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				q_list.add(new Question(rset.getInt("q_no"),
+				q_list.add(new QnAList(rset.getInt("q_no"),
 									  rset.getString("nickname"),
 									  rset.getString("q_title"),
 									  rset.getString("q_content"),
@@ -241,14 +240,14 @@ public class QuestionDao {
 		
 	}
 	
-	public int insertQuestion(Connection conn, Question q) {
+	public int insertQuestion(Connection conn, QnAList q) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertQuestion");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, Integer.parseInt(q.getQ_writer()));
+			pstmt.setInt(1, Integer.parseInt(q.getNickname()));
 			pstmt.setString(2, q.getQ_title());
 			pstmt.setString(3, q.getQ_content());
 			
@@ -283,8 +282,8 @@ public class QuestionDao {
 		return nickName;
 	}
 	
-	public Question selectDetailQuestion(Connection conn, int q_no) {
-		Question result = new Question();
+	public QnAList selectDetailQuestion(Connection conn, int q_no) {
+		QnAList result = new QnAList();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectQuestion");
@@ -293,7 +292,7 @@ public class QuestionDao {
 			pstmt.setInt(1, q_no);
 			rset = pstmt.executeQuery();
 			if(rset.next()) {
-				result= new Question(rset.getInt("Q_NO"),
+				result= new QnAList(rset.getInt("Q_NO"),
 									 rset.getString("NICKNAME") + "," +rset.getInt("M_NO"), 
 									 rset.getString("Q_TITLE"), 
 									 rset.getString("Q_CONTENT"), 
