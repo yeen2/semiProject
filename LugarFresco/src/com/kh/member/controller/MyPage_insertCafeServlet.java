@@ -53,6 +53,7 @@ public class MyPage_insertCafeServlet extends HttpServlet {
 				String root = request.getSession().getServletContext().getRealPath("/resources");
 				
 				String savePath = root + "/fileupload/cafe/";
+				String savePathReg = root + "/fileupload/reg/";
 				
 				MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 				
@@ -119,10 +120,8 @@ public class MyPage_insertCafeServlet extends HttpServlet {
 				c.setContent(content);
 				c.setBr_name(brName);
 				c.setBr_up_name(brUpName);
-				c.setBr_path(savePath);
+				c.setBr_path(savePathReg);
 				
-				System.out.println(list);
-				System.out.println(c);
 				int result = new MyPageService().insertCafe(c, list);
 				
 				if(result > 0) {
