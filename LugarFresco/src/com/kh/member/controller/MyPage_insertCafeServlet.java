@@ -53,7 +53,7 @@ public class MyPage_insertCafeServlet extends HttpServlet {
 				String root = request.getSession().getServletContext().getRealPath("/resources");
 				
 				String savePath = root + "/fileupload/cafe/";
-				String savePathReg = root + "/fileupload/reg/";
+				String savePath2 = root + "/fileupload/reg/";
 				
 				MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 				
@@ -120,8 +120,10 @@ public class MyPage_insertCafeServlet extends HttpServlet {
 				c.setContent(content);
 				c.setBr_name(brName);
 				c.setBr_up_name(brUpName);
-				c.setBr_path(savePathReg);
+				c.setBr_path(savePath2);
 				
+				System.out.println(list);
+				System.out.println(c);
 				int result = new MyPageService().insertCafe(c, list);
 				
 				if(result > 0) {
@@ -132,7 +134,9 @@ public class MyPage_insertCafeServlet extends HttpServlet {
 					
 					for(int i=0; i<changeFiles.size(); i++) {
 						File failedFile = new File(savePath + changeFiles.get(i));
+						File failedFile2 = new File(savePath2 + changeFiles.get(i));
 						failedFile.delete();
+						failedFile2.delete();
 					}
 					
 					request.setAttribute("msg", "사진 게시판 등록 실패~~!!");
