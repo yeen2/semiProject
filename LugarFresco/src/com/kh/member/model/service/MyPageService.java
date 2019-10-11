@@ -338,5 +338,25 @@ public class MyPageService {
 		return result;
 	}
 
+	public int[] myPageCount(int mno) {
+		Connection conn = getConnection();
+		
+		int[] arr = new MyPageDao().myPageCount(conn, mno);
+		
+		close(conn);
+		
+		return arr;
+	}
+
+	public int[] ownerPageCount(int mno) {
+		Connection conn = getConnection();
+		
+		int[] arr = new MyPageDao().ownerPageCount(conn, mno);
+		
+		close(conn);
+		
+		return arr;
+	}
+
 	
 }
