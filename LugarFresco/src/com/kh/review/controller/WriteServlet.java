@@ -46,13 +46,13 @@ public class WriteServlet extends HttpServlet {
 			// 2_1. HttpServletRequest -> MultipartRequest 변경
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8",
 					new MyFileRenamePolicy());
-
+			
 			ArrayList<String> originFiles = new ArrayList<>(); // 원본명들만 담길 list
 			ArrayList<String> changeFiles = new ArrayList<>(); // 수정명들만 담길 list
 
 			// getFileName() - 폼에서 전송된 파일 리스트들의 name값들을 반환
 			Enumeration<String> files = multiRequest.getFileNames(); // 전송 순서 역순으로 쌓임
-
+			
 			while (files.hasMoreElements()) {
 				String name = files.nextElement();
 
@@ -76,7 +76,6 @@ public class WriteServlet extends HttpServlet {
 			int price = Integer.parseInt(multiRequest.getParameter("price"));
 			int service = Integer.parseInt(multiRequest.getParameter("service"));
 			String content = multiRequest.getParameter("content");
-			
 
 			Review r = new Review();
 			r.setM_no(m_no);
@@ -88,6 +87,7 @@ public class WriteServlet extends HttpServlet {
 			r.setR_content(content);
 
 			ArrayList<ReviewImg> list = new ArrayList<>();
+			
 			
 			// 전송 역순으로 changeFiles, originFiles에 저장되어있기 때문에 반복문을 역으로 수행함
 			for (int i = originFiles.size() - 1; i >= 0; i--) {

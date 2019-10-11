@@ -23,17 +23,28 @@ public class ReviewService {
 	 */
 	public int insertReview(Review r, ArrayList<ReviewImg> list) {
 		Connection con = getConnection();
-		
-		int result1 = new ReviewDao().insertReview(con, r);
-		int result2 = new ReviewDao().insertReviewImg(con, list);
-		
 		int result = 0;
-		if(result1>0 && result2>0) {
-			commit(con);
-			result = 1;
+		int result1 = new ReviewDao().insertReview(con, r);
+		
+		if(list.isEmpty()) { //이미지가 없으면
+			if(result1 > 0) {
+				commit(con);
+				result = 1;
+			}else {
+				rollback(con);
+			}
+			
 		}else {
-			rollback(con);
+			int result2 = new ReviewDao().insertReviewImg(con, list);
+			
+			if(result1>0 && result2>0) {
+				commit(con);
+				result = 1;
+			}else {
+				rollback(con);
+			}
 		}
+		
 		close(con);
 		
 		return result;

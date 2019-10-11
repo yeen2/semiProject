@@ -26,9 +26,9 @@
 	#uploadFile{width:100%;}
 	#uploadFile img{width:100%; height:100%;}
 	#uploadFile span{margin-right:10px;}
-	#titleImgArea{display:block; width:17%; height:150px; margin-bottom:20px; margin-left:8px;}
+	#titleImgArea{display:block; width:150px; height:150px; margin-bottom:20px; margin-left:8px;}
 	#contentImgArea1, #contentImgArea2, #contentImgArea3, #contentImgArea4, #contentImgArea5
-	{width:12%; height:110px; display:inline-block;}
+	{width:110px; height:110px; display:inline-block;}
 	#contentImgArea5{display:block;}
 	#contentImgArea1:hover, #contentImgArea2:hover, #contentImgArea3:hover, #contentImgArea4:hover,
 	#contentImgArea5:hover, #titleImgArea:hover{cursor:pointer;}
@@ -91,11 +91,11 @@
 	               
 	               <div id="uploadFile" class="form-group">
 	                 <label class="control-label" for="cafeImg">카페 이미지</label>
-	                 <span id="titleImgArea"><img id="titleImg" src=""></span>
-	                 <span id="contentImgArea1"><img id="contentImg1" src=""></span>
-	                 <span id="contentImgArea2"><img id="contentImg2" src=""></span>
-	                 <span id="contentImgArea3"><img id="contentImg3" src=""></span>
-	                 <span id="contentImgArea4"><img id="contentImg4" src=""></span>
+	                 <span id="titleImgArea"><img id="titleImg"></span>
+	                 <span id="contentImgArea1"><img id="contentImg1"></span>
+	                 <span id="contentImgArea2"><img id="contentImg2"></span>
+	                 <span id="contentImgArea3"><img id="contentImg3"></span>
+	                 <span id="contentImgArea4"><img id="contentImg4"></span>
 	                 
 	               </div>
 	               
@@ -116,7 +116,7 @@
 	               
 	               <div class="form-group">
 	                 <label class="control-label" for="cafeReg">사업자등록증</label>
-	                 <span id="contentImgArea5"><img id="cafeReg" width="100%" height="100%" src=""></span>
+	                 <span id="contentImgArea5"><img id="cafeReg" width="110px" height="110px"></span>
 	               </div>
 	               
 	                <div class="form-group">
