@@ -25,43 +25,43 @@ public class AdminPage_cafeListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		//검색기능 사용할때
+		//寃��깋湲곕뒫 �궗�슜�븷�븣
 		
 		if (request.getParameter("kinds") != null && request.getParameter("search") != null) {
 
 			int listCount = new AdminPageService().getListCount();
 
 			
-			// currentPage : 현재 페이지
-			int currentPage = 1; // 기본적으로 페이지는 1부터 시작하기 때문에.
+			// currentPage : �쁽�옱 �럹�씠吏�
+			int currentPage = 1; // 湲곕낯�쟻�쑝濡� �럹�씠吏��뒗 1遺��꽣 �떆�옉�븯湲� �븣臾몄뿉.
 
 			if (request.getParameter("currentPage") != null) {
 
 				currentPage = Integer.parseInt(request.getParameter("currentPage"));
 
 			}
-			// -------------------페이징 처리 추가---------------------
-			int pageLimit; // 한 페이지 하단에 보여질 페이지 수
-			int boardLimit; // 한 페이지에 보여질 게시글 최대 수
-			int maxPage; // 전체 페이지에서 제일 마지막 페이지수 --> listCount, boardLimit을 통해 알아낼 것
-			int startPage; // 한 페이지 하단에 보여질 시작 페이지 --> currentPage, pageLimit을 통해 알아낼 것
-			int endPage; // 한 페이지 하단에 보여질 마지막 페이지 --> startPage를 통해 알아낼 것
+			// -------------------�럹�씠吏� 泥섎━ 異붽�---------------------
+			int pageLimit; // �븳 �럹�씠吏� �븯�떒�뿉 蹂댁뿬吏� �럹�씠吏� �닔
+			int boardLimit; // �븳 �럹�씠吏��뿉 蹂댁뿬吏� 寃뚯떆湲� 理쒕� �닔
+			int maxPage; // �쟾泥� �럹�씠吏��뿉�꽌 �젣�씪 留덉�留� �럹�씠吏��닔 --> listCount, boardLimit�쓣 �넻�빐 �븣�븘�궪 寃�
+			int startPage; // �븳 �럹�씠吏� �븯�떒�뿉 蹂댁뿬吏� �떆�옉 �럹�씠吏� --> currentPage, pageLimit�쓣 �넻�빐 �븣�븘�궪 寃�
+			int endPage; // �븳 �럹�씠吏� �븯�떒�뿉 蹂댁뿬吏� 留덉�留� �럹�씠吏� --> startPage瑜� �넻�빐 �븣�븘�궪 寃�
 
-			pageLimit = 10; // 한 페이지에 10개씩 보여지게
+			pageLimit = 10; // �븳 �럹�씠吏��뿉 10媛쒖뵫 蹂댁뿬吏�寃�
 			boardLimit = 10;
 
-			// *maxPage : 전체 페이지에서 제일 마지막 페이지
-			// ex) 총 갯수 : 123개 --> maxPage 12페이지x 13페이지o
+			// *maxPage : �쟾泥� �럹�씠吏��뿉�꽌 �젣�씪 留덉�留� �럹�씠吏�
+			// ex) 珥� 媛��닔 : 123媛� --> maxPage 12�럹�씠吏�x 13�럹�씠吏�o
 
 			// ex) boardLimit = 10
-			// 100.0 / 10 = 10 => 10페이지
-			// 101.0 / 10 = 10.1 => 11페이지
-			// 105.0 / 10 = 10.5 => 11페이지
-			// 109.0 / 10 = 10.9 => 11페이지
+			// 100.0 / 10 = 10 => 10�럹�씠吏�
+			// 101.0 / 10 = 10.1 => 11�럹�씠吏�
+			// 105.0 / 10 = 10.5 => 11�럹�씠吏�
+			// 109.0 / 10 = 10.9 => 11�럹�씠吏�
 
 			maxPage = (int) Math.ceil((double) listCount / boardLimit);
 
-			// * startPage : 현재 페이지 하단에 보여질 페이지의 시작 수
+			// * startPage : �쁽�옱 �럹�씠吏� �븯�떒�뿉 蹂댁뿬吏� �럹�씠吏��쓽 �떆�옉 �닔
 			// ex) pageLimit : 10
 			// 1, 11, 21 . . . => n * 10 + 1
 			// currentPage = 1 => 0 * 10 + 1 =>1
@@ -76,7 +76,7 @@ public class AdminPage_cafeListServlet extends HttpServlet {
 
 			startPage = (currentPage - 1) / pageLimit * 10 + 1;
 
-			// * endPage : 한 페이지 하단에 보여질 마지막 페이지
+			// * endPage : �븳 �럹�씠吏� �븯�떒�뿉 蹂댁뿬吏� 留덉�留� �럹�씠吏�
 			// 10, 20, 30 . . .
 			endPage = startPage + pageLimit - 1;
 			// ex) maxPage = 13, emdPage = 20 ==> xxxxxxx
@@ -85,7 +85,7 @@ public class AdminPage_cafeListServlet extends HttpServlet {
 				endPage = maxPage;
 			}
 
-			// 페이지 정보를 담는 PageInfo
+			// �럹�씠吏� �젙蹂대�� �떞�뒗 PageInfo
 
 			PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, maxPage, startPage, endPage, boardLimit);
 			System.out.println(pi);
@@ -113,7 +113,7 @@ public class AdminPage_cafeListServlet extends HttpServlet {
 				request.setAttribute("buttonhidden", hidden);
 				request.setAttribute("pi", pi);
 				request.setAttribute("list", list);
-				request.setAttribute("msg", "검색 내용은 카페리스트에 존재하지 않습니다.");
+				request.setAttribute("msg", "조회하신 내용은 존재하지 않습니다");
 				
 				request.getRequestDispatcher("views/admin/adminPage_cafeList.jsp").forward(request, response);
 			
@@ -129,42 +129,42 @@ public class AdminPage_cafeListServlet extends HttpServlet {
 
 			}
 			
-			//------------------------------------------리스트 불러올때------------------------------------------
+			//------------------------------------------由ъ뒪�듃 遺덈윭�삱�븣------------------------------------------
 		
 		} else {
 
 			int listCount = new AdminPageService().getListCount();
 
-			// currentPage : 현재 페이지
-			int currentPage = 1; // 기본적으로 페이지는 1부터 시작하기 때문에.
+			// currentPage : �쁽�옱 �럹�씠吏�
+			int currentPage = 1; // 湲곕낯�쟻�쑝濡� �럹�씠吏��뒗 1遺��꽣 �떆�옉�븯湲� �븣臾몄뿉.
 
 			if (request.getParameter("currentPage") != null) {
 
 				currentPage = Integer.parseInt(request.getParameter("currentPage"));
 
 			}
-			// -------------------페이징 처리 추가---------------------
-			int pageLimit; // 한 페이지 하단에 보여질 페이지 수
-			int boardLimit; // 한 페이지에 보여질 게시글 최대 수
-			int maxPage; // 전체 페이지에서 제일 마지막 페이지수 --> listCount, boardLimit을 통해 알아낼 것
-			int startPage; // 한 페이지 하단에 보여질 시작 페이지 --> currentPage, pageLimit을 통해 알아낼 것
-			int endPage; // 한 페이지 하단에 보여질 마지막 페이지 --> startPage를 통해 알아낼 것
+			// -------------------�럹�씠吏� 泥섎━ 異붽�---------------------
+			int pageLimit; // �븳 �럹�씠吏� �븯�떒�뿉 蹂댁뿬吏� �럹�씠吏� �닔
+			int boardLimit; // �븳 �럹�씠吏��뿉 蹂댁뿬吏� 寃뚯떆湲� 理쒕� �닔
+			int maxPage; // �쟾泥� �럹�씠吏��뿉�꽌 �젣�씪 留덉�留� �럹�씠吏��닔 --> listCount, boardLimit�쓣 �넻�빐 �븣�븘�궪 寃�
+			int startPage; // �븳 �럹�씠吏� �븯�떒�뿉 蹂댁뿬吏� �떆�옉 �럹�씠吏� --> currentPage, pageLimit�쓣 �넻�빐 �븣�븘�궪 寃�
+			int endPage; // �븳 �럹�씠吏� �븯�떒�뿉 蹂댁뿬吏� 留덉�留� �럹�씠吏� --> startPage瑜� �넻�빐 �븣�븘�궪 寃�
 
-			pageLimit = 10; // 한 페이지에 10개씩 보여지게
+			pageLimit = 10; // �븳 �럹�씠吏��뿉 10媛쒖뵫 蹂댁뿬吏�寃�
 			boardLimit = 10;
 
-			// *maxPage : 전체 페이지에서 제일 마지막 페이지
-			// ex) 총 갯수 : 123개 --> maxPage 12페이지x 13페이지o
+			// *maxPage : �쟾泥� �럹�씠吏��뿉�꽌 �젣�씪 留덉�留� �럹�씠吏�
+			// ex) 珥� 媛��닔 : 123媛� --> maxPage 12�럹�씠吏�x 13�럹�씠吏�o
 
 			// ex) boardLimit = 10
-			// 100.0 / 10 = 10 => 10페이지
-			// 101.0 / 10 = 10.1 => 11페이지
-			// 105.0 / 10 = 10.5 => 11페이지
-			// 109.0 / 10 = 10.9 => 11페이지
+			// 100.0 / 10 = 10 => 10�럹�씠吏�
+			// 101.0 / 10 = 10.1 => 11�럹�씠吏�
+			// 105.0 / 10 = 10.5 => 11�럹�씠吏�
+			// 109.0 / 10 = 10.9 => 11�럹�씠吏�
 
 			maxPage = (int) Math.ceil((double) listCount / boardLimit);
 
-			// * startPage : 현재 페이지 하단에 보여질 페이지의 시작 수
+			// * startPage : �쁽�옱 �럹�씠吏� �븯�떒�뿉 蹂댁뿬吏� �럹�씠吏��쓽 �떆�옉 �닔
 			// ex) pageLimit : 10
 			// 1, 11, 21 . . . => n * 10 + 1
 			// currentPage = 1 => 0 * 10 + 1 =>1
@@ -179,7 +179,7 @@ public class AdminPage_cafeListServlet extends HttpServlet {
 
 			startPage = (currentPage - 1) / pageLimit * 10 + 1;
 
-			// * endPage : 한 페이지 하단에 보여질 마지막 페이지
+			// * endPage : �븳 �럹�씠吏� �븯�떒�뿉 蹂댁뿬吏� 留덉�留� �럹�씠吏�
 			// 10, 20, 30 . . .
 			endPage = startPage + pageLimit - 1;
 			// ex) maxPage = 13, emdPage = 20 ==> xxxxxxx
@@ -188,7 +188,7 @@ public class AdminPage_cafeListServlet extends HttpServlet {
 				endPage = maxPage;
 			}
 
-			// 페이지 정보를 담는 PageInfo
+			// �럹�씠吏� �젙蹂대�� �떞�뒗 PageInfo
 
 			PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, maxPage, startPage, endPage, boardLimit);
 			System.out.println(pi);
@@ -197,7 +197,7 @@ public class AdminPage_cafeListServlet extends HttpServlet {
 //			ArrayList<Cafe> list2 = new AdminPageService().CafeImgWriteCount(pi);
 		
 			
-			System.out.println("hhhhhhhhhhhㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ");
+			System.out.println("hhhhhhhhhhh�뀠�뀠�뀠�뀠�뀠�뀠�뀠�뀠�뀠�뀠�뀠�뀠�뀠�뀠�뀠�뀠�뀠�뀠�뀠�뀠�뀠�뀠�뀋�뀋�뀋�뀋�뀋�뀋�뀋�뀋�뀋�뀋�뀋�뀋�뀋�뀋�뀋�뀋�뀋�뀋�뀋�뀋");
 			request.setAttribute("pi", pi);
 			request.setAttribute("list", list);
 //			request.setAttribute("list2", list2);

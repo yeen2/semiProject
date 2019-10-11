@@ -111,10 +111,11 @@
 
 					<div class="form-group col-2" align="center">
 
-						<div class="thumb">
-							<img class="img-fluid"
-								src="<%=conPath%>/resources/img/elements/user2.png" alt="">
-							<br>
+						<div class="thumb" >
+							<div style="border-radius:50%; width: 80px; height: 80px;">
+							<img class="img-fluid" style="width: 100%; height: 100%; border-radius:50%;"
+								src="<%=conPath%>/resources/fileupload/profile/<%=m.getProfile()%>" alt="">
+							</div>
 							<h5 style="text-align: center; margin-top: 5px;"><%=m.getNickName()%></h5>
 						</div>
 					</div>
@@ -157,7 +158,7 @@
 						<button type="reset" class="genric-btn default circle"
 							style="width: 130px;">취소</button>
 						&nbsp;&nbsp;&nbsp;
-						<button type="submit" class="genric-btn primary circle"
+						<button type="submit" class="genric-btn primary circle" id="submit"
 							style="width: 130px;">등록</button>
 					</div>
 				</div>
@@ -233,6 +234,27 @@
 				reader.readAsDataURL(value.files[0]);
 			}
 		}
+		
+		// 등록 버튼 활성화
+		$("#submit").attr("disabled", true);
+		
+		$("#submit").click(function() {
+			
+			var flavor = $("#flavor").val();
+			var service = $("#service").val();
+			var price = $("#price").val();
+			
+			if(flavor==0 && service==0 && price==0){
+				alert("평점을 선택해주세요~");
+				return false;
+			}
+			
+		});
+		
+		
+		
+		
+		
 		
 	</script>
 </body>

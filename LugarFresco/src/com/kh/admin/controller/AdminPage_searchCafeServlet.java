@@ -46,7 +46,7 @@ public class AdminPage_searchCafeServlet extends HttpServlet {
 			
 			}else {
 				
-				request.setAttribute("msg", "ì¡°íšŒëœ ë‚´ìš©ì´ ì—†ìŠµë‹ˆë‹¤.");
+				request.setAttribute("msg", "Á¶È¸ÇÏ½Å ³»¿ëÀº Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù");
 				request.getRequestDispatcher("views/admin/adminPage_cafeList.jsp").forward(request, response);
 				
 			}
@@ -62,7 +62,7 @@ public class AdminPage_searchCafeServlet extends HttpServlet {
 			}else {
 				
 				
-				request.setAttribute("msg", "ì¡°íšŒëœ ë‚´ìš©ì´ ì—†ìŠµë‹ˆë‹¤.");
+				request.setAttribute("msg", "Á¶È¸ÇÏ½Å ³»¿ëÀº Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù");
 				request.getRequestDispatcher("views/admin/adminPage_cafeList.jsp").forward(request, response);
 
 			}

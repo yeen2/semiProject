@@ -615,8 +615,8 @@ public ArrayList<Member> selectMemberList(Connection conn, PageInfo pi) {
 									rset.getString("CATEGORY"),
 									rset.getString("CONTENT"),
 									rset.getDate("REG_DATE"),
-									rset.getString("REVIEW"),
 									rset.getInt("REVIEW_COUNT"),
+									rset.getString("R_CONTENT"),
 									rset.getString("PROFILE"),
 									rset.getString("PROFILE_PATH")));
 				

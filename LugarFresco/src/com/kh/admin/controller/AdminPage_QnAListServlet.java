@@ -35,36 +35,36 @@ public class AdminPage_QnAListServlet extends HttpServlet {
 
 			System.out.println(listCount);
 			
-			// currentPage : ���� ������
-			int currentPage = 1; // �⺻������ �������� 1���� �����ϱ� ������.
+			// currentPage : 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
+			int currentPage = 1; // 占썩본占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 1占쏙옙占쏙옙 占쏙옙占쏙옙占싹깍옙 占쏙옙占쏙옙占쏙옙.
 
 			if (request.getParameter("currentPage") != null) {
 
 				currentPage = Integer.parseInt(request.getParameter("currentPage"));
 
 			}
-			// -------------------����¡ ó�� �߰�---------------------
-			int pageLimit; // �� ������ �ϴܿ� ������ ������ ��
-			int boardLimit; // �� �������� ������ �Խñ� �ִ� ��
-			int maxPage; // ��ü ���������� ���� ������ �������� --> listCount, boardLimit�� ���� �˾Ƴ� ��
-			int startPage; // �� ������ �ϴܿ� ������ ���� ������ --> currentPage, pageLimit�� ���� �˾Ƴ� ��
-			int endPage; // �� ������ �ϴܿ� ������ ������ ������ --> startPage�� ���� �˾Ƴ� ��
+			// -------------------占쏙옙占쏙옙징 처占쏙옙 占쌩곤옙---------------------
+			int pageLimit; // 占쏙옙 占쏙옙占쏙옙占쏙옙 占싹단울옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙
+			int boardLimit; // 占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쌉시깍옙 占쌍댐옙 占쏙옙
+			int maxPage; // 占쏙옙체 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 --> listCount, boardLimit占쏙옙 占쏙옙占쏙옙 占싯아놂옙 占쏙옙
+			int startPage; // 占쏙옙 占쏙옙占쏙옙占쏙옙 占싹단울옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 --> currentPage, pageLimit占쏙옙 占쏙옙占쏙옙 占싯아놂옙 占쏙옙
+			int endPage; // 占쏙옙 占쏙옙占쏙옙占쏙옙 占싹단울옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 --> startPage占쏙옙 占쏙옙占쏙옙 占싯아놂옙 占쏙옙
 
-			pageLimit = 10; // �� �������� 10���� ��������
+			pageLimit = 10; // 占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 10占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙
 			boardLimit = 10;
 
-			// *maxPage : ��ü ���������� ���� ������ ������
-			// ex) �� ���� : 123�� --> maxPage 12������x 13������o
+			// *maxPage : 占쏙옙체 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
+			// ex) 占쏙옙 占쏙옙占쏙옙 : 123占쏙옙 --> maxPage 12占쏙옙占쏙옙占쏙옙x 13占쏙옙占쏙옙占쏙옙o
 
 			// ex) boardLimit = 10
-			// 100.0 / 10 = 10 => 10������
-			// 101.0 / 10 = 10.1 => 11������
-			// 105.0 / 10 = 10.5 => 11������
-			// 109.0 / 10 = 10.9 => 11������
+			// 100.0 / 10 = 10 => 10占쏙옙占쏙옙占쏙옙
+			// 101.0 / 10 = 10.1 => 11占쏙옙占쏙옙占쏙옙
+			// 105.0 / 10 = 10.5 => 11占쏙옙占쏙옙占쏙옙
+			// 109.0 / 10 = 10.9 => 11占쏙옙占쏙옙占쏙옙
 
 			maxPage = (int) Math.ceil((double) listCount / boardLimit);
 
-			// * startPage : ���� ������ �ϴܿ� ������ �������� ���� ��
+			// * startPage : 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占싹단울옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙
 			// ex) pageLimit : 10
 			// 1, 11, 21 . . . => n * 10 + 1
 			// currentPage = 1 => 0 * 10 + 1 =>1
@@ -79,7 +79,7 @@ public class AdminPage_QnAListServlet extends HttpServlet {
 
 			startPage = (currentPage - 1) / pageLimit * 10 + 1;
 
-			// * endPage : �� ������ �ϴܿ� ������ ������ ������
+			// * endPage : 占쏙옙 占쏙옙占쏙옙占쏙옙 占싹단울옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
 			// 10, 20, 30 . . .
 			endPage = startPage + pageLimit - 1;
 			// ex) maxPage = 13, emdPage = 20 ==> xxxxxxx
@@ -88,7 +88,7 @@ public class AdminPage_QnAListServlet extends HttpServlet {
 				endPage = maxPage;
 			}
 
-			// ������ ������ ��� PageInfo
+			// 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占� PageInfo
 
 			PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, maxPage, startPage, endPage, boardLimit);
 			System.out.println(pi);
@@ -119,7 +119,7 @@ public class AdminPage_QnAListServlet extends HttpServlet {
 			//	int result = new AdminPageService().PowerLinkCount();
 			//	request.setAttribute("result", result);
 
-				request.setAttribute("msg", "검색 내용은 QnA리스트에 존재하지 않습니다.");
+				request.setAttribute("msg", "조회하신 내용은 존재하지 않습니다");
 				
 				request.getRequestDispatcher("views/admin/adminPage_QnAList.jsp").forward(request, response);
 			
@@ -138,42 +138,42 @@ public class AdminPage_QnAListServlet extends HttpServlet {
 
 			}
 			
-			//------------------------------------------����Ʈ �ҷ��ö�------------------------------------------
+			//------------------------------------------占쏙옙占쏙옙트 占쌀뤄옙占시띰옙------------------------------------------
 		
 		} else {
 
 			int listCount = new AdminPageService().getPowerLinkCount();
 
-			// currentPage : ���� ������
-			int currentPage = 1; // �⺻������ �������� 1���� �����ϱ� ������.
+			// currentPage : 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
+			int currentPage = 1; // 占썩본占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 1占쏙옙占쏙옙 占쏙옙占쏙옙占싹깍옙 占쏙옙占쏙옙占쏙옙.
 
 			if (request.getParameter("currentPage") != null) {
 
 				currentPage = Integer.parseInt(request.getParameter("currentPage"));
 
 			}
-			// -------------------����¡ ó�� �߰�---------------------
-			int pageLimit; // �� ������ �ϴܿ� ������ ������ ��
-			int boardLimit; // �� �������� ������ �Խñ� �ִ� ��
-			int maxPage; // ��ü ���������� ���� ������ �������� --> listCount, boardLimit�� ���� �˾Ƴ� ��
-			int startPage; // �� ������ �ϴܿ� ������ ���� ������ --> currentPage, pageLimit�� ���� �˾Ƴ� ��
-			int endPage; // �� ������ �ϴܿ� ������ ������ ������ --> startPage�� ���� �˾Ƴ� ��
+			// -------------------占쏙옙占쏙옙징 처占쏙옙 占쌩곤옙---------------------
+			int pageLimit; // 占쏙옙 占쏙옙占쏙옙占쏙옙 占싹단울옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙
+			int boardLimit; // 占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쌉시깍옙 占쌍댐옙 占쏙옙
+			int maxPage; // 占쏙옙체 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 --> listCount, boardLimit占쏙옙 占쏙옙占쏙옙 占싯아놂옙 占쏙옙
+			int startPage; // 占쏙옙 占쏙옙占쏙옙占쏙옙 占싹단울옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 --> currentPage, pageLimit占쏙옙 占쏙옙占쏙옙 占싯아놂옙 占쏙옙
+			int endPage; // 占쏙옙 占쏙옙占쏙옙占쏙옙 占싹단울옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 --> startPage占쏙옙 占쏙옙占쏙옙 占싯아놂옙 占쏙옙
 
-			pageLimit = 10; // �� �������� 10���� ��������
+			pageLimit = 10; // 占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 10占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙
 			boardLimit = 10;
 
-			// *maxPage : ��ü ���������� ���� ������ ������
-			// ex) �� ���� : 123�� --> maxPage 12������x 13������o
+			// *maxPage : 占쏙옙체 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
+			// ex) 占쏙옙 占쏙옙占쏙옙 : 123占쏙옙 --> maxPage 12占쏙옙占쏙옙占쏙옙x 13占쏙옙占쏙옙占쏙옙o
 
 			// ex) boardLimit = 10
-			// 100.0 / 10 = 10 => 10������
-			// 101.0 / 10 = 10.1 => 11������
-			// 105.0 / 10 = 10.5 => 11������
-			// 109.0 / 10 = 10.9 => 11������
+			// 100.0 / 10 = 10 => 10占쏙옙占쏙옙占쏙옙
+			// 101.0 / 10 = 10.1 => 11占쏙옙占쏙옙占쏙옙
+			// 105.0 / 10 = 10.5 => 11占쏙옙占쏙옙占쏙옙
+			// 109.0 / 10 = 10.9 => 11占쏙옙占쏙옙占쏙옙
 
 			maxPage = (int) Math.ceil((double) listCount / boardLimit);
 
-			// * startPage : ���� ������ �ϴܿ� ������ �������� ���� ��
+			// * startPage : 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占싹단울옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙
 			// ex) pageLimit : 10
 			// 1, 11, 21 . . . => n * 10 + 1
 			// currentPage = 1 => 0 * 10 + 1 =>1
@@ -188,7 +188,7 @@ public class AdminPage_QnAListServlet extends HttpServlet {
 
 			startPage = (currentPage - 1) / pageLimit * 10 + 1;
 
-			// * endPage : �� ������ �ϴܿ� ������ ������ ������
+			// * endPage : 占쏙옙 占쏙옙占쏙옙占쏙옙 占싹단울옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
 			// 10, 20, 30 . . .
 			endPage = startPage + pageLimit - 1;
 			// ex) maxPage = 13, emdPage = 20 ==> xxxxxxx
@@ -197,7 +197,7 @@ public class AdminPage_QnAListServlet extends HttpServlet {
 				endPage = maxPage;
 			}
 
-			// ������ ������ ��� PageInfo
+			// 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占� PageInfo
 			PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, maxPage, startPage, endPage, boardLimit);
 			
 			System.out.println(pi);
