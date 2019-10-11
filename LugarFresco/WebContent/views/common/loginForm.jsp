@@ -135,12 +135,14 @@
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
     <script>
 		$(document).ready(function(){
-			Kakao.init("발급받은 키");
+			Kakao.init("43c418db70d8c1c6392316577a947ee1");
 			function getKakaotalkUserProfile(){
 				Kakao.API.request({
 					url: '/v1/user/me',
 					success: function(res) {
+						alert(res.kakao_account);
 						location.href="<%=conPath%>/joinForm.me";
+						
 					},
 					fail: function(error) {
 						console.log(error);
