@@ -236,16 +236,21 @@
 		}
 		
 		// 등록 버튼 활성화
-		$("#submit").attr("disabled", true);
 		
 		$("#submit").click(function() {
 			
 			var flavor = $("#flavor").val();
 			var service = $("#service").val();
 			var price = $("#price").val();
+			var content = $("#content").val();
 			
-			if(flavor==0 && service==0 && price==0){
+			if(flavor==0 || service==0 || price==0){
 				alert("평점을 선택해주세요~");
+				return false;
+			}
+			
+			if(content.length == 0){
+				alert("리뷰내용을 작성해주세요");
 				return false;
 			}
 			
