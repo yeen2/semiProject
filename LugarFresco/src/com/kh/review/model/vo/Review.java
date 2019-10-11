@@ -150,8 +150,7 @@ public class Review {
 	
 
 	public Review(int r_no, int m_no, int c_no, int flavor, int price, int service, double sum_avg, String r_content,
-			Date r_date, String isDelete, int r_like, int r_declare, String rr_content, Date rr_date, String cafe_name,
-			String img_path, String img_name) {
+			Date r_date, String isDelete, int r_like, int r_declare, String rr_content, Date rr_date, String cafe_name) {
 		super();
 		this.r_no = r_no;
 		this.m_no = m_no;
@@ -168,8 +167,6 @@ public class Review {
 		this.rr_content = rr_content;
 		this.rr_date = rr_date;
 		this.cafe_name = cafe_name;
-		this.img_path = img_path;
-		this.img_name = img_name;
 	}
 
 	

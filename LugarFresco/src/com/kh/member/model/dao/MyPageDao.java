@@ -589,6 +589,65 @@ public class MyPageDao {
 		
 	}
 	
+	public int ownerReviewCountCn(Connection conn, int mno, String search) {
+		int count = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("ownerReviewCountCn");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, mno);
+			pstmt.setString(2, "%" + search + "%");
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				count = rset.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return count;
+	}
+
+	public int ownerReviewCountCt(Connection conn, int mno, String search) {
+		int count = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("ownerReviewCountCt");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, mno);
+			pstmt.setString(2, "%" + search + "%");
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				count = rset.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return count;
+	}
+
+	
 	/**
 	 * --- owner 내 파워링크 리스트 count ---
 	 * @param conn
@@ -749,9 +808,7 @@ public class MyPageDao {
 									   rset.getInt("r_declare"),
 									   rset.getString("rr_content"),
 									   rset.getDate("rr_date"),
-									   rset.getString("cafe_name"),
-									   rset.getString("img_name"),
-									   rset.getString("img_path")));
+									   rset.getString("cafe_name")));
 			}
 			
 		} catch (SQLException e) {
@@ -831,9 +888,7 @@ public class MyPageDao {
 						   rset.getInt("r_declare"),
 						   rset.getString("rr_content"),
 						   rset.getDate("rr_date"),
-						   rset.getString("cafe_name"),
-						   rset.getString("img_name"),
-						   rset.getString("img_path")));
+						   rset.getString("cafe_name")));
 			}
 			
 		} catch (SQLException e) {
@@ -882,9 +937,7 @@ public class MyPageDao {
 						   rset.getInt("r_declare"),
 						   rset.getString("rr_content"),
 						   rset.getDate("rr_date"),
-						   rset.getString("cafe_name"),
-						   rset.getString("img_name"),
-						   rset.getString("img_path")));
+						   rset.getString("cafe_name")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1002,6 +1055,7 @@ public class MyPageDao {
 		
 	}
 
+	
 	
 
 	

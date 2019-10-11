@@ -300,6 +300,13 @@
 				return false;
 			}
 			
+			if($("input[name=content3]").val().trim() == ""){
+				alert("상세주소를 입력해주세요.");
+				location.href="#contentImgArea4";
+				$("input[name=content3]").val("").focus();
+				return false;
+			}
+			
 			if($("#cafeTel").val().trim() == ""){
 				alert("카페 전화번호를 입력해주세요.");
 				location.href="#aaa";

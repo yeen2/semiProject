@@ -136,7 +136,80 @@ public class MemberDao {
 		
 		return m;
 	}
-	
-	
+
+
+	/**
+	 * --- 카카오톡 로그인 멤버 객체 존재하는지 확인 ---
+	 * @param conn
+	 * @param id
+	 * @return
+	 */
+	public Member snsLoginMember(Connection conn, String id) {
+		Member m = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("snsLoginMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, id);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				m = new Member(rset.getInt("m_no"), 
+							   rset.getString("logintype"), 
+							   rset.getString("snsid"), 
+							   rset.getString("email"), 
+							   rset.getString("nickname"), 
+							   rset.getString("pass"), 
+							   rset.getDate("reg_date"), 
+							   rset.getString("isowner"), 
+							   rset.getString("profile"), 
+							   rset.getString("profile_path"),
+							   rset.getInt("r_like"), 
+							   rset.getInt("r_declare"), 
+							   rset.getString("isout"), 
+							   rset.getString("isblack"),
+							   rset.getDate("out_date"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return m;
+		
+	}
+
+
+	public int insertSnsMember(Connection conn, String id, String email, String nickName) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertSnsMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, id);
+			pstmt.setString(2, email);
+			pstmt.setString(3, nickName);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
+	}
+
+
 
 }//class end

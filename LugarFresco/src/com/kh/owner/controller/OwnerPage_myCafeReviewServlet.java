@@ -32,9 +32,19 @@ public class OwnerPage_myCafeReviewServlet extends HttpServlet {
 		
 		if(loginUser != null ) {
 			int mno = loginUser.getM_no();
+			String category = request.getParameter("category");
+			String search = request.getParameter("search");
 			
-			int listCount = new MyPageService().ownerReviewCount(mno);
+			int listCount = 0;
 			
+			if(search != null && category.equals("cafeName")) {
+				listCount = new MyPageService().ownerReviewCountCn(mno, search);
+			}else if(search != null && category.equals("content")) {
+				listCount = new MyPageService().ownerReviewCountCt(mno, search);
+			}else if(search == null){
+				listCount = new MyPageService().ownerReviewCount(mno);
+			}
+			System.out.println(listCount);
 			int currentPage = 1;
 			if(request.getParameter("currentPage") != null) {
 				currentPage = Integer.parseInt(request.getParameter("currentPage"));
@@ -61,9 +71,6 @@ public class OwnerPage_myCafeReviewServlet extends HttpServlet {
 			
 			PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, maxPage, startPage, endPage, boardLimit);
 			
-			String category = request.getParameter("category");
-			String search = request.getParameter("search");
-			
 			ArrayList<Review> list = null;
 			
 			if(search != null && category.equals("cafeName")) {
@@ -73,7 +80,6 @@ public class OwnerPage_myCafeReviewServlet extends HttpServlet {
 			}else {
 				list = new MyPageService().ownerReviewList(pi, mno);
 			}
-			
 			request.setAttribute("pi", pi);
 			request.setAttribute("list", list);
 			

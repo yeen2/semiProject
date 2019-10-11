@@ -45,13 +45,13 @@
     	
     		<div class="form-group">
               <div class="input-group">
-	              <form action="<%=conPath %>/myCafeReview.op" method="get">
-	                <select class="form form-control" name="category" style="width:100px;">
+	              <form action="<%=conPath %>/myCafeReview.op" method="get" onsubmit="return check();">
+	                <select class="form form-control" id="category" name="category" style="width:100px;">
 	                	<option>---</option>
 	                	<option value="cafeName">카페명</option>
 	                	<option value="content">내용</option>
 	                </select>
-	                <input class="form-control" id="exampleInputAmount" type="text" name="search">
+	                <input class="form-control" id="exampleInputAmount" type="text" id="search" name="search">
 	                <button class="btn btn-secondary" type="submit">검색</button>
 	               </form>
               </div>
@@ -148,6 +148,22 @@
 			    	</li>
 			  	</ul>
 			</nav>
+   		
+   		<script>
+   			function check(){
+   				if($("#category").val() == "---"){
+   					alert("카테고리를 선택해주세요.");
+   					return false;
+   				}
+   				
+   				if($("input[name=search]").val().trim() == ""){
+   					alert("검색할 내용을 입력해주세요.");
+   					$("#search").val("").focus();
+   					return false;
+   				}
+   				
+   			}
+   		</script>
    		
    		<script>
 			$(function(){

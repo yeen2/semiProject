@@ -137,12 +137,17 @@
 		$(document).ready(function(){
 			Kakao.init("43c418db70d8c1c6392316577a947ee1");
 			function getKakaotalkUserProfile(){
+				
 				Kakao.API.request({
-					url: '/v1/user/me',
+					url: '/v2/user/me',
 					success: function(res) {
-						alert(res.kakao_account);
-						location.href="<%=conPath%>/joinForm.me";
+						var email = res.kakao_account.email;
+						var id = res.id;
+						var nickName = res.properties.nickname;
+						var nnn = null;
+						location.href="<%=conPath%>/kakaoLogin.me?nickName=" + nickName + "&email=" + email + "&id=" + id + "&nnn=" + nnn;
 						
+						Kakao.Auth.logout();
 					},
 					fail: function(error) {
 						console.log(error);
@@ -150,32 +155,20 @@
 				});
 			}
 			function createKakaotalkLogin(){
-				$("#kakao-logged-group .kakao-logout-btn,#kakao-logged-group .kakao-login-btn").remove();
 				var loginBtn = $("#kakaoBtn");
 				loginBtn.click(function(){
-					Kakao.Auth.login({
+					Kakao.Auth.loginForm({
 						persistAccessToken: true,
 						persistRefreshToken: true,
 						success: function(authObj) {
 							getKakaotalkUserProfile();
-							createKakaotalkLogout();
+							
 						},
 						fail: function(err) {
 							console.log(err);
 						}
 					});
 				});
-				$("#kakao-logged-group").prepend(loginBtn)
-			}
-			function createKakaotalkLogout(){
-				$("#kakao-logged-group .kakao-logout-btn,#kakao-logged-group .kakao-login-btn").remove();
-				var logoutBtn = $("<a/>",{"class":"kakao-logout-btn","text":"로그아웃"});
-				logoutBtn.click(function(){
-					Kakao.Auth.logout();
-					createKakaotalkLogin();
-					$("#kakao-profile").text("");
-				});
-				$("#kakao-logged-group").prepend(logoutBtn);
 			}
 			if(Kakao.Auth.getRefreshToken()!=undefined&&Kakao.Auth.getRefreshToken().replace(/ /gi,"")!=""){
 				createKakaotalkLogout();

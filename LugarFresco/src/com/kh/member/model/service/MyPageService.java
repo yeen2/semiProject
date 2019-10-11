@@ -249,6 +249,26 @@ public class MyPageService {
 		return count;
 	}
 	
+	public int ownerReviewCountCn(int mno, String search) {
+		Connection conn = getConnection();
+		
+		int count = new MyPageDao().ownerReviewCountCn(conn, mno, search);
+		
+		close(conn);
+		
+		return count;
+	}
+	
+	public int ownerReviewCountCt(int mno, String search) {
+		Connection conn = getConnection();
+		
+		int count = new MyPageDao().ownerReviewCountCt(conn, mno, search);
+		
+		close(conn);
+		
+		return count;
+	}
+	
 	public int ownerPowerCount(int mno) {
 		Connection conn = getConnection();
 		

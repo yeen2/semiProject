@@ -10,7 +10,7 @@
 <style>
 	#div123{padding:15px; font-weight:bold; color:#666;}
 	#cafeClick:hover{cursor:pointer; background:#dee2e6;}
-	#noData{width:100%; height:100px; text-align:center; font-size:1.250em; font-weight:bold; margin-top:100px;}
+	#noData{width:100%; height:100px; text-align:center; font-size:1.250em; font-weight:bold; margin-top:130px;}
 	#profileImg{width:100px; height:100px;}
 	#reviewImg{width:80px; height:80px;}
 	#dCheck{width:20px; height:20px;}
@@ -69,21 +69,21 @@
             <div class="tab-pane active" id="my-review">
             <%-- 반복 --%>
             <% if(list.isEmpty()){ %>
-              <div id="noData">
-						<div>
-							<i class="fa fa-coffee" aria-hidden="true" style="font-size:50px; line-height:80px; color:#c2c2c2; margin-bottom:-20%;"></i>
-						</div>
-						<div>
-							<p style="color:#c2c2c2;">나의 리뷰가 없습니다!<br>리뷰를 작성해주세요!</p>
-						</div>
+            	<div id="noData">
+					<div>
+						<i class="fa fa-coffee" aria-hidden="true" style="font-size:50px; line-height:80px; color:#c2c2c2; margin-bottom:15px;"></i>
 					</div>
+					<div>
+						<p style="color:#c2c2c2;">나의 리뷰가 없습니다!<br>리뷰를 작성해주세요!</p>
+					</div>
+				</div>
             <% }else{ %>
               <% for(Review r : list){ %>
               <div>
 				 <input type="checkbox" id="dCheck" name="dCheck" value="<%=r.getR_no() %>">
 			  </div>
               <div id="cafeClick" class="timeline-post" onclick="location.href='<%=conPath%>/cafeInfo.ca?c_no=<%=r.getC_no()%>';">
-                <div class="post-media"><img id="profileImg" src="<%=conPath%>/resources/fileupload/review/<%=r.getImg_name() %>">
+                <div class="post-media"><img id="profileImg" src="<%=conPath%>/resources/fileupload/cafe/<%=r.getImg_name() %>">
                   <div class="content" style="margin-top:8px;">
                   	<h4><%=r.getCafe_name() %>&nbsp;&nbsp;<label style="color:#ffc107;"><%=r.getSum_avg() %></label>&nbsp;&nbsp;</h4>
                     <h5><%=r.getNickname() %></h5>
@@ -130,7 +130,10 @@
       		if($("input[name=dCheck]:checked").length == 0){
       			alert("삭제할 리뷰를 체크해주세요.");
       		}else{
-      			location.href="<%=conPath%>/deleteReview.mp?arr=" + arr.toString();
+      			var real = confirm("정말 삭제하시겠습니까?");
+      			if(real){
+      				location.href="<%=conPath%>/deleteReview.mp?arr=" + arr.toString();
+      			}
       		}
       	}
       	

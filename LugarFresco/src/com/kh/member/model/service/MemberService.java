@@ -76,20 +76,32 @@ public class MemberService {
 		
 		return m;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+	public Member snsLoginMember(String id, String email, String nickName) {
+		Connection conn = getConnection();
+		
+		Member m = null;
+		int result = 0;
+		
+		m = new MemberDao().snsLoginMember(conn, id);
+		
+		if(m == null) {
+			result = new MemberDao().insertSnsMember(conn, id, email, nickName);
+			
+			if(result > 0) {
+				commit(conn);
+				m = new MemberDao().snsLoginMember(conn, id);
+			}else {
+				rollback(conn);
+			}
+		}
+		
+		close(conn);
+		
+		return m;
+	}
 	
 	
 }//class end

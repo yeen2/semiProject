@@ -14,7 +14,7 @@
 	#cafeArea:hover{cursor:pointer; background:#dee2e6;}
 	#area > ul > li{width:27%; height:auto; margin-right:50px; margin-bottom:30px;}
 	#imgArea > img{display:block; width:100%; height:200px;}
-	#noData{width:100%; height:100px; text-align:center; font-size:1.250em; font-weight:bold; margin-top:100px;}
+	#noData{width:100px; height:100px; text-align:center; font-size:1.250em; font-weight:bold; margin-left:8px; margin-top:100px;}
 </style>
 </head>
 <body>
@@ -61,18 +61,18 @@
 	   		<h1 style="text-align:center;"><i class="app-menu__icon fa fa-star-o"></i> 내 즐겨찾기</h1>
 	   	</div>
    	
-			<div id="area">
-				<ul align="center">
+			<div id="area" style="margin-left:60px;">
+				<ul>
 				
 				<% if(list.isEmpty()){%>
-					<div id="noData">
+					<li id="noData">
 						<div>
-							<i class="fa fa-coffee" aria-hidden="true" style="font-size:50px; line-height:80px; color:#c2c2c2; margin-bottom:-20%;"></i>
+							<i class="fa fa-coffee" aria-hidden="true" style="font-size:50px; line-height:80px; color:#c2c2c2; margin-bottom:-15px;"></i>
 						</div>
 						<div>
 							<p style="color:#c2c2c2;">즐겨찾기한 카페가 없습니다!<br>카페 즐겨찾기를 눌러주세요!</p>
 						</div>
-					</div>
+					</li>
 				<% }else { %>
 				
 					<%  for(Cafe f : list){ %>
