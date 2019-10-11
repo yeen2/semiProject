@@ -3,16 +3,17 @@
 <%
 	String keyword = (String)request.getAttribute("keyword");
 	ArrayList<Cafe> list = (ArrayList<Cafe>)request.getAttribute("list");
-	int listcount=list.size();
+	int listcount = list.size();
 	
 	// 지도를 위한 배열
-		String [] map_name_java = new String [listcount];
-		String [] map_location_java = new String [listcount];
-		
-		for(int i=0; i<listcount; i++ ){
-			map_name_java[i] = list.get(i).getCafe_name();
-			map_location_java[i] = list.get(i).getAddress()+ " " + list.get(i).getAddress_detail();
-		}
+	String [] map_name = new String [listcount];
+	String [] map_location = new String [listcount];
+	
+	for(int i=0; i<listcount; i++ ){
+		map_name[i] = list.get(i).getCafe_name();
+		map_location[i] = list.get(i).getAddress()+ " " + list.get(i).getAddress_detail();
+	}
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -59,8 +60,12 @@
 			<div class="row align-items-start"> <!-- 카페리스트 div1를 start로 위로 땡겨준다. -->
 				<div class="row col-lg-8 d-inline-flex"> <!-- 카페리스트부분옆에 지도가 붙도록 하는 div2 -->
 					<div class="row col-lg-12"> <!-- 왼쪽 col8만큼 카페리스트를 12만큼 채우게 하도록 하는 div3 -->
+					
 					<%if(listcount%2==1){ %> <!-- 리스트갯수가 홀수일때 리스트갯수만 불러오면됨-->
 						<%for(int i=1; i<listcount; i=i+2){ %> <!-- 짝수개만큼 늘어나므로 숫자 정렬 -->
+							
+							<% %>
+						
 							<div class="row d-flex col-lg-12"> <!-- 행의 시작이 flex가 되도록 하는 div4 -->
 								<div class="col-lg-6"> <!-- 12만큼 채워진 div중에 6만큼쓰도록 하는 div5 -->
 								
@@ -364,21 +369,17 @@
 	<!-- End destinations Area -->
 	
 	
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8ef4b8fd4aebaa69e9172f4cc49921ca&libraries=services"></script>
+	
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8ef4b8fd4aebaa69e9172f4cc49921ca"></script>
 	<script>
-
+	
 		// 카페이름 + 카페주소 배열 불러오기
 		var listcount = '<%=listcount%>';
-		var map_name = new Array();
-		var map_location = new Array();
-		
-		<% for (int i=0; i<listcount; i++) { %>
-			map_name[<%= i %>] = "<%= map_name_java[i]%>"; 
-			map_location[<%= i %>] = "<%= map_location_java[i]%>"; 
-		<% } %>
+		var map_name = '<%=map_name%>';
+		var map_location = '<%= map_location%>';
 		
 		console.log(map_name);
-
+		
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 		    mapOption = { 
 		        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -387,84 +388,44 @@
 		
 		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 		
-		
-	   
-	// 주소-좌표 변환 객체를 생성합니다
+		// 주소-좌표 변환 객체를 생성합니다
 		var geocoder = new kakao.maps.services.Geocoder();
-		var positions = new Array();
 		
-	   // 마커 표시할 객체배열 선언
-	   //var positions = new Array();
-	   
-	  // console.log(map_name[0]);
-	  // console.log(map_location.length);
-	   
-	   //console.log(positions);
-	   
-	  // 카페이름+좌표 의 객체를 positions 배열에 넣는 반복문
-	  //for(var j=0; j<map_location.length; j++){
-		  
-	  $.each(map_location, function(index, value){
 		// 주소로 좌표를 검색합니다
-		//geocoder.addressSearch(map_location[j], function(result, status) {
-			geocoder.addressSearch(map_location[index], function(result, status) {
-				 // 정상적으로 검색이 완료됐으면 
-			    // if (status === kakao.maps.services.Status.OK) {   
-			    	 console.log('들어옴');
-			     
-			    	// var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-			    	 var v = {
-								//content : '<div>'+ map_name[j] +'</div>', 
-								content:"<div>"+value+"</div>",
-								latlng : new kakao.maps.LatLng(result[0].y, result[0].x)
-							 }
-			    	 
-			    	// console.log(v);
-					//positions.push(v);
-					
-					 var marker = new kakao.maps.Marker({
-				        map: map, // 마커를 표시할 지도
-				       // position: positions[i].latlng // 마커의 위치
-				       position:v.latlng
-				    });
-				
-				    // 마커에 표시할 인포윈도우를 생성합니다 
-				    var infowindow = new kakao.maps.InfoWindow({
-				        //content: positions[i].content // 인포윈도우에 표시할 내용
-				        content:v.content
-				    });
-				    
-				    console.log(marker);
-				    console.log(infowindow);
-				
-				    // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
-				    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
-				    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-				    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
-				    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
-					
-			   //  } 
-				 
-		
-				
+		geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function(result, status) {
+			 // 정상적으로 검색이 완료됐으면 
+		     if (status === kakao.maps.services.Status.OK) {
+		    	 
+		    	 var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+		     } // 
 		}); // 주소->좌표 변환
 		
-			     
-	  }); // for-end
-	  
-	  </script>
-	  
-	  <script>
-	  /*
-	  	console.log(positions);
-		//console.log(positions);
-		//console.log(positions.length);
+		
+		// for문으로 돌리기
+				// 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다 
+				var positions = [
+				    {
+				        content: '<div>카카오</div>', 
+				        latlng: kakao.maps.LatLng(33.450705, 126.570677)
+				    },
+				    {
+				        content: '<div>생태연못</div>', 
+				        latlng: new kakao.maps.LatLng(33.450936, 126.569477)
+				    },
+				    {
+				        content: '<div>텃밭</div>', 
+				        latlng: new kakao.maps.LatLng(33.450879, 126.569940)
+				    },
+				    {
+				        content: '<div>근린공원</div>',
+				        latlng: new kakao.maps.LatLng(33.451393, 126.570738)
+				    }
+				];
+				
 	     
-		//for (var i = 0; i < positions.length; i ++) {
-		$.each(positions, function(index, value){
-			
-			console.log(value);
-			
+	     
+	     
+		for (var i = 0; i < positions.length; i ++) {
 		    // 마커를 생성합니다
 		    var marker = new kakao.maps.Marker({
 		        map: map, // 마커를 표시할 지도
@@ -481,9 +442,7 @@
 		    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
 		    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
 		    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
-		    
-		});
-		*/
+		}
 		
 		// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
 		function makeOverListener(map, marker, infowindow) {
@@ -499,7 +458,35 @@
 		    };
 		}
 		
+		/* 아래와 같이도 할 수 있습니다 */
+		/*
+		for (var i = 0; i < positions.length; i ++) {
+		    // 마커를 생성합니다
+		    var marker = new kakao.maps.Marker({
+		        map: map, // 마커를 표시할 지도
+		        position: positions[i].latlng // 마커의 위치
+		    });
 		
+		    // 마커에 표시할 인포윈도우를 생성합니다 
+		    var infowindow = new kakao.maps.InfoWindow({
+		        content: positions[i].content // 인포윈도우에 표시할 내용
+		    });
+		
+		    // 마커에 이벤트를 등록하는 함수 만들고 즉시 호출하여 클로저를 만듭니다
+		    // 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+		    (function(marker, infowindow) {
+		        // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
+		        kakao.maps.event.addListener(marker, 'mouseover', function() {
+		            infowindow.open(map, marker);
+		        });
+		
+		        // 마커에 mouseout 이벤트를 등록하고 마우스 아웃 시 인포윈도우를 닫습니다
+		        kakao.maps.event.addListener(marker, 'mouseout', function() {
+		            infowindow.close();
+		        });
+		    })(marker, infowindow);
+		}
+		*/
 </script>
 	
 	

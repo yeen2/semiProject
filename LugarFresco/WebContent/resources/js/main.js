@@ -287,7 +287,7 @@
 		}
 	});
 
-	//------- Google Map  js --------//  
+	/*//------- Google Map  js --------//  
 
 	if (document.getElementById("map")) {
 		google.maps.event.addDomListener(window, 'load', init);
@@ -422,7 +422,7 @@
 			});
 		}
 	}
-
+*/
 	//------- Mailchimp js --------//  
 
 	$(document).ready(function() {

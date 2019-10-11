@@ -254,7 +254,7 @@ $(document).ready(function() {
     });*/
 
     //------- Google Map  js --------//  
-
+/*
     if (document.getElementById("map")) {
         google.maps.event.addDomListener(window, 'load', init);
 
@@ -387,7 +387,7 @@ $(document).ready(function() {
                 title: 'Snazzy!'
             });
         }
-    }
+    }*/
 
     //------- Mailchimp js --------//  
 
