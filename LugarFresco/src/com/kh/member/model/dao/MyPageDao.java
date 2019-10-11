@@ -942,6 +942,66 @@ public class MyPageDao {
 		
 	}
 
+	public int[] myPageCount(Connection conn, int mno) {
+		int[] arr = new int[3];
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("myPageCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, mno);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				arr[0] = rset.getInt(1);
+				arr[1] = rset.getInt(2);
+				arr[2] = rset.getInt(3);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return arr;
+		
+	}
+
+	public int[] ownerPageCount(Connection conn, int mno) {
+		int[] arr = new int[3];
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("ownerPageCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, mno);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				arr[0] = rset.getInt(1);
+				arr[1] = rset.getInt(2);
+				arr[2] = rset.getInt(3);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return arr;
+		
+	}
+
 	
 
 	

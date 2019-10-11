@@ -40,7 +40,7 @@ public class DownloadImgServlet extends HttpServlet {
 		System.out.println(file);
 		String root = request.getSession().getServletContext().getRealPath("/resources");
 		
-		String filePath = root + "/sample/";
+		String filePath = root + "/fileupload/reg/";
 		
 		// 다운로드 하고자 하는 파일 객체 생성
 		File downFile = new File(filePath + file.getBr_up_name());
