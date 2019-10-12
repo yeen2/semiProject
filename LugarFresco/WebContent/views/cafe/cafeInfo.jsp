@@ -245,7 +245,7 @@
 					        objectType: 'feed',
 					        content: {
 					          title: '${c.cafe_name}',
-					          description: '#LugarFresco,#sns 핫한 카페,#요즘 뜨는 카페,#${c.cafe_name},#${c.address},#${c.favorite}'
+					          description: '#LugarFresco,#sns 핫한 카페,#요즘 뜨는 카페,#${c.cafe_name},#${c.address},#${c.favorite}',
 					          imageUrl: 'http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
 					          link: {
 					            mobileWebUrl: 'https://developers.kakao.com',
