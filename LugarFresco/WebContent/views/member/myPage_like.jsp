@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.kh.review.model.vo.Review, java.util.ArrayList"%>
-<%
-	ArrayList<Review> list = (ArrayList<Review>)request.getAttribute("list");
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,8 +8,11 @@
 	#div123{padding:15px; font-weight:bold; color:#666;}
 	#cafeClick:hover{cursor:pointer; background:#dee2e6;}
 	#noData{width:100%; height:100px; text-align:center; font-size:1.250em; font-weight:bold; margin-top:130px;}
+	#noData p{margin-top:25px;}
 	#profileImg{width:100px; height:100px;}
 	#reviewImg{width:80px; height:80px;}
+	#likeBtn{width:50px; height:50px; color:white; background:#dc3545; border:1px solid #dc3545;}
+	#likeBtn:hover{cursor:pointer; background:#dee2e6; color:white; border:1px solid #dee2e6;}
 </style>
 </head>
 <body>
@@ -63,70 +63,120 @@
         <div class="col-md-9" style="margin-left:auto; margin-right:auto;">
           <div class="tab-content">
             <div class="tab-pane active" id="review-like">
-            <%-- 반복 --%>
-            <% if(list.isEmpty()){ %>
-           		<div id="noData">
-					<div>
-						<i class="fa fa-coffee" aria-hidden="true" style="font-size:50px; line-height:80px; color:#c2c2c2; margin-bottom:15px;"></i>
-					</div>
-					<div>
-						<p style="color:#c2c2c2;">좋아요한 리뷰가 없습니다!<br>리뷰에 좋아요를 눌러주세요!</p>
-					</div>
-				</div>
-            <% }else{ %>
-              <% for(Review rl : list){ %>
-              <div id="cafeClick" class="timeline-post" onclick="location.href='<%=conPath%>/cafeInfo.ca?c_no=<%=rl.getC_no()%>';">
-                <div class="post-media"><img id="profileImg" src="<%=conPath%>/resources/fileupload/cafe/<%=rl.getImg_name()%>">
-                  <div class="content" style="margin-top:8px;">
-                  	<h4><%=rl.getCafe_name() %>&nbsp;&nbsp;<label style="color:#ffc107;"><%=rl.getSum_avg() %></label>&nbsp;&nbsp;</h4>
-                    <h5><%=rl.getNickname() %></h5>
-                    <p class="text-muted"><small><%=rl.getR_date() %></small></p>
-                  </div>
-                </div>
-                <div class="post-content">
-                  <p><%=rl.getR_content() %></p>
-                  <% if(!rl.getImgList().isEmpty()){ %>
-                  	<% for(int i=0; i<rl.getImgList().size(); i++){ %>
-                  	  <span id="contentImgArea"><img id="reviewImg" src="<%=conPath%>/resources/fileupload/review/<%=rl.getImgList().get(i).getImg_name()%>"></span>
-	                <% } %>
-	              <% } %>
-                </div>
-                <ul class="post-utility">
-                  <li class="likes"><i style="color:#dc3545;" class="fa fa-fw fa-lg fa-heart"></i>좋아요 <%=rl.getR_like() %></li>
-                  <li class="shares"><i style="color:gray;" class="fa fa-fw fa-lg fa-thumbs-down"></i>신고 <%=rl.getR_declare() %></li>
-                </ul>
-              </div>
-              <% } %>
-            <% } %>
+            
+            	<%-- 반복 --%>
               
             </div>
           </div>
         </div>
       </div>
-      
-     <!-- <script>
-      	$(function(){
+     
+     <script>
+     	$(function(){
+     		selectLikeList();
+     		
+     	});
+     	
+     	
+     	function likeRm(){
+     		var rno = $("#likeBtn input").val();
+ 			var real = confirm("리뷰에 누른 좋아요를 취소하시겠습니까?");
+     		console.log(rno);
+     		if(real){
+     			$("#likeBtn").css({"background":"#dee2e6", "color":"white", "border":"1px solid #dee2e6"});
+     			
+	     		$.ajax({
+	     			url:"likeRm.mp",
+					type:"post",
+					data:{rno:rno},
+					success:function(result){
+						
+						if(result == "1"){
+							alert("적용되었습니다!");
+							selectLikeList();
+							
+						}else{
+							alert("좋아요 취소에 실패하였습니다.");
+						}
+						
+					},
+					error:function(){
+						console.log("서버와의 통신 실패");
+					}
+	     		});
+	     		
+     		}
+     	}
+     </script>
+     
+     <script>
+      	function selectLikeList(){
+      		
       		$.ajax({
 				url:"myLikeA.mp",
 				dataType:"json",
 				success:function(list){ // list에는 객체배열의 형태로 담겨있을 것!!
-					console.log("성공");
-					console.log(list);
+					
 					if(list.length == 0){
-						$("#111a").append("<h4>데이터가 없습니다</h4>");
+						var $noData = $("<div>").attr("id", "noData");
+						$noData.append($("<div>").append("<i class='fa fa-coffee' aria-hidden='true' style='font-size:50px; line-height:80px; color:#c2c2c2; margin-bottom:-20%;'></i>"));
+						$noData.append($("<div>").append("<p style='color:#c2c2c2;'>좋아요한 리뷰가 없습니다!<br>리뷰에 좋아요를 눌러주세요!</p>"));
+						
+						$("#review-like").append($noData);
+						
+					}else{
+						
+						var $rlikeDiv = $("#review-like");
+						
+						$rlikeDiv.html("");
+						
+						$.each(list, function(index, value){
+							
+							var $rlike = $("<div>").attr({"id":"cafeClick", "class":"timeline-post",
+											"onclick":"location.href='<%=conPath%>/cafeInfo.ca?c_no=" + value.c_no + "';"});
+							var $content1 = $("<div>").attr("class", "post-media");
+							$content1.append($("<img>").attr({"id":"profileImg",
+																		"src":"<%=conPath%>/resources/fileupload/review/" + value.img_name}));
+							var $content2 = $("<div>").attr({"class":"content", "style":"margin-top:8px;"});
+							$content2.append($("<h4>").append(value.cafe_name + "&nbsp;&nbsp;<label style='color:#ffc107;'>"
+																	+ value.sum_avg + "</label>&nbsp;&nbsp;"));
+							$content2.append($("<h5>").append(value.nickname));
+							$content2.append("<p class='text-muted'><small>" + value.r_date + "</small></p>");
+							
+							var $content3 = $("<div>").attr("class", "post-content");
+							$content3.append("<p>" + value.r_content + "</p>");
+							
+							var $content4 = $("<ul>").attr("class", "post-utility");
+							$content4.append($("<li>").attr("class", "likes").append("<i style='color:#dc3545;' class='fa fa-fw fa-lg fa-heart'></i>좋아요 " + value.r_like));
+							$content4.append($("<li>").attr("class", "shares").append("<i style='color:gray;' class='fa fa-fw fa-lg fa-thumbs-down'></i>신고 " + value.r_declare));
+							
+							var $likeBtn = $("<button>").attr({"id":"likeBtn", "onclick":"likeRm();"}).append("<i class='fa fa-fw fa-lg fa-heart'></i>");
+							$likeBtn.append($("<input>").attr({"type":"hidden", "value":value.r_no}));
+							
+							$content1.append($content2);
+							$rlike.append($content1);
+							$rlike.append($content3);
+							$rlike.append($content4);
+							
+							$rlikeDiv.append($likeBtn);
+							$rlikeDiv.append($rlike);
+							$rlikeDiv.append("<br>");
+			              	
+						});
 					}
-					$.each(list, function(index, value){
-						$("#111a").append("<div><h3>dskflsdkflsdklf</h3><h4>데이터가 없습니다</h4><h3>dskflsdkflsdklf</h3><h4>데이터가 없습니다</h4></div>");
-					});
+					
+					
 				},
 				error:function(){
 					console.log("서버와의 통신 실패!!");
 				}
 			});
-      	});
+      		
+      	}
+      	
       </script>
       
-      <script>
+      <!-- <script>
       	$(window).scroll(function(){
       		if($(window).scrollTop() >= $(document).height() - $(window).height()){
       			alert("111");

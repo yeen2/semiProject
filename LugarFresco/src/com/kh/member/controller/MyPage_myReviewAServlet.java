@@ -8,23 +8,23 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
 import com.kh.member.model.service.MyPageService;
 import com.kh.member.model.vo.Member;
 import com.kh.review.model.vo.Review;
 
 /**
- * Servlet implementation class MyPage_likeServlet
+ * Servlet implementation class MyPage_myReviewAServlet
  */
-@WebServlet("/myLike.mp")
-public class MyPage_likeServlet extends HttpServlet {
+@WebServlet("/myReviewA.mp")
+public class MyPage_myReviewAServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyPage_likeServlet() {
+    public MyPage_myReviewAServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,21 +33,22 @@ public class MyPage_likeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		request.setCharacterEncoding("utf-8");
 		
 		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
 		
 		if(loginUser != null) {
+			int mno = loginUser.getM_no();
 			
-			request.getRequestDispatcher("views/member/myPage_like.jsp").forward(request, response);
+			ArrayList<Review> list = new MyPageService().selectMyReviewList(mno);
+			response.setContentType("application/json; charset=utf-8");
+			
+			Gson gson = new Gson();
+			gson.toJson(list, response.getWriter());
 			
 		}else {
 			request.getRequestDispatcher("views/common/loginForm.jsp").forward(request, response);
-			
 		}
-			
-			
 	}
 
 	/**

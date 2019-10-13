@@ -32,11 +32,7 @@ public class MyPage_FavoriteServlet extends HttpServlet {
 		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
 		
 		if(loginUser != null) {
-			int mno = loginUser.getM_no();
 			
-			ArrayList<Cafe> list = new MyPageService().selectFavoriteList(mno);
-			
-			request.setAttribute("list", list);
 			request.getRequestDispatcher("views/member/myPage_favorite.jsp").forward(request, response);
 			
 		}else {
