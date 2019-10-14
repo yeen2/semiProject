@@ -7,7 +7,6 @@
 	ArrayList<Review> r = (ArrayList<Review>)request.getAttribute("r");
 	String add = c.getAddress()+ c.getAddress_detail();
 
-	System.out.println(r.get(0));
 	
 	// 즐겨찾기 확인
 	int checkFavorite = 0;
@@ -154,6 +153,7 @@
 							<a class="btn" data-toggle="modal" id="review_btn"> 
 								<i style="color: orange; font-size: 30px;" class="fa fa-pencil-square-o" aria-hidden="true"></i>
 							</a>
+							
 							<!-- 즐겨찾기  -->
 							<span class="btn pull-center"> 
 								<% if(checkFavorite == 1){ %>

@@ -8,6 +8,7 @@
 	
 	System.out.println(c1);
 	
+	
 %>
 <!DOCTYPE html>
 	
@@ -35,7 +36,7 @@
 			</section>
 			<!-- End banner Area -->
 
-			<!-- 1. 조회수높은 3개 목록 : selectOrderByCount -->
+			<!-- 1. 조회수높은 3개 목록(즐겨찾기 수도 추가?) : selectOrderByCount -->
 			<section class="popular-destination-area section-gap">
 				<div class="container">
 		            <div class="row d-flex justify-content-center">
@@ -50,14 +51,14 @@
 					<div class="row">
 						<% for(int i=0; i<c1.size(); i++){ %>
 						<div class="col-lg-4">
-							<div class="single-destination relative">
+							<div class="single-destination relative"  style="width: 100%; height: 100%">
 							
-								<div class="thumb relative">
-									<div class="overlay overlay-bg"></div>
-									<img class="resources/img-fluid" 
+								<div class="thumb relative"  style="width: 100%; height: 100%">
+									<div class="overlay overlay-bg"  style="width: 100%; height: 100%"></div>
+									<img class="resources/img-fluid"   style="width: 100%; height: 100%"
 										src="<%=conPath%>/resources/fileupload/cafe/<%=c1.get(i).getTitleImg() %>" alt="">
 								</div>
-								
+
 								<div class="desc">	
 									<a href="<%=conPath%>/cafeInfo.ca?c_no=<%=c1.get(i).getC_no()%>" class="price-btn">
 										<i class="fa fa-star" aria-hidden="true" style="color: blue;"></i>
@@ -78,7 +79,7 @@
 		
 		
 		
-			<!-- 2. 평점 좋고, 조회수 많은  8개 리스트 -->
+			<%-- <!-- 2. 평점 좋고, 조회수 많은  8개 리스트 -->
 			<section class="other-issue-area section-gap">
 				<div class="container">
 		            <div class="row d-flex justify-content-center">
@@ -94,10 +95,10 @@
 						<!-- 평점좋은 8개 순위로 반복문 -->
 						<% for(int i=0; i<c2.size(); i++){ %>
 						<div class="col-lg-3 col-md-6">
-							<div class="single-other-issue">
+							<div class="single-other-issue" style="width: 100%; height: 100%; margin-bottom: 10px;">
 								<a href="<%=conPath%>/cafeInfo.ca?c_no=<%=c2.get(i).getC_no()%>">
-								<div class="thumb">
-									<img class="img-fluid" 
+								<div class="thumb" >
+									<img class="img-fluid" style="width: 100%; height: 100%"
 										src="<%=conPath%>/resources/fileupload/cafe/<%=c2.get(i).getTitleImg() %>" alt="">					
 								</div>
 								<div style="margin-top: 20px;">
@@ -110,21 +111,21 @@
 										<%= c2.get(i).getSum_avg()%>
 									</strong>
 								</a>
-								
-								    <!-- 즐겨찾기 -->
-									<% if(c2.get(i).getMyFavorite() == 1){  %>
-										<i style="color: orange; font-size: 20px; margin-left: 120px;" 
-											class="fa fa-star favorite" aria-hidden="true">
-										<input type="hidden" value="<%=c2.get(i).getC_no()%>">
-										</i>
-										
-									<% }else{ %>
-										<i style="color: orange; font-size: 20px; margin-left: 120px;" 
-											class="fa fa-star-o favorite" aria-hidden="true">
-										<input type="hidden" value="<%=c2.get(i).getC_no()%>">
-										</i>				
-									<% } %> 
-									
+									<div class="star"> 
+									    <!-- 즐겨찾기 -->
+										<% if(c2.get(i).getMyFavorite() == 1){  %>
+											<i style="color: orange; font-size: 20px; margin-left:20%;" 
+												class="fa fa-star favorite" aria-hidden="true">
+											<input type="hidden" value="<%=c2.get(i).getC_no()%>">
+											</i>
+											
+										<% }else{ %>
+											<i style="color: orange; font-size: 20px; margin-left:20%;" 
+												class="fa fa-star-o favorite" aria-hidden="true">
+											<input type="hidden" value="<%=c2.get(i).getC_no()%>">
+											</i>				
+										<% } %> 
+									</div>
 								
 								</div>
 								<p>
@@ -132,9 +133,73 @@
 								</p>
 							</div>
 						</div>
+							
 						<% } %>
 				</div>	
+			
+			</section> --%>
+
+
+<!-- 2. 평점 좋고, 조회수 많은  8개 리스트 -->
+			<section class="other-issue-area section-gap">
+				<div class="container">
+		            <div class="row d-flex justify-content-center">
+		                <div class="menu-content pb-70 col-lg-9">
+		                    <div class="title text-center">
+		                        <h1 class="mb-10">Best Review Cafe</h1>
+		                        <p>평점 좋은 인기 카페</p>
+		                    </div>
+		                </div>
+		            </div>	
+		            				
+					<div class="row">
+						<!-- 평점좋은 8개 순위로 반복문 -->
+						<% for(int i=0; i<c2.size(); i++){ %>
+						<div class="col-lg-3 col-md-6">
+							<div class="single-other-issue" style="width: 100%; height: 100%; margin-bottom: 10px;">
+								<a href="<%=conPath%>/cafeInfo.ca?c_no=<%=c2.get(i).getC_no()%>">
+								<div class="thumb" >
+									<img class="img-fluid" style="width: 100%; height: 100%"
+										src="<%=conPath%>/resources/fileupload/cafe/<%=c2.get(i).getTitleImg() %>" alt="">					
+								</div>
+								<div style="margin-top: 20px;">
+									<h4 style="margin-bottom: 5px; margin-top: 20px; display: inline;">
+										<%=c2.get(i).getCafe_name() %>
+									</h4>
+									&nbsp;&nbsp;
+									<!-- 평점  -->
+									<strong id="point" style="color:orange; font-size:20px;">
+										<%= c2.get(i).getSum_avg()%>
+									</strong>
+								</a>
+									<div class="star"> 
+									    <!-- 즐겨찾기 -->
+										<% if(c2.get(i).getMyFavorite() == 1){  %>
+											<i style="color: orange; font-size: 20px; margin-left:20%;" 
+												class="fa fa-star favorite" aria-hidden="true">
+											<input type="hidden" value="<%=c2.get(i).getC_no()%>">
+											</i>
+											
+										<% }else{ %>
+											<i style="color: orange; font-size: 20px; margin-left:20%;" 
+												class="fa fa-star-o favorite" aria-hidden="true">
+											<input type="hidden" value="<%=c2.get(i).getC_no()%>">
+											</i>				
+										<% } %> 
+									</div>
+								
+								</div>
+								<p>
+									<%=c2.get(i).getAddress() %>
+								</p>
+							</div>
+						</div>
+							
+						<% } %>
+				</div>	
+			
 			</section>
+			
 			
 			<!-- End other-issue Area -->
 			
@@ -156,11 +221,11 @@
 						
 							<!-- 파워링크 반복부분 -->
 							<% for(int i=0; i<c3.size(); i++){ %>
-							<div class="single-recent-blog-post item">
+							<div class="single-recent-blog-post item"  style="width: 100%; height: 100%">
 							
 								<a href="<%=conPath%>/cafeInfo.ca?c_no=<%=c3.get(i).getC_no()%>">
-								<div class="thumb">
-									<img class="img-fluid" 
+								<div class="thumb" style="width: 100%; height: 100%">
+									<img class="img-fluid" style="width: 100%; height: 100%"
 										src="<%=conPath%>/resources/fileupload/cafe/<%=c3.get(i).getTitleImg() %>" alt="">
 								</div>
 								
@@ -175,21 +240,22 @@
 										<%= c3.get(i).getSum_avg()%>
 									</strong>
 								</a>
-								
-									 <!-- 즐겨찾기 -->
-									<% if(c3.get(i).getMyFavorite() == 1){  %>
-										<i style="color: orange; font-size: 30px; margin-left: 200px;" 
-											class="fa fa-star favorite" aria-hidden="true">
-										<input type="hidden" value="<%=c3.get(i).getC_no()%>">
-										</i>
-										
-									<% }else{ %>
-										<i style="color: orange; font-size: 30px; margin-left: 200px;" 
-											class="fa fa-star-o favorite" aria-hidden="true">
-										<input type="hidden" value="<%=c3.get(i).getC_no()%>">
-										</i>				
-									<% } %>  
 									
+									<div class="star">
+										 <!-- 즐겨찾기 -->
+										<% if(c3.get(i).getMyFavorite() == 1){  %>
+											<i style="color: orange; font-size: 30px; margin-left: 200px;" 
+												class="fa fa-star favorite" aria-hidden="true">
+											<input type="hidden" value="<%=c3.get(i).getC_no()%>">
+											</i>
+											
+										<% }else{ %>
+											<i style="color: orange; font-size: 30px; margin-left: 200px;" 
+												class="fa fa-star-o favorite" aria-hidden="true">
+											<input type="hidden" value="<%=c3.get(i).getC_no()%>">
+											</i>				
+										<% } %>  
+									</div>
 									<p>
 										<%=c3.get(i).getAddress()%>&nbsp;<%=c3.get(i).getAddress_detail()%>
 									</p>

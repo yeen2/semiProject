@@ -48,14 +48,16 @@ public class CafeInfoServlet extends HttpServlet {
 			
 			// 세션 있을때, 해당 m_no, c_no, r_no로 좋아요+신고 확인
 			r = new ReviewService().selectOneCafeReview(c_no, m.getM_no());	
+			request.setAttribute("r", r);
 			
 		}else {
 			// 로그인 안되있으면, 무조건 m_no검색안되게 1000000으로 값보냄 
 			r = new ReviewService().selectOneCafeReview(c_no, 1000000);
+			request.setAttribute("r", r);
 		}
 		
 		request.setAttribute("c", c);
-		request.setAttribute("r", r);
+		
 		
 		request.getRequestDispatcher("views/cafe/cafeInfo.jsp").forward(request, response);
 	}
