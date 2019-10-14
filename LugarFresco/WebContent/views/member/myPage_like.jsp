@@ -78,12 +78,11 @@
      	});
      	
      	
-     	function likeRm(){
-     		var rno = $("#likeBtn input").val();
+     	function likeRm(value){
+     		var rno = value;
  			var real = confirm("리뷰에 누른 좋아요를 취소하시겠습니까?");
-     		console.log(rno);
+     		
      		if(real){
-     			$("#likeBtn").css({"background":"#dee2e6", "color":"white", "border":"1px solid #dee2e6"});
      			
 	     		$.ajax({
 	     			url:"likeRm.mp",
@@ -115,7 +114,7 @@
       		$.ajax({
 				url:"myLikeA.mp",
 				dataType:"json",
-				success:function(list){ // list에는 객체배열의 형태로 담겨있을 것!!
+				success:function(list){
 					
 					if(list.length == 0){
 						var $noData = $("<div>").attr("id", "noData");
@@ -150,8 +149,8 @@
 							$content4.append($("<li>").attr("class", "likes").append("<i style='color:#dc3545;' class='fa fa-fw fa-lg fa-heart'></i>좋아요 " + value.r_like));
 							$content4.append($("<li>").attr("class", "shares").append("<i style='color:gray;' class='fa fa-fw fa-lg fa-thumbs-down'></i>신고 " + value.r_declare));
 							
-							var $likeBtn = $("<button>").attr({"id":"likeBtn", "onclick":"likeRm();"}).append("<i class='fa fa-fw fa-lg fa-heart'></i>");
-							$likeBtn.append($("<input>").attr({"type":"hidden", "value":value.r_no}));
+							var $likeBtn = $("<button>").attr({"id":"likeBtn", "onclick":"likeRm(this.value);", "value":value.r_no}).append("<i class='fa fa-fw fa-lg fa-heart'></i>");
+							
 							
 							$content1.append($content2);
 							$rlike.append($content1);

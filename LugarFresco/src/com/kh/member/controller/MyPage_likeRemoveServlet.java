@@ -35,7 +35,7 @@ public class MyPage_likeRemoveServlet extends HttpServlet {
 		if(loginUser != null) {
 			int mno = loginUser.getM_no();
 			int rno = Integer.parseInt(request.getParameter("rno"));
-			System.out.println(rno);
+			
 			int result = new MyPageService().likeRemove(mno, rno);
 			
 			if(result > 0) {

@@ -82,7 +82,8 @@ public class OwnerPage_myCafeReviewServlet extends HttpServlet {
 			}
 			request.setAttribute("pi", pi);
 			request.setAttribute("list", list);
-			
+			request.setAttribute("category", category);
+			request.setAttribute("search", search);
 			request.getRequestDispatcher("views/owner/ownerPage_myCafeReview.jsp").forward(request, response);
 		}else {
 			request.getRequestDispatcher("views/common/loginForm.jsp").forward(request, response);

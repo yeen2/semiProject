@@ -82,8 +82,8 @@
      	});
      	
      	
-     	function reviewRm(){
-     		var rno = $("#reviewBtn input").val();
+     	function reviewRm(value){
+     		var rno = value;
  			var real = confirm("리뷰를 삭제하시겠습니까?");
      		
      		if(real){
@@ -153,8 +153,8 @@
 							$content4.append($("<li>").attr("class", "likes").append("<i style='color:#dc3545;' class='fa fa-fw fa-lg fa-heart'></i>좋아요 " + value.r_like));
 							$content4.append($("<li>").attr("class", "shares").append("<i style='color:gray;' class='fa fa-fw fa-lg fa-thumbs-down'></i>신고 " + value.r_declare));
 							
-							var $reviewBtn = $("<button>").attr({"id":"reviewBtn", "onclick":"reviewRm();"}).append("<i class='fa fa-fw fa-lg fa-trash-o'></i>");
-							$reviewBtn.append($("<input>").attr({"type":"hidden", "value":value.r_no}));
+							var $reviewBtn = $("<button>").attr({"id":"reviewBtn", "onclick":"reviewRm(this.value);", "value":value.r_no}).append("<i class='fa fa-fw fa-lg fa-trash-o'></i>");
+							
 							
 							$content1.append($content2);
 							$review.append($content1);

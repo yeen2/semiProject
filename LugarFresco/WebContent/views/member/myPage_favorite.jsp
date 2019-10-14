@@ -78,12 +78,11 @@
 	     	});
 	     	
 	     	
-	     	function favoriteRm(){
-	     		var fno = $("#favoriteBtn input").val();
+	     	function favoriteRm(value){
+	     		var fno = value;
 	 			var real = confirm("카페 즐겨찾기를 취소하시겠습니까?");
 	     		
 	     		if(real){
-	     			$("#favoriteBtn").css({"background":"#dee2e6", "color":"white", "border":"1px solid #dee2e6"});
 	     			
 		     		$.ajax({
 		     			url:"favoriteRm.mp",
@@ -115,7 +114,7 @@
       		$.ajax({
 				url:"myFavoriteA.mp",
 				dataType:"json",
-				success:function(list){ // list에는 객체배열의 형태로 담겨있을 것!!
+				success:function(list){
 					
 					if(list.length == 0){
 						var $noData = $("<li>").attr("id", "noData");
@@ -145,8 +144,8 @@
 							$content3.append($("<span>").attr("style", "margin-right:15px;").append("<i class='icon fa fa-pencil fa-3x' style='font-size:13px;'></i> " + value.review_count));
 							$content3.append($("<span>").append("<i class='icon fa fa-star fa-3x' style='font-size:13px;'></i> " + value.favorite));
 							
-							var $favoriteBtn = $("<button>").attr({"id":"favoriteBtn", "onclick":"favoriteRm();"}).append("<i class='fa fa-fw fa-lg fa-star'></i>");
-							$favoriteBtn.append($("<input>").attr({"id":"favoriteInput", "type":"hidden", "value":value.f_no}));
+							var $favoriteBtn = $("<button>").attr({"id":"favoriteBtn", "onclick":"favoriteRm(this.value);", "value":value.f_no}).append("<i class='fa fa-fw fa-lg fa-star'></i>");
+							
 							
 							$content1.append($content2);
 							$content1.append($content3);

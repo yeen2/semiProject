@@ -34,7 +34,7 @@ public class MyPage_FavoriteRemoveServlet extends HttpServlet {
 		if(loginUser != null) {
 			int mno = loginUser.getM_no();
 			int fno = Integer.parseInt(request.getParameter("fno"));
-			System.out.println(fno);
+			
 			int result = new MyPageService().favoriteRemove(mno, fno);
 			
 			if(result > 0) {

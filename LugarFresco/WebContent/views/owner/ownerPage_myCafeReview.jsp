@@ -8,6 +8,13 @@
 	int maxPage = pi.getMaxPage();
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
+	
+	String category = (String)request.getAttribute("category");
+	String search = (String)request.getAttribute("search");
+	
+	System.out.println(category);
+	System.out.println(search);
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -102,7 +109,7 @@
 			  	
 			  		<%-- 맨 처음으로 --%>
 			    	<li class="page-item">
-			      		<a class="page-link" href="<%=conPath %>/myCafeReview.op?currentPage=1">&lt;&lt;</a>
+			      		<a class="page-link" href="<%=conPath %>/myCafeReview.op?currentPage=1&category=<%=category%>&search=<%=search%>">&lt;&lt;</a>
 			    	</li>
 			    	
 			    	<%-- 이전 페이지로 --%>
@@ -112,7 +119,7 @@
 		      		</li>
 		      		<% }else{ %>
 		      		<li class="page-item">
-		      			<a class="page-link" href="<%=conPath %>/myCafeReview.op?currentPage=<%=currentPage - 1 %>">&lt;</a>
+		      			<a class="page-link" href="<%=conPath %>/myCafeReview.op?currentPage=<%=currentPage - 1 %>&category=<%=category%>&search=<%=search%>">&lt;</a>
 		      		</li>
 		      		<% } %>
 		      		
@@ -125,7 +132,7 @@
 			      		</li>
 		      			<% }else{ %>
 		      			<li class="page-item">
-			      			<a class="page-link" href="<%=conPath %>/myCafeReview.op?currentPage=<%= p %>"><%= p %></a>
+			      			<a class="page-link" href="<%=conPath %>/myCafeReview.op?currentPage=<%= p %>&category=<%=category%>&search=<%=search%>"><%= p %></a>
 			      		</li>
 		      			<% } %>
 		      		
@@ -138,13 +145,13 @@
 			    	</li>
 		      		<% }else{ %>
 		      		<li class="page-item">
-			    		<a class="page-link" href="<%=conPath %>/myCafeReview.op?currentPage=<%=currentPage + 1%>">&gt;</a>
+			    		<a class="page-link" href="<%=conPath %>/myCafeReview.op?currentPage=<%=currentPage + 1%>&category=<%=category%>&search=<%=search%>">&gt;</a>
 			    	</li>
 		      		<% } %>
 			    	
 			    	<%-- 맨 끝으로 --%>
 			    	<li class="page-item">
-			      		<a class="page-link" href="<%=conPath %>/myCafeReview.op?currentPage=<%= maxPage %>">&gt;&gt;</a>
+			      		<a class="page-link" href="<%=conPath %>/myCafeReview.op?currentPage=<%= maxPage %>&category=<%=category%>&search=<%=search%>">&gt;&gt;</a>
 			    	</li>
 			  	</ul>
 			</nav>
