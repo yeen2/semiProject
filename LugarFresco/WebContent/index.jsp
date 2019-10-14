@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.cafe.model.vo.Cafe"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
+<% 
 	ArrayList<Cafe> c1 = (ArrayList<Cafe>)request.getAttribute("c1");
 	ArrayList<Cafe> c2 = (ArrayList<Cafe>)request.getAttribute("c2");
 	ArrayList<Cafe> c3 = (ArrayList<Cafe>)request.getAttribute("c3");
