@@ -78,7 +78,7 @@ public class MemberService {
 	}
 
 
-
+	// 카카오 로그인
 	public Member snsLoginMember(String id, String email, String nickName) {
 		Connection conn = getConnection();
 		

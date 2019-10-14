@@ -246,30 +246,31 @@
 					        content: {
 					          title: '${c.cafe_name}',
 					          description: '#LugarFresco,#sns 핫한 카페,#요즘 뜨는 카페,#${c.cafe_name},#${c.address},#${c.favorite}',
-					          imageUrl: 'http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
-					          link: {
-					            mobileWebUrl: 'https://developers.kakao.com',
-					            webUrl: 'https://developers.kakao.com'
+					         /*  imageUrl: 'http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png', */
+					         imageUrl: 'http://localhost:8030/LugarFresco/WebContent\resources\fileupload\cafe\b1.jpg',
+					         link: {
+					            mobileWebUrl: 'http://localhost:8030/LugarFresco/cafeInfo.ca?c_no=${c.c_no}',
+					            webUrl: 'http://localhost:8030/LugarFresco/cafeInfo.ca?c_no=${c.c_no}'
 					          }
 					        },
 					        social: {
 					          likeCount: favorite,
 					          commentCount: count,
 					          sharedCount: 845
-					        },
+					        }, 
 					        buttons: [
 					          {
 					            title: '웹으로 보기',
 					            link: {
-					              mobileWebUrl: 'https://developers.kakao.com',
-					              webUrl: 'https://developers.kakao.com'
+					              mobileWebUrl: 'http://localhost:8030/LugarFresco/cafeInfo.ca?c_no=${c.c_no}',
+					              webUrl: 'http://localhost:8030/LugarFresco/cafeInfo.ca?c_no=${c.c_no}'
 					            }
 					          },
 					          {
 					            title: '앱으로 보기',
 					            link: {
-					              mobileWebUrl: 'https://developers.kakao.com',
-					              webUrl: 'https://developers.kakao.com'
+					              mobileWebUrl: 'http://localhost:8030/LugarFresco/cafeInfo.ca?c_no=${c.c_no}',
+					              webUrl: 'http://localhost:8030/LugarFresco/cafeInfo.ca?c_no=${c.c_no}'
 					            }
 					          }
 					        ]

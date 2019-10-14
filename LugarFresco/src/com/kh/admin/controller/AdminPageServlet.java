@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.admin.model.service.AdminPageService;
+
 
 @WebServlet("/adminPage.ap")
 public class AdminPageServlet extends HttpServlet {
@@ -18,6 +20,26 @@ public class AdminPageServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		int memberCount = new AdminPageService().getMemberListCount();
+		
+		int cafeCount = new AdminPageService().getListCount();
+		
+		int powerCount = new AdminPageService().getPowerLinkCount();
+		
+		int declareCount = new AdminPageService().getDeclareList();
+		
+		int cafeApplyCount = new AdminPageService().getCafeApplyCount();
+		
+		int qnaCount = new AdminPageService().getQnaCount();
+		
+		request.setAttribute("memberCount", memberCount);
+		request.setAttribute("cafeCount", cafeCount);
+		request.setAttribute("powerCount", powerCount);
+		request.setAttribute("declareCount", declareCount);
+		request.setAttribute("cafeApplyCount", cafeApplyCount);
+		request.setAttribute("qnaCount", qnaCount);
+		
 		
 		request.getRequestDispatcher("views/admin/adminPage.jsp").forward(request, response);
 	}

@@ -80,7 +80,7 @@
           </div>
  
           <!-- 네이버 로그인 버튼 -->   
-          <div class="form-group btn-container" style="margin-top: 15px;">
+          <div class="form-group btn-container" id="naver_id_login" style="margin-top: 15px;">
             <button class="btn btn-primary btn-block" style="padding-top: 0px;padding-left: 0px;padding-right: 0px;padding-bottom: 0px;
 	    				border-top-width: 0px;border-right-width: 0px;border-bottom-width: 0px;border-left-width: 0px;width: 240px;
 	    				height: 44px;margin-left: 15px;">
@@ -178,6 +178,21 @@
 			}
 		});
 	</script>
+	
+	<%-- 네이버 로그인 --%>
+	<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+	 <script type="text/javascript">
+		   var naverLogin = new naver.LoginWithNaverId(
+		      {
+		         clientId: "3qZg6RVhj4P7XkZDe7X3",
+		         callbackUrl: "http://localhost:8030/LugarFresco/views/common/naverCallBack.jsp",
+		         isPopup: false,
+		         loginButton: {color: "green", type: 3, height: 60}
+		      }
+		   );
+		   naverLogin.init();
+	</script>
+	
   </body>
   
   
