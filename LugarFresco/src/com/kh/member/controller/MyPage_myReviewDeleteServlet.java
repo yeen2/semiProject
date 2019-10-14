@@ -16,7 +16,7 @@ import com.kh.review.model.vo.Review;
 /**
  * Servlet implementation class MyPage_myReviewDeleteServlet
  */
-@WebServlet("/deleteReview.mp")
+@WebServlet("/reviewRm.mp")
 public class MyPage_myReviewDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -35,23 +35,18 @@ public class MyPage_myReviewDeleteServlet extends HttpServlet {
 		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
 		
 		if(loginUser != null) {
-			String arr = request.getParameter("arr");
+			int rno = Integer.parseInt(request.getParameter("rno"));
 			
-			int result = new MyPageService().deleteReview(arr);
+			int result = new MyPageService().deleteReview(rno);
 			
 			if(result > 0) {
-				request.getSession().setAttribute("msg", "리뷰 삭제에 성공하였습니다.");
-				response.sendRedirect("myReview.mp");
-				
+				response.getWriter().print("1");
 			}else {
-				request.setAttribute("msg", "리뷰 삭제에 실패하였습니다.");
-				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
-				
+				response.getWriter().print("2");
 			}
 			
 		}else {
 			request.getRequestDispatcher("views/common/loginForm.jsp").forward(request, response);
-			
 		}
 	}
 

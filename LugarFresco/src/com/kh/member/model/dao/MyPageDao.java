@@ -461,17 +461,17 @@ public class MyPageDao {
 	 * @param rno
 	 * @return
 	 */
-	public int deleteReview(Connection conn, String arr) {
+	public int deleteReview(Connection conn, int rno) {
 		int result = 0;
 		
 		PreparedStatement pstmt = null;
 		
-		String sql = "update review set isdelete = 'Y' where r_no in ("+arr+")";
+		String sql = prop.getProperty("deleteReview");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-//			pstmt.setString(1, arr);
+			pstmt.setInt(1, rno);
 			
 			result = pstmt.executeUpdate();
 			
@@ -1052,6 +1052,53 @@ public class MyPageDao {
 			close(pstmt);
 		}
 		return arr;
+		
+	}
+
+	public int likeRemove(Connection conn, int mno, int rno) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("likeRemove");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, mno);
+			pstmt.setInt(2, rno);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+
+	public int favoriteRemove(Connection conn, int mno, int fno) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("favoriteRemove");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, mno);
+			pstmt.setInt(2, fno);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
 		
 	}
 

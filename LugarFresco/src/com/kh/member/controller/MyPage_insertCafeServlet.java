@@ -97,7 +97,11 @@ public class MyPage_insertCafeServlet extends HttpServlet {
 					CafeImg ci = new CafeImg();
 					
 					ci.setImg_name(changeFiles.get(i));
-					ci.setImg_path(savePath);
+					if(i == 0) {
+						ci.setImg_path(savePath2);
+					}else {
+						ci.setImg_path(savePath);
+					}
 					
 					brName = originFiles.get(0);
 					brUpName = changeFiles.get(0);
@@ -122,12 +126,11 @@ public class MyPage_insertCafeServlet extends HttpServlet {
 				c.setBr_up_name(brUpName);
 				c.setBr_path(savePath2);
 				
-				System.out.println(list);
-				System.out.println(c);
+				
 				int result = new MyPageService().insertCafe(c, list);
 				
 				if(result > 0) {
-					session.setAttribute("msg", "카페 등록에 성공하였습니다.");
+					session.setAttribute("msg", "카페 등록 신청에 성공하였습니다.");
 					response.sendRedirect("applyCafeForm.mp");
 					
 				}else {
@@ -139,7 +142,7 @@ public class MyPage_insertCafeServlet extends HttpServlet {
 						failedFile2.delete();
 					}
 					
-					request.setAttribute("msg", "사진 게시판 등록 실패~~!!");
+					request.setAttribute("msg", "카페 등록 신청에 실패하였습니다.");
 					request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 					
 				}

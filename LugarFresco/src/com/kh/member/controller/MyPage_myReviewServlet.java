@@ -37,11 +37,7 @@ public class MyPage_myReviewServlet extends HttpServlet {
 		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
 		
 		if(loginUser != null) {
-			int mno = loginUser.getM_no();
 			
-			ArrayList<Review> list = new MyPageService().selectMyReviewList(mno);
-			
-			request.setAttribute("list", list);
 			request.getRequestDispatcher("views/member/myPage_myReview.jsp").forward(request, response);
 			
 		}else {

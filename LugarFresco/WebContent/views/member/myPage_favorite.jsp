@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.kh.cafe.model.vo.Cafe, java.util.ArrayList" %>
 <%
-	ArrayList<Cafe> list = (ArrayList<Cafe>)request.getAttribute("list");
+	//ArrayList<Cafe> list = (ArrayList<Cafe>)request.getAttribute("list");
 %>
 <!DOCTYPE html>
 <html>
@@ -14,7 +14,9 @@
 	#cafeArea:hover{cursor:pointer; background:#dee2e6;}
 	#area > ul > li{width:27%; height:auto; margin-right:50px; margin-bottom:30px;}
 	#imgArea > img{display:block; width:100%; height:200px;}
-	#noData{width:100px; height:100px; text-align:center; font-size:1.250em; font-weight:bold; margin-left:8px; margin-top:100px;}
+	#noData{width:100px; height:100px; text-align:center; font-size:1.250em; font-weight:bold; margin-left:350px; margin-top:100px;}
+	#favoriteBtn{width:50px; height:50px; color:white; background:#ffc107; border:1px solid #ffc107;}
+	#favoriteBtn:hover{cursor:pointer; background:#dee2e6; color:white; border:1px solid #dee2e6;}
 </style>
 </head>
 <body>
@@ -64,39 +66,109 @@
 			<div id="area" style="margin-left:60px;">
 				<ul>
 				
-				<% if(list.isEmpty()){%>
-					<li id="noData">
-						<div>
-							<i class="fa fa-coffee" aria-hidden="true" style="font-size:50px; line-height:80px; color:#c2c2c2; margin-bottom:-15px;"></i>
-						</div>
-						<div>
-							<p style="color:#c2c2c2;">즐겨찾기한 카페가 없습니다!<br>카페 즐겨찾기를 눌러주세요!</p>
-						</div>
-					</li>
-				<% }else { %>
-				
-					<%  for(Cafe f : list){ %>
-						<li>
-							<div id="cafeArea" onclick="location.href='<%=conPath%>/cafeInfo.ca?c_no=<%=f.getC_no()%>';">
-								<span id="imgArea">
-									<img src="<%=conPath %>/resources/fileupload/cafe/<%=f.getImg_name()%>">
-								</span>
-								
-								<div id="textArea">
-									<div style="font-size:27px; margin-top:-20px; width:100%;color:#ffc107;">4.3</div>
-									<p style="margin-top:-10px; font-size:19px;"><%=f.getCafe_name() %></p>
-									<span style="margin-right:15px;"><i class="icon fa fa-eye fa-3x" style="font-size:13px;"></i> <%=f.getCount() %></span>
-									<span style="margin-right:15px;"><i class="icon fa fa-pencil fa-3x" style="font-size:13px;"></i> <%=f.getReview_count() %></span>
-									<span><i class="icon fa fa-star fa-3x" style="font-size:13px;"></i> <%=f.getFavorite() %></span>
-								</div>
-							</div>
-						</li>
-						
-					<% } %>
-				<% } %>
+					<%-- 반복 --%>
 						
 				</ul>
 			</div>
+			
+		<script>
+	     	$(function(){
+	     		selectFavoriteList();
+	     		
+	     	});
+	     	
+	     	
+	     	function favoriteRm(){
+	     		var fno = $("#favoriteBtn input").val();
+	 			var real = confirm("카페 즐겨찾기를 취소하시겠습니까?");
+	     		
+	     		if(real){
+	     			$("#favoriteBtn").css({"background":"#dee2e6", "color":"white", "border":"1px solid #dee2e6"});
+	     			
+		     		$.ajax({
+		     			url:"favoriteRm.mp",
+						type:"post",
+						data:{fno:fno},
+						success:function(result){
+							
+							if(result == "1"){
+								alert("적용되었습니다!");
+								selectFavoriteList();
+								
+							}else{
+								alert("즐겨찾기 취소에 실패하였습니다.");
+							}
+							
+						},
+						error:function(){
+							console.log("서버와의 통신 실패");
+						}
+		     		});
+		     		
+	     		}
+	     	}
+	    </script>
+	    
+		<script>
+      	function selectFavoriteList(){
+      		
+      		$.ajax({
+				url:"myFavoriteA.mp",
+				dataType:"json",
+				success:function(list){ // list에는 객체배열의 형태로 담겨있을 것!!
+					
+					if(list.length == 0){
+						var $noData = $("<li>").attr("id", "noData");
+						$noData.append($("<div>").append("<i class='fa fa-coffee' aria-hidden='true' style='font-size:50px; line-height:80px; color:#c2c2c2; margin-bottom:-15px;'></i>"));
+						$noData.append($("<div>").append("<p style='color:#c2c2c2;'>즐겨찾기한 카페가 없습니다!<br>카페 즐겨찾기를 눌러주세요!</p>"));
+						
+						$("#area ul").append($noData);
+						
+					}else{
+						
+						var $cFavoriteDiv = $("#area ul");
+						
+						$cFavoriteDiv.html("");
+								
+						$.each(list, function(index, value){
+							var $cfavorite = $("<li>");
+							
+							var $content1 = $("<div>").attr({"id":"cafeArea", "onclick":"location.href='<%=conPath%>/cafeInfo.ca?c_no=" + value.c_no + "';"});
+							
+							var $content2 = $("<span>").attr("id", "imgArea");
+							$content2.append($("<img>").attr("src", "<%=conPath %>/resources/fileupload/cafe/" + value.img_name));
+							
+							var $content3 = $("<div>").attr("id", "textArea");
+							$content3.append($("<div>").attr("style", "font-size:27px; margin-top:-20px; width:100%; color:#ffc107;"));
+							$content3.append($("<p>").attr("style", "margin-top:-10px; font-size:19px;").append(value.cafe_name));
+							$content3.append($("<span>").attr("style", "margin-right:15px;").append("<i class='icon fa fa-eye fa-3x' style='font-size:13px;'></i> " + value.count));
+							$content3.append($("<span>").attr("style", "margin-right:15px;").append("<i class='icon fa fa-pencil fa-3x' style='font-size:13px;'></i> " + value.review_count));
+							$content3.append($("<span>").append("<i class='icon fa fa-star fa-3x' style='font-size:13px;'></i> " + value.favorite));
+							
+							var $favoriteBtn = $("<button>").attr({"id":"favoriteBtn", "onclick":"favoriteRm();"}).append("<i class='fa fa-fw fa-lg fa-star'></i>");
+							$favoriteBtn.append($("<input>").attr({"id":"favoriteInput", "type":"hidden", "value":value.f_no}));
+							
+							$content1.append($content2);
+							$content1.append($content3);
+							$cfavorite.append($favoriteBtn);
+							$cfavorite.append($content1);
+							
+							$cFavoriteDiv.append($cfavorite);
+			              	
+						});
+					}
+						
+					
+				},
+				error:function(){
+					console.log("서버와의 통신 실패!!");
+				}
+			});
+      		
+      	}
+      	
+      </script>
+      
    	</main>
    	
     

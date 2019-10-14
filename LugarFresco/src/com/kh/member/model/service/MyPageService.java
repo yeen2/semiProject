@@ -203,10 +203,10 @@ public class MyPageService {
 		return updateMem;
 	}
 
-	public int deleteReview(String arr) {
+	public int deleteReview(int rno) {
 		Connection conn = getConnection();
 		
-		int result = new MyPageDao().deleteReview(conn, arr);
+		int result = new MyPageDao().deleteReview(conn, rno);
 		
 		if(result > 0) {
 			commit(conn);
@@ -376,6 +376,36 @@ public class MyPageService {
 		close(conn);
 		
 		return arr;
+	}
+
+	public int likeRemove(int mno, int rno) {
+		Connection conn = getConnection();
+		
+		int result = new MyPageDao().likeRemove(conn, mno, rno);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+	}
+
+	public int favoriteRemove(int mno, int fno) {
+		Connection conn = getConnection();
+		
+		int result = new MyPageDao().favoriteRemove(conn, mno, fno);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
 	}
 
 	
