@@ -488,30 +488,7 @@
 					
 					<div class="single-post row"></div>
 
-					<!-- 페이징 -->
-					<nav class="blog-pagination justify-content-center d-flex" style="padding-top: 0px;">
-						<ul class="pagination">
-							<li class="page-item">
-								<a href="#" class="page-link" aria-label="Previous"> 
-								<span aria-hidden="true"> 
-									<span class="lnr lnr-chevron-left"></span>
-								</span>
-								</a>
-							</li>
-							<li class="page-item active"><a href="#" class="page-link">01</a></li>
-							<li class="page-item"><a href="#" class="page-link">02</a></li>
-							<li class="page-item"><a href="#" class="page-link">03</a></li>
-							<li class="page-item"><a href="#" class="page-link">04</a></li>
-							<li class="page-item"><a href="#" class="page-link">05</a></li>
-							<li class="page-item">
-								<a href="#" class="page-link" aria-label="Next"> 
-									<span aria-hidden="true"> 
-										<span class="lnr lnr-chevron-right"></span>
-									</span>
-								</a>
-							</li>
-						</ul>
-					</nav>
+					
 				</div>
 				
 				<!-- 오른쪽부분 : 지도 + 카페정보 -->
@@ -544,7 +521,7 @@
 						<div class="single-sidebar-widget ads-widget">
 							<h4 style="text-align: center;">카페 위치</h4>
 							<br>
-							<p style="text-align: center;"><%=c.getAddress() %><%=c.getAddress_detail() %></p>
+							<p style="text-align: center;"><%=c.getAddress() %>&nbsp;<%=c.getAddress_detail() %></p>
 							
 							<div id="map" style="height: 300px; margin-top: 20px; margin-bottom: 10px;"></div>
 							<a href="https://map.kakao.com/link/to/<%=add%>,37.402056,127.108212"
@@ -559,18 +536,14 @@
 						<div class="single-sidebar-widget tag-cloud-widget">
 							<h4 class="tagcloud-title">Tag Clouds</h4>
 							<ul>
-								<li><a href="#">Technology</a></li>
-								<li><a href="#">Fashion</a></li>
-								<li><a href="#">Architecture</a></li>
-								<li><a href="#">Fashion</a></li>
+								<li><a href="#">Cafe</a></li>
 								<li><a href="#">Food</a></li>
-								<li><a href="#">Technology</a></li>
-								<li><a href="#">Lifestyle</a></li>
-								<li><a href="#">Art</a></li>
-								<li><a href="#">Adventure</a></li>
-								<li><a href="#">Food</a></li>
-								<li><a href="#">Lifestyle</a></li>
-								<li><a href="#">Adventure</a></li>
+								<li><a href="#">LifeStyle</a></li>
+								<li><a href="#">LugarFresco</a></li>
+								<li><a href="#">Branch</a></li>
+								<li><a href="#">HandDrop</a></li>
+								<li><a href="#">Aamericano</a></li>
+								
 							</ul>
 						</div>
 					</div>

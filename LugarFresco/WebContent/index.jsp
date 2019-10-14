@@ -77,9 +77,8 @@
 				</div>	
 			</section>
 		
-		
-		
-			<%-- <!-- 2. 평점 좋고, 조회수 많은  8개 리스트 -->
+
+			<!-- 2. 평점 좋고, 조회수 많은  8개 리스트 -->
 			<section class="other-issue-area section-gap">
 				<div class="container">
 		            <div class="row d-flex justify-content-center">
@@ -94,69 +93,8 @@
 					<div class="row">
 						<!-- 평점좋은 8개 순위로 반복문 -->
 						<% for(int i=0; i<c2.size(); i++){ %>
-						<div class="col-lg-3 col-md-6">
-							<div class="single-other-issue" style="width: 100%; height: 100%; margin-bottom: 10px;">
-								<a href="<%=conPath%>/cafeInfo.ca?c_no=<%=c2.get(i).getC_no()%>">
-								<div class="thumb" >
-									<img class="img-fluid" style="width: 100%; height: 100%"
-										src="<%=conPath%>/resources/fileupload/cafe/<%=c2.get(i).getTitleImg() %>" alt="">					
-								</div>
-								<div style="margin-top: 20px;">
-									<h4 style="margin-bottom: 5px; margin-top: 20px; display: inline;">
-										<%=c2.get(i).getCafe_name() %>
-									</h4>
-									&nbsp;&nbsp;
-									<!-- 평점  -->
-									<strong id="point" style="color:orange; font-size:20px;">
-										<%= c2.get(i).getSum_avg()%>
-									</strong>
-								</a>
-									<div class="star"> 
-									    <!-- 즐겨찾기 -->
-										<% if(c2.get(i).getMyFavorite() == 1){  %>
-											<i style="color: orange; font-size: 20px; margin-left:20%;" 
-												class="fa fa-star favorite" aria-hidden="true">
-											<input type="hidden" value="<%=c2.get(i).getC_no()%>">
-											</i>
-											
-										<% }else{ %>
-											<i style="color: orange; font-size: 20px; margin-left:20%;" 
-												class="fa fa-star-o favorite" aria-hidden="true">
-											<input type="hidden" value="<%=c2.get(i).getC_no()%>">
-											</i>				
-										<% } %> 
-									</div>
-								
-								</div>
-								<p>
-									<%=c2.get(i).getAddress() %>
-								</p>
-							</div>
-						</div>
-							
-						<% } %>
-				</div>	
-			
-			</section> --%>
-
-
-<!-- 2. 평점 좋고, 조회수 많은  8개 리스트 -->
-			<section class="other-issue-area section-gap">
-				<div class="container">
-		            <div class="row d-flex justify-content-center">
-		                <div class="menu-content pb-70 col-lg-9">
-		                    <div class="title text-center">
-		                        <h1 class="mb-10">Best Review Cafe</h1>
-		                        <p>평점 좋은 인기 카페</p>
-		                    </div>
-		                </div>
-		            </div>	
-		            				
-					<div class="row">
-						<!-- 평점좋은 8개 순위로 반복문 -->
-						<% for(int i=0; i<c2.size(); i++){ %>
-						<div class="col-lg-3 col-md-6">
-							<div class="single-other-issue" style="width: 100%; height: 100%; margin-bottom: 10px;">
+						<div class="col-lg-3 col-md-6" style="margin-bottom: 30px;">
+							<div class="single-other-issue" style="width: 100%; height: 100%; ">
 								<a href="<%=conPath%>/cafeInfo.ca?c_no=<%=c2.get(i).getC_no()%>">
 								<div class="thumb" >
 									<img class="img-fluid" style="width: 100%; height: 100%"
