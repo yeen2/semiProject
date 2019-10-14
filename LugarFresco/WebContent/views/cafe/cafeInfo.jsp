@@ -221,11 +221,12 @@
 							
 							
 							var login = "<%=session.getAttribute("loginUser") %>"
-				
+							
 							if(login == "null"){
 								alert("로그인 후 이용가능합니다.");
 							}else{
 								location.href='writeForm.re?c_no=<%=c.getC_no()%>&name=<%=c.getCafe_name()%>';
+
 							}
 						});
 					</script>
@@ -288,7 +289,7 @@
 						<% for(int i=0; i<r.size(); i++){ %> <!-- 리뷰 for문 -->
 						
 						<div class="single-testimonial item d-flex flex-row reviewCotent" 
-								style="width: 100%; height: 100%;">
+								style="width: 100%; height: 100%; margin-bottom: 10px;">
 							<!-- 왼쪽 : 작성자 사진 + 닉네임 -->
 							<div class="thumb" style="margin-right: 20px; width: 10%; ">
 								<div style="width: 56px; height: 56px; ">
