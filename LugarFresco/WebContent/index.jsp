@@ -245,13 +245,13 @@
 									<div class="star" style="float: right;">
 										 <!-- 즐겨찾기 -->
 										<% if(c3.get(i).getMyFavorite() == 1){  %>
-											<i style="color: orange; font-size: 30px; margin-left: 200px;" 
+											<i style="color: orange; font-size: 30px;" 
 												class="fa fa-star favorite" aria-hidden="true">
 											<input type="hidden" value="<%=c3.get(i).getC_no()%>">
 											</i>
 											
 										<% }else{ %>
-											<i style="color: orange; font-size: 30px; margin-left: 200px;" 
+											<i style="color: orange; font-size: 30px;" 
 												class="fa fa-star-o favorite" aria-hidden="true">
 											<input type="hidden" value="<%=c3.get(i).getC_no()%>">
 											</i>				
@@ -259,11 +259,9 @@
 									</div>
 									
 								</div>	
-								<div>
 									<p>
-										<%=c3.get(i).getAddress()%>&nbsp;<%=c3.get(i).getAddress_detail()%>
+										<%=c3.get(i).getAddress()%>
 									</p>
-								</div>
 							</div>
 							<% } %>
 																					

@@ -67,15 +67,15 @@
 									<strong id="point"><%= c.get(i).getSum_avg()%></strong>
 									
 									<!-- 즐겨찾기 -->
-									<div class="star">>
+									<div class="star"  style="float: right;">
 										<% if(c.get(i).getMyFavorite() == 1){  %>
-											<i style="color: orange; font-size: 30px; margin-left: 170px;" 
+											<i style="color: orange; font-size: 30px;" 
 												class="fa fa-star favorite" aria-hidden="true">
 											<input type="hidden" value="<%=c.get(i).getC_no()%>">
 											</i>
 											
 										<% }else{ %>
-											<i style="color: orange; font-size: 30px; margin-left: 170px;" 
+											<i style="color: orange; font-size: 30px;" 
 												class="fa fa-star-o favorite" aria-hidden="true">
 											<input type="hidden" value="<%=c.get(i).getC_no()%>">
 											</i>				
