@@ -61,12 +61,15 @@ table {
 						<label>이메일주소 (아이디) : </label>
 					</td>
 					<td colspan='4'>
-						<input type="text" id="email" name="email" maxlength="35" class="form-control" style="width:300px">
+						<input type="text" id="email" name="email" maxlength="35" class="form-control" style="width:300px"
+								placeholder="(이메일 주소를 제외한 아이디는 4~20자로 작성해주세요)">
 					</td>
 					
 					<td colspan='3' style="width:250px; text-align:left; padding-left:15px; padding-bottom:3px;">
 						<span id="emailCheck1" style="display:none;">사용 가능한 이메일입니다!</span>
 						<span id="emailCheck2" style="display:none;">이미 사용중인 이메일입니다!</span>
+						<span id="emailCheck3" style="display:none;">형식에 맞지 않는 이메일입니다!</span>
+						
 					</td>
 				</tr>
 				
@@ -80,6 +83,7 @@ table {
 					<td colspan='3' style="width:250px; text-align:left; padding-left:15px; padding-bottom:3px;">
 						<span id="nickNameCheck1" style="display:none;">사용 가능한 닉네임입니다!</span>
 						<span id="nickNameCheck2" style="display:none;">이미 사용중인 닉네임입니다!</span>
+						<span id="nickNameCheck3" style="display:none;">형식에 맞지 않는 닉네임입니다!</span>
 					</td>
 				</tr>
 	
@@ -293,12 +297,14 @@ table {
 							if(result == "1"){
 								$("#emailCheck1").css("display", "block");
 								$("#emailCheck2").css("display", "none");
+								$("#emailCheck3").css("display", "none");
 								$("#emailCheck1").css({"color":"#1DDB16", "font-weight":"bold"});
 								
 								$(".box button").removeAttr("disabled", true);
 							}else{
 								$("#emailCheck2").css("display", "block");
 								$("#emailCheck1").css("display", "none");
+								$("#emailCheck3").css("display", "none");
 								$("#emailCheck2").css({"color":"red", "font-weight":"bold"});
 								
 								$(".box button").attr("disabled", true);
@@ -307,7 +313,9 @@ table {
 							if(email == ""){
 								$("#emailCheck1").css("display", "none");
 								$("#emailCheck2").css("display", "none");
+								$("#emailCheck3").css("display", "none");
 							}
+							
 						},
 						error:function(result){
 							alert("실패!");
@@ -317,6 +325,14 @@ table {
 				}else{
 					$("#emailCheck1").css("display", "none");
 					$("#emailCheck2").css("display", "none");
+					$("#emailCheck3").css("display", "block");
+					$("#emailCheck3").css({"color":"red", "font-weight":"bold"});
+					
+					if(email == ""){
+						$("#emailCheck1").css("display", "none");
+						$("#emailCheck2").css("display", "none");
+						$("#emailCheck3").css("display", "none");
+					}
 				}
 				
 			});
@@ -336,10 +352,12 @@ table {
 							if(result == "1"){
 								$("#nickNameCheck1").css("display", "block");
 								$("#nickNameCheck2").css("display", "none");
+								$("#nickNameCheck3").css("display", "none");
 								$("#nickNameCheck1").css({"color":"#1DDB16", "font-weight":"bold"});
 								
 								$(".box button").removeAttr("disabled", true);
 							}else{
+								$("#nickNameCheck3").css("display", "none");
 								$("#nickNameCheck2").css("display", "block");
 								$("#nickNameCheck1").css("display", "none");
 								$("#nickNameCheck2").css({"color":"red", "font-weight":"bold"});
@@ -350,6 +368,7 @@ table {
 							if(nickName == ""){
 								$("#nickNameCheck1").css("display", "none");
 								$("#nickNameCheck2").css("display", "none");
+								$("#nickNameCheck3").css("display", "none");
 							}
 						},
 						error:function(result){
@@ -360,6 +379,14 @@ table {
 				}else{
 					$("#nickNameCheck1").css("display", "none");
 					$("#nickNameCheck2").css("display", "none");
+					$("#nickNameCheck3").css("display", "block");
+					$("#nickNameCheck3").css({"color":"red", "font-weight":"bold"});
+					
+					if(nickName == ""){
+						$("#nickNameCheck1").css("display", "none");
+						$("#nickNameCheck2").css("display", "none");
+						$("#nickNameCheck3").css("display", "none");
+					}
 				}
 				
 			});

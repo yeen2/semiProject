@@ -37,6 +37,7 @@
       <div class="app-title">
         <div>
           <h1><i class="fa fa-file-o"></i> 카페 사장님 페이지에 오신 것을 환영합니다.</h1>
+          <p>CafeGano</p>
         </div>
       </div>
       <div class="row">

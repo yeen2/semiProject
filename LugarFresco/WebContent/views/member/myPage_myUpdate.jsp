@@ -82,7 +82,7 @@
             <div class="tile-body">
               <form action="<%= conPath %>/updateMember.mp" method="post" enctype="multipart/form-data" onsubmit="return nickNameCheck();">
 	               <div id="uploadFile" class="form-group">
-	                 <label class="control-label" for="profileImg">프로필 이미지<br> * 수정 시 아래 상자를 클릭해주세요 *</label>
+	                 <label class="control-label" for="profileImg">프로필 이미지</label>
 	                 <span id="titleImgArea"><img id="profileImg" src="<%= conPath %>/resources/fileupload/profile/<%=img%>"></span>
 	                 
 	               </div>
@@ -202,13 +202,14 @@
 						data:{nickName:nickName},
 						type:"post",
 						success:function(result){
+							
 							if(result == "1"){
 								$("#nickNameCheck1").css("display", "block");
 								$("#nickNameCheck2").css("display", "none");
 								$("#nickNameCheck1").css({"color":"#1DDB16", "font-weight":"bold"});
 								
 								$("#updateBtn").removeAttr("disabled", true);
-							}else{
+							}else if(result == "2"){
 								$("#nickNameCheck2").css("display", "block");
 								$("#nickNameCheck1").css("display", "none");
 								$("#nickNameCheck2").css({"color":"red", "font-weight":"bold"});
@@ -288,7 +289,8 @@
           <form action="<%=conPath %>/updatePwd.mp" method="post" onsubmit="return pwdCheck();">
 	          <div class="modal-body">
 	           <label>현재 비밀번호</label><input type="password" id="userPwd" name="userPwd" maxlength="16" class="form form-control"><br>
-	           <label>새 비밀번호</label><input type="password" id="newPwd1" name="newPwd1" maxlength="16" class="form form-control"><br>
+	           <label>새 비밀번호</label><input type="password" id="newPwd1" name="newPwd1" maxlength="16" class="form form-control"
+	           								placeholder="(8~16자의 영문 대,소문자, 숫자, 특수문자만 작성해주세요)"><br>
 	           <label>새 비밀번호 확인</label><input type="password" id="newPwd2" name="newPwd2" maxlength="16" class="form form-control">
 	          </div>
 	          <div class="modal-footer">

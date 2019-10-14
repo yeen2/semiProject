@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.kh.review.model.vo.Review, com.kh.cafe.model.vo.Cafe, java.util.ArrayList"%>
-<%
-	//ArrayList<Review> list = (ArrayList<Review>)request.getAttribute("list");
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -139,7 +136,7 @@
 											"onclick":"location.href='<%=conPath%>/cafeInfo.ca?c_no=" + value.c_no + "';"});
 							var $content1 = $("<div>").attr("class", "post-media");
 							$content1.append($("<img>").attr({"id":"profileImg",
-																		"src":"<%=conPath%>/resources/fileupload/review/" + value.img_name}));
+																		"src":"<%=conPath%>/resources/fileupload/cafe/" + value.img_name}));
 							var $content2 = $("<div>").attr({"class":"content", "style":"margin-top:8px;"});
 							$content2.append($("<h4>").append(value.cafe_name + "&nbsp;&nbsp;<label style='color:#ffc107;'>"
 																	+ value.sum_avg + "</label>&nbsp;&nbsp;"));

@@ -12,9 +12,6 @@
 	String category = (String)request.getAttribute("category");
 	String search = (String)request.getAttribute("search");
 	
-	System.out.println(category);
-	System.out.println(search);
-	
 %>
 <!DOCTYPE html>
 <html>

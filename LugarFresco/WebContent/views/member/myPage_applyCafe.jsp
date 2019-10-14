@@ -27,10 +27,10 @@
 	#uploadFile img{width:100%; height:100%;}
 	#uploadFile span{margin-right:10px;}
 	#titleImgArea{display:block; width:150px; height:150px; margin-bottom:20px; margin-left:8px;}
-	#contentImgArea1, #contentImgArea2, #contentImgArea3, #contentImgArea4, #contentImgArea5
+	#contentImgArea1, #contentImgArea2, #contentImgArea3, #contentImgArea5
 	{width:110px; height:110px; display:inline-block;}
 	#contentImgArea5{display:block;}
-	#contentImgArea1:hover, #contentImgArea2:hover, #contentImgArea3:hover, #contentImgArea4:hover,
+	#contentImgArea1:hover, #contentImgArea2:hover, #contentImgArea3:hover,
 	#contentImgArea5:hover, #titleImgArea:hover{cursor:pointer;}
 </style>
 </head>
@@ -146,7 +146,6 @@
 	                  <input class="form-control" type="file" id="thumbnailImg2" name="thumbnailImg2" onchange="loadImg(this, 2);">
 	                  <input class="form-control" type="file" id="thumbnailImg3" name="thumbnailImg3" onchange="loadImg(this, 3);">
 	                  <input class="form-control" type="file" id="thumbnailImg4" name="thumbnailImg4" onchange="loadImg(this, 4);">
-	                  <input class="form-control" type="file" id="thumbnailImg5" name="thumbnailImg5" onchange="loadImg(this, 5);">
 	                  <input class="form-control" type="file" id="thumbnailImg6" name="thumbnailImg6" onchange="loadImg(this, 6);">
 	                 </div>
 	                 
@@ -234,9 +233,6 @@
 			$("#contentImgArea3").click(function(){
 				$("#thumbnailImg4").click();
 			});
-			$("#contentImgArea4").click(function(){
-				$("#thumbnailImg5").click();
-			});
 			$("#contentImgArea5").click(function(){
 				$("#thumbnailImg6").click();
 			});
@@ -260,8 +256,6 @@
 					case 3: $("#contentImg2").attr("src", e.target.result);
 							break;
 					case 4: $("#contentImg3").attr("src", e.target.result);
-							break;
-					case 5: $("#contentImg4").attr("src", e.target.result);
 							break;
 					case 6: $("#cafeReg").attr("src", e.target.result);
 							break;
@@ -288,7 +282,7 @@
 			}
 			
 			if($("#thumbnailImg1").val().trim() == "" || $("#thumbnailImg2").val().trim() == "" || $("#thumbnailImg3").val().trim() == ""
-					|| $("#thumbnailImg4").val().trim() == "" || $("#thumbnailImg5").val().trim() == ""){
+					|| $("#thumbnailImg4").val().trim() == ""){
 				alert("카페 이미지를 모두 올려주세요.");
 				location.href="#nameL";
 				return false;

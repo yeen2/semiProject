@@ -130,12 +130,11 @@
 						$rlikeDiv.html("");
 						
 						$.each(list, function(index, value){
-							
 							var $rlike = $("<div>").attr({"id":"cafeClick", "class":"timeline-post",
 											"onclick":"location.href='<%=conPath%>/cafeInfo.ca?c_no=" + value.c_no + "';"});
 							var $content1 = $("<div>").attr("class", "post-media");
 							$content1.append($("<img>").attr({"id":"profileImg",
-																		"src":"<%=conPath%>/resources/fileupload/review/" + value.img_name}));
+																		"src":"<%=conPath%>/resources/fileupload/cafe/" + value.img_name}));
 							var $content2 = $("<div>").attr({"class":"content", "style":"margin-top:8px;"});
 							$content2.append($("<h4>").append(value.cafe_name + "&nbsp;&nbsp;<label style='color:#ffc107;'>"
 																	+ value.sum_avg + "</label>&nbsp;&nbsp;"));
@@ -144,6 +143,11 @@
 							
 							var $content3 = $("<div>").attr("class", "post-content");
 							$content3.append("<p>" + value.r_content + "</p>");
+							
+							<%-- for(int i=0; i<(value.imgList).length; i++){
+								$content3.append("<span>").attr("id", "contentImgArea").append("<img>").attr({"id":"reviewImg", "src":"<%=conPath%>/resources/fileupload/review/" + value.imgList})
+								
+							} --%>
 							
 							var $content4 = $("<ul>").attr("class", "post-utility");
 							$content4.append($("<li>").attr("class", "likes").append("<i style='color:#dc3545;' class='fa fa-fw fa-lg fa-heart'></i>좋아요 " + value.r_like));

@@ -44,7 +44,7 @@ public class OwnerPage_myCafeReviewServlet extends HttpServlet {
 			}else if(search == null){
 				listCount = new MyPageService().ownerReviewCount(mno);
 			}
-			System.out.println(listCount);
+			
 			int currentPage = 1;
 			if(request.getParameter("currentPage") != null) {
 				currentPage = Integer.parseInt(request.getParameter("currentPage"));

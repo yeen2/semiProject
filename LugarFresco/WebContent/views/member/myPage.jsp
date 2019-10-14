@@ -48,6 +48,7 @@
       <div class="app-title">
         <div>
           <h1><i class="fa fa-file-o"></i> 마이페이지에 오신 것을 환영합니다.</h1>
+          <p>CafeGano</p>
         </div>
       </div>
       <div class="row">

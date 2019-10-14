@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.kh.cafe.model.vo.Cafe, java.util.ArrayList" %>
-<%
-	//ArrayList<Cafe> list = (ArrayList<Cafe>)request.getAttribute("list");
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -139,7 +136,7 @@
 							
 							var $content3 = $("<div>").attr("id", "textArea");
 							$content3.append($("<div>").attr("style", "font-size:27px; margin-top:-20px; width:100%; color:#ffc107;"));
-							$content3.append($("<p>").attr("style", "margin-top:-10px; font-size:19px;").append(value.cafe_name));
+							$content3.append($("<p>").attr("style", "margin-top:-10px; font-size:14px;").append(value.cafe_name));
 							$content3.append($("<span>").attr("style", "margin-right:15px;").append("<i class='icon fa fa-eye fa-3x' style='font-size:13px;'></i> " + value.count));
 							$content3.append($("<span>").attr("style", "margin-right:15px;").append("<i class='icon fa fa-pencil fa-3x' style='font-size:13px;'></i> " + value.review_count));
 							$content3.append($("<span>").append("<i class='icon fa fa-star fa-3x' style='font-size:13px;'></i> " + value.favorite));
