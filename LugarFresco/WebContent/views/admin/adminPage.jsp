@@ -31,6 +31,10 @@
 			<i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">
         		회원 정보 리스트</span></a>
         </li>
+        <li><a class="app-menu__item" href="<%=request.getContextPath() %>/reviewList.ap">
+			<i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">
+        		리뷰 리스트</span></a>
+        </li>
         <li><a class="app-menu__item" href="<%=request.getContextPath() %>/cafeList.ap">
         	<i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">
         		카페 리스트</span></a>

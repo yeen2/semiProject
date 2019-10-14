@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <title>Insert title here</title>
 </head>
 <body>
@@ -31,11 +32,11 @@
 			</section>
 	<!-- End banner Area -->
 	
-	<div style="height: 1000px; width: 600px; margin: auto">
+	<div style="height: 700px; width: 600px; margin: auto">
 <!-- 		<div style="height: 10%; margin-top: 100px;" align="center">
 		</div> -->
 		<div class="tile-body"> 
-			<h3 class="tile-title" style="margin-top: 30px;" align="center">공지사항 수정</h3>
+			<h3 class="tile-title" style="margin-top: 30px;" align="center">공지사항 수정<i class="material-icons">file_copy</i></h3>
 		
 			<form action="<%=conPath%>/update.no" method="post">
 				<div class="form-group">
@@ -51,9 +52,11 @@
                   <label class="control-label">내용</label>
                   <textarea name="content" class="form-control" rows="10"><%=n.getContent()%></textarea>
                 </div>
-                <hr />
+                <br>
+                <hr>
+                <br>
                 <div class="tile-footer" align="center">
-              <button type="submit" class="btn btn-primary btn-sm">수정하기</button>
+              <button type="submit" class="btn btn-primary btn-sm">수정하기</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			  <button type="button" class="btn btn-secondary btn-sm" onclick="history.go(-1);">취소하기</button>  
                 
             </div>

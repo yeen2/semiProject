@@ -147,4 +147,43 @@ public class NoticeService {
 	}
 	
 	
+	
+	
+	/**
+	 * 7.공지사항 검색 리스트 갯수
+	 * @param word
+	 * @param search
+	 * @return
+	 */
+	public int searchNoticeCount(String word, String search) {
+		Connection conn = getConnection();
+		
+		int searchListCount = new NoticeDao().searchNoticeCount(conn, word, search);
+		
+		close(conn);
+		
+		return searchListCount;
+							
+	}
+	
+	
+	
+	/**
+	 * 8. 공지사항 검색 리스트 조회
+	 * @param pi
+	 * @param word
+	 * @param search
+	 * @return
+	 */
+	public ArrayList<Notice> searchSelectList(PageInfo pi, String word, String search){
+		Connection conn = getConnection();
+		
+		ArrayList<Notice> list = new NoticeDao().searchSelectList(conn, pi, word, search);
+		
+		close(conn);
+		
+		return list;
+	
+	}
+	
 }

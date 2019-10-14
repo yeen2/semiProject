@@ -231,5 +231,94 @@ public class NoticeDao {
 	}
 	
 	
+	
+	
+	public int searchNoticeCount(Connection conn, String word, String search) {
+		int searchListCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("searchNoticeCount");
+		
+		if(search.equals("title")) {
+			sql += " and title LIKE '%' || ? || '%'";
+		}else if(search.equals("content")){
+			sql += " and content LIKE '%' || ? || '%'";
+		}
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, word);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				searchListCount = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return searchListCount;
+		
+	}
+	
+	
+	
+	
+	public  ArrayList<Notice> searchSelectList(Connection conn, PageInfo pi, String word, String search){
+		
+		ArrayList<Notice> list = new ArrayList<>();
+		
+		int startRow = (pi.getCurrentPage() - 1) * pi.getNoticeLimit() + 1;
+		int endRow = startRow + pi.getNoticeLimit() - 1;
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		String sql = "";
+		
+		if("title".equals(search)) {
+			 sql = prop.getProperty("searchSelectListT");
+
+		}else if("content".equals(search)) {
+			 sql = prop.getProperty("searchSelectListC");
+		}
+
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+	
+			
+			pstmt.setString(1, word);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Notice(rset.getInt("n_no"),
+									rset.getString("title"),
+									rset.getString("content"),
+									rset.getDate("reg_date"),
+									rset.getDate("update_date"),
+									rset.getInt("count"),
+									rset.getString("isdelete")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+		
+	}
 
 }

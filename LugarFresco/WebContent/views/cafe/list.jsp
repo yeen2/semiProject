@@ -161,7 +161,7 @@
 							</li>
 
 							<% for(p=startPage; p<=endPage; p++){ %>
-							<li class="page-item active">
+							<li class="page-item">
 								<a href="<%=conPath%>/cafeList.ca?currentPage=<%=p%>" 
 									class="page-link" id="paging">
 									<%=p %>

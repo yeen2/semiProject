@@ -38,27 +38,27 @@
       <ul class="app-menu">
       <li><a class="app-menu__item" href="<%=request.getContextPath() %>/memberList.ap">
          <i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">
-              회원 정보 리스트</span></a>
+              	회원 정보 리스트</span></a>
         </li>
         <li><a class="app-menu__item" href="<%=request.getContextPath() %>/reviewList.ap">
-           <i class="app-menu__icon fa fa-file-edit"></i><span class="app-menu__label">
-              리뷰 리스트 </span></a>
+           <i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">
+            	  리뷰 리스트 </span></a>
         </li>
         <li><a class="app-menu__item" href="<%=request.getContextPath() %>/cafeList.ap">
            <i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">
-              카페 리스트</span></a>
+             	 카페 리스트</span></a>
         </li>
         <li><a class="app-menu__item" href="<%=request.getContextPath() %>/declareList.ap">
              <i class="app-menu__icon fa fa-heart-o"></i><span class="app-menu__label">
-              신고 리스트</span></a>
+            	  신고 리스트</span></a>
         </li>
         <li><a class="app-menu__item" href="<%=request.getContextPath() %>/powerList.ap">
               <i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">
-              파워링크 신청 리스트</span></a>
+              	파워링크 신청 리스트</span></a>
         </li>
         <li><a class="app-menu__item" href="<%=request.getContextPath() %>/cafeApplyList.ap">
            <i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">
-              카페 신청 리스트</span></a>
+              	카페 신청 리스트</span></a>
         </li>
         <li><a class="app-menu__item" href="<%=request.getContextPath() %>/qnaList.ap">
            <i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">

@@ -112,9 +112,9 @@
 
 
 								<li><a href="<%=conPath%>/ownerPage.op">ownerPage</a></li>
-
+							<% if(loginUser != null && loginUser.getEmail().equals("admin")){ %>
 								<li><a href="<%=conPath%>/adminPage.ap">adminPage</a></li>
-
+							<% } %>
 
 								<li><a href="<%=conPath%>/q_list.qu">Q&A</a></li>
 

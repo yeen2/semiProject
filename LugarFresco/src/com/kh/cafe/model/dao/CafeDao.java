@@ -145,7 +145,7 @@ public class CafeDao {
 							 rs.getInt("favorite"),
 							 rs.getInt("count"),
 							 rs.getInt("review_count"),
-							 rs.getInt("sum_avg"),
+							 rs.getDouble("sum_avg"),
 							 imgList
 							);
 			}
@@ -178,9 +178,6 @@ public class CafeDao {
 			
 			while(rs.next()) {
 				
-				// 소수점 반올림 처리하기
-				double avg = Math.round((rs.getDouble("sum_avg")*100)/100);
-				
 				list.add(new Cafe(rs.getInt("c_no"), 
 							      rs.getInt("m_no"), 
 							      rs.getString("cafe_name"), 
@@ -192,7 +189,7 @@ public class CafeDao {
 							      rs.getString("isPower"), 
 							      rs.getInt("favorite"), 
 							      rs.getInt("count"), 
-							      avg, 
+							      rs.getDouble("sum_avg"), 
 							      rs.getString("titleImg"), 
 							      rs.getInt("myFavorite"), 
 							      rs.getInt("review_count")));
@@ -373,7 +370,7 @@ public class CafeDao {
 								  rs.getString("isupload"), 
 								  rs.getString("ispower"), 
 								  rs.getInt("favorite"),
-								  rs.getInt("sum_avg"),
+								  rs.getDouble("sum_avg"),
 								  rs.getString("titleimg"),
 								  rs.getInt("myfavorite")));
 			}
@@ -426,9 +423,6 @@ public class CafeDao {
 			
 			while(rs.next()) {
 				
-				// 소수점 반올림 처리하기
-				double avg= Math.round((rs.getDouble("sum_avg")*100)/100);
-				
 				list.add(new Cafe(rs.getInt("c_no"), 
 								  rs.getInt("m_no"), 
 								  rs.getString("cafe_name"), 
@@ -440,7 +434,7 @@ public class CafeDao {
 								  rs.getString("isPower"), 
 								  rs.getInt("favorite"), 
 								  rs.getInt("count"), 
-								  avg, 
+								  rs.getDouble("sum_avg"), 
 								  rs.getString("titleImg"), 
 								  rs.getInt("myFavorite"), 
 								  rs.getInt("review_count")));

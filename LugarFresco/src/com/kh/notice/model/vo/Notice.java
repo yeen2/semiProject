@@ -11,17 +11,12 @@ public class Notice {
 	private Date update_date;	// 수정날짜
 	private int count;			// 조회수
 	private String isdelete;	// 삭제여부
-	
-	
+
 	
 	public Notice() {
 		
 	}
 
-
-	
-	
-	
 
 	public Notice(int n_no, String title, String content, Date reg_date, int count, String isdelete) {
 		super();
@@ -32,10 +27,6 @@ public class Notice {
 		this.count = count;
 		this.isdelete = isdelete;
 	}
-
-
-
-
 
 
 	public Notice(int n_no, String title, Date reg_date, int count) {

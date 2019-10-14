@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <title>Insert title here</title>
 </head>
 <body>
@@ -31,10 +32,10 @@
 			</section>
 	<!-- End banner Area -->
 
-		<div style="height: 1000px; width: 600px; margin: auto">
+		<div style="height: 700px; width: 600px; margin: auto">
 			<!-- <div style="height: 10%; margin-top: 100px;" align="center">
 			</div> -->
-			<h3 class="tile-title" style="margin-top: 30px;" align="center">상세보기</h3><br>
+			<h3 class="tile-title" style="margin-top: 30px;" align="center">상세보기<i class="material-icons">event_note</i></h3><br>
 			<div class="tile-body"> 
 				<div class="form-group">
                   <label class="control-label">제목</label>
@@ -48,12 +49,14 @@
                   <label class="control-label">내용</label>
                   <textarea name="content" class="form-control" rows="10" style="resize:none;" readonly><%=n.getContent()%></textarea>
                 </div>
+                <br>
 	            <hr/>
+	            <br>
 				<div align="center">
-					<button type="button" class="btn btn-primary btn-sm" onclick="javascript:history.back();">돌아가기</button>
+					<button type="button" class="btn btn-primary btn-sm" onclick="location.href='<%=conPath%>/list.no';">돌아가기</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					
-					<% if(loginUser != null && loginUser.getEmail().equals("admin@naver.com")){ %>
-					<button type="button" class="btn btn-secondary btn-sm" onclick="updateForm();">수정하기</button>
+					<% if(loginUser != null && loginUser.getEmail().equals("admin")){ %>
+					<button type="button" class="btn btn-secondary btn-sm" onclick="updateForm();">수정하기</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<button type="button" class="btn btn-secondary btn-sm" onclick="location.href='<%=conPath%>/delete.no?n_no=<%=n.getN_no()%>';">삭제하기</button>
 					<% } %>					
 				</div>
@@ -61,13 +64,11 @@
 			</div>
 		
 		</div>
-
 		
 		<br>
 		<br>
 		<br>
-	</div>
-	
+		
 	<script>
 		function updateForm(){
 			location.href="<%=conPath%>/updateForm.no?n_no=<%=n.getN_no()%>";
