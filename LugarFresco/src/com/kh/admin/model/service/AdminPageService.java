@@ -729,4 +729,22 @@ public class AdminPageService {
 		
 	
 	}
+
+	public int getQnaCount() {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = new AdminPageDao().getQnaCount(conn);
+		
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+			
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		
+		return result;
+		
+	}
 }

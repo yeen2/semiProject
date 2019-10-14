@@ -172,16 +172,16 @@
 										<%= c2.get(i).getSum_avg()%>
 									</strong>
 								</a>
-									<div class="star"> 
+									<div class="star" style="float: right;"> 
 									    <!-- 즐겨찾기 -->
 										<% if(c2.get(i).getMyFavorite() == 1){  %>
-											<i style="color: orange; font-size: 20px; margin-left:20%;" 
+											<i style="color: orange; font-size: 20px; align-content: left;" 
 												class="fa fa-star favorite" aria-hidden="true">
 											<input type="hidden" value="<%=c2.get(i).getC_no()%>">
 											</i>
 											
 										<% }else{ %>
-											<i style="color: orange; font-size: 20px; margin-left:20%;" 
+											<i style="color: orange; font-size: 20px;" 
 												class="fa fa-star-o favorite" aria-hidden="true">
 											<input type="hidden" value="<%=c2.get(i).getC_no()%>">
 											</i>				
@@ -215,7 +215,8 @@
 								<p><span style="color: orange;">Lugar Fresco</span> 의 이 달의 추천 카페</p>
 							</div>
 						</div>
-					</div>							
+					</div>	
+											
 					<div class="row">
 						<div class="active-recent-blog-carusel">
 						
@@ -241,7 +242,7 @@
 									</strong>
 								</a>
 									
-									<div class="star">
+									<div class="star" style="float: right;">
 										 <!-- 즐겨찾기 -->
 										<% if(c3.get(i).getMyFavorite() == 1){  %>
 											<i style="color: orange; font-size: 30px; margin-left: 200px;" 
@@ -256,17 +257,21 @@
 											</i>				
 										<% } %>  
 									</div>
+									
+								</div>	
+								<div>
 									<p>
 										<%=c3.get(i).getAddress()%>&nbsp;<%=c3.get(i).getAddress_detail()%>
 									</p>
-								</div>	
+								</div>
 							</div>
 							<% } %>
 																					
 
 						</div>
 					</div>
-				</div>	
+				
+				
 			</section>
 			<!-- End recent-blog Area -->			
 	

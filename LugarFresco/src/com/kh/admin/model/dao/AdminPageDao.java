@@ -1346,6 +1346,42 @@ public ArrayList<Member> selectMemberList(Connection conn, PageInfo pi) {
 		
 	
 	}
+	
+	public int getQnaCount(Connection conn) {
+
+		ResultSet rset = null;
+
+		int result = 0;
+
+		PreparedStatement pstmt = null;
+
+		String sql = prop.getProperty("getQnaCount");
+
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+
+				result = rset.getInt(1);
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("================================3=============");
+		System.out.println(result);
+		System.out.println("------------------3--------------3---------");
+
+		return result;
+
+	}
+
+	
 
 	public int powerLinkStatusChange(Connection conn, int ck, int no) {
 		
