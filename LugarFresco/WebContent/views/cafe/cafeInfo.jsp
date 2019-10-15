@@ -250,8 +250,8 @@
 					         /*  imageUrl: 'http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png', */
 					         imageUrl: 'http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
 					         link: {
-					            mobileWebUrl: 'http://localhost:8030/LugarFresco/cafeInfo.ca?c_no=${c.c_no}',
-					            webUrl: 'http://localhost:8030/LugarFresco/cafeInfo.ca?c_no=${c.c_no}'
+					            mobileWebUrl: 'http://192.168.30.186:8030/LugarFresco/cafeInfo.ca?c_no=${c.c_no}',
+					            webUrl: 'http://192.168.30.186:8030/LugarFresco/cafeInfo.ca?c_no=${c.c_no}'
 					          }
 					        },
 					        social: {
@@ -263,15 +263,15 @@
 					          {
 					            title: '웹으로 보기',
 					            link: {
-					              mobileWebUrl: 'http://localhost:8030/LugarFresco/cafeInfo.ca?c_no=${c.c_no}',
-					              webUrl: 'http://localhost:8030/LugarFresco/cafeInfo.ca?c_no=${c.c_no}'
+					              mobileWebUrl: 'http://192.168.30.186:8030/LugarFresco/cafeInfo.ca?c_no=${c.c_no}',
+					              webUrl: 'http://192.168.30.186:8030/LugarFresco/cafeInfo.ca?c_no=${c.c_no}'
 					            }
 					          },
 					          {
 					            title: '앱으로 보기',
 					            link: {
-					              mobileWebUrl: 'http://localhost:8030/LugarFresco/cafeInfo.ca?c_no=${c.c_no}',
-					              webUrl: 'http://localhost:8030/LugarFresco/cafeInfo.ca?c_no=${c.c_no}'
+					              mobileWebUrl: 'http://192.168.30.186:8030/LugarFresco/cafeInfo.ca?c_no=${c.c_no}',
+					              webUrl: 'http://192.168.30.186:8030/LugarFresco/cafeInfo.ca?c_no=${c.c_no}'
 					            }
 					          }
 					        ]
