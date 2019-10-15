@@ -78,7 +78,7 @@ table {
 						<label>닉네임 : </label>
 					</td>
 					<td colspan='4'>
-						<input type="text" id="nickName" name="nickName" maxlength="8" placeholder="(한글, 영문, 숫자를 사용하여 3~8자로 작성해주세요)" class="form-control">
+						<input type="text" id="nickName" name="nickName" maxlength="5" placeholder="(한글, 영문, 숫자를 사용하여 3~5자로 작성해주세요)" class="form-control">
 					</td>
 					<td colspan='3' style="width:250px; text-align:left; padding-left:15px; padding-bottom:3px;">
 						<span id="nickNameCheck1" style="display:none;">사용 가능한 닉네임입니다!</span>
@@ -340,7 +340,7 @@ table {
 			$("#nickName").on("input", function(){
 				var nickName = $("#nickName").val();
 				
-				var regExp = /^[가-힣a-zA-Z0-9]{3,8}$/;
+				var regExp = /^[가-힣a-zA-Z0-9]{3,5}$/;
 				
 				if(regExp.test(nickName)) {
 					

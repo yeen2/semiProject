@@ -119,7 +119,7 @@ public class MyPageDao {
 	 * @param id
 	 * @return
 	 */
-	public int deleteMember(Connection conn, String id) {
+	public int deleteMember(Connection conn, int mno) {
 		int result = 0;
 		
 		PreparedStatement pstmt = null;
@@ -129,7 +129,7 @@ public class MyPageDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, id);
+			pstmt.setInt(1, mno);
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -410,7 +410,7 @@ public class MyPageDao {
 			pstmt.setString(1, m.getNickName());
 			pstmt.setString(2, m.getProfile());
 			pstmt.setString(3, m.getProfile_path());
-			pstmt.setString(4, m.getEmail());
+			pstmt.setInt(4, m.getM_no());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -441,7 +441,7 @@ public class MyPageDao {
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, m.getNickName());
-			pstmt.setString(2, m.getEmail());
+			pstmt.setInt(2, m.getM_no());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

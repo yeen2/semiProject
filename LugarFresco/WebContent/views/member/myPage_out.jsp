@@ -79,7 +79,7 @@
 				var userPwd = $("#userPwd").val();
 				
 				if(userPwd == "<%= loginUser.getPass() %>"){
-					var real = confirm("정말로 탈퇴하시겠습니까?");
+					var real = confirm("회원님이 등록하신 카페도 삭제되며 복구할 수 없습니다. 정말로 탈퇴하시겠습니까?");
 					
 					if(real){
 						location.href="<%=conPath%>/deleteMem.mp";
@@ -114,7 +114,7 @@
              <input type="password" id="userPwd" name="userPwd" class="form form-control">
           </div>
           <div class="modal-footer">
-            <button class="btn btn-primary" type="button" onclick="return deleteMember();">변경하기</button>
+            <button class="btn btn-primary" type="button" onclick="return deleteMember();">탈퇴하기</button>
             <button class="btn btn-secondary" type="button" onclick="reset();" data-dismiss="modal">닫기</button>
           </div>
         </div>

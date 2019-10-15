@@ -99,7 +99,7 @@ public class MyPage_myUpdateMemberServlet extends HttpServlet {
 				m.setProfile_path(savePath);
 				
 				Member updateMem = null;
-				System.out.println(m);
+				
 				if(profile.length() != 0) {
 					updateMem = new MyPageService().updateMember(m);
 				}else {

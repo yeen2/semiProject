@@ -39,10 +39,10 @@ public class MyPageService {
 		return updateMem;
 	}
 	
-	public int deleteMember(String id) {
+	public int deleteMember(int mno) {
 		Connection conn = getConnection();
 		
-		int result = new MyPageDao().deleteMember(conn, id);
+		int result = new MyPageDao().deleteMember(conn, mno);
 		
 		if(result > 0) {
 			commit(conn);
