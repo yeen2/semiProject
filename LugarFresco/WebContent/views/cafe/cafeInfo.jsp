@@ -685,12 +685,18 @@
 								$("#declare_reset, .close").click(function() {
 									$('#declareModal').modal("hide");
 								});
-								// 신고동의 체크
+								
 								$("#declare_submit").attr("disabled", true);
 								
+								// 신고동의 체크
 								$("#declare_check").on('click', function() {
-									$("#declare_submit").removeAttr("disabled");
+									if($("input:checkbox[name='declare_check']").is(":checked")){
+										$("#declare_submit").removeAttr("disabled");
+									}else{
+										$("#declare_submit").attr("disabled",true);
+									}
 								});
+								
 								// 신고버튼	
 								$("#declare_submit").click(function() {
 									var category = $("#category").val();

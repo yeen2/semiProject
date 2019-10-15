@@ -155,7 +155,7 @@
 				<br>
 				<div class="row align-items-center">
 					<div class="form-group col-12" align="center">
-						<button type="reset" class="genric-btn default circle"
+						<button type="reset" class="genric-btn default circle" onclick="history.back(-1);"
 							style="width: 130px;">취소</button>
 						&nbsp;&nbsp;&nbsp;
 						<button type="submit" class="genric-btn primary circle" id="submit"
