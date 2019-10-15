@@ -127,9 +127,12 @@
       	<% if(loginUser != null) { %>
       
         <!-- 프로필 사진 -->
-      	<img class="app-sidebar__user-avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image">
-        <div>
+        <div style="width: 50px; height:50px; border-radius: 50%; margin: 0px !important;">
+      	<img class="app-sidebar__user-avatar" style="width: 100%; height: 100%; border-radius: 50%;"
+      		src="<%=request.getContextPath() %>/resources/fileupload/profile/<%=loginUser.getProfile() %>" alt="User Image">
+        </div>
         
+        <div style="margin: auto;">
         <!-- 닉네임 + 이메일주소 -->
           <p class="app-sidebar__user-name"><%=loginUser.getNickName() %></p>
           <p class="app-sidebar__user-designation">test@naver.com</p>

@@ -26,13 +26,13 @@ public class InsertFavoriteServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		System.out.println("ㄲㄲㅇ");
+
 		int m_no = ((Member) request.getSession().getAttribute("loginUser")).getM_no();
 		int c_no = Integer.parseInt(request.getParameter("c_no"));
 		String str = "실패";
 		
 		int result = new CafeService().insertFavorite(m_no, c_no);
-		System.out.println(c_no);
+
 		if(result > 0){
 			str ="성공";
 		}

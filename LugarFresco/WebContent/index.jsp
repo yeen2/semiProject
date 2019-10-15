@@ -6,15 +6,10 @@
 	ArrayList<Cafe> c2 = (ArrayList<Cafe>)request.getAttribute("c2");
 	ArrayList<Cafe> c3 = (ArrayList<Cafe>)request.getAttribute("c3");
 	
-	System.out.println(c1);
-	
-	
 %>
 <!DOCTYPE html>
 	
 	<%@ include file="views/includes/main/header.jsp" %>
-	
-	<%-- <c:import url="${ pageContext.servletContext.contextPath }/views/includes/main/header.jsp"/> --%>
 	
 	<!-- start banner Area -->
 			<section class="banner-area relative" style="height:400px;">
@@ -39,6 +34,7 @@
 			<!-- 1. 조회수높은 3개 목록(즐겨찾기 수도 추가?) : selectOrderByCount -->
 			<section class="popular-destination-area section-gap">
 				<div class="container">
+				
 		            <div class="row d-flex justify-content-center">
 		                <div class="menu-content pb-70 col-lg-8">
 		                    <div class="title text-center">
@@ -52,7 +48,7 @@
 						<% for(int i=0; i<c1.size(); i++){ %>
 						<div class="col-lg-4">
 							<div class="single-destination relative"  style="width: 100%; height: 100%">
-							
+									
 								<div class="thumb relative"  style="width: 100%; height: 100%">
 									<div class="overlay overlay-bg"  style="width: 100%; height: 100%"></div>
 									<img class="resources/img-fluid"   style="width: 100%; height: 100%"

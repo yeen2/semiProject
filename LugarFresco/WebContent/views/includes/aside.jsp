@@ -14,8 +14,10 @@
     <aside class="app-sidebar">
       <div class="app-sidebar__user">
         <!-- 프로필 사진 -->
-      	<img class="app-sidebar__user-avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image">
+      	<img  
+      		src="<%=request.getContextPath() %>/resources/fileupload/profile/<%=loginUser.getProfile() %>">
         <div>
+        <%=loginUser.getProfile() %>
         <!-- 닉네임 + 이메일주소 -->
           <p class="app-sidebar__user-name"><%=loginUser.getNickName() %></p>
           <p class="app-sidebar__user-designation">test@naver.com</p>

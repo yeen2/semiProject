@@ -169,7 +169,7 @@
 					<script>
 						//즐겨찾기 
 						$("#favorite").click(function(){
-							console.log("즐겨찾기 클릭");
+							//console.log("즐겨찾기 클릭");
 							
 							var login = "<%=session.getAttribute("loginUser") %>";
 							var c_no = <%= c.getC_no()%>;
@@ -248,7 +248,7 @@
 					          title: '${c.cafe_name}',
 					          description: '#LugarFresco,#sns 핫한 카페,#요즘 뜨는 카페,#${c.cafe_name},#${c.address},#${c.favorite}',
 					         /*  imageUrl: 'http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png', */
-					         imageUrl: 'http://localhost:8030/LugarFresco/WebContent\resources\fileupload\cafe\b1.jpg',
+					         imageUrl: 'http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
 					         link: {
 					            mobileWebUrl: 'http://localhost:8030/LugarFresco/cafeInfo.ca?c_no=${c.c_no}',
 					            webUrl: 'http://localhost:8030/LugarFresco/cafeInfo.ca?c_no=${c.c_no}'
@@ -280,120 +280,131 @@
 					  //]]>
 					</script>
 					
-
+					
+					
 <!------------------------------------------------- 리뷰 ---------------------------------------------->					
 					
 					
 					<div class="single-post row" style="margin-bottom: 20px; ">
 						
+						<% if(r.isEmpty()){ %>
+							<div class="single-testimonial item d-flex flex-row reviewCotent" 
+									style="width: 100%; height: 100%; margin-bottom: 10px;">
+									
+								<h4 style="color: gray; text-align: center; margin: auto;">
+									작성된 리뷰가 없습니다. 가장 먼저 리뷰를 작성해 주세요!!</h4>
+							</div>
+						<% }else{ %>
+						
 						<% for(int i=0; i<r.size(); i++){ %> <!-- 리뷰 for문 -->
 						
-						<div class="single-testimonial item d-flex flex-row reviewCotent" 
-								style="width: 100%; height: 100%; margin-bottom: 10px;">
-							<!-- 왼쪽 : 작성자 사진 + 닉네임 -->
-							<div class="thumb" style="margin-right: 20px; width: 10%; ">
-								<div style="width: 56px; height: 56px; ">
-									<img style="width: 100%; height: 100%;  border-radius: 50%;"
-										class="img-fluid"
-										src="<%=conPath%>/resources/fileupload/profile/<%=r.get(i).getProfile()%>" alt="">
-								</div>
-								
-								<h6 style="text-align: center; margin-top: 5px; padding-right: 10px;">
-									<%=r.get(i).getNickname() %>
-								</h6>
-							</div>
-							<!-- 오른쪽 : 리뷰칸 -->
-							<div class="desc" style="width: 90%;">
-							
-								<div class="re_con_top" style="width: 100%;">
-									&nbsp;&nbsp;
-									<span>맛</span> 
-									<i class="fa fa-star" aria-hidden="true" style="color: blue;">
-										<%=r.get(i).getFlavor() %>&nbsp;
-									</i> 
-									&nbsp;&nbsp;
-									<span>가격</span> 
-									<i class="fa fa-star" aria-hidden="true" style="color: blue;">
-										<%=r.get(i).getPrice() %>&nbsp;
-									</i> 
-									&nbsp;&nbsp;
-									<span>서비스</span>
-									<i class="fa fa-star" aria-hidden="true" style="color: blue;">
-										<%=r.get(i).getService() %>&nbsp;
-									</i>
-									<hr>
-								</div>
-								
-								<div class="re_con_bottom"  style="width: 100%; "> <!-- 아래공간 div로 묶기 -->
-								<p style="margin-bottom: 0; color: gray;">날짜</p>
-								<p style="color:black; margin-bottom: 0">
-									<%=r.get(i).getR_content() %>
-								</p>
-			
-		
-								<br>
-								<!-- img공간 -->
-								<% for (int j = 0; j < r.get(i).getImgList().size(); j++) { %> <!-- 리뷰이미지 for문 -->
-								<div>
-									<div class="col-3"
-										style="width: 80px; height: 80px; float: left; margin: 5px; padding:0;">
-										<img style="width: 100%; height: 100%; display: cover;"
-											src="<%=conPath%>/resources/fileupload/review/<%=r.get(i).getImgList().get(j).getImg_name() %>">
+							<div class="single-testimonial item d-flex flex-row reviewCotent" 
+									style="width: 100%; height: 100%; margin-bottom: 10px;">
+								<!-- 왼쪽 : 작성자 사진 + 닉네임 -->
+								<div class="thumb" style="margin-right: 20px; width: 10%; ">
+									<div style="width: 56px; height: 56px; ">
+										<img style="width: 100%; height: 100%;  border-radius: 50%;"
+											class="img-fluid"
+											src="<%=conPath%>/resources/fileupload/profile/<%=r.get(i).getProfile()%>" alt="">
 									</div>
+									
+									<h6 style="text-align: center; margin-top: 5px; padding-right: 10px;">
+										<%=r.get(i).getNickname() %>
+									</h6>
 								</div>
-								<% } %> <!-- 리뷰이미지 for문 -->
+								<!-- 오른쪽 : 리뷰칸 -->
+								<div class="desc" style="width: 90%;">
 								
-								
-								<!-- 신고 버튼 -->
-								<!--  href="#reportModal" href="javascript:checkSession();" -->
-								<% if(r.get(i).getDeclare() == 0){ %>
-								<a class="btn-outline-danger btn pull-right declare_btn" data-toggle="modal" 
-									style="margin: auto;">
-									<input type="hidden" value="<%= r.get(i).getR_no()%>">
+									<div class="re_con_top" style="width: 100%;">
+										&nbsp;&nbsp;
+										<span>맛</span> 
+										<i class="fa fa-star" aria-hidden="true" style="color: blue;">
+											<%=r.get(i).getFlavor() %>&nbsp;
+										</i> 
+										&nbsp;&nbsp;
+										<span>가격</span> 
+										<i class="fa fa-star" aria-hidden="true" style="color: blue;">
+											<%=r.get(i).getPrice() %>&nbsp;
+										</i> 
+										&nbsp;&nbsp;
+										<span>서비스</span>
+										<i class="fa fa-star" aria-hidden="true" style="color: blue;">
+											<%=r.get(i).getService() %>&nbsp;
+										</i>
+										<hr>
+									</div>
 									
-									<i class="fa fa-thumbs-down" ></i>
-									&nbsp;
-									<span><%=r.get(i).getR_declare() %></span>
-								</a>
-								<%} else {%>
-								<a class="btn-danger btn pull-right declare_btn" data-toggle="modal" 
-									style="margin: auto;">
-									<input type="hidden" value="<%= r.get(i).getR_no()%>">
+									<div class="re_con_bottom"  style="width: 100%; "> <!-- 아래공간 div로 묶기 -->
+									<p style="margin-bottom: 0; color: gray;">날짜</p>
+									<p style="color:black; margin-bottom: 0">
+										<%=r.get(i).getR_content() %>
+									</p>
+				
+			
+									<br>
+									<!-- img공간 -->
+									<% for (int j = 0; j < r.get(i).getImgList().size(); j++) { %> <!-- 리뷰이미지 for문 -->
+									<div>
+										<div class="col-3"
+											style="width: 80px; height: 80px; float: left; margin: 5px; padding:0;">
+											<img style="width: 100%; height: 100%; display: cover;"
+												src="<%=conPath%>/resources/fileupload/review/<%=r.get(i).getImgList().get(j).getImg_name() %>">
+										</div>
+									</div>
+									<% } %> <!-- 리뷰이미지 for문 -->
 									
-									<i class="fa fa-thumbs-down" ></i>
-									&nbsp;
-									<span><%=r.get(i).getR_declare() %></span>
-								</a>
-								<% } %>
-								
-
-
-								<!-- 좋아요 버튼 -->
-								<% if(r.get(i).getLike() == 0){ %>
-								<a class="btn-outline-primary btn pull-right like_btn" data-toggle="modal"> 
-									<input type="hidden" value="<%= r.get(i).getR_no()%>">
-									<i id="sss2-1" class="fa fa-thumbs-up" aria-hidden="true" style="size: smaill"></i> 
-									&nbsp;
-									<span><%=r.get(i).getR_like() %></span>
-								</a>
-								<%} else {%>
-								<a class="btn-primary btn pull-right like_btn" data-toggle="modal" > 
-									<input type="hidden" value="<%= r.get(i).getR_no()%>">
-									<i id="sss2-1" class="fa fa-thumbs-up" aria-hidden="true" style="size: smaill"></i> 
-									&nbsp;
-									<span><%=r.get(i).getR_like() %></span>
-								</a>
-								<% } %>
-								
-								</div> <!-- 아래공간 div로 묶기 -->
-								
+									
+									<!-- 신고 버튼 -->
+									<!--  href="#reportModal" href="javascript:checkSession();" -->
+									<% if(r.get(i).getDeclare() == 0){ %>
+									<a class="btn-outline-danger btn pull-right declare_btn" data-toggle="modal" 
+										style="margin: auto;">
+										<input type="hidden" value="<%= r.get(i).getR_no()%>">
+										
+										<i class="fa fa-thumbs-down" ></i>
+										&nbsp;
+										<span><%=r.get(i).getR_declare() %></span>
+									</a>
+									<%} else {%>
+									<a class="btn-danger btn pull-right declare_btn" data-toggle="modal" 
+										style="margin: auto;">
+										<input type="hidden" value="<%= r.get(i).getR_no()%>">
+										
+										<i class="fa fa-thumbs-down" ></i>
+										&nbsp;
+										<span><%=r.get(i).getR_declare() %></span>
+									</a>
+									<% } %>
+									
+	
+	
+									<!-- 좋아요 버튼 -->
+									<% if(r.get(i).getLike() == 0){ %>
+									<a class="btn-outline-primary btn pull-right like_btn" data-toggle="modal"> 
+										<input type="hidden" value="<%= r.get(i).getR_no()%>">
+										<i id="sss2-1" class="fa fa-thumbs-up" aria-hidden="true" style="size: smaill"></i> 
+										&nbsp;
+										<span><%=r.get(i).getR_like() %></span>
+									</a>
+									<%} else {%>
+									<a class="btn-primary btn pull-right like_btn" data-toggle="modal" > 
+										<input type="hidden" value="<%= r.get(i).getR_no()%>">
+										<i id="sss2-1" class="fa fa-thumbs-up" aria-hidden="true" style="size: smaill"></i> 
+										&nbsp;
+										<span><%=r.get(i).getR_like() %></span>
+									</a>
+									<% } %>
+									
+									</div> <!-- 아래공간 div로 묶기 -->
+									
+								</div>
 							</div>
-						</div>
-					
-						<div class="single-testimonial item d-flex flex-row" style="background: none; padding: 5px;"></div>
 						
-						<%} %> <!-- 리뷰 for문 -->
+							<div class="single-testimonial item d-flex flex-row" style="background: none; padding: 5px;"></div>
+							
+							<% } %> <!-- 리뷰 for문 -->
 						
+						<% } %> <!-- if문 -->
 						<!--  -->
 					</div>
 					<script type="text/javascript">

@@ -12,8 +12,7 @@
 	int endPage = pi.getEndPage();
 	
 	int p; //페이징
-	
-	System.out.println(c.get(0));
+
 %>
 <!DOCTYPE html>
 <html>
