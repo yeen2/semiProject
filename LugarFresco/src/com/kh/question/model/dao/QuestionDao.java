@@ -310,6 +310,7 @@ public class QuestionDao {
 			close(rset);
 			close(pstmt);
 		}
+		
 		return result;
 		
 	}

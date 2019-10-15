@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import = "com.kh.question.model.vo.Question"%>
+    pageEncoding="UTF-8" import = "com.kh.question.model.vo.QnAList"%>
 <%
-	Question q = (Question)request.getAttribute("result");
-	String[] nameNo = q.getQ_writer().split(",");
+	QnAList q = (QnAList)request.getAttribute("result");
+	String[] nameNo = q.getNickname().split(",");
 %>
 <style>
 	td .input{
@@ -60,7 +60,7 @@
 				<label class="control-label">내용</label>
 				<div class="form-control" style="width:427px; height:386px;" readonly>
 					<%=q.getQ_content() %>
-					<%if("Y".equals(q.getIsAnswer())){ %>
+					<%if("Y".equals(q.getIsanswer())){ %>
 						<br>
 		---------------------&nbsp;&nbsp;re&nbsp;&nbsp;&nbsp;----------------------
 						<br>
@@ -80,7 +80,7 @@
 			<button class="btn btn-primary"  onclick="location.href='<%=conPath %>/selectQuestion.qu?q_no=<%=q.getQ_no() %>&info=update';" ><i class="fa fa-comment-o" aria-hidden="true"></i>수정하기</button>
 			<button class="btn btn-primary" onclick="location.href='<%=conPath %>/q_list.qu?q_no=<%=q.getQ_no() %>';" style="margin-left:10px" ><i class="fa fa-scissors" aria-hidden="true"></i>삭제하기</button>
 			<button class="btn btn-secondary"  onclick="location.href='<%=conPath %>/q_list.qu';" style="margin-left:92px"><i class="fa fa-fw fa-lg fa-times-circle"></i>취소하기</button>
-		<%}else if(loginUser.getNickName().equals("admin")){ %>
+		<%}else if(loginUser.getLoginType().equals("admin")){ %>
 			<button class="btn btn-primary" onclick="location.href='<%=conPath%>/selectQuestion.qu?q_no=<%=q.getQ_no() %>&m_no=<%=loginUser.getM_no() %>&info=reply';"><i class="fa fa-comment-o" aria-hidden="true"></i>답글달기</button>
 			<button class="btn btn-secondary"  onclick="location.href='<%=conPath %>/q_list.qu';" style = "margin-left:10px"><i class="fa fa-fw fa-lg fa-times-circle"></i>취소하기</button>
 		<%}else{ %>

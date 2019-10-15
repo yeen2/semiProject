@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import = "com.kh.question.model.vo.Question"%>
+    pageEncoding="UTF-8" import = "com.kh.question.model.vo.QnAList"%>
 <%
-	Question q = (Question)request.getAttribute("result");
-	String[] nameNo = q.getQ_writer().split(",");
+	QnAList q = (QnAList)request.getAttribute("result");
+	String[] nameNo = q.getNickname().split(",");
 %>
 <style>
 div .btn{

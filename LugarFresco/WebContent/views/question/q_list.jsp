@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="java.util.ArrayList,com.kh.question.model.vo.Question,com.kh.question.model.vo.PageInfo"%>
+	import="java.util.ArrayList,com.kh.question.model.vo.QnAList,com.kh.question.model.vo.PageInfo"%>
 <%
 @SuppressWarnings("unchecked")// ArrayList<Question> 자료형 오류 잡는 코드
-	ArrayList<Question> q_list = (ArrayList<Question>)request.getAttribute("q_list"); // q_list뿌려줄 Question 객체, 서블릿QuestionlistSerlet으로부터온거임
+	ArrayList<QnAList> q_list = (ArrayList<QnAList>)request.getAttribute("q_list"); // q_list뿌려줄 Question 객체, 서블릿QuestionlistSerlet으로부터온거임
 	PageInfo pi = (PageInfo)request.getAttribute("pi"); //페이지 처리하기위한 변수들이 담겨있는 PageInfo객체, QuestionListServlet으로 부터 온거다.
 	int currentPage=pi.getCurrentPage(); // 현재페이지
 	int listCount=pi.getListCount(); 	 // 총 리스트 갯수
@@ -14,6 +14,8 @@
 	int boardLimit=pi.getBoardLimit();	 // 브라우저 page에서 한계 게시판 변수
 	int startQuestion = pi.getStartQuestion();// No를 순서대로 하기위해 만든 변수들 브라우저 한page에서 Question의 시작 할 변수 
 	int endQuestion = pi.getEndQuestion();	  // 끝나는 Question갯수
+	String word = (String)request.getAttribute("word");
+	String search = (String)request.getAttribute("search");
 %>
 <!DOCTYPE html>
 <html>
@@ -21,16 +23,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style>
 .page-item .page-link { /* 부트스트랩 오버라이딩 원리는 가중치로인한 것으로 부모선택자와 자식선택자의 가중치를 더한것이 부트스트랩 선택자보다 가중치가 높아지면 선택되어진다.*/ 
-	width: 34.8px;	/* css 한것들 브라우저 f12로 부트스트랩 찾은다음에 복사 붙여넣기하면 된다.*/
-	font-size: 15px;
+		/* css 한것들 브라우저 f12로 부트스트랩 찾은다음에 복사 붙여넣기하면 된다.*/
 	border: 1px solid #fff;
-	position: relative;
-	display: block;
-	padding: 0.5rem 0.75rem;
-	margin-left: -1px;
-	line-height: 1.25;
-	color: #007bff;
-	background-color: #fff;
 }
 .pagination #onelt{
 	color:#777777;
@@ -47,7 +41,7 @@
 
 </style>
 </head>
-<body id="bootstrap-overrides"> <!-- 부트스트랩 오버라이딩을 쓰기위한 준비작업 이것만 하면 오버라이딩 을 쓸수있다. 부트스트랩 연결해야되는것 같음 -->
+<body id="bootstrap-overrides">
 <%@ include file="../includes/main/header.jsp"%>
 
 	<!-- start banner Area -->
@@ -65,7 +59,7 @@
 
 	<!-- End banner Area -->
 
-	<div class="container" style="border: 1px solid white; height: 800px;">
+	<div class="container h-100" style="border: 1px solid white; height: 800px;">
 		<br><br>
 		<table style="border: 1px solid #dddddd;" class="table" id="detail">
 		<tr>
@@ -93,12 +87,12 @@
 					<tr>
 						<td name="q_no" value="<%=q_list.get(10-j).getQ_no()%>" style="text-align: center;"><%=listCount-i+1 %></td>
 						<td style="text-align: center;">
-							<%if(q_list.get(j-1).getIsAnswer().equals("Y")){ %>
+							<%if(q_list.get(j-1).getIsanswer().equals("Y")){ %>
 								re)
 							<%} %>
 							<%=q_list.get(j-1).getQ_title()%>
 						</td>
-						<td style="text-align: center;"><%=q_list.get(j-1).getQ_writer()%></td>
+						<td style="text-align: center;"><%=q_list.get(j-1).getNickname()%></td>
 						<td style="text-align: center;"><%=q_list.get(j-1).getQ_date() %></td>
 						<input type ="hidden" name="q_no" value="<%=q_list.get(j-1).getQ_no()%>">
 					</tr>
@@ -113,7 +107,7 @@
 				<tr>
 					<td style="text-align: center;"><%=listCount-i+1 %></td>		
 					<td style="text-align: center;"><%=q_list.get(j-1).getQ_title()%></td>
-					<td style="text-align: center;"><%=q_list.get(j-1).getQ_writer()%></td>
+					<td style="text-align: center;"><%=q_list.get(j-1).getNickname()%></td>
 					<td style="text-align: center;"><%=q_list.get(j-1).getQ_date() %></td> 
 					<input type ="hidden" name="q_no" value="<%=q_list.get(j-1).getQ_no()%>">
 				</tr>
@@ -146,7 +140,8 @@
 		</select>
 		
 		<input class="form-control col-md-3" type="text" name="word" >
-		<button class="btn btn-primary btn-md col-md-1"><i class="fa fa-check" aria-hidden="true"></i>검색</button>
+		<button class="btn btn-primary btn-md col-md-1 initialism"><i class="fa fa-check" aria-hidden="true"></i>검색</button>
+		
 			<%if(loginUser != null){%>
 				<button type="button" class="btn btn-primary btn-md col-md-offset-2 col-md-1"
 				onclick="location.href='<%=conPath %>/q_insertForm.qu?m_no=<%= loginUser.getM_no() %>'"><i class="fa fa-fw fa-lg fa-check-circle">
@@ -155,10 +150,12 @@
 			<%} %>
 	</div>
 </form>
+<%pageContext.setAttribute("word", word); %>
 <br><br><br>
 <!-- ---------------------페이지 처리!!------------------ -->
 <!--  수업시간에 했으므로 패스 -->
 		<div class="box-container">
+			<%if(listCount!=0 && word==null){ %>
 			<ul class="pagination" style="justify-content: center;">
 				<li class="page-item"><a class="page-link" onclick='location.href="<%=conPath%>/q_list.qu?currentPage=<%=1%>";'>&lt;&lt;</a></li>
 				<%if(currentPage==1){ %>
@@ -197,8 +194,51 @@
 						</a>
 					</li>
 				</ul>
+				<%}else if(word!=null && listCount!=0){%>
+					<ul class="pagination" style="justify-content: center;">
+				<li class="page-item"><a class="page-link" onclick='location.href="<%=conPath%>/q_list.qu?currentPage=<%=1%>&word=<%=word %>&search=<%=search %>";'>&lt;&lt;</a></li>
+				<%if(currentPage==1){ %>
+					<li class="page-item"><button id="onelt" class="page-link" onclick='location.href="<%=conPath%>/q_list.qu?currentPage=<%=currentPage-1%>&word=<%=word %>&search=<%=search %>";' disabled>&lt;</button></li>
+				<%}else{ %>
+				<li class="page-item"><a class="page-link" onclick='location.href="<%=conPath%>/q_list.qu?currentPage=<%=currentPage-1%>&word=<%=word %>&search=<%=search %>";'>&lt;</a></li>
+				<%} %>
+				<%for(int i = startPage; i<=endPage; i++){ %>
+					<%if(i == currentPage){ %>
+						<li class="page-item"><button class="page-link" 
+						onclick='location.href="<%=conPath%>/q_list.qu?currentPage=<%=i%>&word=<%=word %>&search=<%=search %>";' 
+						disabled style="color:007bff;"><%=i %></button></li>
+					<%}else{ %>
+						<li class="page-item">
+							<a class="page-link" onclick='location.href="<%=conPath%>/q_list.qu?currentPage=<%=i%>&word=<%=word %>&search=<%=search %>";'><%=i %>
+							</a>
+						</li>
+					<%} %>
+				<%} %>
+				<%if(currentPage==maxPage){ %>
+					<li class="page-item">
+						<button id="lastgt" class="page-link"
+						onclick='location.href="<%=conPath%>/q_list.qu?currentPage=<%=currentPage+1%>&word=<%=word %>&search=<%=search %>";' disabled>&gt;
+						</button>
+					</li>
+				<%}else{ %>
+					<li class="page-item">
+						<a class="page-link"
+						onclick='location.href="<%=conPath%>/q_list.qu?currentPage=<%=currentPage+1%>&word=<%=word %>&search=<%=search %>";' >&gt;
+						</a>
+					</li>
+				<%} %>
+					<li class="page-item">
+						<a class="page-link"
+						onclick='location.href="<%=conPath%>/q_list.qu?currentPage=<%=maxPage%>&word=<%=word %>&search=<%=search %>";'>&gt;&gt;
+						</a>
+					</li>
+				</ul>
+				<%}else{ %>
+				
+				<%} %>
+				<br>
 			</div>
 		</div>
-	<%@ include file="../includes/main/footer.jsp"%> --%>
+	<%@ include file="../includes/main/footer.jsp"%>
 </body>
 </html>

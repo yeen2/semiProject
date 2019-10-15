@@ -32,14 +32,12 @@ public class QuestionDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// ----------------------------------delete기능!!-------------------------------------
 		int q_no = Integer.parseInt(request.getParameter("q_no"));
 		QnAList result = new QuestionService().selectDetailQuestion(q_no);
 		request.setAttribute("result", result);
 		//---------------------------------로그인 안하면 jsp로 안가고 에러페이지 가게끔 -------------------
 		HttpSession session = request.getSession();
 		Member loginUser = (Member)session.getAttribute("loginUser");
-		System.out.println(loginUser);
 		int m_no =0;
 		if(loginUser!=null) {
 		m_no = loginUser.getM_no();

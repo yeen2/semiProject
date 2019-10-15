@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.question.model.vo.Question"%>
-<% Question q= (Question)request.getAttribute("result"); 
+    pageEncoding="UTF-8" import="com.kh.question.model.vo.QnAList"%>
+<% QnAList q= (QnAList)request.getAttribute("result"); 
 	String q_title=q.getQ_title();
-	String [] nickName = q.getQ_writer().split(",");
+	String [] nickName = q.getNickname().split(",");
 	String q_content = q.getQ_content();
 %>
 <!DOCTYPE html>
