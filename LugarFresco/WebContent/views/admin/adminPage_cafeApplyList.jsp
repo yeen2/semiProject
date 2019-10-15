@@ -81,6 +81,7 @@
 			<button type="submit" class="btn btn-outline-secondary my-2 my-sm-0">검색</button>
 		</form>
 	</div>
+	
 	<div style="height: 50%;">
 		<table class="table"
 			style="text-align: center; border: 1px solid #dddddd; margin-top: 50px;">

@@ -32,8 +32,6 @@ public class AdminPage_powerListServlet extends HttpServlet {
 		if (request.getParameter("kinds") != null && request.getParameter("search") != null) {
 
 			int listCount = new AdminPageService().getPowerLinkCount();
-
-			System.out.println(listCount);
 			
 			// currentPage : 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
 			int currentPage = 1; // 占썩본占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 1占쏙옙占쏙옙 占쏙옙占쏙옙占싹깍옙 占쏙옙占쏙옙占쏙옙.
@@ -109,9 +107,9 @@ public class AdminPage_powerListServlet extends HttpServlet {
 
 				list = new AdminPageService().selectPowerLinkCafeNameSearch(search);
 			}
-			
-			
+
 			if(list.isEmpty()) {
+				
 				String hidden = "hidden";   
 				request.setAttribute("buttonhidden", hidden);
 				request.setAttribute("pi", pi);
@@ -124,15 +122,13 @@ public class AdminPage_powerListServlet extends HttpServlet {
 				request.getRequestDispatcher("views/admin/adminPage_memberList.jsp").forward(request, response);
 			
 			}else {
+				
 				String hidden = "hidden";
 				request.setAttribute("buttonhidden", hidden);
 				request.setAttribute("pi", pi);
 				request.setAttribute("list", list);
 				int result = new AdminPageService().PowerLinkCount();
 				request.setAttribute("result", result);
-
-				System.out.println(
-						"===================================================================================================================================");
 
 				request.getRequestDispatcher("views/admin/adminPage_powerList.jsp").forward(request, response);
 

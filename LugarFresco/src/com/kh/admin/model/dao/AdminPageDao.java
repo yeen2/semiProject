@@ -1203,10 +1203,7 @@ public ArrayList<Member> selectMemberList(Connection conn, PageInfo pi) {
 			pstmt = conn.prepareStatement(sql);
 			
 			result = pstmt.executeUpdate();
-			
-			System.out.println("=================================================");
-			System.out.println(result);
-			System.out.println("=================================================");
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block 
 			e.printStackTrace();
@@ -1216,12 +1213,40 @@ public ArrayList<Member> selectMemberList(Connection conn, PageInfo pi) {
 			JDBCTemplate.close(pstmt);
 		
 		}
-		
-		
-		return result;
 	
-
+		return result;
 	}
+	
+	
+	
+	// 카페업로드시, 해당 m_no에 사장권한으로 바꾸기
+	public int updateIsOwner(Connection conn, String arr) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;		
+		String sql = "update member m set isowner='Y' where m.m_no=(select m_no from cafe where c_no in ("+arr+")";
+
+		try {
+		
+			pstmt = conn.prepareStatement(sql);
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block 
+			e.printStackTrace();
+	
+		} finally {
+		
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+	
+	
+	
+	
+	
+	
 
 	public ArrayList<QnAList> selectQnAList(Connection conn, PageInfo pi) {
 		

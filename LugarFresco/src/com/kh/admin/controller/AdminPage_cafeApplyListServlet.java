@@ -125,9 +125,7 @@ public class AdminPage_cafeApplyListServlet extends HttpServlet {
 				request.setAttribute("buttonhidden", hidden);
 				request.setAttribute("pi", pi);
 				request.setAttribute("list", list);
-				System.out.println(
-						"===================================================================================================================================");
-
+			
 				request.getRequestDispatcher("views/admin/adminPage_cafeApplyList.jsp").forward(request, response);
 
 			}

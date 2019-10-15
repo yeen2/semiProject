@@ -81,7 +81,7 @@ public class MyPage_insertCafeServlet extends HttpServlet {
 				int mno = loginUser.getM_no();
 				
 				String cafeName = multiRequest.getParameter("cafeName");
-				String address = "(" + multiRequest.getParameter("content1") + ") " + multiRequest.getParameter("content2") + multiRequest.getParameter("content4");
+				String address = multiRequest.getParameter("content2") + multiRequest.getParameter("content4");
 				String addressDetail = multiRequest.getParameter("content3");
 				String phone = multiRequest.getParameter("cafeTel");
 				String content = multiRequest.getParameter("cafeInfo");

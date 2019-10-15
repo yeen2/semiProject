@@ -16,22 +16,14 @@ import com.kh.admin.model.service.AdminPageService;
 public class AdminPage_cafeApplyRegistrationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public AdminPage_cafeApplyRegistrationServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String arr = request.getParameter("arr");
-		
-		
+
 		int result = new AdminPageService().cafeRegistraion(arr);
 		
 		if(result > 0) {
@@ -41,9 +33,6 @@ public class AdminPage_cafeApplyRegistrationServlet extends HttpServlet {
 		
 		}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

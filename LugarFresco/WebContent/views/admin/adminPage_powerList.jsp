@@ -15,10 +15,6 @@
 	String str = "";
 	
 	//String msg2 = (String)request.getAttribute("message");
-	
-	System.out.println(msg);
-	
-	System.out.println("dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
 
 	int currentPage = pi.getCurrentPage();
 	int maxPage = pi.getMaxPage();
@@ -99,8 +95,8 @@
 					<th style="background-color: #fafafa; text-align: center;">No.</th>
 					<th style="background-color: #fafafa; text-align: center;">카페명</th>
 					<th style="background-color: #fafafa; text-align: center;">신청자</th>
-					<th style="background-color: #fafafa; text-align: center;">등록날짜</th>
 					<th style="background-color: #fafafa; text-align: center;">신청날짜</th>
+					<th style="background-color: #fafafa; text-align: center;">등록날짜</th>
 					<th style="background-color: #fafafa; text-align: center;">상태여부</th>
 					<th style="background-color: #fafafa; text-align: center;">파워링크 등록여부</th>
 				</tr>
@@ -112,16 +108,21 @@
 					<td style="padding-top:15px;"><p style="margin: 0px;" id = "profile"><%=p.getCafe_name()%></p></td>
 					<td style="padding-top:15px;"><a class="announce" data-toggle="modal" ><%=p.getNickname() %></a></td>
 					<td style="padding-top:15px;"><%=p.getReg_date()%></td>
-					<td style="padding-top:15px;"><%=p.getUpload_date()%></td>
+					<td style="padding-top:15px;">
+						<% if(p.getUpload_date() == null){ %>
+							
+						<% }else{ %>
+							<%=p.getUpload_date()%>
+						<% } %>
+					</td>
+ 				 	
  				 	<% if(p.getStatus()==1){
 														str = "등록전";
 													}else if(p.getStatus() == 2){
 															str = "등록중";
 														}else{
 															str = "등록완료";
-														}%> 
-														 
-												
+														}%> 					
 					<td class="td3" style="padding-top:15px;" ><%=str%></td>
 					<td width="300">
 					

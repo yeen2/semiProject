@@ -619,19 +619,19 @@ public class AdminPageService {
 	}
 
 	public int cafeRegistraion(String arr) {
-		
+		int result = 0;
 		Connection conn = JDBCTemplate.getConnection();
 		
-		int result = new AdminPageDao().cafeRegistraion(conn, arr);
+		int result1 = new AdminPageDao().cafeRegistraion(conn, arr);
+		// 사장님으로 승급
+		int result2 = new AdminPageDao().updateIsOwner(conn, arr);
 		
-		if(result > 0) {
-		
-			JDBCTemplate.commit(conn);	
+		if(result1 > 0 && result2>0) {
+			JDBCTemplate.commit(conn);
+			result = 1;
 			
 		}else {
-		
 			JDBCTemplate.rollback(conn);
-	
 		}
 		
 		JDBCTemplate.close(conn);
