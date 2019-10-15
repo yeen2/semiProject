@@ -20,8 +20,6 @@ import javax.servlet.http.HttpSession;
 import com.kh.member.model.service.MemberService;
 import com.kh.member.model.vo.Member;
 
-
-
 @WebServlet("/searchPass.me")
 public class SearchPassServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -52,8 +50,8 @@ public class SearchPassServlet extends HttpServlet {
 		String mailProtocol = "smtp";
 		String mailHost = "smtp.naver.com";
 		String mailPort = "587";
-		String mailId = "jang_test@naver.com"; // 구글계정
-		String mailPassword = "3288aall!"; // 구글계정 비밀번호
+		String mailId = "jang_test@naver.com"; 
+		String mailPassword = "3288aall!"; 
 
 		String fromName = "Lugar Fresco";
 		String fromEmail = "jang_test@naver.com"; // 보내는 사람 메일
@@ -65,8 +63,6 @@ public class SearchPassServlet extends HttpServlet {
 		String debugMode = "false";
 		String authMode = "true";
 
-		
-		
 		if(result > 0) { // 임시비밀번호로 변경 성공시
 				
 			try {
@@ -152,7 +148,7 @@ public class SearchPassServlet extends HttpServlet {
 		int idx = 0;
 		StringBuffer sb = new StringBuffer();
 		
-		System.out.println("charSet.length :::: " + charSet.length);
+		//System.out.println("charSet.length :::: " + charSet.length);
 		for (int i = 0; i < len; i++) {
 			idx = (int) (charSet.length * Math.random()); // 36 * 생성된 난수를 Int로 추출 (소숫점제거) System.out.println("idx ::::
 															// "+idx);
