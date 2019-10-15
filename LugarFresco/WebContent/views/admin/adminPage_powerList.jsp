@@ -119,6 +119,8 @@
                
                   <form action="<%=request.getContextPath()%>/powerCk2.ap" value="d">
                      <input type="hidden" value ="<%=p.getP_no() %>">
+                     <input type="hidden" value ="<%=p.getC_no() %>">
+                     
                      <input type="radio" name="registration" value="1">등록전 &nbsp;&nbsp;
                      <input type="radio" name="registration" value="2">등록중 &nbsp;&nbsp;
                      <input type="radio" name="registration" value="3">등록완료 &nbsp;&nbsp;
@@ -143,16 +145,18 @@
       
       $(function(){
          $(".bbtn").click(function(){   
-         
-            
+
          var this_btn = this;
+         // 상태값
          var ck = $(this).siblings("input:checked").val();
+         // P_NO
          var no = $(this).siblings().eq(0).val();
-         console.log(ck)
-         console.log(no)
+         // c_no
+          var c_no = $(this).siblings().eq(1).val();
+
              $.ajax({
                url:"powerCk2.ap",    
-               data:{radio:ck, Mno:no}, 
+               data:{radio:ck, Mno:no, c_no:c_no}, 
                type:"GET",
                success:function(result){
                

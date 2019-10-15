@@ -1224,7 +1224,8 @@ public class AdminPageDao {
 		return result;
 
 	}
-
+	
+	// 파워링크 상태 1->2로 바꾸기
 	public int powerLinkStatusChange(Connection conn, int ck, int no) {
 
 		int result = 0;
@@ -1254,6 +1255,48 @@ public class AdminPageDao {
 		return result;
 
 	}
+	
+	// 해당 카페 isPower='Y'로 변경
+	public int updateMemberPowerY(Connection con, int c_no) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = "update cafe set ispower='Y' where c_no=?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, c_no);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+		
+	}
+	
+	public int updateMemberPowerN(Connection con, int c_no) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = "update cafe set ispower='N' where c_no=?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, c_no);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+	
+	
 
 	public int getReviewList(Connection conn) {
 		// TODO Auto-generated method stub

@@ -673,16 +673,28 @@ public class AdminPageService {
 
 		return list;
 	}
-
-	public int powerLinkStatusChange(int ck, int no) {
+	
+	// 파워링크 상태 바꾸는 메소드
+	public int powerLinkStatusChange(int ck, int no, int c_no) {
+		int result = 0;
 
 		Connection conn = JDBCTemplate.getConnection();
 
-		int result = new AdminPageDao().powerLinkStatusChange(conn, ck, no);
-
-		if (result > 0) {
+		int result1 = new AdminPageDao().powerLinkStatusChange(conn, ck, no);
+		int result2 = 0;
+		
+		if(ck == 2) {  //파워링크 등록
+			result2 = new AdminPageDao().updateMemberPowerY(conn, c_no);
+			
+		}else if(ck == 1 || ck == 3){
+			result2 = new AdminPageDao().updateMemberPowerN(conn, c_no);
+		}
+		
+		
+		if (result1 > 0 && result2>0) {
 
 			JDBCTemplate.commit(conn);
+			result = 1;
 
 		} else {
 
