@@ -264,24 +264,9 @@ table {
 
 
 		<%-- 회원가입 동의 체크 이벤트 --%>
-		<script>
-		    $(".box button").attr("disabled", true);
-
-			$("#chk,#infoagree,#mailagree").on('click', function() {
-
-				var chk = $('#chk').prop("checked");
-				var infoagree = $('#infoagree').prop("checked");
-				var mailagree = $('#mailagree').prop("checked");
-
-				if (chk && infoagree && mailagree) {
-					$(".box button").removeAttr("disabled");
-				} else {
-				 	$(".box button").attr("disabled", true); 
-				}
-			});
-		</script>
 		
 		<script>
+			var emailB = false; 
 			$("#email").on("input", function(){
 				var email = $("#email").val();
 				
@@ -300,7 +285,7 @@ table {
 								$("#emailCheck3").css("display", "none");
 								$("#emailCheck1").css({"color":"#1DDB16", "font-weight":"bold"});
 								
-								$(".box button").removeAttr("disabled", true);
+								emailB = true;
 							}else{
 								$("#emailCheck2").css("display", "block");
 								$("#emailCheck1").css("display", "none");
@@ -337,6 +322,7 @@ table {
 				
 			});
 			
+			var nickNameB = false;
 			$("#nickName").on("input", function(){
 				var nickName = $("#nickName").val();
 				
@@ -355,14 +341,13 @@ table {
 								$("#nickNameCheck3").css("display", "none");
 								$("#nickNameCheck1").css({"color":"#1DDB16", "font-weight":"bold"});
 								
-								$(".box button").removeAttr("disabled", true);
+								nickNameB = true;
 							}else{
 								$("#nickNameCheck3").css("display", "none");
 								$("#nickNameCheck2").css("display", "block");
 								$("#nickNameCheck1").css("display", "none");
 								$("#nickNameCheck2").css({"color":"red", "font-weight":"bold"});
 								
-								$(".box button").attr("disabled", true);
 							}
 							
 							if(nickName == ""){
@@ -391,6 +376,7 @@ table {
 				
 			});
 			
+			var passB = false;
 			$("#pass, #pass2").on("input", function(){
 				var pass = $("#pass").val();
 				var pass2 = $("#pass2").val();
@@ -405,6 +391,8 @@ table {
 							if(result == "1"){
 								$("#passCheck").css("color", "#1DDB16");
 								$("#pass2Check").css("color", "#1DDB16");
+								
+								passB = true;
 							}else{
 								$("#passCheck").css("color", "gray");
 								$("#pass2Check").css("color", "gray");
@@ -424,6 +412,23 @@ table {
 					$("#pass2Check").css("color", "gray");
 				}
 				
+			});
+		</script>
+		
+		<script>
+		    $(".box button").attr("disabled", true);
+
+			$("#chk,#infoagree,#mailagree").on('click', function() {
+
+				var chk = $('#chk').prop("checked");
+				var infoagree = $('#infoagree').prop("checked");
+				var mailagree = $('#mailagree').prop("checked");
+
+				if (chk && infoagree && mailagree && emailB && nickNameB && passB) {
+					$(".box button").removeAttr("disabled");
+				} else {
+				 	$(".box button").attr("disabled", true); 
+				}
 			});
 		</script>
 
