@@ -89,9 +89,11 @@
 					type:"post",
 					data:{rno:rno},
 					success:function(result){
+						var $rlikeDiv = $("#review-like");
 						
 						if(result == "1"){
 							alert("적용되었습니다!");
+							$rlikeDiv.html("");
 							selectLikeList();
 							
 						}else{
@@ -117,6 +119,10 @@
 				success:function(list){
 					
 					if(list.length == 0){
+						var $rlikeDiv = $("#review-like");
+						
+						$rlikeDiv.html("");
+						
 						var $noData = $("<div>").attr("id", "noData");
 						$noData.append($("<div>").append("<i class='fa fa-coffee' aria-hidden='true' style='font-size:50px; line-height:80px; color:#c2c2c2; margin-bottom:-20%;'></i>"));
 						$noData.append($("<div>").append("<p style='color:#c2c2c2;'>좋아요한 리뷰가 없습니다!<br>리뷰에 좋아요를 눌러주세요!</p>"));
