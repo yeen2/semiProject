@@ -53,7 +53,6 @@ public class MyPage_insertCafeServlet extends HttpServlet {
 				String root = request.getSession().getServletContext().getRealPath("/resources");
 				
 				String savePath = root + "/fileupload/cafe/";
-				String savePath2 = root + "/fileupload/reg/";
 				
 				MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 				
@@ -82,7 +81,7 @@ public class MyPage_insertCafeServlet extends HttpServlet {
 				int mno = loginUser.getM_no();
 				
 				String cafeName = multiRequest.getParameter("cafeName");
-				String address = multiRequest.getParameter("content1") + multiRequest.getParameter("content2") + multiRequest.getParameter("content4");
+				String address = "(" + multiRequest.getParameter("content1") + ") " + multiRequest.getParameter("content2") + multiRequest.getParameter("content4");
 				String addressDetail = multiRequest.getParameter("content3");
 				String phone = multiRequest.getParameter("cafeTel");
 				String content = multiRequest.getParameter("cafeInfo");
@@ -97,11 +96,7 @@ public class MyPage_insertCafeServlet extends HttpServlet {
 					CafeImg ci = new CafeImg();
 					
 					ci.setImg_name(changeFiles.get(i));
-					if(i == 0) {
-						ci.setImg_path(savePath2);
-					}else {
-						ci.setImg_path(savePath);
-					}
+					ci.setImg_path(savePath);
 					
 					brName = originFiles.get(0);
 					brUpName = changeFiles.get(0);
@@ -124,7 +119,7 @@ public class MyPage_insertCafeServlet extends HttpServlet {
 				c.setContent(content);
 				c.setBr_name(brName);
 				c.setBr_up_name(brUpName);
-				c.setBr_path(savePath2);
+				c.setBr_path(savePath);
 				
 				
 				int result = new MyPageService().insertCafe(c, list);
@@ -137,9 +132,7 @@ public class MyPage_insertCafeServlet extends HttpServlet {
 					
 					for(int i=0; i<changeFiles.size(); i++) {
 						File failedFile = new File(savePath + changeFiles.get(i));
-						File failedFile2 = new File(savePath2 + changeFiles.get(i));
 						failedFile.delete();
-						failedFile2.delete();
 					}
 					
 					request.setAttribute("msg", "카페 등록 신청에 실패하였습니다.");

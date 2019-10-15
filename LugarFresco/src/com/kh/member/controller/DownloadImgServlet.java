@@ -37,10 +37,10 @@ public class DownloadImgServlet extends HttpServlet {
 		int cno = Integer.parseInt(request.getParameter("cno"));
 		
 		Cafe file = new MyPageService().selectBrImgSelect(cno);
-		System.out.println(file);
+		
 		String root = request.getSession().getServletContext().getRealPath("/resources");
 		
-		String filePath = root + "/fileupload/reg/";
+		String filePath = root + "/fileupload/cafe/";
 		
 		// 다운로드 하고자 하는 파일 객체 생성
 		File downFile = new File(filePath + file.getBr_up_name());

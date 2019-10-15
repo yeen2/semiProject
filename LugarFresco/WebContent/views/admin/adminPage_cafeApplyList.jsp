@@ -92,6 +92,7 @@
 					<th style="background-color: #fafafa; text-align: center;">신청날짜</th>
 					<th style="background-color: #fafafa; text-align: center;">등록날짜</th>
 					<th style="background-color: #fafafa; text-align: center;">카페 등록 여부</th>
+					<th style="background-color: #fafafa; text-align: center;">사업자 등록증</th>
 				</tr>
 				<%if(msg == null){ %>
  				<%for(Cafe c : list) { %>
@@ -104,6 +105,9 @@
 					<td><%=c.getReg_date() %></td>
 					<td><%=c.getUpload_date()%></td>
 					<td><%=c.getIsUpload() %></td>
+					<td>
+						<a class="btn btn-secondary" type="button" href="<%=conPath%>/download.mp?cno=<%=c.getC_no()%>">다운로드</a>
+					</td>
 				</tr>
 
 					<%} %>
