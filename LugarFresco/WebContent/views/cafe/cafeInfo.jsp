@@ -347,8 +347,13 @@
 									<div>
 										<div class="col-3"
 											style="width: 80px; height: 80px; float: left; margin: 5px; padding:0;">
+											<a data-toggle="modal" style="margin: auto;" id="review_img_detail">
+											
+											<input type="hidden" value="<%=r.get(i).getImgList().get(j).getImg_name() %>">
 											<img style="width: 100%; height: 100%; display: cover;"
 												src="<%=conPath%>/resources/fileupload/review/<%=r.get(i).getImgList().get(j).getImg_name() %>">
+											
+											</a>
 										</div>
 									</div>
 									<% } %> <!-- 리뷰이미지 for문 -->
@@ -479,7 +484,6 @@
 								
 								if(login == "null"){
 									alert("로그인 후 이용가능합니다.");
-									
 								}else{
 									
 									if($(this).hasClass("btn-outline-danger")){ //색없으면
@@ -490,11 +494,29 @@
 										
 									}else{
 										alert("이미 신고하신 리뷰입니다!");
-									}
-									
-									 
+									} 
 								}
 							});
+							
+							
+							// 리뷰사진 상세보기
+							$(document).on("click", "#review_img_detail", function(){
+								
+								var this_img = this;
+								var this_src = $(this).children().eq(1).attr('src');
+								
+								console.log(this_src);
+								
+								// 모달 hidden에 val값으로 넣어주기
+								//$("#review_img_name").val(img);
+								$("#img_spot").attr('src',this_src);
+								
+								//열기
+								$('#reviweImgModal').modal("show");
+								
+							});
+							
+							
 							
 					</script>
 					
@@ -693,6 +715,51 @@
 								
 							</script>
 						</form>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		<!----------------------------------------- 리뷰사진 디테일  ---------------------------------------------->
+
+		<div class="modal fade" id="reviweImgModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true"
+					data-keyboard="false" data-backdrop="static">
+			<div class="modal-dialog">
+				<div class="modal-content">
+				
+					<div class="modal-header">
+						<h5 class="modal-title" id="modal">Lugar Fresco</h5>
+						<!-- 닫기버튼 -->
+						<button class="close btn" type="button" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+
+					<div class="modal-body">
+					
+						<div class="form-group" style="margin: auto; width: 350px; height: 350px;">
+							<img style="width: 100%; height: 100%; margin: auto;" 
+								id="img_spot" >
+							<input type="hidden" id="review_img_name">
+						</div>
+						
+						
+						<div class="modal-footer">
+						
+						</div>
+						
+						
+						<script type="text/javascript">
+							//신고모달창 닫기
+							$("#img_close, .close").click(function() {
+								$('#reviweImgModal').modal("hide");
+							});
+				
+						</script>
+					
 						
 					</div>
 				</div>
