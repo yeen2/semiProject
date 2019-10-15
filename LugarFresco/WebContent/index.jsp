@@ -31,7 +31,7 @@
 			</section>
 			<!-- End banner Area -->
 
-			<!-- 1. 조회수높은 3개 목록(즐겨찾기 수도 추가?) : selectOrderByCount -->
+			<!-- 1. 조회수높고, 즐겨찾기 많은 3개 목록 : selectOrderByCount -->
 			<section class="popular-destination-area section-gap">
 				<div class="container">
 				
@@ -74,7 +74,7 @@
 			</section>
 		
 
-			<!-- 2. 평점 좋고, 조회수 많은  8개 리스트 -->
+			<!-- 2. 평점 좋고, 즐겨찾기 많은  8개 리스트 -->
 			<section class="other-issue-area section-gap">
 				<div class="container">
 		            <div class="row d-flex justify-content-center">
