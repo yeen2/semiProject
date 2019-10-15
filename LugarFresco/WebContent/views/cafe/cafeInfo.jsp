@@ -731,7 +731,7 @@
 				<div class="modal-content">
 				
 					<div class="modal-header">
-						<h5 class="modal-title" id="modal">Lugar Fresco</h5>
+						<h5 class="modal-title" id="modal">LugarFresco</h5>
 						<!-- 닫기버튼 -->
 						<button class="close btn" type="button" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
@@ -753,7 +753,7 @@
 						
 						
 						<script type="text/javascript">
-							//신고모달창 닫기
+							//리뷰창 닫기
 							$("#img_close, .close").click(function() {
 								$('#reviweImgModal').modal("hide");
 							});
