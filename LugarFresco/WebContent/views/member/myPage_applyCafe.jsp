@@ -121,10 +121,9 @@
 	               
 	                <div class="form-group">
 	                  <label class="control-label">카페 정보</label>
-	                  <textarea class="form-control" id="cafeInfo" name="cafeInfo" rows="4" placeholder="카페의 상세정보를 입력해주세요"></textarea>
+	                  <textarea class="form-control" id="cafeInfo" name="cafeInfo" rows="4"></textarea>
 	                </div>
-	              
-	            
+	                
 	            
 	                <div class="form-group">
 	                  <div class="form-check">
@@ -156,12 +155,12 @@
         
    	</main>
     
-    <script type="text/javascript">
- 		CKEDITOR.replace('cafeInfo'
-  					    , {height: 500                                                  
-               		  });
-	</script>
 
+	<script type="text/javascript">
+	 		CKEDITOR.replace('cafeInfo'
+	  					    , {height: 500                                                  
+	               		  });
+	</script>
 
     <%-- 카페 주소 API --%>
 	<script>
@@ -273,6 +272,7 @@
 	
 	<%-- 카페 등록 유효성 검사 --%>
 	<script>
+		
 		function validate(){
 			
 			if($("#cafeName").val().trim() == ""){
@@ -314,10 +314,10 @@
 				return false;
 			}
 			
-			if($("#cafeInfo").val().trim() == ""){
+			var vvv = CKEDITOR.instances.cafeInfo.getData();
+			if(vvv == ""){
 				alert("카페 정보를 입력해주세요.");
-				location.href="#cafeInfo";
-				$("#cafeInfo").val("").focus();
+				
 				return false;
 			}
 			

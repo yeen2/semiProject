@@ -67,14 +67,13 @@
 			      <th scope="col">카페 NO.</th>
 			      <th scope="col">카페명</th>
 			      <th scope="col">내용</th>
-			      <th scope="col">내 댓글 내용</th>
 			      <th scope="col">등록 날짜</th>
 			    </tr>
 			  </thead>
 			  <tbody>
 			  <% if(list.isEmpty()){ %>
 			  	<tr>
-			  		<th colspan="5">조회 가능한 리스트가 없습니다!</th>
+			  		<th colspan="4">조회 가능한 리스트가 없습니다!</th>
 			  	</tr>
 			  <% }else{ %>
 			  
@@ -83,13 +82,6 @@
 			      <td><%= r.getC_no() %></td>
 			      <td><%= r.getCafe_name() %></td>
 			      <td><%= r.getR_content() %></td>
-			      
-			      <% if(r.getRr_content() != null){ %>
-			      	<td><%= r.getRr_content() %></td>
-			      <% }else{ %>
-			      	<td>미작성</td>
-			      <% } %>
-			      
 			      <td><%= r.getR_date() %></td>
 			      
 			    </tr>
