@@ -30,7 +30,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-		 <%@include file="../includes/header.jsp" %>   
+	<%@include file="../includes/header.jsp" %>   
      
      
      <!-- 각 li 누를때마다 active 바뀌게 js 코드 짜기 -->
@@ -100,10 +100,22 @@
 				<%if(msg == null){ %>
 				<%for(Member m : list) { %>
 				<tr>
-					<td><input type="checkbox" value="<%=m.getM_no()%>"
-						name="ckbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=m.getM_no() %></td>
-					<td><p style="margin: 0px;" id = "profile" value ="<%=m.getM_no()%>"><%=m.getEmail() %></p></td>
-					<td><a class="announce" data-toggle="modal" value="<%=m.getNickName()%>"><%=m.getNickName() %></a></td>
+					<td>
+						<input type="checkbox" value="<%=m.getM_no()%>" name="ckbox">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=m.getM_no() %>
+					</td>
+					<td>
+						<p style="margin: 0px;" id ="profile" value ="<%=m.getM_no()%>"><%=m.getEmail() %></p>
+					</td>
+					<!-- 닉네임 부분 -->
+					<td>
+						<a class="announce" data-toggle="modal" value="<%=m.getNickName()%>">
+							<%=m.getNickName() %>
+							<input type="hidden" id="profile_img" 
+								value="<%=request.getContextPath()%>/resources/fileupload/profile/<%=m.getProfile()%>">
+						</a>
+						
+					</td>
 					<td><%=m.getReg_date() %></td>
 					<td><%=m.getIsBlack() %></td>
 					<td><%=m.getIsOut() %></td>
@@ -129,8 +141,7 @@
 			   	if(cc == "<%= m.getNickName() %>"){
 			   		$("#bbsCount").val(<%= m.getReviewCount()%>);
 			   		
-			   		$("#memberFace").attr("src","<%=conPath%>/<%=m.getProfile_path()%>");
-			   		console.log("<%=conPath%>/<%=m.getProfile_path()%>");
+			   		$("#memberFace").attr("src","<%=conPath%>/resources/fileupload/profile/<%=m.getProfile()%>");
 			   	}
 			<% }%>
 
@@ -198,8 +209,6 @@
 
 		<%} else{ %>
 		
-		
-
 		<button
 			onclick="location.href='<%=request.getContextPath()%>/memberList.ap?currentPage=<%=p%>';"
 			class="btn btn-primary"><%=p %></button>
@@ -234,23 +243,21 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<div >
-							<!-- form-row : 하나의 행을 여러 열로 나눌때 사용한다. -->
-							<div class="form-group col-sm-6">
-								<label>게시글 작성 수</label> <input type="text" id="bbsCount"
-									class="form-control" maxlength="20" readonly/>
-							</div>
-							<div class="form-group col-sm-6">
-								<label>회원 얼굴</label> 
-								<div style="width: 240px; height: 300px; border: 1px solid black;">
-									<img id="memberFace" alt="" style="width: 240px; height: 300px; border: 1px solid red;">
-								</div>
-								
-								
-								
+					<div class="form-row">	
+						<div class="col-md-4">
+							<div  style="width: 60px; height: 60px; margin: auto;">
+								<img style="width: 100%; height: 100%; border-radius: 50%; border: 1px solod red;" 
+									id="memberFace">
 							</div>
 						</div>
-				</div>
+						<div class="col-md-8">
+							<label>게시글 작성 수</label> 
+							<input type="text" id="bbsCount" class="form-control" maxlength="20" readonly
+								style="display: inline;"/>					
+						</div>
+					</div>
+
+
 
 			</div>
 		</div>

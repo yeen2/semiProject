@@ -123,9 +123,7 @@ public class AdminPage_memberListServlet extends HttpServlet {
 				request.setAttribute("buttonhidden", hidden);
 				request.setAttribute("pi", pi);
 				request.setAttribute("list", list);
-				System.out.println(
-						"===================================================================================================================================");
-
+				
 				request.getRequestDispatcher("views/admin/adminPage_memberList.jsp").forward(request, response);
 
 			}
@@ -194,11 +192,11 @@ public class AdminPage_memberListServlet extends HttpServlet {
 			
 			
 			PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, maxPage, startPage, endPage, boardLimit);
-			System.out.println(pi);
+	
 
 			ArrayList<Member> list = new AdminPageService().selectMemberList(pi);
 			ArrayList<Member> list2 = new AdminPageService().WriteCount();
-			System.out.println("test");
+			
 			request.setAttribute("pi", pi);
 			request.setAttribute("list", list);
 			request.setAttribute("list2", list2);
