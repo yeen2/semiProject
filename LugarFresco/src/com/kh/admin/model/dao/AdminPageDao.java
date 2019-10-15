@@ -1224,7 +1224,7 @@ public ArrayList<Member> selectMemberList(Connection conn, PageInfo pi) {
 		
 		int result = 0;
 		PreparedStatement pstmt = null;		
-		String sql = "update member m set isowner='Y' where m.m_no=(select m_no from cafe where c_no in ("+arr+")";
+		String sql = "update member m set isowner='Y' where m.m_no=(select m_no from cafe where c_no in ("+arr+"))";
 
 		try {
 		
