@@ -95,12 +95,13 @@
 	               
 	               <div class="form-group">
 	                 <label class="control-label" for="nickName">닉네임</label>
-	                 <input type="text" class="form-control" id="nickName" name="nickName" placeholder="(한글, 영문, 숫자를 사용하여 3~8자로 작성해주세요)" maxlength="8" value="<%= nickName %>">
+	                 <input type="text" class="form-control" id="nickName" name="nickName" placeholder="(한글, 영문, 숫자를 사용하여 3~5자로 작성해주세요)" maxlength="5" value="<%= nickName %>">
 	                 
 	                 <!-- ajax 닉네임 중복확인 div -->
 	                 <div>
 	                 	<span id="nickNameCheck1" style="display:none; text-align:right;">사용 가능한 닉네임입니다!</span>
 						<span id="nickNameCheck2" style="display:none; text-align:right;">이미 사용중인 닉네임입니다!</span>
+						<span id="nickNameCheck3" style="display:none; text-align:right;">형식에 맞지 않는 닉네임입니다!</span>
 	                 </div>
 	               </div>
 	             
@@ -193,7 +194,7 @@
 			$("#nickName").on("input", function(){
 				var nickName = $("#nickName").val();
 				
-				var regExp = /^[가-힣a-zA-Z0-9]{3,8}$/;
+				var regExp = /^[가-힣a-zA-Z0-9]{3,5}$/;
 				
 				if(regExp.test(nickName)) {
 					
@@ -206,12 +207,14 @@
 							if(result == "1"){
 								$("#nickNameCheck1").css("display", "block");
 								$("#nickNameCheck2").css("display", "none");
+								$("#nickNameCheck3").css("display", "none");
 								$("#nickNameCheck1").css({"color":"#1DDB16", "font-weight":"bold"});
 								
 								$("#updateBtn").removeAttr("disabled", true);
 							}else if(result == "2"){
 								$("#nickNameCheck2").css("display", "block");
 								$("#nickNameCheck1").css("display", "none");
+								$("#nickNameCheck3").css("display", "none");
 								$("#nickNameCheck2").css({"color":"red", "font-weight":"bold"});
 								
 								$("#updateBtn").attr("disabled", true);
@@ -220,6 +223,7 @@
 							if(nickName == ""){
 								$("#nickNameCheck1").css("display", "none");
 								$("#nickNameCheck2").css("display", "none");
+								$("#nickNameCheck3").css("display", "none");
 							}
 						},
 						error:function(result){
@@ -230,6 +234,14 @@
 				}else{
 					$("#nickNameCheck1").css("display", "none");
 					$("#nickNameCheck2").css("display", "none");
+					$("#nickNameCheck3").css("display", "block");
+					$("#nickNameCheck3").css({"color":"red", "font-weight":"bold"});
+					
+					if(nickName == ""){
+						$("#nickNameCheck1").css("display", "none");
+						$("#nickNameCheck2").css("display", "none");
+						$("#nickNameCheck3").css("display", "none");
+					}
 				}
 				
 			});

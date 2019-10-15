@@ -37,9 +37,9 @@ public class MyPageDeleteMemberServlet extends HttpServlet {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		
 		if(loginUser != null) {
-			String id = loginUser.getEmail();
+			int mno = loginUser.getM_no();
 			
-			int result = new MyPageService().deleteMember(id);
+			int result = new MyPageService().deleteMember(mno);
 			
 			if(result > 0) {
 				session.setAttribute("msg", "회원탈퇴에 성공하였습니다.");
