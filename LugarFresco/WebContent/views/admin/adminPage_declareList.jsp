@@ -9,11 +9,7 @@
    String hidden = (String) request.getAttribute("buttonhidden"); // 찾을땐 페이징 빼려고 넣음
 
    String msg = (String) request.getAttribute("msg");
-
-   System.out.println(msg);
-
-   System.out.println("dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
-
+   
    int currentPage = pi.getCurrentPage();
    int maxPage = pi.getMaxPage();
    int startPage = pi.getStartPage();

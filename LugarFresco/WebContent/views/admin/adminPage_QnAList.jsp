@@ -11,10 +11,6 @@
 
 	String msg = (String) request.getAttribute("msg");
 
-	System.out.println(msg);
-
-	System.out.println("dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
-
 	int currentPage = pi.getCurrentPage();
 	int maxPage = pi.getMaxPage();
 	int startPage = pi.getStartPage();
