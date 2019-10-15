@@ -301,7 +301,6 @@ public class AdminPageDao {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
-		System.out.println(list);
 		return list;
 
 	}
@@ -691,17 +690,19 @@ public class AdminPageDao {
 			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
 			int endRow = startRow + pi.getBoardLimit() - 1;
 
-			System.out.println(startRow);
-			System.out.println(endRow);
-
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
 
 			rset = pstmt.executeQuery();
 
 			while (rset.next()) {
-				list.add(new PowerLink(rset.getInt("p_no"), rset.getString("cafe_name"), rset.getString("nickname"),
-						rset.getDate("reg_date"), rset.getDate("upload_date"), rset.getInt("status")));
+				list.add(new PowerLink(rset.getInt("p_no"), 
+									   rset.getInt("c_no"),
+									   rset.getString("cafe_name"), 
+									   rset.getString("nickname"),
+									   rset.getDate("reg_date"), 
+									   rset.getDate("upload_date"), 
+									   rset.getInt("status")));
 			}
 
 		} catch (SQLException e) {
@@ -733,8 +734,12 @@ public class AdminPageDao {
 
 			while (rset.next()) {
 
-				list.add(new PowerLink(rset.getInt("p_no"), rset.getString("cafe_name"), rset.getString("nickname"),
-						rset.getDate("reg_date"), rset.getDate("upload_date"), rset.getInt("status")));
+				list.add(new PowerLink(rset.getInt("p_no"), 
+									   rset.getString("cafe_name"), 
+									   rset.getString("nickname"),
+									   rset.getDate("reg_date"), 
+									   rset.getDate("upload_date"), 
+									   rset.getInt("status")));
 
 			}
 
@@ -768,8 +773,12 @@ public class AdminPageDao {
 			rset = pstmt.executeQuery();
 
 			while (rset.next()) {
-				list.add(new PowerLink(rset.getInt("p_no"), rset.getString("cafe_name"), rset.getString("nickname"),
-						rset.getDate("reg_date"), rset.getDate("upload_date"), rset.getInt("status")));
+				list.add(new PowerLink(rset.getInt("p_no"), 
+									   rset.getString("cafe_name"), 
+									   rset.getString("nickname"),
+									   rset.getDate("reg_date"), 
+									   rset.getDate("upload_date"), 
+									   rset.getInt("status")));
 
 			}
 
@@ -803,7 +812,6 @@ public class AdminPageDao {
 			if (rset.next()) {
 
 				listCount = rset.getInt(1);
-				System.out.println(listCount);
 			}
 
 		} catch (SQLException e) {
@@ -1496,8 +1504,6 @@ public class AdminPageDao {
 
 		String sql = prop.getProperty("selectBlackList");
 
-		System.out.println("selectMember�떎�뻾");
-
 		try {
 
 			pstmt = conn.prepareStatement(sql);
@@ -1522,7 +1528,6 @@ public class AdminPageDao {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
-		System.out.println(list);
 		return list;
 
 	}

@@ -20,7 +20,7 @@
 	}
 	.login-box{
 		 width:350px;
-		 height:520px;
+		 height:480px;
 	}
     </style>
     
@@ -78,7 +78,8 @@
 	    		<img src="<%=conPath%>/resources/images/login_kakao_btn.png" width="240" height="46">
 	    	</button>
           </div>
- 
+ 			
+ 		<%--
           <!-- 네이버 로그인 버튼 -->   
           <div class="form-group btn-container" id="naver_id_login" style="margin-top: 15px;">
             <button class="btn btn-primary btn-block" style="padding-top: 0px;padding-left: 0px;padding-right: 0px;padding-bottom: 0px;
@@ -87,6 +88,7 @@
 	    		<img src="<%=conPath%>/resources/images/login_naver_btn.png" width="240" height="45">
 	    	</button>
           </div>
+          --%>
         </form>
               
         <!-- 비밀번호 찾기  -->
@@ -114,7 +116,7 @@
     
     
     <!-- Essential javascripts for application to work-->
-    <script src="<%=conPath %>/resources/js/jquery-3.2.1.min.js"></script>
+    <%-- <script src="<%=conPath %>/resources/js/jquery-3.2.1.min.js"></script> --%>
     <script src="<%=conPath %>/resources/js/popper.min.js"></script>
     <script src="<%=conPath %>/resources/js/bootstrap.min.js"></script>
     <script src="<%=conPath %>/resources/js/main.js"></script>

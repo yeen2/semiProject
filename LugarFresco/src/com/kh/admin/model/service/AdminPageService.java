@@ -29,7 +29,6 @@ public class AdminPageService {
 
 		JDBCTemplate.close(conn);
 
-		System.out.println(list);
 		return list;
 	}
 
@@ -136,8 +135,6 @@ public class AdminPageService {
 		}
 
 		JDBCTemplate.close(conn);
-
-		System.out.println(list);
 
 		return list;
 	}
@@ -279,8 +276,6 @@ public class AdminPageService {
 		}
 
 		JDBCTemplate.close(conn);
-
-		System.out.println(list);
 
 		return list;
 	}
@@ -448,7 +443,7 @@ public class AdminPageService {
 			result = 0;
 
 		} else {
-			System.out.println("==================3333==============");
+			
 			result = new AdminPageDao().updatePowerLink(conn, arr);
 
 			JDBCTemplate.commit(conn);
@@ -518,8 +513,6 @@ public class AdminPageService {
 		}
 
 		JDBCTemplate.close(conn);
-
-		System.out.println(list);
 
 		return list;
 	}
@@ -625,8 +618,6 @@ public class AdminPageService {
 		}
 
 		JDBCTemplate.close(conn);
-
-		System.out.println(list);
 
 		return list;
 
@@ -760,8 +751,6 @@ public class AdminPageService {
 
 		JDBCTemplate.close(conn);
 
-		System.out.println(list);
-
 		return list;
 
 	}
@@ -844,8 +833,6 @@ public class AdminPageService {
 		}
 
 		JDBCTemplate.close(conn);
-
-		System.out.println(list);
 
 		return list;
 	}

@@ -11,25 +11,33 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.admin.model.service.AdminPageService;
 import com.kh.admin.model.vo.PageInfo;
-import com.kh.review.model.vo.Declare;
+import com.kh.question.model.vo.QnAList;
+import com.kh.review.model.vo.Review;
 
-@WebServlet("/declareList.ap")
-public class AdminPage_declareListServlet extends HttpServlet {
+/**
+ * Servlet implementation class AdminPage_reviewListServlet
+ */
+@WebServlet("/reviewList.ap")
+public class AdminPage_reviewListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-  
-    public AdminPage_declareListServlet() {
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public AdminPage_reviewListServlet() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
-
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		request.setCharacterEncoding("UTF-8");
 		
 		if (request.getParameter("kinds") != null && request.getParameter("search") != null) {
 
-			int listCount = new AdminPageService().getDeclareList();
+			int listCount = new AdminPageService().getReviewList();
 
 			// currentPage : 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
 			int currentPage = 1; // 占썩본占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 1占쏙옙占쏙옙 占쏙옙占쏙옙占싹깍옙 占쏙옙占쏙옙占쏙옙.
@@ -72,7 +80,7 @@ public class AdminPage_declareListServlet extends HttpServlet {
 
 			// currentPage = 1~10 => n = 0 => (currentPage-1)/10
 			// currentPage = 11~20 => n = 1
-			
+
 			startPage = (currentPage - 1) / pageLimit * 10 + 1;
 
 			// * endPage : 占쏙옙 占쏙옙占쏙옙占쏙옙 占싹단울옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
@@ -90,19 +98,19 @@ public class AdminPage_declareListServlet extends HttpServlet {
 
 			String kinds = request.getParameter("kinds");
 			
-			ArrayList<Declare> list = null;
+			ArrayList<QnAList> list = null;
 			
-			if (kinds.equals("declareMember")) {
+			if (kinds.equals("applicantName")) {
 
 				String search = request.getParameter("search");
 
-				list = new AdminPageService().selectDeclareNameSearch(search);
+				list = new AdminPageService().selectQnaApplicantNameSearch(search);
 
 			} else {
 				
 				String search = request.getParameter("search");
 
-				list = new AdminPageService().selectDeclareContentSearch(search);
+				list = new AdminPageService().selectQnaTitleSearch(search);
 			}
 			
 			
@@ -111,16 +119,22 @@ public class AdminPage_declareListServlet extends HttpServlet {
 				request.setAttribute("buttonhidden", hidden);
 				request.setAttribute("pi", pi);
 				request.setAttribute("list", list);
-				request.setAttribute("msg", "조회하신 내용은 존재하지 않습니다");		
-				request.getRequestDispatcher("views/admin/adminPage_declareList.jsp").forward(request, response);
+			//	int result = new AdminPageService().PowerLinkCount();
+			//	request.setAttribute("result", result);
+
+				request.setAttribute("msg", "조회하신 내용은 존재하지 않습니다");
+				
+				request.getRequestDispatcher("views/admin/adminPage_QnAList.jsp").forward(request, response);
 			
 			}else {
 				String hidden = "hidden";
 				request.setAttribute("buttonhidden", hidden);
 				request.setAttribute("pi", pi);
 				request.setAttribute("list", list);
-			
-				request.getRequestDispatcher("views/admin/adminPage_declareList.jsp").forward(request, response);
+			//	int result = new AdminPageService().PowerLinkCount();
+			//	request.setAttribute("result", result);
+
+				request.getRequestDispatcher("views/admin/adminPage_QnAList.jsp").forward(request, response);
 
 			}
 			
@@ -128,7 +142,7 @@ public class AdminPage_declareListServlet extends HttpServlet {
 		
 		} else {
 
-			int listCount = new AdminPageService().getDeclareList();
+			int listCount = new AdminPageService().getReviewList();
 
 			// currentPage : 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
 			int currentPage = 1; // 占썩본占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 1占쏙옙占쏙옙 占쏙옙占쏙옙占싹깍옙 占쏙옙占쏙옙占쏙옙.
@@ -184,22 +198,24 @@ public class AdminPage_declareListServlet extends HttpServlet {
 			}
 
 			// 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占� PageInfo
-			
-			
-			
 			PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, maxPage, startPage, endPage, boardLimit);
-			
-			ArrayList<Declare> list = new AdminPageService().selectDeclareList(pi);
+
+			ArrayList<Review> list = new AdminPageService().selectReviewList(pi);
+
 			request.setAttribute("pi", pi);
 			request.setAttribute("list", list);
-			request.getRequestDispatcher("views/admin/adminPage_declareList.jsp").forward(request, response);
+			
+
+			request.getRequestDispatcher("views/admin/adminPage_reviewList.jsp").forward(request, response);
 			
 			
 		}	
 
-	}
+	}	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

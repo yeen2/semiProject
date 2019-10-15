@@ -32,8 +32,6 @@ public class AdminPage_cafeApplyListServlet extends HttpServlet {
 			if (request.getParameter("kinds") != null && request.getParameter("search") != null) {
 
 			int listCount = new AdminPageService().getCafeApplyCount();
-
-			System.out.println(listCount);
 			
 			// currentPage : 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
 			int currentPage = 1; // 占썩본占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 1占쏙옙占쏙옙 占쏙옙占쏙옙占싹깍옙 占쏙옙占쏙옙占쏙옙.
@@ -91,7 +89,6 @@ public class AdminPage_cafeApplyListServlet extends HttpServlet {
 			// 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占� PageInfo
 
 			PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, maxPage, startPage, endPage, boardLimit);
-			System.out.println(pi);
 
 			String kinds = request.getParameter("kinds");
 			
@@ -191,11 +188,9 @@ public class AdminPage_cafeApplyListServlet extends HttpServlet {
 
 			// 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占� PageInfo
 			PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, maxPage, startPage, endPage, boardLimit);
-			
-			System.out.println(pi);
 
 			ArrayList<Cafe> list = new AdminPageService().selectCafeApplyList(pi);
-			System.out.println("test");
+			
 			request.setAttribute("pi", pi);
 			request.setAttribute("list", list);
 			

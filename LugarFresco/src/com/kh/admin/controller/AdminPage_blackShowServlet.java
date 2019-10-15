@@ -91,7 +91,6 @@ public class AdminPage_blackShowServlet extends HttpServlet {
 		// �럹�씠吏� �젙蹂대�� �떞�뒗 PageInfo
 
 		PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, maxPage, startPage, endPage, boardLimit);
-		System.out.println(pi);
 
 		ArrayList<Member> list = new AdminPageService().selectBlackList(pi);
 //		ArrayList<Cafe> list2 = new AdminPageService().CafeImgWriteCount(pi);

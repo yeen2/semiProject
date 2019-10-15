@@ -31,6 +31,19 @@ public class PowerLink {
 		this.upload_date = upload_date;
 		this.status = status;
 	}
+	
+
+	public PowerLink(int p_no, int c_no, String cafe_name, String nickname, Date reg_date, Date upload_date, int status) {
+		super();
+		this.p_no = p_no;
+		this.c_no = c_no;
+		this.cafe_name = cafe_name;
+		this.nickname = nickname;
+		this.reg_date = reg_date;
+		this.upload_date = upload_date;
+		this.status = status;
+	}
+	
 
 	public String getCafe_name() {
 		return cafe_name;

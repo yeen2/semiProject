@@ -74,7 +74,12 @@
 					
 					<!-- 로고부분 -->
 				      <div id="logo">
-				        <a href="<%=conPath%>"><img src="<%=conPath%>/resources/img/logo.png" alt="" title="" /></a>
+				        <a href="<%=conPath%>">
+				        	<img src="<%=conPath%>/resources/img/logoo.png" alt="" title="" /> 
+				        	<!-- <i class="fa fa-adjust" aria-hidden="true" 
+				        		style="font-size:25px; color: orange; display: inline;"></i>
+				        	<h4 style="color: white;display: inline;">Lugar Fresco</h4> -->
+				        </a>
 				      </div>
 						
 					  <!-- 검색창 -->

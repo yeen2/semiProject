@@ -221,10 +221,15 @@
 						//리뷰
 						$("#review_btn").click(function() {
 							
-							var login = "<%=session.getAttribute("loginUser") %>"
+							var login = "<%=loginUser %>";
+							var isBlack = "<%= loginUser.getIsBlack()%>";
 							
 							if(login == "null"){
 								alert("로그인 후 이용가능합니다.");
+							}
+							
+							if(isBlack == "Y"){
+								alert("현재 블랙리스트여서 리뷰 작성 불가");
 							}else{
 								location.href='writeForm.re?c_no=<%=c.getC_no()%>&name=<%=c.getCafe_name()%>';
 							}

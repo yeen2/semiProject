@@ -5,23 +5,23 @@ import java.sql.Date;
 
 public class Member {
 
-	private int m_no;        // 회원번호
-	private String loginType;     // 가입유형 
-	private String snsId;    // sns 로그인id
-	private String email;    // 이메일
-	private String nickName; // 닉네임
-	private String pass;     // 비밀번호
-	private Date reg_date; // 가입날짜
-	private String isOwner;  // 사장인지아닌지 default-'N'
-	private String profile;   // 프로필사진 default-'profil.png'
+	private int m_no;        // �쉶�썝踰덊샇
+	private String loginType;     // 媛��엯�쑀�삎 
+	private String snsId;    // sns 濡쒓렇�씤id
+	private String email;    // �씠硫붿씪
+	private String nickName; // �땳�꽕�엫
+	private String pass;     // 鍮꾨�踰덊샇
+	private Date reg_date; // 媛��엯�궇吏�
+	private String isOwner;  // �궗�옣�씤吏��븘�땶吏� default-'N'
+	private String profile;   // �봽濡쒗븘�궗吏� default-'profil.png'
 	private String profile_path;
-	private int like;        // 내가받은 좋아요 default-0
-	private int declare;     // 내가받은 신고 default-0
-	private String isOut;    // 탈퇴여부 default-'N'
-	private String isBlack;  // 블랙리스트여부 dafault-'N'
-	private Date out_date;   // 탈퇴날쨔
+	private int like;        // �궡媛�諛쏆� 醫뗭븘�슂 default-0
+	private int declare;     // �궡媛�諛쏆� �떊怨� default-0
+	private String isOut;    // �깉�눜�뿬遺� default-'N'
+	private String isBlack;  // 釉붾옓由ъ뒪�듃�뿬遺� dafault-'N'
+	private Date out_date;   // �깉�눜�궇夷�
 	
-	//성환admin
+	//�꽦�솚admin
 	private Date start_date;
 	private Date end_date;
 	private int reviewCount;
@@ -48,7 +48,7 @@ public class Member {
 		this.nickName = nickName;
 		this.reviewCount = reviewCount;
 	}
-
+	
 	public Member(int m_no, String loginType, String snsId, String email, String nickName, String pass, Date reg_date,
 			String isOwner, String profile, String profile_path, int like, int declare, String isOut, String isBlack,
 			Date out_date) {
@@ -70,7 +70,31 @@ public class Member {
 		this.out_date = out_date;
 	}
 	
-	// 성환- 블랙리스트
+	
+	
+	public Member(int m_no, String loginType, String snsId, String email, String nickName, String pass, Date reg_date,
+			String isOwner, String profile, String profile_path, int like, int declare, String isOut, String isBlack,
+			Date out_date, int reviewCount) {
+		super();
+		this.m_no = m_no;
+		this.loginType = loginType;
+		this.snsId = snsId;
+		this.email = email;
+		this.nickName = nickName;
+		this.pass = pass;
+		this.reg_date = reg_date;
+		this.isOwner = isOwner;
+		this.profile = profile;
+		this.profile_path = profile_path;
+		this.like = like;
+		this.declare = declare;
+		this.isOut = isOut;
+		this.isBlack = isBlack;
+		this.out_date = out_date;
+		this.reviewCount = reviewCount;
+	}
+	
+	// �꽦�솚- 釉붾옓由ъ뒪�듃
 	public Member(int m_no, String nickname, Date start_date, Date end_date) {
 		super();
 		this.m_no = m_no;

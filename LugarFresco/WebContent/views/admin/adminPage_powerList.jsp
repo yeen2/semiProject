@@ -18,7 +18,6 @@
    int maxPage = pi.getMaxPage();
    int startPage = pi.getStartPage();
    int endPage = pi.getEndPage();
-   
 
 %>    
 <!DOCTYPE html>
@@ -152,7 +151,8 @@
          // P_NO
          var no = $(this).siblings().eq(0).val();
          // c_no
-          var c_no = $(this).siblings().eq(1).val();
+         //var c_no = $(this).siblings().eq(1).val();
+         var c_no = $(this).parent().children("input").eq(1).val();
 
              $.ajax({
                url:"powerCk2.ap",    

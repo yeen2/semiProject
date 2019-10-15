@@ -89,7 +89,6 @@ public class AdminPage_powerListServlet extends HttpServlet {
 			// 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占� PageInfo
 
 			PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, maxPage, startPage, endPage, boardLimit);
-			System.out.println(pi);
 
 			String kinds = request.getParameter("kinds");
 			
@@ -195,12 +194,11 @@ public class AdminPage_powerListServlet extends HttpServlet {
 
 			// 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占� PageInfo
 			PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, maxPage, startPage, endPage, boardLimit);
-			
-			System.out.println(pi);
+
 
 			ArrayList<PowerLink> list = new AdminPageService().selectPowerLinkList(pi);
 			int result = new AdminPageService().PowerLinkCount();
-			System.out.println("test");
+
 			request.setAttribute("pi", pi);
 			request.setAttribute("list", list);
 			request.setAttribute("result", result);

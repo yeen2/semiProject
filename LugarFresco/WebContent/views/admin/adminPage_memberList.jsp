@@ -30,7 +30,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-	<%@include file="../includes/header.jsp" %>   
+		 <%@include file="../includes/header.jsp" %>   
      
      
      <!-- 각 li 누를때마다 active 바뀌게 js 코드 짜기 -->
@@ -39,8 +39,8 @@
 			<i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">
         		회원 정보 리스트</span></a>
         </li>
-        <li><a class="app-menu__item" href="<%=request.getContextPath() %>/reviewList.ap">
-			<i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">
+         <li><a class="app-menu__item" href="<%=request.getContextPath() %>/reviewList.ap">
+			<i class="app-menu__icon fa fa-bars"></i><span class="app-menu__label">
         		리뷰 리스트</span></a>
         </li>
         <li><a class="app-menu__item" href="<%=request.getContextPath() %>/cafeList.ap">
@@ -73,7 +73,7 @@
    		
 
 	<div style="margin-top: 50px; height: 20%;" align="center"
-		class="form-inline">
+ 		class="form-inline">
 		<form action="<%=request.getContextPath() %>/memberList.ap" class="form-inline my-2 my-lg-0">
 		<select name="kinds" class="form-control">
 			<option>-----</option>   
@@ -84,13 +84,16 @@
 		<button type="submit" class="btn btn-outline-secondary my-2 my-sm-0">검색</button>
 		</form>
 	</div>
-	
+	<div style="float:right">	
+		<button class = "btn btn-danger md" onclick="blackShow();">블랙리스트회원 보기</button>
+	</div>
 	<div style="height: 50%;">
 		<table class="table"
 			style="text-align: center; border: 1px solid #dddddd; margin-top: 50px;">
 			<thead>
 				<tr>
 					<th style="background-color: #fafafa; text-align: center;">No.</th>
+					<th style="background-color: #fafafa; text-align: center;">블랙리스트추가</th> 
 					<th style="background-color: #fafafa; text-align: center;">이메일</th>
 					<th style="background-color: #fafafa; text-align: center;">닉네임</th>
 					<th style="background-color: #fafafa; text-align: center;">가입날짜</th>
@@ -101,21 +104,11 @@
 				<%for(Member m : list) { %>
 				<tr>
 					<td>
-						<input type="checkbox" value="<%=m.getM_no()%>" name="ckbox">
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=m.getM_no() %>
-					</td>
-					<td>
-						<p style="margin: 0px;" id ="profile" value ="<%=m.getM_no()%>"><%=m.getEmail() %></p>
-					</td>
-					<!-- 닉네임 부분 -->
-					<td>
-						<a class="announce" data-toggle="modal" value="<%=m.getNickName()%>">
-							<%=m.getNickName() %>
-							<input type="hidden" id="profile_img" 
-								value="<%=request.getContextPath()%>/resources/fileupload/profile/<%=m.getProfile()%>">
-						</a>
-						
-					</td>
+					<input type="checkbox" value="<%=m.getM_no()%>"
+						name="ckbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=m.getM_no() %></td>
+					<td><button value="<%=m.getM_no()%>" class="btn btn-primary sm bc" onclick="black(this.value);">블랙</button></td>
+					<td><p style="margin: 0px;" id = "profile" value ="<%=m.getM_no()%>"><%=m.getEmail() %></p></td>
+					<td><a class="announce" data-toggle="modal" value="<%=m.getNickName()%>"><%=m.getNickName() %></a></td>
 					<td><%=m.getReg_date() %></td>
 					<td><%=m.getIsBlack() %></td>
 					<td><%=m.getIsOut() %></td>
@@ -124,7 +117,7 @@
 				<%}%>
 				<%} else {%>
 				<tr>
-					<td colspan="5"><%=msg%></td>
+					<td colspan="6"><%=msg%></td>
 				</tr>
 				<%}%>
 			</thead>
@@ -133,23 +126,31 @@
 	</div>
 	
 	<script>
-	$(document).ready(function(){
-			$(".announce").click(function(){ // Click to only happen on announce links
-			   var cc = $(this).attr('value');
-			   $('#modal').text(cc+"님");
-			   <% for(Member m : list) {%>
-			   	if(cc == "<%= m.getNickName() %>"){
-			   		$("#bbsCount").val(<%= m.getReviewCount()%>);
-			   		
-			   		$("#memberFace").attr("src","<%=conPath%>/resources/fileupload/profile/<%=m.getProfile()%>");
-			   	}
-			<% }%>
+	   $(document).ready(function(){
+	         $(".announce").click(function(){ // Click to only happen on announce links
+	            var cc = $(this).attr('value');
+	            $('#modal').text(cc+"님");
+	            <% for(Member m : list) {%>
+	               if(cc == "<%= m.getNickName() %>"){
+	                  $("#bbsCount").val(<%= m.getReviewCount()%>);
+	                  
+	                  $("#memberFace").attr("src","<%=conPath%>/resources/fileupload/profile/<%=m.getProfile()%>");
+	               }
+	         <% }%>
 
-		   $('#nicModal').modal('show');
-			   	
-		   });
-		});
-		
+	         $('#nicModal').modal('show');
+	               
+	         });
+	      });
+	      
+	function black(b){
+		alert("회원번호" + b + "번 블랙리스트에 추가하셨습니다.");
+		location.href="<%=request.getContextPath() %>/blackListAdd.ap?b=" + b;
+	}
+	function blackShow(){
+		location.href="<%=request.getContextPath() %>/blackShow.ap"
+	}
+	
 	
 	
 	var arr = [];
@@ -209,6 +210,8 @@
 
 		<%} else{ %>
 		
+		
+
 		<button
 			onclick="location.href='<%=request.getContextPath()%>/memberList.ap?currentPage=<%=p%>';"
 			class="btn btn-primary"><%=p %></button>
@@ -243,25 +246,42 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<div class="form-row">	
-						<div class="col-md-4">
-							<div  style="width: 60px; height: 60px; margin: auto;">
-								<img style="width: 100%; height: 100%; border-radius: 50%; border: 1px solod red;" 
-									id="memberFace">
+					 <div class="form-row">   
+                  		<div class="col-md-4">
+                     		<div  style="width: 60px; height: 60px; margin: auto;">
+                       			<img style="width: 100%; height: 100%; border-radius: 50%; border: 1px solod red;" 
+                           			id="memberFace">
+                    		 </div>
+                 		 </div>
+                  	 	<div class="col-md-8">
+                     		<label>게시글 작성 수</label> 
+                     		<input type="text" id="bbsCount" class="form-control" maxlength="20" readonly
+                        		style="display: inline;"/>               
+                  	 	</div>
+               		</div>
+					
+					<!-- <div >
+							form-row : 하나의 행을 여러 열로 나눌때 사용한다.
+							<div class="form-group col-sm-6">
+								<label>게시글 작성 수</label> <input type="text" id="bbsCount"
+									class="form-control" maxlength="20" readonly/>
 							</div>
-						</div>
-						<div class="col-md-8">
-							<label>게시글 작성 수</label> 
-							<input type="text" id="bbsCount" class="form-control" maxlength="20" readonly
-								style="display: inline;"/>					
-						</div>
-					</div>
-
-
+							<div class="form-group col-sm-6">
+								<label>회원 얼굴</label> 
+								<div style="width: 240px; height: 300px; border: 1px solid black;">
+									<img id="memberFace" alt="" style="width: 240px; height: 300px; border: 1px solid red;">
+								</div>
+								
+								
+								
+							</div>
+						</div> -->
+				</div>
 
 			</div>
 		</div>
 	</div>
    	
+
 </body>
 </html>

@@ -33,8 +33,6 @@ public class AdminPage_QnAListServlet extends HttpServlet {
 
 			int listCount = new AdminPageService().getPowerLinkCount();
 
-			System.out.println(listCount);
-			
 			// currentPage : 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
 			int currentPage = 1; // 占썩본占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 1占쏙옙占쏙옙 占쏙옙占쏙옙占싹깍옙 占쏙옙占쏙옙占쏙옙.
 
@@ -131,9 +129,6 @@ public class AdminPage_QnAListServlet extends HttpServlet {
 			//	int result = new AdminPageService().PowerLinkCount();
 			//	request.setAttribute("result", result);
 
-				System.out.println(
-						"===================================================================================================================================");
-
 				request.getRequestDispatcher("views/admin/adminPage_QnAList.jsp").forward(request, response);
 
 			}
@@ -200,8 +195,6 @@ public class AdminPage_QnAListServlet extends HttpServlet {
 			// 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占� PageInfo
 			PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, maxPage, startPage, endPage, boardLimit);
 			
-			System.out.println(pi);
-
 			ArrayList<QnAList> list = new AdminPageService().selectQnAList(pi);
 
 			System.out.println("test");

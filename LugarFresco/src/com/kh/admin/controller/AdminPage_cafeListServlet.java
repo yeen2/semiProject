@@ -88,7 +88,6 @@ public class AdminPage_cafeListServlet extends HttpServlet {
 			// �럹�씠吏� �젙蹂대�� �떞�뒗 PageInfo
 
 			PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, maxPage, startPage, endPage, boardLimit);
-			System.out.println(pi);
 
 			String kinds = request.getParameter("kinds");
 			
@@ -122,9 +121,7 @@ public class AdminPage_cafeListServlet extends HttpServlet {
 				request.setAttribute("buttonhidden", hidden);
 				request.setAttribute("pi", pi);
 				request.setAttribute("list", list);
-				System.out.println(
-						"===================================================================================================================================");
-
+				
 				request.getRequestDispatcher("views/admin/adminPage_cafeList.jsp").forward(request, response);
 
 			}
@@ -197,7 +194,6 @@ public class AdminPage_cafeListServlet extends HttpServlet {
 //			ArrayList<Cafe> list2 = new AdminPageService().CafeImgWriteCount(pi);
 		
 			
-			System.out.println("hhhhhhhhhhh�뀠�뀠�뀠�뀠�뀠�뀠�뀠�뀠�뀠�뀠�뀠�뀠�뀠�뀠�뀠�뀠�뀠�뀠�뀠�뀠�뀠�뀠�뀋�뀋�뀋�뀋�뀋�뀋�뀋�뀋�뀋�뀋�뀋�뀋�뀋�뀋�뀋�뀋�뀋�뀋�뀋�뀋");
 			request.setAttribute("pi", pi);
 			request.setAttribute("list", list);
 //			request.setAttribute("list2", list2);

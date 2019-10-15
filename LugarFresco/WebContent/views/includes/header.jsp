@@ -103,12 +103,34 @@
         </li>
         
         <!-- User Menu-->
-        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
+        <li class="dropdown">
+        	<a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu">
+        		<i class="fa fa-user fa-lg"></i>
+        	</a>
           <ul class="dropdown-menu settings-menu dropdown-menu-right">
-          
-          
     		<!-- 로그아웃 처리하기  -->
-            <li><a class="dropdown-item" href="<%=conPath%>/logout.me"><i class="fa fa-sign-out fa-lg"></i> 
+           	 <li>
+           	 	<a class="dropdown-item" href="<%=conPath%>/myPage.mp">
+            		myPage
+            	</a>
+            </li>
+            <li>
+           	 	<a class="dropdown-item" href="<%=conPath%>/ownerPage.op">
+            		ownerPage
+            	</a>
+            </li>
+            
+            <% if(loginUser != null && loginUser.getEmail().equals("admin")){ %>
+            <li>
+           	 	<a class="dropdown-item" href="<%=conPath%>/adminPage.ap">
+            		adminPage
+            	</a>
+            </li>
+            <% } %>
+            
+            <li>
+           	 	<a class="dropdown-item" href="<%=conPath%>/logout.me">
+           	 		<i class="fa fa-sign-out fa-lg"></i> 
             		Logout
             	</a>
             </li>
