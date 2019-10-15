@@ -104,7 +104,11 @@
 					<td id ="tdhover"><a data-toggle ="modal" class="announce" value="<%=q.getNickname()%>"><%=q.getQ_title()%></a></td>
 					<td><%=q.getNickname() %></td>
 					<td><%=q.getQ_date() %></td>
-					<td><%=q.getA_date() %></td>
+					<% if(q.getA_date() != null){ %>
+						<td><%=q.getA_date() %></td>
+					<% }else{ %>
+						<td></td>
+					<% } %>
 					<td><%=q.getIsanswer() %></td>
 		
 
