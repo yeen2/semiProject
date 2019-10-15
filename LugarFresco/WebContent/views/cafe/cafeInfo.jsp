@@ -166,6 +166,8 @@
 						</div>
 
 					</div>
+					
+					
 					<script>
 						//즐겨찾기 
 						$("#favorite").click(function(){
@@ -219,14 +221,12 @@
 						//리뷰
 						$("#review_btn").click(function() {
 							
-							
 							var login = "<%=session.getAttribute("loginUser") %>"
 							
 							if(login == "null"){
 								alert("로그인 후 이용가능합니다.");
 							}else{
 								location.href='writeForm.re?c_no=<%=c.getC_no()%>&name=<%=c.getCafe_name()%>';
-
 							}
 						});
 					</script>
@@ -745,12 +745,10 @@
 								id="img_spot" >
 							<input type="hidden" id="review_img_name">
 						</div>
-						
-						
+
 						<div class="modal-footer">
 						
 						</div>
-						
 						
 						<script type="text/javascript">
 							//리뷰창 닫기

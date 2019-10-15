@@ -21,7 +21,9 @@ public class Member {
 	private String isBlack;  // 블랙리스트여부 dafault-'N'
 	private Date out_date;   // 탈퇴날쨔
 	
-	//성환
+	//성환admin
+	private Date start_date;
+	private Date end_date;
 	private int reviewCount;
 	
 	
@@ -66,6 +68,17 @@ public class Member {
 		this.isOut = isOut;
 		this.isBlack = isBlack;
 		this.out_date = out_date;
+	}
+	
+	// 성환- 블랙리스트
+	public Member(int m_no, String nickname, Date start_date, Date end_date) {
+		super();
+		this.m_no = m_no;
+		this.nickName=nickname;
+		this.start_date = start_date;
+		this.end_date = end_date;
+		
+		
 	}
 
 
@@ -226,6 +239,26 @@ public class Member {
 
 	public void setReviewCount(int reviewCount) {
 		this.reviewCount = reviewCount;
+	}
+
+
+	public Date getStart_date() {
+		return start_date;
+	}
+
+
+	public void setStart_date(Date start_date) {
+		this.start_date = start_date;
+	}
+
+
+	public Date getEnd_date() {
+		return end_date;
+	}
+
+
+	public void setEnd_date(Date end_date) {
+		this.end_date = end_date;
 	}
 
 
