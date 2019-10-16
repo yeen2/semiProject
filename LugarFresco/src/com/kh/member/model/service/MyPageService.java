@@ -39,16 +39,32 @@ public class MyPageService {
 		return updateMem;
 	}
 	
-	public int deleteMember(int mno) {
+	public int deleteMember(int mno, boolean flag) {
 		Connection conn = getConnection();
 		
-		int result = new MyPageDao().deleteMember(conn, mno);
+		int result = 0;
 		
-		if(result > 0) {
-			commit(conn);
+		if(flag) {
+			int result1 = new MyPageDao().deleteMember(conn, mno);
+			int result2 = new MyPageDao().deleteMemberCafe(conn, mno);
+			
+			if(result1 > 0 && result2 > 0) {
+				commit(conn);
+				result = 1;
+				
+			}else {
+				rollback(conn);
+			}
 		}else {
-			rollback(conn);
+			result = new MyPageDao().deleteMember(conn, mno);
+			
+			if(result > 0) {
+				commit(conn);
+			}else {
+				rollback(conn);
+			}
 		}
+		
 		close(conn);
 		
 		return result;

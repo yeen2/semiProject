@@ -33,13 +33,19 @@ public class MyPageDeleteMemberServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		
+		boolean flag = false;
+		
 		HttpSession session = request.getSession();
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		
 		if(loginUser != null) {
 			int mno = loginUser.getM_no();
 			
-			int result = new MyPageService().deleteMember(mno);
+			if(loginUser.getIsOwner().equals("Y")) {
+				flag = true;
+			}
+			
+			int result = new MyPageService().deleteMember(mno, flag);
 			
 			if(result > 0) {
 				session.setAttribute("msg", "회원탈퇴에 성공하였습니다.");
@@ -51,6 +57,7 @@ public class MyPageDeleteMemberServlet extends HttpServlet {
 				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 				
 			}
+			
 			
 		}else {
 			request.getRequestDispatcher("views/common/loginForm.jsp").forward(request, response);
