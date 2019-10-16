@@ -262,7 +262,7 @@
 					        social: {
 					          likeCount: favorite,
 					          commentCount: count,
-					          sharedCount: 845
+					          sharedCount: 0
 					        }, 
 					        buttons: [
 					          {

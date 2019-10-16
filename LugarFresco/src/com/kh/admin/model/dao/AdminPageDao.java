@@ -37,7 +37,7 @@ public class AdminPageDao {
 	}
 
 	/**
-	 * 燁삳똾�읂占쎌읈筌ｏ옙 野껊슣�뻻疫뀐옙 揶쏉옙占쎈땾
+	 * �뇖�궠�샑占쎌쓡�뜝�럩�쓧嶺뚳퐦�삕 �뇦猿딆뒩占쎈뻣�뼨�먯삕 �뤆�룊�삕�뜝�럥�빢
 	 * 
 	 * @param conn
 	 * @return
@@ -80,7 +80,7 @@ public class AdminPageDao {
 								  rset.getDate("upload_date"), 
 								  rset.getString("isdelete"), 
 								  rset.getInt("review_count"),
-								  rset.getString("profile_path"), 
+								  rset.getString("profile"), 
 								  rset.getString("nickname")));
 
 			}
@@ -96,7 +96,7 @@ public class AdminPageDao {
 	}
 
 	/**
-	 * 占쎈읂占쎌뵠筌욑옙 筌ｌ꼶�봺�몴占� 占쎌맄占쎈립 cafeList 野껊슣�뻻疫뀐옙 揶쏉옙占쎈땾
+	 * �뜝�럥�쓡�뜝�럩逾좂춯�쉻�삕 嶺뚳퐣瑗띰옙遊븝옙紐닷뜝占� �뜝�럩留꾢뜝�럥由� cafeList �뇦猿딆뒩占쎈뻣�뼨�먯삕 �뤆�룊�삕�뜝�럥�빢
 	 * 
 	 * @param conn
 	 * @return
@@ -1081,7 +1081,7 @@ public class AdminPageDao {
 		return result;
 	}
 
-	// 카페업로드시, 해당 m_no에 사장권한으로 바꾸기
+	// 移댄럹�뾽濡쒕뱶�떆, �빐�떦 m_no�뿉 �궗�옣沅뚰븳�쑝濡� 諛붽씀湲�
 	public int updateIsOwner(Connection conn, String arr) {
 
 		int result = 0;
@@ -1244,7 +1244,7 @@ public class AdminPageDao {
 
 	}
 	
-	// 파워링크 상태 1->2로 바꾸기
+	// �뙆�썙留곹겕 �긽�깭 1->2濡� 諛붽씀湲�
 	public int powerLinkStatusChange(Connection conn, int ck, int no) {
 
 		int result = 0;
@@ -1275,7 +1275,7 @@ public class AdminPageDao {
 
 	}
 	
-	// 해당 카페 isPower='Y'로 변경
+	// �빐�떦 移댄럹 isPower='Y'濡� 蹂�寃�
 	public int updateMemberPowerY(Connection con, int c_no) {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -1604,5 +1604,37 @@ public class AdminPageDao {
 		return result;
 
 	}
+	
+	
+	   public int reviewDeleteUpdate(Connection conn, int dn) {
+
+		      int result = 0;
+
+		      PreparedStatement pstmt = null;
+
+		      String sql = prop.getProperty("reviewDeleteUpdate");
+
+		      try {
+
+		         pstmt = conn.prepareStatement(sql);
+
+		         pstmt.setInt(1, dn);
+
+		         result = pstmt.executeUpdate();
+
+		      } catch (SQLException e) {
+		         // TODO Auto-generated catch block
+		         e.printStackTrace();
+		      } finally {
+		         JDBCTemplate.close(pstmt);
+		      }
+
+		      return result;
+
+		   }
+	   
+	   
+	   
+	   
 
 }

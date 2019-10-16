@@ -858,5 +858,30 @@ public class AdminPageService {
 		return result;
 
 	}
+	
+	
+	   public int reviewDeleteUpdate(int dn) {
+		   
+		      Connection conn = JDBCTemplate.getConnection();
+
+		      int result = new AdminPageDao().reviewDeleteUpdate(conn, dn);
+
+		      if (result > 0) {
+
+		         JDBCTemplate.commit(conn);
+
+		      } else {
+
+		         JDBCTemplate.rollback(conn);
+
+		      }
+
+		      JDBCTemplate.close(conn);
+
+		      return result;
+
+		   }
+	   
+	   
 
 }

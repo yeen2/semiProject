@@ -87,7 +87,8 @@
                <th style="background-color: #fafafa; text-align: center;">No.</th>
                <th style="background-color: #fafafa; text-align: center;">신고자</th>
                <th style="background-color: #fafafa; text-align: center;">신고 분류</th>
-               <th style="background-color: #fafafa; text-align: center;">신고내용</th>
+               <th style="background-color: #fafafa; text-align: center;">신고 내용</th>
+               <th style="background-color: #fafafa; text-align: center;">신고 횟수</th>
                <th style="background-color: #fafafa; text-align: center;">신고날짜</th>
          
             </tr>
@@ -102,7 +103,13 @@
                </td>
                <td><%=d.getCategory()%></td>
                <td><%=d.getContent() %></td>
-               <td><%=d.getReg_date() %></td>
+               <td><%=d.getDeclare_count() %></td>
+               <td>
+                  <%=d.getReg_date() %>
+                  <%if(d.getDeclare_count() >= 5) {%>
+                     <button style="margin-left: 30px;" class="btn btn-danger lg" onclick="deleteReview(this.value);" value="<%=d.getR_no()%>">삭제</button>
+                  <%} %>
+               </td>
 
             </tr>
                <%} %>
@@ -131,10 +138,14 @@
                
       });
    });
-   
-
+   function deleteReview(r){
+	   alert("리뷰가 삭제 되었습니다.");
+	   location.href="<%=request.getContextPath() %>/reviewDelete.ap?r="+r;
+   }
+	
    
    </script>
+
       <%if(hidden != null) {%>
       
    <%} else { %>
@@ -150,7 +161,7 @@
       <%} else{ %>
       <button class="btn btn-primary"
          onclick="location.href='<%= request.getContextPath()%>/declareList.ap?currentPage=1';">
-         &lt;&lt;</button>#
+         &lt;&lt;</button>
       <button class="btn btn-primary"
          onclick="location.href='<%= request.getContextPath()%>/declareList.ap?currentPage=<%=currentPage-1%>';">&lt;</button>
       <%} %>
@@ -209,12 +220,12 @@
                         <h5>신고 내용</h5>
                         <label for="" class="form-control"id="content"></label>
                      </div>
+
                   </div>
             </div>
 
          </div>
       </div>
    </div>
-   
 </body>
 </html>

@@ -12,6 +12,10 @@
 
 	String msg = (String) request.getAttribute("msg");
 
+	System.out.println(msg);
+
+	System.out.println("dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
+
 	int currentPage = pi.getCurrentPage();
 	int maxPage = pi.getMaxPage();
 	int startPage = pi.getStartPage();
@@ -235,52 +239,36 @@
    	<%} %>
    	</main>
    	
-   	<div class="modal fade" id ="nicModal" tabindex="-1" role ="dialog" aria-labelledby="modal"aria-hidden="true">
-		<div class="modal-dialog modal-sm">
-			<div class= "modal-content"> <!-- modal 1  -->
-			
-				<div class="modal-header"> <!-- modal header -->
-					<h5 class="modal-title" id="modal"></h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true"> &times; </span>
-					</button>
-				</div>
-				<div class="modal-body">
-					 <div class="form-row">   
-                  		<div class="col-md-4">
-                     		<div  style="width: 60px; height: 60px; margin: auto;">
-                       			<img style="width: 100%; height: 100%; border-radius: 50%; border: 1px solod red;" 
-                           			id="memberFace">
-                    		 </div>
-                 		 </div>
-                  	 	<div class="col-md-8">
-                     		<label>게시글 작성 수</label> 
-                     		<input type="text" id="bbsCount" class="form-control" maxlength="20" readonly
-                        		style="display: inline;"/>               
-                  	 	</div>
-               		</div>
-					
-					<!-- <div >
-							form-row : 하나의 행을 여러 열로 나눌때 사용한다.
-							<div class="form-group col-sm-6">
-								<label>게시글 작성 수</label> <input type="text" id="bbsCount"
-									class="form-control" maxlength="20" readonly/>
-							</div>
-							<div class="form-group col-sm-6">
-								<label>회원 얼굴</label> 
-								<div style="width: 240px; height: 300px; border: 1px solid black;">
-									<img id="memberFace" alt="" style="width: 240px; height: 300px; border: 1px solid red;">
-								</div>
-								
-								
-								
-							</div>
-						</div> -->
-				</div>
+      <div class="modal fade" id ="nicModal" tabindex="-1" role ="dialog" aria-labelledby="modal"aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+         <div class= "modal-content"> <!-- modal 1  -->
+         
+            <div class="modal-header"> <!-- modal header -->
+               <h5 class="modal-title" id="modal"></h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true"> &times; </span>
+               </button>
+            </div>
+            <div class="modal-body">
+               <div class="form-row">   
+                  <div class="col-md-4">
+                     <div  style="width: 60px; height: 60px; margin: auto;">
+                        <img style="width: 100%; height: 100%; border-radius: 50%; border: 1px solod red;" 
+                           id="memberFace">
+                     </div>
+                  </div>
+                  <div class="col-md-8">
+                     <label>게시글 작성 수</label> 
+                     <input type="text" id="bbsCount" class="form-control" maxlength="20" readonly
+                        style="display: inline;"/>               
+                  </div>
+               </div>
+
 
 			</div>
-		</div>
-	</div>
+         </div>
+      </div>
+   </div>
    	
 
 </body>
