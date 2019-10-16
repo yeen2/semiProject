@@ -130,7 +130,7 @@
 			   	if(cc == "<%= c.getCafe_name() %>"){
 			   		$("#review_count").val(<%= c.getReview_count()%>);
 			   		
-			   		$("#memberFace").attr("src","<%=conPath%>/<%=c.getImg_path()%>");
+			   		$("#memberFace").attr("src","<%=conPath%>/resources/fileupload/profile/<%=c.getProfile()%>");
 			   		console.log("<%=conPath%>/<%=c.getImg_path()%>");
 			   	}
 			<% }%>

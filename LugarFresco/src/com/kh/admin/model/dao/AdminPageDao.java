@@ -65,12 +65,23 @@ public class AdminPageDao {
 			rset = pstmt.executeQuery();
 
 			while (rset.next()) {
-				list.add(new Cafe(rset.getInt("c_no"), rset.getInt("m_no"), rset.getString("cafe_name"),
-						rset.getString("address"), rset.getString("address_detail"), rset.getString("phone"),
-						rset.getString("content"), rset.getString("br_name"), rset.getString("br_up_name"),
-						rset.getString("isupload"), rset.getString("ispower"), rset.getDate("reg_date"),
-						rset.getDate("upload_date"), rset.getString("isdelete"), rset.getInt("review_count"),
-						rset.getString("profile_path"), rset.getString("nickname")));
+				list.add(new Cafe(rset.getInt("c_no"), 
+								  rset.getInt("m_no"), 
+								  rset.getString("cafe_name"),
+								  rset.getString("address"), 
+								  rset.getString("address_detail"), 
+								  rset.getString("phone"),
+								  rset.getString("content"), 
+								  rset.getString("br_name"), 
+								  rset.getString("br_up_name"),
+								  rset.getString("isupload"), 
+								  rset.getString("ispower"), 
+								  rset.getDate("reg_date"),
+								  rset.getDate("upload_date"), 
+								  rset.getString("isdelete"), 
+								  rset.getInt("review_count"),
+								  rset.getString("profile_path"), 
+								  rset.getString("nickname")));
 
 			}
 		} catch (SQLException e) {

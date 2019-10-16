@@ -54,7 +54,7 @@ public class Cafe {
 
 	//성환
 	private String profile_path;
-
+	private String profile;
 	
 	public Cafe() {
 		// TODO Auto-generated constructor stub
@@ -277,7 +277,7 @@ public class Cafe {
 	//성환
 	public Cafe(int c_no, int m_no, String cafe_name, String address, String address_detail, String phone,
 			String content, String br_name, String br_up_name, String isUpload, String isPower, Date reg_date,
-			Date upload_date, String idDelete, int review_count, String profile_path, String nickName) {
+			Date upload_date, String idDelete, int review_count, String profile, String nickName) {
 		super();
 		this.c_no = c_no;
 		this.m_no = m_no;
@@ -294,7 +294,7 @@ public class Cafe {
 		this.upload_date = upload_date;
 		this.idDelete = idDelete;
 		this.review_count = review_count;
-		this.profile_path = profile_path;
+		this.profile = profile;
 		this.nickName = nickName;
 	}
 	
@@ -633,6 +633,18 @@ public class Cafe {
 	public void setTitleImg(String titleImg) {
 		this.titleImg = titleImg;
 	}
+
+	
+		
+	public String getProfile() {
+		return profile;
+	}
+
+
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+
 
 	@Override
 	public String toString() {
