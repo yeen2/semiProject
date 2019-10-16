@@ -60,9 +60,9 @@
 			<div align="center">
 				<div id="div1">
 					<table style="border-collapse:separate; border-spacing:45px; font-size:30px;">
-						<tr><td><label style="font-weight:bold;">1. 해당 이메일 계정으로 30일간 재가입이 불가능합니다!</label></td></tr>
-						<tr><td><label style="font-weight:bold;">2. 회원정보가 삭제됩니다!</label><br>
-						<p style="font-size:15px; color:#666;">회원탈퇴 즉시 아래에 해당하는 개인정보가 삭제됩니다.<br>개인정보 : 닉네임, 이메일 계정, 휴대폰 번호, 비밀번호</p></td>
+						<tr><td><label style="font-weight:bold;">1. 회원정보가 삭제됩니다!</label><br>
+						<p style="font-size:15px; color:#666;">회원 탈퇴 즉시 아래에 해당하는 개인 정보가 삭제됩니다.<br>개인 정보 : 닉네임, 이메일 계정, 휴대폰 번호, 비밀번호</p></td>
+						<tr><td><label style="font-weight:bold;">2. 회원 탈퇴가 완료되면 회원정보를 복구할 수 없습니다!</label></td></tr>
 						</tr>
 					</table>
 					

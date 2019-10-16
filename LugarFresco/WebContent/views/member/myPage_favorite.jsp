@@ -86,9 +86,11 @@
 						type:"post",
 						data:{fno:fno},
 						success:function(result){
+							var $cFavoriteDiv = $("#area ul");
 							
 							if(result == "1"){
 								alert("적용되었습니다!");
+								$cFavoriteDiv.html("");
 								selectFavoriteList();
 								
 							}else{
@@ -114,6 +116,10 @@
 				success:function(list){
 					
 					if(list.length == 0){
+						var $cFavoriteDiv = $("#area ul");
+						
+						$cFavoriteDiv.html("");
+						
 						var $noData = $("<li>").attr("id", "noData");
 						$noData.append($("<div>").append("<i class='fa fa-coffee' aria-hidden='true' style='font-size:50px; line-height:80px; color:#c2c2c2; margin-bottom:-15px;'></i>"));
 						$noData.append($("<div>").append("<p style='color:#c2c2c2;'>즐겨찾기한 카페가 없습니다!<br>카페 즐겨찾기를 눌러주세요!</p>"));

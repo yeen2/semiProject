@@ -90,9 +90,11 @@
 					type:"post",
 					data:{rno:rno},
 					success:function(result){
+						var $reviewDiv = $("#my-review");
 						
 						if(result == "1"){
 							alert("적용되었습니다!");
+							$reviewDiv.html("");
 							selectReviewList();
 							
 						}else{
@@ -118,6 +120,10 @@
 				success:function(list){
 					
 					if(list.length == 0){
+						var $reviewDiv = $("#my-review");
+						
+						$reviewDiv.html("");
+						
 						var $noData = $("<div>").attr("id", "noData");
 						$noData.append($("<div>").append("<i class='fa fa-coffee' aria-hidden='true' style='font-size:50px; line-height:80px; color:#c2c2c2; margin-bottom:-20%;'></i>"));
 						$noData.append($("<div>").append("<p style='color:#c2c2c2;'>작성한 리뷰가 없습니다!<br>리뷰를 작성해주세요!</p>"));

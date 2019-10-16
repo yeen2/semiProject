@@ -102,12 +102,7 @@
                </td>
                <td><%=d.getCategory()%></td>
                <td><%=d.getContent() %></td>
-               <td>
-                  <%=d.getReg_date() %>
-                  <%if(d.getDeclare_count() >= 5) {%>
-                     <button style="margin-left: 30px;" class="btn btn-danger lg">삭제</button>
-                  <%} %>
-               </td>
+               <td><%=d.getReg_date() %></td>
 
             </tr>
                <%} %>
@@ -140,10 +135,6 @@
 
    
    </script>
-   <div style="margin-top: 30px; height: 50%">
-         <button class="btn btn-danger btn-lg pull-right">삭제</button>
-         <button style="margin-right: 10px;" class="btn btn-primary btn-lg pull-right">수정</button>
-   </div>
       <%if(hidden != null) {%>
       
    <%} else { %>
@@ -218,14 +209,12 @@
                         <h5>신고 내용</h5>
                         <label for="" class="form-control"id="content"></label>
                      </div>
-                     <div class="form-group col-sm-12">
-                        <button class="btn btn-danger btn-lg pull-right" onclick="confirm('정말 삭제하시겠습니까?');" data-dismiss="modal">삭제</button>
-                     </div>
                   </div>
             </div>
 
          </div>
       </div>
    </div>
+   
 </body>
 </html>

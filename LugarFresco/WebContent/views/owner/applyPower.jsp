@@ -26,15 +26,15 @@
    <!-- 각 li 누를때마다 active 바뀌게 js 코드 짜기 -->
       <ul class="app-menu">
 		<li><a class="app-menu__item" href="<%=request.getContextPath() %>/myCafeList.op">
-			<i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">
+			<i class="app-menu__icon fa fa-coffee"></i><span class="app-menu__label">
         		내 카페 리스트</span></a>
         </li>
         <li><a class="app-menu__item" href="<%=request.getContextPath() %>/myCafeReview.op">
-        	<i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">
+        	<i class="app-menu__icon fa fa-pencil"></i><span class="app-menu__label">
         		내 카페 리뷰 전체보기</span></a>
         </li>
         <li><a class="app-menu__item" href="<%=request.getContextPath() %>/myPowerList.op">
-          	<i class="app-menu__icon fa fa-heart-o"></i><span class="app-menu__label">
+          	<i class="app-menu__icon fa fa-file-text-o"></i><span class="app-menu__label">
         		파워링크 신청 리스트</span></a>
         </li>
       </ul>

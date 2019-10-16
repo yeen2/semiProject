@@ -104,7 +104,11 @@
 					<!-- cafeInfo에서 수정 삭제 처리. -->
 					<td><%=c.getNickName() %></td>
 					<td><%=c.getReg_date() %></td>
-					<td><%=c.getUpload_date()%></td>
+					<% if(c.getUpload_date() != null){ %>
+						<td><%=c.getUpload_date()%></td>
+					<% }else{ %>
+						<td></td>
+					<% } %>
 					<td><%=c.getIsUpload() %></td>
 					<td>
 						<a class="btn btn-secondary" type="button" href="<%=conPath%>/download.mp?cno=<%=c.getC_no()%>">다운로드</a>

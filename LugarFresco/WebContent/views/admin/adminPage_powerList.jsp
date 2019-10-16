@@ -90,8 +90,8 @@
                <th style="background-color: #fafafa; text-align: center;">No.</th>
                <th style="background-color: #fafafa; text-align: center;">카페명</th>
                <th style="background-color: #fafafa; text-align: center;">신청자</th>
-               <th style="background-color: #fafafa; text-align: center;">등록날짜</th>
                <th style="background-color: #fafafa; text-align: center;">신청날짜</th>
+               <th style="background-color: #fafafa; text-align: center;">등록날짜</th>
                <th style="background-color: #fafafa; text-align: center;">상태여부</th>
                <th style="background-color: #fafafa; text-align: center;">파워링크 등록여부</th>
             </tr>
@@ -103,7 +103,11 @@
                <td style="padding-top:15px;"><p style="margin: 0px;" id = "profile"><%=p.getCafe_name()%></p></td>
                <td style="padding-top:15px;"><a class="announce" data-toggle="modal" ><%=p.getNickname() %></a></td>
                <td style="padding-top:15px;"><%=p.getReg_date()%></td>
-               <td style="padding-top:15px;"><%=p.getUpload_date()%></td>
+               <% if(p.getUpload_date() != null){ %>
+               		<td style="padding-top:15px;"><%=p.getUpload_date()%></td>
+               <% }else{ %>
+               		<td style="padding-top:15px;"></td>
+               <% } %>
                  <% if(p.getStatus()==1){
                                           str = "등록전";
                                        }else if(p.getStatus() == 2){

@@ -20,15 +20,15 @@
    <!-- 각 li 누를때마다 active 바뀌게 js 코드 짜기 -->
       <ul class="app-menu">
 		<li><a class="app-menu__item" href="<%=request.getContextPath() %>/myCafeList.op">
-			<i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">
+			<i class="app-menu__icon fa fa-coffee"></i><span class="app-menu__label">
         		내 카페 리스트</span></a>
         </li>
         <li><a class="app-menu__item" href="<%=request.getContextPath() %>/myCafeReview.op">
-        	<i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">
+        	<i class="app-menu__icon fa fa-pencil"></i><span class="app-menu__label">
         		내 카페 리뷰 전체보기</span></a>
         </li>
         <li><a class="app-menu__item" href="<%=request.getContextPath() %>/myPowerList.op">
-          	<i class="app-menu__icon fa fa-heart-o"></i><span class="app-menu__label">
+          	<i class="app-menu__icon fa fa-file-text-o"></i><span class="app-menu__label">
         		파워링크 신청 리스트</span></a>
         </li>
       </ul>
@@ -56,11 +56,19 @@
 					</div>
             <% }else{ %>
               <% for(Cafe oc : list){ %>
-              <div align="right" style="margin-bottom:-1%;">
+              <div align="right" style="margin-bottom:-3%;">
+              	<div style="display:inline-block; margin-left:20px;">
 					<form action="<%=conPath %>/powerApplyForm.op" method="post">
 						<input type="hidden" name="cno" value="<%=oc.getC_no()%>">
-						<button type="submit" id="powerApply" class="btn btn-info">파워등록 신청</button>
+						<button type="submit" id="powerApply" class="btn btn-info" style="display:inline-block;">파워등록 신청</button>
 					</form>
+				</div>
+				<div style="display:inline-block;">
+					<form action="<%=conPath %>/deleteMyCafe.op" method="post">
+						<input type="hidden" name="cno" value="<%=oc.getC_no()%>">
+						<button type="submit" id="deleteCafe" class="btn btn-secondary" style="display:inline-block;">삭제</button>
+					</form>
+				</div>
 			  </div>
 			  
               <div id="cafeClick" class="timeline-post" onclick="location.href='<%=conPath%>/cafeInfo.ca?c_no=<%=oc.getC_no()%>';">
