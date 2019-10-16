@@ -1374,9 +1374,14 @@ public class AdminPageDao {
 			rset = pstmt.executeQuery();
 
 			while (rset.next()) {
-				list.add(new Review(rset.getInt("c_no"), rset.getInt("flavor"), rset.getString("isdelete"),
-						rset.getInt("m_no"), rset.getInt("price"), rset.getString("rr_content"),
-						rset.getDate("rr_date"), rset.getString("r_content"), rset.getDate("r_date"),
+				list.add(new Review(rset.getInt("r_no"),
+									rset.getInt("c_no"), 
+									rset.getInt("flavor"), 
+									rset.getString("isdelete"),
+									rset.getInt("m_no"), 
+									rset.getInt("price"), 
+									rset.getString("rr_content"),
+									rset.getDate("rr_date"), rset.getString("r_content"), rset.getDate("r_date"),
 						rset.getInt("r_declare"), rset.getInt("r_like"), rset.getInt("service"),
 						rset.getDouble("sum_avg")));
 

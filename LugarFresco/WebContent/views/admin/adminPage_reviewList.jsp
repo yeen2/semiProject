@@ -107,7 +107,7 @@
 					<td>
 					<%if(r.getR_declare() >= 10){ %>
 					<input type = "checkbox" name="ckbox" value ="<%=r.getM_no() %>" >
-					<%} %><%=r.getC_no() %></td>
+					<%} %><%=r.getR_no() %></td>
 					<td><%=r.getFlavor() %></p></td>
 					<td><a class="announce" data-toggle="modal" value="<%=r.getR_content()%>"><%=r.getR_content() %></a></td>
 					<td><%=r.getR_declare() %></td>

@@ -188,6 +188,27 @@ public class Review {
 		this.sum_avg = sum_avg;
 		// TODO Auto-generated constructor stub
 	}
+	
+	// 성환-블랙리스트
+		public Review(int r_no,int c_no, int flavor, String isdelete, int m_no, int price, String rr_content, Date rr_date, String r_content,
+				Date r_date, int r_declare, int r_like, int service, double sum_avg) {
+			super();
+			this.r_no = r_no;
+			this.c_no = c_no;
+			this.flavor = flavor;
+			this.isDelete = isdelete;
+			this.m_no = m_no;
+			this.price = price;
+			this.rr_content = rr_content;
+			this.rr_date = rr_date;
+			this.r_content = r_content;
+			this.r_date = r_date;
+			this.r_declare = r_declare;
+			this.r_like = r_like;
+			this.service = service;
+			this.sum_avg = sum_avg;
+			// TODO Auto-generated constructor stub
+		}
 
 	
 
