@@ -5,7 +5,7 @@
 	ArrayList<Cafe> c1 = (ArrayList<Cafe>)request.getAttribute("c1");
 	ArrayList<Cafe> c2 = (ArrayList<Cafe>)request.getAttribute("c2");
 	ArrayList<Cafe> c3 = (ArrayList<Cafe>)request.getAttribute("c3");
-	
+	//19.12.23 수정
 %>
 <!DOCTYPE html>
 	
